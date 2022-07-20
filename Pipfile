@@ -10,6 +10,7 @@ streamlit-ace = "*"
 tqdm = "*"
 sgfmill = "*"
 matplotlib = "*"
+pyzmq = "*"
 
 [dev-packages]
 black = "*"

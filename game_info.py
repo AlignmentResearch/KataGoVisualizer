@@ -3,8 +3,10 @@
 import os
 import pathlib
 import re
-from typing import Any, Dict, Sequence
+from typing import Any, Dict, Sequence, Tuple
 from itertools import chain
+import multiprocessing
+# import concurrent.futures
 
 def find_sgf_files(
     root: pathlib.Path, max_scan_length: int = 10000
@@ -25,7 +27,7 @@ def find_sgf_files(
             break
     return sgf_paths
 
-def read_file(path: pathlib.Path) -> Sequence[Dict[str, Any]]:
+def read_and_parse_file(path: pathlib.Path) -> Sequence[Dict[str, Any]]:
     parsed_games = []
     with open(path, "r") as f:
         for i, line in enumerate(f):
@@ -34,7 +36,11 @@ def read_file(path: pathlib.Path) -> Sequence[Dict[str, Any]]:
 
 def read_and_parse_all_files(paths: Sequence[pathlib.Path]) -> Sequence[Dict[str, Any]]:
     """Returns concatenated contents of all files in `paths`."""
-    parsed_games = map(read_file, paths)
+    pool = multiprocessing.Pool()
+    parsed_games = pool.map(read_and_parse_file, paths)
+    # parsed_games = map(read_and_parse_file, paths)
+    # with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+    #     parsed_games = list(executor.map(read_and_parse_file, paths))
     combined_parsed_games = list(chain.from_iterable(parsed_games))
     return combined_parsed_games
 
@@ -53,6 +59,8 @@ num_b_pass_pattern = re.compile('B\\[]')
 num_w_pass_pattern = re.compile('W\\[]')
 semicolon_pattern = re.compile(';')
 
+def parse_game_tuple_to_dict(sgf: Tuple[str, int, str]) -> Dict[str, Any]:
+    return parse_game_str_to_dict(sgf[0], sgf[1], sgf[2])
 
 def parse_game_str_to_dict(path:str, line_number:int, sgf_str: str) -> Dict[str, Any]:
     rule_str = extract_prop("RU", sgf_str)

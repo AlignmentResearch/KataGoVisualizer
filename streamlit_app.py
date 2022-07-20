@@ -2,12 +2,14 @@ import streamlit as st
 import pandas as pd
 from pandas.api.types import is_numeric_dtype
 import numpy as np
-import game_info
 import streamlit.components.v1 as components
 import matplotlib.pyplot as plt
-import urllib.request
 from streamlit_ace import st_ace
-# import multiprocessing
+# import zmq
+import atexit
+from multiprocessing.connection import Client
+import game_info
+import urllib.request
 
 st.title('KataGo Attack Data Visualizer')
 
@@ -21,13 +23,11 @@ if 'data_source_type' not in st.session_state:
 if 'data_source' not in st.session_state:
     st.session_state.data_source = st.experimental_get_query_params().get('data_source', [''])[0]
 
-
 st.subheader('Data source')
 col1, col2 = st.columns([3, 1])
 data_source_type = col2.radio('Load data from', [REMOTE_DATA_SOURCE, LOCAL_DATA_SOURCE], key='data_source_type')
 data_source = col1.text_input('URL' if data_source_type == REMOTE_DATA_SOURCE else 'Path', key='data_source')
 
-# @st.experimental_memo
 def load_and_parse_remote_file(url):
     if not url:
         return pd.DataFrame()
@@ -35,33 +35,72 @@ def load_and_parse_remote_file(url):
     parsed_dicts = [game_info.parse_game_str_to_dict(line) for line in data]
     return pd.DataFrame(parsed_dicts)
 
-# @st.experimental_memo
 def load_and_parse_games(path):
     sgf_paths = game_info.find_sgf_files(path)
     parsed_dicts = game_info.read_and_parse_all_files(sgf_paths)
     return pd.DataFrame(parsed_dicts)
 
-if data_source_type == REMOTE_DATA_SOURCE:
-    df = load_and_parse_remote_file(data_source)
-else:
-    df = load_and_parse_games(data_source)
+# #  Socket to talk to server
+# # @st.experimental_singleton
+# # def get_zmq_socket():
+# context = zmq.Context()
+# zmq_socket = context.socket(zmq.REQ)
+# zmq_socket.connect("tcp://localhost:5555")
+#     # socket.connect('ipc:///tmp/zmq_socket')
+#     # return socket
+# # zmq_socket = get_zmq_socket()
+
+# @st.experimental_singleton
+# def get_server_connection():
+#     address = ('localhost', 6536)
+#     return Client(address, authkey=b'secret password')
+# conn = get_server_connection()
+address = ('localhost', 6536)
+conn = Client(address, authkey=b'secret password')
+print(f'got conn: {conn}')
+
+# df = pd.DataFrame()
+# if data_source:
+#     print(f'Sending request {data_source}')
+#     zmq_socket.send_pyobj((data_source_type, data_source))
+#     df = zmq_socket.recv_pyobj()
+
+# def exit_handler():
+# #     zmq_socket.close()
+# #     context.term()
+#     conn.close()
+#     print(f'closing conn: {conn}')
+#     print('Streamlit app is terminating')
+# atexit.register(exit_handler)
+
+conn.send((data_source_type, data_source))
+print(f'Sent request: data_source_type={data_source_type}, data_source={data_source}')
+df = conn.recv()
+print(f'Received response with shape {df.shape}')
+# if data_source_type == REMOTE_DATA_SOURCE:
+#     df = load_and_parse_remote_file(data_source)
+# else:
+#     df = load_and_parse_games(data_source)
+
+conn.close()
+print(f'closing conn: {conn}')
 
 st.subheader('Training games')
 df_unfiltered_len = len(df.index)
 
 # Iterate though each column of the dataframe
 st.sidebar.subheader('Filters')
-for col_name in df.columns:
-    unique_values = df[col_name].drop_duplicates()
-    if 1 < len(unique_values) < len(df.index):
-        if is_numeric_dtype(df[col_name]) and df[col_name].dtype != 'bool':
-            df_min, df_max = df[col_name].min().item(), df[col_name].max().item()
-            slider_min, slider_max = st.sidebar.slider(col_name, min_value=df_min, max_value=df_max,
-                                                       value=(df_min, df_max), key=col_name)
-            df = df[df[col_name].between(slider_min, slider_max)]
-        else:
-            col_value_choices = st.sidebar.multiselect(col_name, unique_values, key=col_name)
-            df = df if len(col_value_choices) < 1 else df[df[col_name].isin(col_value_choices)]
+# for col_name in df.columns:
+#     unique_values = df[col_name].drop_duplicates()
+#     if 1 < len(unique_values) < len(df.index):
+#         if is_numeric_dtype(df[col_name]) and df[col_name].dtype != 'bool':
+#             df_min, df_max = df[col_name].min().item(), df[col_name].max().item()
+#             slider_min, slider_max = st.sidebar.slider(col_name, min_value=df_min, max_value=df_max,
+#                                                        value=(df_min, df_max), key=col_name)
+#             df = df[df[col_name].between(slider_min, slider_max)]
+#         else:
+#             col_value_choices = st.sidebar.multiselect(col_name, unique_values, key=col_name)
+#             df = df if len(col_value_choices) < 1 else df[df[col_name].isin(col_value_choices)]
 
 st.text(f'Showing {len(df.index)} of {df_unfiltered_len} games')
 # Show first 1000 rows of df
@@ -80,12 +119,12 @@ st.pyplot(fig)
 
 game_to_view_index = st.selectbox('Select a game to view:', list(df.head(MAX_DISPLAY_ROWS).index.values))
 if game_to_view_index is not None:
+    print('game_to_view_index:', game_to_view_index, 'len(df):', len(df.index))
     game_to_view_path = df.iloc[game_to_view_index]['sgf_path']
     game_to_view_line = df.iloc[game_to_view_index]['sgf_line']
-    print('reading game:', game_to_view_path, game_to_view_line)
     with open(game_to_view_path, "r") as f:
         for i, line in enumerate(f):
-            if i == game_to_view_line:
+            if i + 1 == game_to_view_line:
                 game_to_view_str = line
                 break
 else:
