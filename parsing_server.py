@@ -1,16 +1,9 @@
-# import zmq
 import pandas as pd
 import game_info
 import urllib.request
 import atexit
 from timeit import default_timer as timer
-
-# context = zmq.Context()
-# socket = context.socket(zmq.REP)
-# socket.bind("tcp://*:5555")
-# # socket.bind("ipc:///tmp/zmq_socket")
 from multiprocessing.connection import Listener
-
 
 REMOTE_DATA_SOURCE, LOCAL_DATA_SOURCE = 'Remote', 'Local directory'
 
@@ -23,13 +16,8 @@ def load_and_parse_remote_file(url):
 
 def load_and_parse_games(path):
     sgf_paths = game_info.find_sgf_files(path)
-    parsed_dicts = game_info.read_and_parse_all_files(sgf_paths)
+    parsed_dicts = game_info.read_and_parse_all_files(sgf_paths, processes=min(128, len(sgf_paths) // 2))
     return pd.DataFrame(parsed_dicts)
-
-# def exit_handler():
-#     socket.close()
-#     context.term()
-#     print('Parsing server is terminating')
 
 if __name__ == '__main__':
     listener = Listener(('localhost', 6536), authkey=b'secret password')
@@ -41,10 +29,7 @@ if __name__ == '__main__':
     atexit.register(exit_handler)
 
     while True:
-        conn = listener.accept()
-        print('connection accepted from', listener.last_accepted)
-        #  Wait for next request from client
-    #     data_source_type, data_source = socket.recv_pyobj()
+        conn = listener.accept() # wait for a connection
         try:
             data_source_type, data_source = conn.recv()
             print("Received request: %s" % data_source)
@@ -59,8 +44,6 @@ if __name__ == '__main__':
             df = load_and_parse_games(data_source)
         end = timer()
 
-        #  Send reply back to client
         conn.send(df)
-        # socket.send_pyobj(df)
         print(f'Sent reply with {len(df.index)} rows. Took {end-start} seconds')
         conn.close()

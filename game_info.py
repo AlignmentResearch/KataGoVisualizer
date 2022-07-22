@@ -6,7 +6,6 @@ import re
 from typing import Any, Dict, Sequence, Tuple
 from itertools import chain
 import multiprocessing
-# import concurrent.futures
 
 def find_sgf_files(
     root: pathlib.Path, max_scan_length: int = 10000
@@ -34,13 +33,10 @@ def read_and_parse_file(path: pathlib.Path) -> Sequence[Dict[str, Any]]:
             parsed_games.append(parse_game_str_to_dict(str(path), i+1, line.strip()))
     return parsed_games
 
-def read_and_parse_all_files(paths: Sequence[pathlib.Path]) -> Sequence[Dict[str, Any]]:
+def read_and_parse_all_files(paths: Sequence[pathlib.Path], processes=128) -> Sequence[Dict[str, Any]]:
     """Returns concatenated contents of all files in `paths`."""
-    pool = multiprocessing.Pool()
-    parsed_games = pool.map(read_and_parse_file, paths)
-    # parsed_games = map(read_and_parse_file, paths)
-    # with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
-    #     parsed_games = list(executor.map(read_and_parse_file, paths))
+    with multiprocessing.Pool(processes=max(processes, 1)) as pool:
+        parsed_games = pool.map(read_and_parse_file, paths)
     combined_parsed_games = list(chain.from_iterable(parsed_games))
     return combined_parsed_games
 
