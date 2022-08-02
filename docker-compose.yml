@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  streamlit-app:
+    image: streamlit-app:attack-go
+    build:
+      context: .
+      target: streamlit-app
+    ports:
+      - "8501:8501"
+      - "40000:40000"
+    hostname: localhost
+    environment:
+      - READ_DIR=${READ_DIR:?err}
+      - MOUNT_DIR=/mnt
+      - PYTHONUNBUFFERED=1
+    volumes:
+      -  ./streamlit-app:/home/appuser # Uncomment for live updating
+      - type: bind
+        source: ${READ_DIR:?err}
+        target: /mnt
+        read_only: true
+  parsing-server:
+    image: parsing-server:attack-go
+    build:
+      context: .
+      target: parsing-server
+    ports:
+      - "6536"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - READ_DIR=${READ_DIR:?err}
+      - MOUNT_DIR=/mnt
+    volumes:
+      - type: bind
+        source: ${READ_DIR:?err}
+        target: /mnt
+        read_only: true

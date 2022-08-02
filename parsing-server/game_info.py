@@ -6,6 +6,9 @@ import re
 from typing import Any, Dict, Sequence, Tuple
 from itertools import chain
 import multiprocessing
+from pathlib import Path
+
+mount_dir, read_dir = Path(os.environ['MOUNT_DIR']), Path(os.environ['READ_DIR'])
 
 def find_sgf_files(
     root: pathlib.Path, max_scan_length: int = 10000
@@ -73,7 +76,7 @@ def parse_game_str_to_dict(path:str, line_number:int, sgf_str: str) -> Dict[str,
     # + (len(re.findall("B\\[tt]", sgf_str,)) if board_size <= 19 else 0),
     num_w_pass=len(num_w_pass_pattern.findall(sgf_str))
     # + (len(re.findall("W\\[tt]", sgf_str)) if board_size <= 19 else 0),
-    assert b_name == 'victim' or w_name == 'victim'
+    assert b_name == 'victim' or w_name == 'victim', f'Game doesn\'t have victim: path={read_dir / Path(path).relative_to(mount_dir)}, line_number={line_number}'
 
     adv_color = 'b' if w_name == 'victim' else 'w'
     adv_raw_name = b_name if adv_color == 'b' else w_name

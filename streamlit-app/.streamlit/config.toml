@@ -1,0 +1,5 @@
+[server]
+maxMessageSize = 4000
+
+[browser]
+gatherUsageStats = false

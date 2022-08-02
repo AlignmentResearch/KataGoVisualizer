@@ -1,0 +1,6 @@
+# Ignore everything
+**
+
+# ... except for dependencies and source
+!parsing-server/*
+!streamlit-app/*
