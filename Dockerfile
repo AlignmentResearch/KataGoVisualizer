@@ -23,16 +23,21 @@ ENV PIPENV_VENV_IN_PROJECT=1
 FROM pipenv AS streamlit-app-python-deps
 
 # Install python dependencies in /.venv
-COPY streamlit-app/Pipfile .
-COPY streamlit-app/Pipfile.lock .
-RUN /root/.local/bin/pipenv sync
+# COPY streamlit-app/Pipfile .
+# COPY streamlit-app/Pipfile.lock .
+# RUN /root/.local/bin/pipenv sync
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+COPY streamlit-app/requirements.txt .
+RUN pip3 install -r requirements.txt
 
 
 FROM base AS streamlit-app
 
 # Copy virtual env from python-deps stage
-COPY --from=streamlit-app-python-deps /.venv /.venv
-ENV PATH="/.venv/bin:$PATH"
+# COPY --from=streamlit-app-python-deps /.venv /.venv
+COPY --from=streamlit-app-python-deps /opt/venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
 
 # Create and switch to a new user
 RUN useradd --create-home appuser
@@ -43,8 +48,8 @@ USER appuser
 # COPY streamlit-app . # Comment out for live updating
 
 # Run the application
-# CMD ["streamlit", "run", "streamlit_app.py"]
 CMD ["dtale-streamlit", "run", "streamlit_app.py"]
+# CMD ["sleep", "1d"]
 
 
 # ----- Build Parsing Server -----

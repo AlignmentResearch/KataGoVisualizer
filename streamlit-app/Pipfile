@@ -8,11 +8,8 @@ streamlit = "==1.11.1"
 pandas = "*"
 streamlit-ace = "*"
 matplotlib = "*"
-streamlit-aggrid = {editable = true, ref = "main", git = "https://github.com/UFO-101/streamlit-aggrid.git"}
 watchdog = "*"
-dtale = "*"
-lxml = "*"
-flask = "==2.1.3"
+dtale = {editable = true, ref = "master", git = "https://github.com/UFO-101/dtale.git"}
 
 [dev-packages]
 black = "*"
