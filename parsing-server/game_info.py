@@ -81,7 +81,7 @@ def parse_game_str_to_dict(path:str, line_number:int, sgf_str: str, fast_parse: 
     w_name=extract_prop("PW", sgf_str)
     result = extract_prop("RE", sgf_str)
     komi = float(extract_prop("KM", sgf_str))
-    win_color = result[0].lower() if result != '0' else None
+    win_color = result[0].lower() if result else None
     assert b_name == 'victim' or w_name == 'victim', f'Game doesn\'t have victim: path={read_dir / Path(path).relative_to(mount_dir)}, line_number={line_number}'
 
     adv_color = 'b' if w_name == 'victim' else 'w'
@@ -97,17 +97,14 @@ def parse_game_str_to_dict(path:str, line_number:int, sgf_str: str, fast_parse: 
     adv_komi = komi * {"w": 1, "b": -1}[adv_color]
 
     parsed_info = {
+        'adv_win': adv_color == win_color,
+        'adv_minus_victim_score': adv_minus_victim_score,
         'board_size': board_size,
-        'gtype': extract_comment_prop("gtype", comment_str),
+        'adv_steps': int(adv_steps_str) if adv_steps_str is not None else 0,
         'start_turn_idx': int(extract_comment_prop("startTurnIdx", comment_str)),
-        'init_turn_num': int(extract_comment_prop("initTurnNum", comment_str)),
-        'used_initial_position': extract_comment_prop("usedInitialPosition", comment_str) == "1",
-        'b_name': b_name,
-        'w_name': w_name,
-        'win_color': win_color,
         'komi': komi,
+        'adv_komi': adv_komi,
         'handicap': int(extract_prop("HA", sgf_str)),
-        'is_continuation': False,
         'num_moves': len(semicolon_pattern.findall(sgf_str)) - 1,
         'ko_rule': extract_re(r"ko([A-Z]+)", rule_str),
         'score_rule': extract_re(r"score([A-Z]+)", rule_str),
@@ -118,15 +115,16 @@ def parse_game_str_to_dict(path:str, line_number:int, sgf_str: str, fast_parse: 
         'fpok': "fpok" in rule_str,
         'victim_color': 'b' if b_name == 'victim' else 'w',
         'adv_color': adv_color,
-        'adv_name': adv_name,
-        'adv_steps': int(adv_steps_str) if adv_steps_str is not None else 0,
+        'win_color': win_color,
         'adv_samples': int(adv_samples_str) if adv_samples_str is not None else 0,
-        'adv_win': adv_color == win_color,
-        'adv_minus_victim_score': adv_minus_victim_score,
-        'adv_komi': adv_komi,
         'adv_minus_victim_score_wo_komi': adv_minus_victim_score - adv_komi,
+        'init_turn_num': int(extract_comment_prop("initTurnNum", comment_str)),
+        'used_initial_position': extract_comment_prop("usedInitialPosition", comment_str) == "1",
+        'gtype': extract_comment_prop("gtype", comment_str),
         'sgf_path': path,
         'sgf_line': line_number,
+        'adv_name': adv_name,
+        'is_continuation': False,
     }
 
     if not fast_parse:
@@ -135,8 +133,10 @@ def parse_game_str_to_dict(path:str, line_number:int, sgf_str: str, fast_parse: 
         num_w_pass=len(num_w_pass_pattern.findall(sgf_str)) + (len(re.findall("W\\[tt]", sgf_str)) if board_size <= 19 else 0),
         parsed_info['num_b_pass'] = num_b_pass
         parsed_info['num_w_pass'] = num_w_pass
-        parsed_info['num_adv_pass'] = num_b_pass if adv_color == 'b' else num_w_pass,
-        parsed_info['num_victim_pass'] = num_w_pass if adv_color == 'b' else num_b_pass,
+        parsed_info['num_adv_pass'] = num_b_pass if adv_color == 'b' else num_w_pass
+        parsed_info['num_victim_pass'] = num_w_pass if adv_color == 'b' else num_b_pass
+        parsed_info['b_name'] = b_name
+        parsed_info['w_name'] = w_name
 
     return parsed_info
 

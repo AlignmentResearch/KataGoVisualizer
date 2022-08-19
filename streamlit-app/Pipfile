@@ -10,6 +10,7 @@ streamlit-ace = "*"
 matplotlib = "*"
 watchdog = "*"
 dtale = {editable = true, ref = "master", git = "https://github.com/UFO-101/dtale.git"}
+tbparse = "*"
 
 [dev-packages]
 black = "*"
