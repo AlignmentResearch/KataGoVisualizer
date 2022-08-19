@@ -80,6 +80,7 @@ def parse_game_str_to_dict(path:str, line_number:int, sgf_str: str, fast_parse: 
     b_name=extract_prop("PB", sgf_str)
     w_name=extract_prop("PW", sgf_str)
     result = extract_prop("RE", sgf_str)
+    komi = float(extract_prop("KM", sgf_str))
     win_color = result[0].lower() if result != '0' else None
     assert b_name == 'victim' or w_name == 'victim', f'Game doesn\'t have victim: path={read_dir / Path(path).relative_to(mount_dir)}, line_number={line_number}'
 
@@ -93,6 +94,7 @@ def parse_game_str_to_dict(path:str, line_number:int, sgf_str: str, fast_parse: 
         adv_minus_victim_score = win_score if adv_color == win_color else -win_score
     adv_steps_str =  extract_re(r"\-s([0-9]+)\-", adv_name)
     adv_samples_str =  extract_re(r"\-d([0-9]+)", adv_name)
+    adv_komi = komi * {"w": 1, "b": -1}[adv_color]
 
     parsed_info = {
         'board_size': board_size,
@@ -103,7 +105,7 @@ def parse_game_str_to_dict(path:str, line_number:int, sgf_str: str, fast_parse: 
         'b_name': b_name,
         'w_name': w_name,
         'win_color': win_color,
-        'komi': float(extract_prop("KM", sgf_str)),
+        'komi': komi,
         'handicap': int(extract_prop("HA", sgf_str)),
         'is_continuation': False,
         'num_moves': len(semicolon_pattern.findall(sgf_str)) - 1,
@@ -121,6 +123,8 @@ def parse_game_str_to_dict(path:str, line_number:int, sgf_str: str, fast_parse: 
         'adv_samples': int(adv_samples_str) if adv_samples_str is not None else 0,
         'adv_win': adv_color == win_color,
         'adv_minus_victim_score': adv_minus_victim_score,
+        'adv_komi': adv_komi,
+        'adv_minus_victim_score_wo_komi': adv_minus_victim_score - adv_komi,
         'sgf_path': path,
         'sgf_line': line_number,
     }

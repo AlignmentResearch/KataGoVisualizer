@@ -1,5 +1,6 @@
 import game_info
 import os
+import traceback
 import urllib.request
 import atexit
 from timeit import default_timer as timer
@@ -54,6 +55,11 @@ if __name__ == '__main__':
             print(f'Sent reply with {len(df.index)} rows. Took {end-start} seconds')
         except (AssertionError, EOFError) as e:
             print('Failed to parse:', e)
+            print(traceback.format_exc())
+            conn.send((e, None, None))
+        except Exception as e:
+            print('Unknown error:', e)
+            print(traceback.format_exc())
             conn.send((e, None, None))
         finally:
             conn.close()
