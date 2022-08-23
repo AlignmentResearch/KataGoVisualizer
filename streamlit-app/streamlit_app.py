@@ -20,10 +20,15 @@ import numpy as np
 import tbparse
 import hashlib
 import traceback
+from pathlib import Path
+import os
+
+mount_dir, read_dir = Path(os.environ['MOUNT_DIR']), Path(os.environ['READ_DIR'])
 
 state = st.session_state
 REMOTE_DATA_SOURCE, LOCAL_DATA_SOURCE = 'Remote', 'Local directory'
 MAX_DISPLAY_ROWS = 100
+TBPARSE_EVENT_TYPES = {'scalars', 'tensors', 'histograms', 'images', 'audio', 'hparams', 'text'} # https://tbparse.readthedocs.io/en/latest/pages/api.html
 HASH = b'i\x0b\xe8:\xf2\x9ft\xa7\x95\xc2}v\x1du\xf9\xb8\xed\xfd\xb3\x8e\xa5\x08z\x1e4\x96\xe3g*\xff\x8e\xc2\xe27r\xca\x8d\xcb8Z\n\x04\x89\xbb\x94\x1d\x08\xc6\x18G0\xeb]G\xb4\xb0x\xd4\xe3\xbc\xc4\x07\x1e\x85'
 
 def hash_string_to_int(s):
@@ -45,7 +50,7 @@ if state.get('hash') != HASH:
 # Establish is this the first pass, and if so read url parameters into state 
 session_first_pass = 'first_pass' not in state
 state.first_pass = False
-for key in ['code', 'data_source_type', 'data_url', 'fast_parse', 'sgf_row', 'data_source', 'plot_presets', 'dtale_settings']:
+for key in ['code', 'data_source_type', 'data_url', 'fast_parse', 'sgf_row', 'data_source', 'plot_presets', 'tensorboard_source', 'event_types', 'dtale_settings']:
     if key not in state:
         query_params = st.experimental_get_query_params().get(key, [''])
         state[key] = query_params[0] if len(query_params) == 1 else query_params
@@ -60,6 +65,13 @@ if session_first_pass:
     state.fast_parse = state.fast_parse == 'True' or 'fast_parse' not in st.experimental_get_query_params()
     if 'plot_presets' not in st.experimental_get_query_params():
         state.plot_presets = []
+    elif isinstance(state.plot_presets, str):
+        state.plot_presets = [state.plot_presets]
+    if 'event_types' not in st.experimental_get_query_params():
+        state.event_types = ['scalars']
+    elif isinstance(state.event_types, str):
+        state.event_types = [state.event_types]
+state.event_types = state.event_types or ['scalars']
 
 @st.experimental_memo
 def load_and_parse_data(is_remote, data_source, fast_parse):
@@ -75,12 +87,11 @@ def load_and_parse_data(is_remote, data_source, fast_parse):
         print(f'Received reply with {len(df.index)} rows')
     return raw_sgf_strs, df 
 
-st.subheader('Data source')
 data_source_type = st.radio('Load data from', [REMOTE_DATA_SOURCE, LOCAL_DATA_SOURCE], key='data_source_type')
 if data_source_type == REMOTE_DATA_SOURCE:
     data_source = st.text_input('URL', key='data_url')
 else:
-    data_source = st_directory_picker(st, key='data_source')
+    data_source = st_directory_picker(st, label='Data source', key='data_source')
 
 col1, col2, col3, col4 = st.columns([1, 1, 1, 2])
 fast_parse = col2.checkbox('Fast parse', key='fast_parse')
@@ -104,24 +115,42 @@ df_unfiltered_len = len(df.index) if df is not None else 0
 if df_unfiltered_len > 0:
     st.text(f'Loaded {df_unfiltered_len} games from {data_source}')
 
+st.markdown("#")
+tensorboard_source = st_directory_picker(st, label='Tensorboard logs (local only)', key='tensorboard_source')
+col1, col2 = st.columns([3, 1])
+event_types = col1.multiselect('Tbparse event types', TBPARSE_EVENT_TYPES, key='event_types')
+load_tbparse_args = {'tensorboard_source': tensorboard_source, 'event_types': set(event_types)}
+@st.experimental_memo
+def load_tbparse_reader(tensorboard_source, event_types):
+    container_path = mount_dir / Path(tensorboard_source).relative_to(read_dir)
+    return tbparse.SummaryReader(container_path, event_types=event_types)
+
+tbparse_reader = None
+col2.markdown("#")
+if col2.button('Parse Tensorboard Logs') or load_tbparse_args == state.get('loaded_tbparse_args') or (session_first_pass and 'tensorboard_source' in st.experimental_get_query_params()):
+    tbparse_reader = load_tbparse_reader(**load_tbparse_args)
+    state.loaded_tbparse_args = load_tbparse_args
+    st.text(f'Tbparsed tensorboard logs in: {tbparse_reader.log_path}')
+
+if df_unfiltered_len > 0 or tbparse_reader:
     st.subheader('Matplotlib figure')
     col1, col2, col3 = st.columns([1, 4, 1])
     def change_preset_callback():
         state.st_ace_key = str(uuid.uuid4())
-    if col3.button('Tbparse charts'):
-        state.plot_presets = list(TBPARSE_PRESET_NAME_MAP.keys())
-        change_preset_callback()
     if col3.button('Standard charts'):
         state.plot_presets = list(PLOT_PRESET_NAME_MAP.keys())
+        change_preset_callback()
+    if col3.button('Tbparse charts'):
+        state.plot_presets = list(TBPARSE_PRESET_NAME_MAP.keys())
         change_preset_callback()
     selected_presets = col2.multiselect('Presets', options=ALL_PRESET_NAME_MAP.keys(), key='plot_presets', on_change=change_preset_callback)
     with col2:
         content = st_ace(state.code if session_first_pass else get_plot_preset(selected_presets, data_source),
                     language='python', height='400px',
-                    placeholder='A figure object called \'fig\' will be rendered.\nAccess the filtered data in a pandas dataframe called \'df\'.',
+                    placeholder="A figure object called 'fig' will be rendered.\nAccess the unfiltered data in a pandas dataframe called 'df'.\nAccess the tbparse reader in an object called 'tbparse_reader'.",
                     key=state.st_ace_key if 'st_ace_key' in state else 'code')
 
-    if df_unfiltered_len > 0 and content:
+    if (df_unfiltered_len > 0 or tbparse_reader) and content:
         fig = plt.figure()
         exec(content)
         st.pyplot(fig)
@@ -192,7 +221,20 @@ if dtale_instance is not None:
         """
         components.html(component_string, height=600)
 
-    if st.button('Update url (for sharing)'):
+if (df_unfiltered_len > 0 or tbparse_reader) and st.button('Update url (for sharing)'):
         dtale_settings = global_state.get_settings(streamlit_session_id) or {}
         url_encoded_dtale_settings = codecs.encode(pickle.dumps(dtale_settings), "base64").decode()
-        st.experimental_set_query_params(code=[content], data_source_type=data_source_type, data_source=data_source, fast_parse=fast_parse, sgf_row=state.sgf_row, plot_presets=state.plot_presets, dtale_settings=url_encoded_dtale_settings)
+        query_params = {
+            'code': [content],
+            'sgf_row': state.sgf_row,
+            'plot_presets': state.plot_presets,
+            'dtale_settings': url_encoded_dtale_settings
+        }
+        if df_unfiltered_len > 0:
+            query_params['data_source_type'] = data_source_type
+            query_params['data_source'] = data_source
+            query_params['fast_parse'] = fast_parse
+        if tbparse_reader:
+            query_params['tensorboard_source'] = tensorboard_source
+            query_params['event_types'] = event_types
+        st.experimental_set_query_params(**query_params)

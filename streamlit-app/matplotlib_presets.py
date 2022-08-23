@@ -185,10 +185,7 @@ plt.title("Biggest losses");
 """
 
 TBPARSE_SETUP = """
-# Assumes run was no resumed so there is only a single tensorboard!
-reader = tbparse.SummaryReader("{data_dir}/train/t0", event_types={{"scalars"}})
-df_tb = reader.scalars
-
+df_tb = tbparse_reader.scalars
 df_tb["step_old"] = df_tb.step
 df_tb.step *= 256 # Multiple by batch size
 
