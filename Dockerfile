@@ -45,11 +45,11 @@ WORKDIR /home/appuser
 USER appuser
 
 # Install application into container
-# COPY streamlit-app . # Comment out for live updating
+# Comment out for live updating
+COPY streamlit-app .
 
 # Run the application
 CMD ["dtale-streamlit", "run", "streamlit_app.py"]
-# CMD ["sleep", "1d"]
 
 
 # ----- Build Parsing Server -----

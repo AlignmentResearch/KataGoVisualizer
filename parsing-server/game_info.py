@@ -82,9 +82,9 @@ def parse_game_str_to_dict(path:str, line_number:int, sgf_str: str, fast_parse: 
     result = extract_prop("RE", sgf_str)
     komi = float(extract_prop("KM", sgf_str))
     win_color = result[0].lower() if result else None
-    assert b_name == 'victim' or w_name == 'victim', f'Game doesn\'t have victim: path={read_dir / Path(path).relative_to(mount_dir)}, line_number={line_number}'
+    assert 'victim' in b_name or 'victim' in w_name, f'Game doesn\'t have victim: path={read_dir / Path(path).relative_to(mount_dir)}, line_number={line_number}'
 
-    adv_color = 'b' if w_name == 'victim' else 'w'
+    adv_color = 'b' if 'victim' in w_name else 'w'
     adv_raw_name = b_name if adv_color == 'b' else w_name
     adv_name = adv_raw_name.split("__victim")[0] if adv_color == 'b' else adv_raw_name.split("victim__")[-1]
     if win_color is None:
@@ -120,7 +120,6 @@ def parse_game_str_to_dict(path:str, line_number:int, sgf_str: str, fast_parse: 
         'adv_minus_victim_score_wo_komi': adv_minus_victim_score - adv_komi,
         'init_turn_num': int(extract_comment_prop("initTurnNum", comment_str)),
         'used_initial_position': extract_comment_prop("usedInitialPosition", comment_str) == "1",
-        'gtype': extract_comment_prop("gtype", comment_str),
         'sgf_path': path,
         'sgf_line': line_number,
         'adv_name': adv_name,

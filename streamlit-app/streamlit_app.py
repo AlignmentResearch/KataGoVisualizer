@@ -19,9 +19,9 @@ import pandas as pd
 import numpy as np
 import tbparse
 import hashlib
-import traceback
 from pathlib import Path
 import os
+import plotly.express as px
 
 mount_dir, read_dir = Path(os.environ['MOUNT_DIR']), Path(os.environ['READ_DIR'])
 
@@ -155,6 +155,20 @@ if df_unfiltered_len > 0 or tbparse_reader:
         exec(content)
         st.pyplot(fig)
 
+if df_unfiltered_len > 0:
+    st.markdown('#')
+    st.subheader('Filter by adversary training steps')
+    win_rate_df = df[df.adv_color == "b"].groupby("adv_steps").mean()
+    win_rate_df['adv = white'] = df[df.adv_color == "w"].groupby("adv_steps").mean()['adv_win']
+    win_rate_df = win_rate_df.rename(columns={'adv_win': 'adv = black'})
+    px_fig = px.line(win_rate_df, x=win_rate_df.index, y=['adv = black', 'adv = white'], title=None, markers=True, color_discrete_sequence=['blue', 'green'])
+    px_fig.update_layout(xaxis_title='Adversary training steps', yaxis_title='Win rate')
+    min_step, max_step = win_rate_df.index.min().item(), win_rate_df.index.max().item()
+    default_range = [int(n) for n in st.experimental_get_query_params().get('adv_step_range', [min_step, max_step])]
+    lower_step, upper_step = st.slider(label='', min_value=min_step, max_value=max_step, value=default_range, step=(max_step - min_step) // 100)
+    px_fig.add_vrect(x0=lower_step, x1=upper_step, line_width=0, fillcolor="red", opacity=0.2)
+    st.plotly_chart(px_fig, use_container_width=True, config={'staticPlot': True})
+
 # Use 1 dtale instace for each streamlit session
 if dtale_instance is None and df_unfiltered_len > 0:
     sort_dict  = {'sort': state.dtale_settings.get('sortInfo', [])}
@@ -180,10 +194,13 @@ if dtale_instance is None and df_unfiltered_len > 0:
     uploaded_file_mgr.remove_session_files = custom_remove_sesion_files
 
 if dtale_instance is not None:
+    state.dtale_settings = global_state.get_settings(streamlit_session_id)
+    state.dtale_settings['columnFilters']['adv_steps'] = {'operand': '[]', 'min': lower_step, 'max': upper_step, 'query': f'`adv_steps` >= {lower_step} and `adv_steps` <= {upper_step}'}
+    global_state.set_settings(streamlit_session_id, state.dtale_settings)
     df = dtale_instance.data
-    html = f'<iframe src="/dtale/main/{dtale_instance._data_id}" style="height: 600px;width: 100%"/>'
     col, row = global_state.get_last_clicked_cell(dtale_instance._data_id) or (None, None)
-    st.markdown(html, unsafe_allow_html=True)
+    # Append lower_step and upper_step to the url so that the iframe refreshes when they change
+    components.iframe(f'/dtale/main/{dtale_instance._data_id}?{lower_step}+{upper_step}', height=700)
 
     if st.button(f'View selected game') or session_first_pass:
         if session_first_pass and state.sgf_row:
@@ -234,6 +251,7 @@ if (df_unfiltered_len > 0 or tbparse_reader) and st.button('Update url (for shar
             query_params['data_source_type'] = data_source_type
             query_params['data_source'] = data_source
             query_params['fast_parse'] = fast_parse
+            query_params['adv_step_range'] = [lower_step, upper_step]
         if tbparse_reader:
             query_params['tensorboard_source'] = tensorboard_source
             query_params['event_types'] = event_types
