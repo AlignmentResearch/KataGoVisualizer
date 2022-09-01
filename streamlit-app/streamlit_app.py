@@ -2,6 +2,7 @@ import streamlit as st
 import uuid
 import streamlit.components.v1 as components
 import matplotlib.pyplot as plt
+import matplotlib
 from streamlit_ace import st_ace
 from multiprocessing.connection import Client
 from directory_picker import st_directory_picker
@@ -22,6 +23,9 @@ import hashlib
 from pathlib import Path
 import os
 import plotly.express as px
+from tensorboard import manager as tb_manager
+import io
+import signal
 
 mount_dir, read_dir = Path(os.environ['MOUNT_DIR']), Path(os.environ['READ_DIR'])
 
@@ -73,7 +77,7 @@ if session_first_pass:
         state.event_types = [state.event_types]
 state.event_types = state.event_types or ['scalars']
 
-@st.experimental_memo
+@st.experimental_memo(max_entries=10)
 def load_and_parse_data(is_remote, data_source, fast_parse):
     address = ('parsing-server', 6536)
     conn = Client(address, authkey=b'secret password')
@@ -120,17 +124,48 @@ tensorboard_source = st_directory_picker(st, label='Tensorboard logs (local only
 col1, col2 = st.columns([3, 1])
 event_types = col1.multiselect('Tbparse event types', TBPARSE_EVENT_TYPES, key='event_types')
 load_tbparse_args = {'tensorboard_source': tensorboard_source, 'event_types': set(event_types)}
-@st.experimental_memo
+@st.experimental_memo(max_entries=5)
 def load_tbparse_reader(tensorboard_source, event_types):
     container_path = mount_dir / Path(tensorboard_source).relative_to(read_dir)
     return tbparse.SummaryReader(container_path, event_types=event_types)
 
 tbparse_reader = None
-col2.markdown("#")
+free_ports = set(range(6001, 6006)) - set([sesh.port for sesh in tb_manager.get_all()])
+port_limit = len(free_ports) < 1
+if col2.button('Start Tensorboard here' + (' (max 5)' if port_limit else ''), disabled=port_limit):
+    container_path = mount_dir / Path(tensorboard_source).relative_to(read_dir)
+    tb_manager.start(['--logdir', str(container_path), '--port', str(list(free_ports)[0]), '--host', '0.0.0.0'])
 if col2.button('Parse Tensorboard Logs') or load_tbparse_args == state.get('loaded_tbparse_args') or (session_first_pass and 'tensorboard_source' in st.experimental_get_query_params()):
     tbparse_reader = load_tbparse_reader(**load_tbparse_args)
     state.loaded_tbparse_args = load_tbparse_args
     st.text(f'Tbparsed tensorboard logs in: {tbparse_reader.log_path}')
+
+st.subheader('Tensorboard sessions')
+tb_sessions = tb_manager.get_all()
+if tb_sessions:
+    for col, header in zip(st.columns([5, 1, 5, 1]), ['**Directory**', '**Port**', '**SSH CMD**', '']):
+        col.markdown(header)
+    for sesh in tb_sessions:
+        col1, col2, col3, col4 = st.columns([5, 1, 5, 1])
+        server_path = read_dir / Path(sesh.logdir).relative_to(mount_dir)
+        col1.text(str(server_path))
+        col2.markdown(f'[{sesh.port}](http://localhost:{sesh.port})')
+        col3.markdown(f'`ssh -L {sesh.port}:localhost:{sesh.port} name@dqn.ist.berkeley.edu`')
+        if col4.button('Delet️e', key=sesh.cache_key):
+            os.kill(sesh.pid, signal.SIGTERM)
+    st.button('↻ Refresh')
+else:
+    st.text('No sessions running')
+
+@st.experimental_memo(max_entries=10, suppress_st_warning=True)
+def plot_user_code(user_code):
+    buf = io.BytesIO()
+    exec(user_code, globals())
+    try:
+        fig.savefig(buf, format="png")
+    except NameError as e:
+        raise Exception("User code must define a figure named 'fig'") from e
+    return buf
 
 if df_unfiltered_len > 0 or tbparse_reader:
     st.subheader('Matplotlib figure')
@@ -151,9 +186,8 @@ if df_unfiltered_len > 0 or tbparse_reader:
                     key=state.st_ace_key if 'st_ace_key' in state else 'code')
 
     if (df_unfiltered_len > 0 or tbparse_reader) and content:
-        fig = plt.figure()
-        exec(content)
-        st.pyplot(fig)
+        plot_img = plot_user_code(content)
+        st.image(plot_img)
 
 if df_unfiltered_len > 0:
     st.markdown('#')
@@ -239,20 +273,20 @@ if dtale_instance is not None:
         components.html(component_string, height=600)
 
 if (df_unfiltered_len > 0 or tbparse_reader) and st.button('Update url (for sharing)'):
-        dtale_settings = global_state.get_settings(streamlit_session_id) or {}
-        url_encoded_dtale_settings = codecs.encode(pickle.dumps(dtale_settings), "base64").decode()
-        query_params = {
-            'code': [content],
-            'sgf_row': state.sgf_row,
-            'plot_presets': state.plot_presets,
-            'dtale_settings': url_encoded_dtale_settings
-        }
-        if df_unfiltered_len > 0:
-            query_params['data_source_type'] = data_source_type
-            query_params['data_source'] = data_source
-            query_params['fast_parse'] = fast_parse
-            query_params['adv_step_range'] = [lower_step, upper_step]
-        if tbparse_reader:
-            query_params['tensorboard_source'] = tensorboard_source
-            query_params['event_types'] = event_types
-        st.experimental_set_query_params(**query_params)
+    dtale_settings = global_state.get_settings(streamlit_session_id) or {}
+    url_encoded_dtale_settings = codecs.encode(pickle.dumps(dtale_settings), "base64").decode()
+    query_params = {
+        'code': [content],
+        'sgf_row': state.sgf_row,
+        'plot_presets': state.plot_presets,
+        'dtale_settings': url_encoded_dtale_settings
+    }
+    if df_unfiltered_len > 0:
+        query_params['data_source_type'] = data_source_type
+        query_params['data_source'] = data_source
+        query_params['fast_parse'] = fast_parse
+        query_params['adv_step_range'] = [lower_step, upper_step]
+    if tbparse_reader:
+        query_params['tensorboard_source'] = tensorboard_source
+        query_params['event_types'] = event_types
+    st.experimental_set_query_params(**query_params)
