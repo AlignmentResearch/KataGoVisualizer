@@ -180,7 +180,7 @@ if df_unfiltered_len > 0 or tbparse_reader:
         change_preset_callback()
     selected_presets = col2.multiselect('Presets', options=ALL_PRESET_NAME_MAP.keys(), key='plot_presets', on_change=change_preset_callback)
     with col2:
-        content = st_ace(state.code if session_first_pass else get_plot_preset(selected_presets, data_source),
+        content = st_ace(state.code if session_first_pass else get_plot_preset(selected_presets),
                     language='python', height='400px',
                     placeholder="A figure object called 'fig' will be rendered.\nAccess the unfiltered data in a pandas dataframe called 'df'.\nAccess the tbparse reader in an object called 'tbparse_reader'.",
                     key=state.st_ace_key if 'st_ace_key' in state else 'code')

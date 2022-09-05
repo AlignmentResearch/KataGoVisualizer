@@ -39,10 +39,10 @@ plt.legend()
 
 NUM_MOVES_EVOLUTION_MEDIAN = """
 plt.subplot({nrows}, {ncols}, {next_plot_idx})
-df[df.adv_color == "b"].groupby("adv_steps").count().num_moves.plot(
+df[df.adv_color == "b"].groupby("adv_steps").median().num_moves.plot(
     label="adv = black"
 )
-df[df.adv_color == "w"].groupby("adv_steps").count().num_moves.plot(
+df[df.adv_color == "w"].groupby("adv_steps").median().num_moves.plot(
     label="adv = white"
 )
 plt.ylabel("num_moves")
@@ -189,7 +189,7 @@ df_tb = tbparse_reader.scalars
 df_tb["step_old"] = df_tb.step
 df_tb.step *= 256 # Multiple by batch size
 
-tb_metric_dict = {{}}
+tb_metric_dict = {}
 for tag in df_tb.tag.unique():
     sdf: pd.DataFrame = df_tb[df_tb.tag == tag] # type: ignore
     tb_metric_dict[tag] = sdf.set_index("step").value
@@ -218,7 +218,7 @@ TBPARSE_PRESET_NAME_MAP = {
 }
 ALL_PRESET_NAME_MAP = {**PLOT_PRESET_NAME_MAP, **TBPARSE_PRESET_NAME_MAP}
 
-def get_plot_preset(plots, data_dir):
+def get_plot_preset(plots):
     if len(plots) < 1:
         return ''
     nrows, ncols= math.ceil(len(plots) / 2), 2 if len(plots) > 1 else 1
@@ -228,8 +228,7 @@ def get_plot_preset(plots, data_dir):
             height_ratios[i // ncols] = 20
     preset_strs = [] 
     if 'Selected losses' in plots or 'Biggest losses' in plots:
-        container_data_dir = mount_dir / Path(data_dir).relative_to(read_dir)
-        preset_strs.append(TBPARSE_SETUP.format(data_dir=container_data_dir))
+        preset_strs.append(TBPARSE_SETUP)
     if 'Score evolution' in plots or 'Num moves evolution' in plots:
         preset_strs.append(HIST_3D)
     preset_strs.append(f"""
