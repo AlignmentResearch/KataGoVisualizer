@@ -1,7 +1,6 @@
 import game_info
 import os
 import traceback
-import urllib.request
 import atexit
 from timeit import default_timer as timer
 from multiprocessing.connection import Listener
@@ -9,14 +8,6 @@ import pandas as pd
 from pathlib import Path
 
 mount_dir, read_dir = Path(os.environ['MOUNT_DIR']), Path(os.environ['READ_DIR'])
-
-def load_and_parse_remote_file(url, fast_parse:bool=False):
-    if not url:
-        return None, pd.DataFrame()
-    data = urllib.request.urlopen(url)
-    raw_sgf_strs = [line.decode('utf-8') for line in data]
-    parsed_dicts = [game_info.parse_game_str_to_dict(url, i, game, fast_parse=fast_parse) for i, game in enumerate(raw_sgf_strs)]
-    return raw_sgf_strs, pd.DataFrame(parsed_dicts)
 
 def load_and_parse_games(path, fast_parse:bool=False):
     if not path:
@@ -41,25 +32,20 @@ if __name__ == '__main__':
     while True:
         conn = listener.accept() # wait for a connection
         try:
-            is_remote, data_source, fast_parse = conn.recv()
+            data_source, fast_parse = conn.recv()
             print("Received request: %s" % data_source)
-
             start = timer()
-            if is_remote:
-                raw_sgf_strs, df = load_and_parse_remote_file(data_source, fast_parse=fast_parse)
-                conn.send((None, raw_sgf_strs, df))
-            else:
-                df = load_and_parse_games(data_source, fast_parse=fast_parse)
-                conn.send((None, None, df))
+            df = load_and_parse_games(data_source, fast_parse=fast_parse)
+            conn.send((None, df))
             end = timer()
             print(f'Sent reply with {len(df.index)} rows. Took {end-start} seconds')
         except (AssertionError, EOFError) as e:
             print('Failed to parse:', e)
             print(traceback.format_exc())
-            conn.send((e, None, None))
+            conn.send((e, None))
         except Exception as e:
             print('Unknown error:', e)
             print(traceback.format_exc())
-            conn.send((e, None, None))
+            conn.send((e, None))
         finally:
             conn.close()

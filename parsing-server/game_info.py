@@ -67,9 +67,6 @@ num_b_pass_pattern = re.compile('B\\[]')
 num_w_pass_pattern = re.compile('W\\[]')
 semicolon_pattern = re.compile(';')
 
-def parse_game_tuple_to_dict(sgf: Tuple[str, int, str]) -> Dict[str, Any]:
-    return parse_game_str_to_dict(sgf[0], sgf[1], sgf[2])
-
 def parse_game_str_to_dict(path:str, line_number:int, sgf_str: str, fast_parse: bool = False) -> Dict[str, Any]:
     rule_str = extract_prop("RU", sgf_str)
     comment_str = extract_prop("C", sgf_str)

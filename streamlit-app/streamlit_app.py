@@ -30,7 +30,6 @@ import signal
 mount_dir, read_dir = Path(os.environ['MOUNT_DIR']), Path(os.environ['READ_DIR'])
 
 state = st.session_state
-REMOTE_DATA_SOURCE, LOCAL_DATA_SOURCE = 'Remote', 'Local directory'
 MAX_DISPLAY_ROWS = 100
 TBPARSE_EVENT_TYPES = {'scalars', 'tensors', 'histograms', 'images', 'audio', 'hparams', 'text'} # https://tbparse.readthedocs.io/en/latest/pages/api.html
 HASH = b'i\x0b\xe8:\xf2\x9ft\xa7\x95\xc2}v\x1du\xf9\xb8\xed\xfd\xb3\x8e\xa5\x08z\x1e4\x96\xe3g*\xff\x8e\xc2\xe27r\xca\x8d\xcb8Z\n\x04\x89\xbb\x94\x1d\x08\xc6\x18G0\xeb]G\xb4\xb0x\xd4\xe3\xbc\xc4\x07\x1e\x85'
@@ -54,12 +53,11 @@ if state.get('hash') != HASH:
 # Establish is this the first pass, and if so read url parameters into state 
 session_first_pass = 'first_pass' not in state
 state.first_pass = False
-for key in ['code', 'data_source_type', 'data_url', 'fast_parse', 'sgf_row', 'data_source', 'plot_presets', 'tensorboard_source', 'event_types', 'dtale_settings']:
+for key in ['code', 'data_url', 'fast_parse', 'sgf_row', 'data_source', 'plot_presets', 'tensorboard_source', 'event_types', 'dtale_settings']:
     if key not in state:
         query_params = st.experimental_get_query_params().get(key, [''])
         state[key] = query_params[0] if len(query_params) == 1 else query_params
 
-state.data_source_type = state.data_source_type or LOCAL_DATA_SOURCE
 if session_first_pass and isinstance(state.dtale_settings, str):
     if state.dtale_settings:
         state.dtale_settings = pickle.loads(codecs.decode(state.dtale_settings.encode(), "base64"))
@@ -78,52 +76,44 @@ if session_first_pass:
 state.event_types = state.event_types or ['scalars']
 
 @st.experimental_memo(max_entries=10)
-def load_and_parse_data(is_remote, data_source, fast_parse):
+def load_and_parse_data(data_source, fast_parse):
     address = ('parsing-server', 6536)
     conn = Client(address, authkey=b'secret password')
-    conn.send((is_remote, data_source, fast_parse))
-    print(f'Sent request: is_remote={is_remote}, data_source={data_source}')
-    error, raw_sgf_strs, df = conn.recv()
+    conn.send((data_source, fast_parse))
+    print(f'Sent request: data_source={data_source}, fast_parse={fast_parse}')
+    error, df = conn.recv()
     conn.close()
     if error:
         raise error
     else:
         print(f'Received reply with {len(df.index)} rows')
-    return raw_sgf_strs, df 
+    return df
 
-data_source_type = st.radio('Load data from', [REMOTE_DATA_SOURCE, LOCAL_DATA_SOURCE], key='data_source_type')
-if data_source_type == REMOTE_DATA_SOURCE:
-    data_source = st.text_input('URL', key='data_url')
-else:
-    data_source = st_directory_picker(st, label='Data source', key='data_source')
+data_source = st_directory_picker(st, label='Data source', key='data_source')
 
 col1, col2, col3, col4 = st.columns([1, 1, 1, 2])
 fast_parse = col2.checkbox('Fast parse', key='fast_parse')
 if fast_parse:
-    st.info("Fast parse does not include the columns 'num_b_pass', 'num_w_pass', 'num_adv_pass' and 'num_victim_pass'.")
+    st.info("Fast parse does not include the columns 'num_b_pass', 'num_w_pass', 'num_adv_pass', 'num_victim_pass', 'b_name' and 'w_name'.")
 
-raw_sgf_strs, df = None, None
-data_load_args = {'is_remote': data_source_type == REMOTE_DATA_SOURCE, 'data_source': data_source, 'fast_parse': fast_parse}
-if data_load_args != state.get('data_loaded_args') and dtale_instance is not None:
-    dtale_instance.cleanup()
-    print('Cleaned up dtale instance')
-    dtale_instance = None
-if col1.button('Load data') or data_load_args == state.get('data_loaded_args') or (session_first_pass and 'data_source' in st.experimental_get_query_params()):
-    raw_sgf_strs, df = load_and_parse_data(**data_load_args)
-    state.data_loaded_args = data_load_args
+df = None
+data_load_args = {'data_source': data_source, 'fast_parse': fast_parse}
+if col1.button('Load data') or (session_first_pass and 'data_source' in st.experimental_get_query_params()):
+    if data_load_args != state.get('data_load_args') and dtale_instance is not None:
+        dtale_instance.cleanup()
+        print('Cleaned up dtale instance')
+        dtale_instance = None
+    state.data_load_args = data_load_args
+if state.get('data_load_args'):
+    df = load_and_parse_data(**state.data_load_args)
 if col3.button('Clear cache'):
     load_and_parse_data.clear()
 
 df_unfiltered_len = len(df.index) if df is not None else 0
 
-if df_unfiltered_len > 0:
-    st.text(f'Loaded {df_unfiltered_len} games from {data_source}')
-
-st.markdown("#")
-tensorboard_source = st_directory_picker(st, label='Tensorboard logs (local only)', key='tensorboard_source')
-col1, col2 = st.columns([3, 1])
-event_types = col1.multiselect('Tbparse event types', TBPARSE_EVENT_TYPES, key='event_types')
-load_tbparse_args = {'tensorboard_source': tensorboard_source, 'event_types': set(event_types)}
+col1, col2 = st.columns([1, 3])
+event_types = col2.multiselect('Tbparse event types', TBPARSE_EVENT_TYPES, key='event_types')
+load_tbparse_args = {'tensorboard_source': data_source, 'event_types': set(event_types)}
 @st.experimental_memo(max_entries=5)
 def load_tbparse_reader(tensorboard_source, event_types):
     container_path = mount_dir / Path(tensorboard_source).relative_to(read_dir)
@@ -132,10 +122,14 @@ def load_tbparse_reader(tensorboard_source, event_types):
 tbparse_reader = None
 free_ports = set(range(6001, 6006)) - set([sesh.port for sesh in tb_manager.get_all()])
 port_limit = len(free_ports) < 1
-if col2.button('Start Tensorboard here' + (' (max 5)' if port_limit else ''), disabled=port_limit):
-    container_path = mount_dir / Path(tensorboard_source).relative_to(read_dir)
+if col1.button('Start Tensorboard here' + (' (max 5)' if port_limit else ''), disabled=port_limit):
+    container_path = mount_dir / Path(data_source).relative_to(read_dir)
     tb_manager.start(['--logdir', str(container_path), '--port', str(list(free_ports)[0]), '--host', '0.0.0.0'])
-if col2.button('Parse Tensorboard Logs') or load_tbparse_args == state.get('loaded_tbparse_args') or (session_first_pass and 'tensorboard_source' in st.experimental_get_query_params()):
+
+if df_unfiltered_len > 0:
+    st.text(f"Loaded {df_unfiltered_len} games from {state.data_load_args['data_source']}")
+
+if col1.button('Parse Tensorboard Logs') or load_tbparse_args == state.get('loaded_tbparse_args') or (session_first_pass and 'tensorboard_source' in st.experimental_get_query_params()):
     tbparse_reader = load_tbparse_reader(**load_tbparse_args)
     state.loaded_tbparse_args = load_tbparse_args
     st.text(f'Tbparsed tensorboard logs in: {tbparse_reader.log_path}')
@@ -249,14 +243,11 @@ if dtale_instance is not None:
             game_to_view_path = df.iloc[row-1]['sgf_path']
             game_to_view_line = df.iloc[row-1]['sgf_line']
             game_to_view_str = ''
-            if raw_sgf_strs:
-                game_to_view_str = raw_sgf_strs[game_to_view_line - 1]
-            else:
-                with open(game_to_view_path, "r") as f:
-                    for i, line in enumerate(f):
-                        if i + 1 == game_to_view_line:
-                            game_to_view_str = line
-                            break
+            with open(game_to_view_path, "r") as f:
+                for i, line in enumerate(f):
+                    if i + 1 == game_to_view_line:
+                        game_to_view_str = line
+                        break
             state.sgf_str = game_to_view_str
             state.sgf_row = row
 
@@ -282,11 +273,9 @@ if (df_unfiltered_len > 0 or tbparse_reader) and st.button('Update url (for shar
         'dtale_settings': url_encoded_dtale_settings
     }
     if df_unfiltered_len > 0:
-        query_params['data_source_type'] = data_source_type
-        query_params['data_source'] = data_source
-        query_params['fast_parse'] = fast_parse
+        query_params['data_source'] = state.get('data_load_args', {}).get('data_source')
+        query_params['fast_parse'] = state.get('data_load_args', {}).get('fast_parse')
         query_params['adv_step_range'] = [lower_step, upper_step]
     if tbparse_reader:
-        query_params['tensorboard_source'] = tensorboard_source
         query_params['event_types'] = event_types
     st.experimental_set_query_params(**query_params)
