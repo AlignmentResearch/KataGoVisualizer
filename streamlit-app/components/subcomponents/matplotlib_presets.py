@@ -196,12 +196,6 @@ for tag in df_tb.tag.unique():
     tb_metric_dict[tag].name = tag
 """
 
-import math
-import os
-from pathlib import Path
-
-mount_dir, read_dir = Path(os.environ['MOUNT_DIR']), Path(os.environ['READ_DIR'])
-
 PLOT_PRESET_NAME_MAP = {
     "Win rate": WIN_RATE,
     "Game count": GAME_COUNT,
@@ -212,11 +206,15 @@ PLOT_PRESET_NAME_MAP = {
     "Board size distribution": BOARD_SIZE_DISTRIBUTION,
     "Komi distribution": KOMI_DISTRIBUTION,
 }
+
 TBPARSE_PRESET_NAME_MAP = {
     "Selected losses": SELECTED_LOSSES,
     "Biggest losses": BIGGEST_LOSSES,
 }
+
 ALL_PRESET_NAME_MAP = {**PLOT_PRESET_NAME_MAP, **TBPARSE_PRESET_NAME_MAP}
+
+import math
 
 def get_plot_preset(plots):
     if len(plots) < 1:

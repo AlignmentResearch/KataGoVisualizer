@@ -8,7 +8,7 @@ from itertools import chain
 import multiprocessing
 from pathlib import Path
 
-mount_dir, read_dir = Path(os.environ['MOUNT_DIR']), Path(os.environ['READ_DIR'])
+MOUNT_DIR, READ_DIR = Path(os.environ['MOUNT_DIR']), Path(os.environ['READ_DIR'])
 
 def find_sgf_files(
     root: pathlib.Path, max_scan_length: int = 10000
@@ -79,7 +79,7 @@ def parse_game_str_to_dict(path:str, line_number:int, sgf_str: str, fast_parse: 
     result = extract_prop("RE", sgf_str)
     komi = float(extract_prop("KM", sgf_str))
     win_color = result[0].lower() if result else None
-    assert 'victim' in b_name or 'victim' in w_name, f'Game doesn\'t have victim: path={read_dir / Path(path).relative_to(mount_dir)}, line_number={line_number}'
+    assert 'victim' in b_name or 'victim' in w_name, f'Game doesn\'t have victim: path={READ_DIR / Path(path).relative_to(MOUNT_DIR)}, line_number={line_number}'
 
     adv_color = 'b' if 'victim' in w_name else 'w'
     adv_raw_name = b_name if adv_color == 'b' else w_name

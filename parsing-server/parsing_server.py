@@ -7,12 +7,12 @@ from multiprocessing.connection import Listener
 import pandas as pd
 from pathlib import Path
 
-mount_dir, read_dir = Path(os.environ['MOUNT_DIR']), Path(os.environ['READ_DIR'])
+MOUNT_DIR, READ_DIR = Path(os.environ['MOUNT_DIR']), Path(os.environ['READ_DIR'])
 
 def load_and_parse_games(path, fast_parse:bool=False):
     if not path:
         return pd.DataFrame()
-    container_path = mount_dir / Path(path).relative_to(read_dir)
+    container_path = MOUNT_DIR / Path(path).relative_to(READ_DIR)
     sgf_paths = game_info.find_sgf_files(container_path)
     print(f'Found {len(sgf_paths)} SGF files in {container_path}')
     parsed_dicts = game_info.read_and_parse_all_files(sgf_paths, fast_parse=fast_parse, processes=min(128, len(sgf_paths) // 2))
