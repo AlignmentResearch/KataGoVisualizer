@@ -1,11 +1,6 @@
 import streamlit as st
 import plotly.express as px
 
-# Hack to suppress warning in UI because streamlit is silly:
-# https://github.com/streamlit/streamlit/issues/4538#issuecomment-1242559770
-from streamlit.elements.utils import _shown_default_value_warning
-_shown_default_value_warning = True
-
 TRAINING_STEPS_SLIDER_STATE = 'training_steps_slider'
 
 def win_rate_by_adv_steps_graph_filter(df):

@@ -23,12 +23,12 @@ ENV PIPENV_VENV_IN_PROJECT=1
 FROM pipenv AS streamlit-app-python-deps
 
 # Install python dependencies in /.venv
-# COPY streamlit-app/Pipfile .
-# COPY streamlit-app/Pipfile.lock .
+# COPY streamlit_app/Pipfile .
+# COPY streamlit_app/Pipfile.lock .
 # RUN /root/.local/bin/pipenv sync
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
-COPY streamlit-app/requirements.txt .
+COPY streamlit_app/requirements.txt .
 RUN pip3 install -r requirements.txt
 
 
@@ -46,7 +46,7 @@ USER appuser
 
 # Install application into container
 # Comment out for live updating
-COPY streamlit-app .
+COPY streamlit_app .
 
 # Run the application
 CMD ["dtale-streamlit", "run", "streamlit_app.py"]
@@ -56,8 +56,8 @@ CMD ["dtale-streamlit", "run", "streamlit_app.py"]
 FROM pipenv AS parsing-server-python-deps
 
 # Install python dependencies in /.venv
-COPY parsing-server/Pipfile .
-COPY parsing-server/Pipfile.lock .
+COPY parsing_server/Pipfile .
+COPY parsing_server/Pipfile.lock .
 RUN /root/.local/bin/pipenv sync
 
 
@@ -73,7 +73,7 @@ WORKDIR /home/appuser
 USER appuser
 
 # Install application into container
-COPY parsing-server .
+COPY parsing_server .
 
 # Run the application
 CMD ["python", "parsing_server.py"]

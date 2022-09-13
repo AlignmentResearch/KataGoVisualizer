@@ -15,7 +15,7 @@ services:
       - MOUNT_DIR=/mnt
       - PYTHONUNBUFFERED=1
     volumes:
-      # -  ./streamlit-app:/home/appuser # Uncomment for live updating
+      # -  ./streamlit_app:/home/appuser # Uncomment for live updating
       - type: bind
         source: ${READ_DIR:?err}
         target: /mnt

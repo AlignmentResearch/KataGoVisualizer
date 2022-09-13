@@ -11,11 +11,11 @@ READ_DIR=/path/to/my/dir docker-compose up --build
 
 For live updating during development, go to the `Dockerfile` and comment out this line:
 ```
-COPY streamlit-app .
+COPY streamlit_app .
 ```
 and uncomment this line in `docker-compose.yml`
 ```
-      -  ./streamlit-app:/home/appuser
+      -  ./streamlit_app:/home/appuser
 ```
 Both lines are indicated by comments in their respective files.
 
@@ -39,11 +39,11 @@ The project depends on a [custom fork of Dtale](https://github.com/UFO-101/dtale
 ## Directory Structure
 ```
 KataGoVisualizer/
-├── parsing-server/
+├── parsing_server/
 │   ├── Pipfile
 │   ├── Pipfile.lock
 │   └── source...
-├── streamlit-app/
+├── streamlit_app/
 │   ├── components/
 │   │   ├── subcomponents/
 │   │   │   └── source...
@@ -55,9 +55,9 @@ KataGoVisualizer/
 ├── Dockerfile
 └── docker-compose.yml
 ```
-[Generated here](https://tree.nathanfriend.io/?s=(%27options!(%27fancy!true~fullPath!false~trailingSlash!true~rootDot!false)~3!(%273!%27KataGoVisualizer4parsing-server7846-app*5sub508*087requiremE.txt*6_app.py4D9erC4d9er-Ase.yml*B%27)~version!%271%27)*400%20%202*PipC3source4B05AnE*06streamlit722.l9*83...9ockAcompoB%5CnCfileEents%01ECBA987654320*)
+[Generated here](https://tree.nathanfriend.io/?s=(%27options!(%27fancy!true~fullPath!false~trailingSlash!true~rootDot!false)~3!(%273!%27KataGoVisualizer4parsing_server7845*6sub608*087requiremE.txt*5.py4D9erC4d9er-Ase.yml*B%27)~version!%271%27)*400%20%202*PipC3source4B05streamlit_app6AnE*0722.l9*83...9ockAcompoB%5CnCfileEents%01ECBA987654320*)
 
-Each container manages it dependencies with `pipenv` using a `Pipfile`. There is also a `requirements.txt` in `streamlit-app/` because there appears to be some bug which prevents `pipenv` from reliably installing the editable dependency on the [Dtale fork](https://github.com/UFO-101/dtale). New packages should be added by installing with `pipenv` and then running `pip freeze`.
+Each container manages it dependencies with `pipenv` using a `Pipfile`. There is also a `requirements.txt` in `streamlit_app/` because there appears to be some bug which prevents `pipenv` from reliably installing the editable dependency on the [Dtale fork](https://github.com/UFO-101/dtale). New packages should be added by installing with `pipenv` and then running `pip freeze`.
 
 To prevent circular dependencies, custom Streamlit `components/` only import `subcomponents/` and `subcomponents/` do not import any other modules in the repo.
 

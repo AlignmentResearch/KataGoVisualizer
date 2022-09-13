@@ -8,12 +8,17 @@ from components.graph_filter import win_rate_by_adv_steps_graph_filter
 from components.dtale_table import dtale_table_and_go_board
 from components.data_loader import data_loader
 
+# Hack to suppress warning in UI because streamlit is silly:
+# https://github.com/streamlit/streamlit/issues/4538#issuecomment-1242559770
+from streamlit.elements.utils import _shown_default_value_warning
+_shown_default_value_warning = True
+
 PW_STATE = 'pw'
 PW_HASH_STATE = 'pw_hash'
 FIRST_PASS_STATE = 'first_pass'
 
 MAX_DISPLAY_ROWS = 100
-# TODO: Don't be vunerable to dictonary attack
+# TODO: Don't be vunerable to dictionary attack
 HASH = b'i\x0b\xe8:\xf2\x9ft\xa7\x95\xc2}v\x1du\xf9\xb8\xed\xfd\xb3\x8e\xa5\x08z\x1e4\x96\xe3g*\xff\x8e\xc2\xe27r\xca\x8d\xcb8Z\n\x04\x89\xbb\x94\x1d\x08\xc6\x18G0\xeb]G\xb4\xb0x\xd4\xe3\xbc\xc4\x07\x1e\x85'
 
 state = st.session_state
