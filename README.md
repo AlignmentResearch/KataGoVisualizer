@@ -39,27 +39,43 @@ The project depends on a [custom fork of Dtale](https://github.com/UFO-101/dtale
 ## Directory Structure
 ```
 KataGoVisualizer/
+├── Dockerfile
+├── docker-compose.yml
 ├── parsing_server/
 │   ├── Pipfile
 │   ├── Pipfile.lock
 │   └── source...
-├── streamlit_app/
-│   ├── components/
-│   │   ├── subcomponents/
-│   │   │   └── source...
-│   │   └── source...
-│   ├── Pipfile
-│   ├── Pipfile.lock
-│   ├── requirements.txt
-│   └── streamlit_app.py
-├── Dockerfile
-└── docker-compose.yml
+└── streamlit_app/
+    ├── Pipfile
+    ├── Pipfile.lock
+    ├── requirements.txt
+    ├── streamlit_app.py
+    ├── tests/
+    │   └── source...
+    └── components/
+        ├── source...
+        └── subcomponents/
+            └── source...
 ```
-[Generated here](https://tree.nathanfriend.io/?s=(%27options!(%27fancy!true~fullPath!false~trailingSlash!true~rootDot!false)~3!(%273!%27KataGoVisualizer4parsing_server7845*6sub608*087requiremE.txt*5.py4D9erC4d9er-Ase.yml*B%27)~version!%271%27)*400%20%202*PipC3source4B05streamlit_app6AnE*0722.l9*83...9ockAcompoB%5CnCfileEents%01ECBA987654320*)
+[Generated here](https://tree.nathanfriend.io/?s=(%27options!(%27fancy!true~fullPath!false~trailingSlash!true~rootDot!false)~2!(%272!%27KataGoVisualizer4D9erB4d9er-Ase.yml4parsing_server87458requiremC.txt*5.py*tests*07*67*0sub607%27)~version!%271%27)*400%20%202source3*PipB4%5Cn05streamlit_app6AnC*072...833.l9*9ockAcompoBfileCents%01CBA987654320*)
 
-Each container manages it dependencies with `pipenv` using a `Pipfile`. There is also a `requirements.txt` in `streamlit_app/` because there appears to be some bug which prevents `pipenv` from reliably installing the editable dependency on the [Dtale fork](https://github.com/UFO-101/dtale). New packages should be added by installing with `pipenv` and then running `pip freeze`.
+Each container manages it dependencies with `pipenv` using a `Pipfile`. There is also a `requirements.txt` in `streamlit_app/` because of some unknown bug that means `pipenv` won't add all the recursive dependencies of the [Dtale fork](https://github.com/UFO-101/dtale) editable dependency to the `Pipfile.lock`. New packages should be added by installing with `pipenv` and then running `pip freeze`.
 
 To prevent circular dependencies, custom Streamlit `components/` only import `subcomponents/` and `subcomponents/` do not import any other modules in the repo.
+
+## Testing
+
+Tests are end-to-end UI tests running with Selenium.
+
+### Prerequisites
+
+ 1. Chrome or Chromium browser
+ 2. ChromeDriver for your browser version available on PATH
+ 3. `pipenv` environment with all dependencies and dev dependencies (`pipenv sync -d`)
+ 4. App running locally (`READ_DIR=/path/to/my/dir docker-compose up --build`)
+ 5. `KATA_GO_VISUALIZER_PASSWORD` environment variable set to a valid password.
+
+To run the tests, navigate to `streamlit_app/tests`. Inside your `pipenv` environment run `pytest`.
 
 # Quick introduction to Streamlit
 
@@ -80,7 +96,7 @@ Each time a user navigates to a Streamlit app, a new session begins. Each browse
 
 Interactive streamlit elements usually have a `key` parameter, which corresponds to the key in `st.session_state` which maintains the state for that element. Interactive elements also usually have some optional callback parameters. These are called after a user interacts with the element, but before our script reruns.
 
-An example that illustrates all these concepts is the password authentication component in the KataGo Visualizer script:
+An example that illustrates all these concepts is the password authentication element in `streamlit_app.py`:
 
 ```
 # Authenticate with secret password
@@ -104,6 +120,6 @@ State and deep linking (restoring state from URL parameters) have been the sourc
  1. Don't read the URL parameters, except once at the start of a session to restore state.
  2. Don't reference any state variable in more than one component.
  
-The aim is to emulate the functional/declarative paradigm of React and similar frameworks. The appearance of a component should be fully determined by a known list of variables in `st.session_state` (these variables are named in ALL_CAPS at the top of the module). And no component should modify any state variable that is relevant to another component.
+The aim is to emulate the functional/declarative paradigm of React and similar frameworks. The appearance of a component should be fully determined by a known list of variables in `st.session_state` (and these variables should be named in ALL_CAPS at the top of the module). No component should modify any state variable that is used by another component.
 
-Note: Many of the custom components in `/components` will raise an error if more than one is rendered on the same page because the keys are hardcoded and Streamlit components must have unique keys. If multiple copies of a custom component are required it should be simple to pass the key as a parameter to the custom component instead, or append a random UUID to the state variable names.
+__Note:__ Many of the custom components in `/components` will raise an error if more than one is rendered on the same page because the keys are hardcoded and Streamlit components must have unique keys. If multiple copies of a custom component are required it should be simple to pass the key as a parameter to the custom component instead, or append a random UUID to the state variable names.
