@@ -2,18 +2,22 @@ import os
 import streamlit as st
 from pathlib import Path
 
-DIR_STATE = 'directory'
-DIR_SELECT_STATE = 'directory_selectbox'
-DIR_BACK_STATE = 'directory_back_button'
-DIR_FORWARD_STATE = 'directory_forward_button'
+DIR_STATE = "directory"
+DIR_SELECT_STATE = "directory_selectbox"
+DIR_BACK_STATE = "directory_back_button"
+DIR_FORWARD_STATE = "directory_forward_button"
 
-MOUNT_DIR, READ_DIR = Path(os.environ['MOUNT_DIR']), Path(os.environ['READ_DIR'])
+MOUNT_DIR, READ_DIR = Path(os.environ["MOUNT_DIR"]), Path(os.environ["READ_DIR"])
+
 
 def change_dir(key, path):
     st.session_state[key] = str(path)
 
+
 def st_directory_picker(label):
-    session_path = Path(st.session_state[DIR_STATE]) if DIR_STATE in st.session_state else None
+    session_path = (
+        Path(st.session_state[DIR_STATE]) if DIR_STATE in st.session_state else None
+    )
     if session_path is None:
         st.session_state[DIR_STATE] = str(READ_DIR)
     elif READ_DIR not in session_path.parents:
@@ -36,7 +40,11 @@ def st_directory_picker(label):
     with col4:
         if st.session_state.get(DIR_SELECT_STATE):
             st.markdown("#")
-            st.button("➡️", on_click=change_dir, args=(DIR_STATE, session_path / st.session_state[DIR_SELECT_STATE]))
+            st.button(
+                "➡️",
+                on_click=change_dir,
+                args=(DIR_STATE, session_path / st.session_state[DIR_SELECT_STATE]),
+            )
 
     with col1:
         selected_path = st.text_input(label, key=DIR_STATE)

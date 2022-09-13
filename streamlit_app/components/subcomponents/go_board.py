@@ -1,4 +1,3 @@
-
 import streamlit.components.v1 as components
 
 # TODO: Stop loading source from S3
@@ -10,6 +9,7 @@ WGO_HTML = """
 Sorry, your browser doesn't support WGo.js. Download SGF <a href="game.sgf">directly</a>.
 </div>
 """
+
 
 def go_board(sgf_str):
     components.html(WGO_HTML.format(sgf_str=sgf_str), height=600)

@@ -1,3 +1,5 @@
+import math
+
 WIN_RATE = """
 plt.subplot({nrows}, {ncols}, {next_plot_idx})
 df[df.adv_color == "b"].groupby("adv_steps").mean().adv_win.plot(
@@ -214,25 +216,30 @@ TBPARSE_PRESET_NAME_MAP = {
 
 ALL_PRESET_NAME_MAP = {**PLOT_PRESET_NAME_MAP, **TBPARSE_PRESET_NAME_MAP}
 
-import math
 
 def get_plot_preset(plots):
     if len(plots) < 1:
-        return ''
-    nrows, ncols= math.ceil(len(plots) / 2), 2 if len(plots) > 1 else 1
+        return ""
+    nrows, ncols = math.ceil(len(plots) / 2), 2 if len(plots) > 1 else 1
     height_ratios = [10] * nrows
     for i, plot in enumerate(plots):
         if plot in ["Score evolution", "Num moves evolution"]:
             height_ratios[i // ncols] = 20
-    preset_strs = [] 
-    if 'Selected losses' in plots or 'Biggest losses' in plots:
+    preset_strs = []
+    if "Selected losses" in plots or "Biggest losses" in plots:
         preset_strs.append(TBPARSE_SETUP)
-    if 'Score evolution' in plots or 'Num moves evolution' in plots:
+    if "Score evolution" in plots or "Num moves evolution" in plots:
         preset_strs.append(HIST_3D)
-    preset_strs.append(f"""
+    preset_strs.append(
+        f"""
         fig, axs = plt.subplots({nrows}, {ncols}, constrained_layout=True,
                     figsize=(15, {nrows * 5}), gridspec_kw={{'height_ratios': {height_ratios}}})
-""")
+"""
+    )
     for i, plot in enumerate(plots):
-        preset_strs.append(ALL_PRESET_NAME_MAP[plot].format(nrows=nrows, ncols=ncols, next_plot_idx=i+1))
-    return '\n\n'.join([s.strip() for s in preset_strs])
+        preset_strs.append(
+            ALL_PRESET_NAME_MAP[plot].format(
+                nrows=nrows, ncols=ncols, next_plot_idx=i + 1
+            )
+        )
+    return "\n\n".join([s.strip() for s in preset_strs])

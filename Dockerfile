@@ -1,4 +1,4 @@
-# Sources: https://sourcery.ai/blog/python-docker/ and 
+# Sources: https://sourcery.ai/blog/python-docker/ and
 # and https://github.com/pypa/pipenv/blob/2bf70b74167868133809a926aa6393438fb06db4/docs/basics.rst#-pipenv-and-docker-containers
 FROM python:3.10-slim as base
 

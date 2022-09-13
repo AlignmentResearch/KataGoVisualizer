@@ -119,7 +119,7 @@ State and deep linking (restoring state from URL parameters) have been the sourc
 
  1. Don't read the URL parameters, except once at the start of a session to restore state.
  2. Don't reference any state variable in more than one component.
- 
+
 The aim is to emulate the functional/declarative paradigm of React and similar frameworks. The appearance of a component should be fully determined by a known list of variables in `st.session_state` (and these variables should be named in ALL_CAPS at the top of the module). No component should modify any state variable that is used by another component.
 
 __Note:__ Many of the custom components in `/components` will raise an error if more than one is rendered on the same page because the keys are hardcoded and Streamlit components must have unique keys. If multiple copies of a custom component are required it should be simple to pass the key as a parameter to the custom component instead, or append a random UUID to the state variable names.
