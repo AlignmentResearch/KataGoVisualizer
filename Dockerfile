@@ -30,6 +30,7 @@ RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 COPY streamlit_app/requirements.txt .
 RUN pip3 install -r requirements.txt
+RUN pip3 install tensorflow
 
 
 FROM base AS streamlit-app
