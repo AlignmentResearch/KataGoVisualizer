@@ -3,7 +3,7 @@
 import os
 import pathlib
 import re
-from typing import Any, Dict, Sequence
+from typing import Any, Dict, Sequence, Union
 from itertools import chain
 import multiprocessing
 from pathlib import Path
@@ -71,18 +71,23 @@ def read_and_parse_all_files(
     return combined_parsed_games
 
 
-def extract_re(pattern: str, subject: str) -> str:
+def extract_re(pattern: str, subject: Union[str, int]) -> Union[str, int, None]:
     """Extract first group matching `pattern` from `subject`."""
-    match = re.search(pattern, subject)
-    return match.group(1) if match is not None else None
+    match = re.search(pattern, str(subject))
+    if match is not None:
+        match_str = match.group(1)
+        return int(match_str) if match_str.isdecimal() else match_str
+    return None
 
 
-def extract_prop(property_name: str, sgf_str: str) -> str:
-    return extract_re(f"{property_name}\\[([^]]+?)]", sgf_str)
+def extract_prop(property_name: str, sgf_str: Union[str, int]) -> Union[str, int, None]:
+    return extract_re(f"{property_name}\\[([^]]+)", sgf_str)
 
 
-def extract_comment_prop(property_name: str, sgf_str: str) -> str:
-    return extract_re(f"{property_name}=([^,]+?),", sgf_str)
+def extract_param(
+    property_name: str, sgf_str: Union[str, int]
+) -> Union[str, int, None]:
+    return extract_re(f"{property_name}=([^,\\]]+)", sgf_str)
 
 
 num_b_pass_pattern = re.compile("B\\[]")
@@ -95,7 +100,7 @@ def parse_game_str_to_dict(
 ) -> Dict[str, Any]:
     rule_str = extract_prop("RU", sgf_str)
     comment_str = extract_prop("C", sgf_str)
-    board_size = int(extract_prop("SZ", sgf_str).split(":")[0])
+    board_size = extract_prop("SZ", sgf_str)
     whb = "0"
     if "whb" in rule_str:
         whb = extract_re(r"whb([A-Z0-9\-]+)", rule_str)
@@ -105,34 +110,57 @@ def parse_game_str_to_dict(
     komi = float(extract_prop("KM", sgf_str))
     win_color = result[0].lower() if result else None
     assert (
-        "victim" in b_name or "victim" in w_name
+        "victim" in b_name or "victim" in w_name or "adv" in b_name or "adv" in w_name
     ), f"Game doesn't have victim: path={READ_DIR / Path(path).relative_to(MOUNT_DIR)}, line_number={line_number}"
 
-    adv_color = "b" if "victim" in w_name else "w"
-    adv_raw_name = b_name if adv_color == "b" else w_name
-    adv_name = (
-        adv_raw_name.split("__victim")[0]
-        if adv_color == "b"
-        else adv_raw_name.split("victim__")[-1]
+    adv_color = "b" if "victim" in w_name or "adv" in b_name else "w"
+    adv_name = b_name if adv_color == "b" else w_name
+    victim_name = b_name if adv_color == "w" else w_name
+    if victim_name in ["bot-cp127-v1", "bot-cp505-v2", "bot-cp505-v1"]:
+        victim_steps = {
+            "bot-cp127-v1": 5303129600,
+            "bot-cp505-v2": 11840935168,
+            "bot-cp505-v1": 11840935168,
+        }[victim_name]
+    else:
+        victim_steps = extract_re("-s([^-]+?)-", victim_name) or 0
+    adv_rank = (
+        extract_prop("BR", sgf_str) if adv_color == "b" else extract_prop("WR", sgf_str)
     )
+    victim_rank = (
+        extract_prop("BR", sgf_str) if adv_color == "w" else extract_prop("WR", sgf_str)
+    )
+    adv_visits = extract_param("v", adv_rank) or 1
+    victim_visits = extract_param("v", victim_rank)
     if win_color is None:
         adv_minus_victim_score = 0
     else:
         win_score = float(result.split("+")[-1])
         adv_minus_victim_score = win_score if adv_color == win_color else -win_score
-    adv_steps_str = extract_re(r"\-s([0-9]+)\-", adv_name)
-    adv_samples_str = extract_re(r"\-d([0-9]+)", adv_name)
+    adv_steps = extract_re(r"\-s([0-9]+)\-", adv_name) or 0
+    adv_samples = extract_re(r"\-d([0-9]+)", adv_name) or 0
     adv_komi = komi * {"w": 1, "b": -1}[adv_color]
 
     parsed_info = {
         "adv_win": adv_color == win_color,
         "adv_minus_victim_score": adv_minus_victim_score,
         "board_size": board_size,
-        "adv_steps": int(adv_steps_str) if adv_steps_str is not None else 0,
-        "start_turn_idx": int(extract_comment_prop("startTurnIdx", comment_str)),
+        "adv_steps": adv_steps,
+        "victim_steps": victim_steps,
+        "victim_visits": victim_visits
+        if victim_visits
+        else int(str(victim_rank).lstrip("v"))
+        if victim_rank
+        else 1,
+        "adv_visits": adv_visits,
+        "victim_rsym": extract_param("rsym", victim_rank),
+        "adv_rsym": extract_param("rsym", adv_rank),
+        "victim_algo": extract_param("algo", victim_rank),
+        "adv_algo": extract_param("algo", adv_rank),
+        "start_turn_idx": extract_param("startTurnIdx", comment_str),
         "komi": komi,
         "adv_komi": adv_komi,
-        "handicap": int(extract_prop("HA", sgf_str)),
+        "handicap": extract_prop("HA", sgf_str),
         "num_moves": len(semicolon_pattern.findall(sgf_str)) - 1,
         "ko_rule": extract_re(r"ko([A-Z]+)", rule_str),
         "score_rule": extract_re(r"score([A-Z]+)", rule_str),
@@ -144,16 +172,14 @@ def parse_game_str_to_dict(
         "victim_color": "b" if b_name == "victim" else "w",
         "adv_color": adv_color,
         "win_color": win_color,
-        "adv_samples": int(adv_samples_str) if adv_samples_str is not None else 0,
+        "adv_samples": adv_samples,
         "adv_minus_victim_score_wo_komi": adv_minus_victim_score - adv_komi,
-        "init_turn_num": int(extract_comment_prop("initTurnNum", comment_str)),
-        "used_initial_position": extract_comment_prop(
-            "usedInitialPosition", comment_str
-        )
-        == "1",
+        "init_turn_num": extract_param("initTurnNum", comment_str),
+        "used_initial_position": extract_param("usedInitialPosition", comment_str) == 1,
         "sgf_path": path,
         "sgf_line": line_number,
         "adv_name": adv_name,
+        "victim_name": victim_name,
         "is_continuation": False,
     }
 

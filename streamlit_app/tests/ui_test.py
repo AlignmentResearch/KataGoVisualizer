@@ -78,8 +78,10 @@ def test_game_load_view_and_deep_link(drvr):
     load_data_button = get_xpath(drvr, "//*[contains(text(), 'Load data')]")
     load_data_button.click()
 
-    # Focus on Dtale iframe and click a cell
+    # Focus on Dtale iframe, clear filters and click a cell
     drvr.switch_to.frame(get_xpath(drvr, "//iframe[contains(@src,'dtale')]"))
+    dtale_cell = get_xpath(drvr, "//*[@title='Clear Filters']")
+    dtale_cell.click()
     dtale_cell = get_xpath(drvr, "//*[contains(text(), '-15.50')]")
     dtale_cell.click()
 

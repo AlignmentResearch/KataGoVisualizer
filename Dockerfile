@@ -40,6 +40,9 @@ FROM base AS streamlit-app
 COPY --from=streamlit-app-python-deps /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
+# Install latex - https://stackoverflow.com/a/53080504/7086623
+RUN apt-get update && apt-get install -y texlive-latex-extra texlive-fonts-recommended dvipng cm-super
+
 # Create and switch to a new user
 RUN useradd --create-home appuser
 WORKDIR /home/appuser
