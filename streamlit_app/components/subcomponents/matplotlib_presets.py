@@ -295,6 +295,9 @@ PAGE_WIDTH_INCH = 5.50107
 
 
 def get_plot_preset(plots):
+    """
+    Height ratios are used to make the 3D figures large
+    """
     if len(plots) < 1:
         return ""
     nrows, ncols = math.ceil(len(plots) / 2), 2 if len(plots) > 1 else 1

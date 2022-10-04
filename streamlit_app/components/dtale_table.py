@@ -43,7 +43,7 @@ def kill_dtale_session_on_session_end():
     uploaded_file_mgr = get_script_run_ctx()._enqueue.__self__._uploaded_file_mgr
     prev_remove_session_files = uploaded_file_mgr.remove_session_files
 
-    def custom_remove_sesion_files(session_id: str) -> None:
+    def custom_remove_session_files(session_id: str) -> None:
         prev_remove_session_files(session_id)
 
         curr_instance = get_instance(hash_string_to_int(session_id))
@@ -51,7 +51,7 @@ def kill_dtale_session_on_session_end():
             curr_instance.cleanup()
             print("cleaned up dtale instance:", curr_instance._data_id)
 
-    uploaded_file_mgr.remove_session_files = custom_remove_sesion_files
+    uploaded_file_mgr.remove_session_files = custom_remove_session_files
 
 
 def delete_dtale_instance():
@@ -66,7 +66,6 @@ def delete_dtale_instance():
         dtale_instance.cleanup()
         del state[DTALE_SETTINGS_STATE]
         print("Cleaned up dtale instance")
-        dtale_instance = None
 
 
 def dtale_table_and_go_board(df, lower_step, upper_step):

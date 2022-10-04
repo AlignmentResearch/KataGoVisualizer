@@ -50,8 +50,8 @@ def load_and_parse_data(data_source, fast_parse):
 def data_loader():
     data_source = st_directory_picker(label="Data source")
 
-    col1, col2, col3, col4 = st.columns([1, 1, 1, 2])
-    col2.checkbox("Fast parse", value=True, key=FAST_PARSE_STATE)
+    data_load_col_1, data_load_col_2, data_load_col_3, _ = st.columns([1, 1, 1, 2])
+    data_load_col_2.checkbox("Fast parse", value=True, key=FAST_PARSE_STATE)
     if state[FAST_PARSE_STATE]:
         st.info(
             "Fast parse does not include the columns 'num_b_pass', 'num_w_pass', 'num_adv_pass', 'num_victim_pass', 'b_name' and 'w_name'."
@@ -59,18 +59,18 @@ def data_loader():
 
     df = pd.DataFrame()
     data_load_args = {"data_source": data_source, "fast_parse": state[FAST_PARSE_STATE]}
-    if col1.button("Load data"):
+    if data_load_col_1.button("Load data"):
         state[DATA_LOAD_ARGS_STATE] = data_load_args
     if state.get(DATA_LOAD_ARGS_STATE):
         df = load_and_parse_data(**state.data_load_args)
-    if col3.button("Clear cache"):
+    if data_load_col_3.button("Clear cache"):
         load_and_parse_data.clear()
 
-    col1, col2 = st.columns([1, 3])
+    tb_col_1, tb_col_2 = st.columns([1, 3])
     state[TBPARSE_EVENT_TYPES_STATE] = (
         state.get(TBPARSE_EVENT_TYPES_STATE) or TBPARSE_EVENT_TYPES[0:1]
     )
-    event_types = col2.multiselect(
+    event_types = tb_col_2.multiselect(
         "Tbparse event types", TBPARSE_EVENT_TYPES, key=TBPARSE_EVENT_TYPES_STATE
     )
     load_tbparse_args = {"tb_source": data_source, "event_types": set(event_types)}
@@ -85,7 +85,7 @@ def data_loader():
         [sesh.port for sesh in tb_manager.get_all()]
     )
     port_limit = len(free_ports) < 1
-    if col1.button(
+    if tb_col_1.button(
         "Start Tensorboard here" + (" (max 5)" if port_limit else ""),
         disabled=port_limit,
     ):
@@ -107,7 +107,7 @@ def data_loader():
             f"Loaded {df_unfiltered_len} games from: `{state[DATA_LOAD_ARGS_STATE]['data_source']}`"
         )
 
-    if col1.button("Parse Tensorboard Logs"):
+    if tb_col_1.button("Parse Tensorboard Logs"):
         state[TBPARSE_ARGS_STATE] = load_tbparse_args
     if state.get(TBPARSE_ARGS_STATE):
         tbparse_reader = load_tbparse_reader(**state[TBPARSE_ARGS_STATE])

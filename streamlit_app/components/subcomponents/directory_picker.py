@@ -10,17 +10,15 @@ DIR_FORWARD_STATE = "directory_forward_button"
 MOUNT_DIR, READ_DIR = Path(os.environ["MOUNT_DIR"]), Path(os.environ["READ_DIR"])
 
 
-def change_dir(key, path):
-    st.session_state[key] = str(path)
+def change_dir(path):
+    st.session_state[DIR_STATE] = str(path)
 
 
 def st_directory_picker(label):
     session_path = (
         Path(st.session_state[DIR_STATE]) if DIR_STATE in st.session_state else None
     )
-    if session_path is None:
-        st.session_state[DIR_STATE] = str(READ_DIR)
-    elif READ_DIR not in session_path.parents:
+    if session_path is None or READ_DIR not in session_path.parents:
         st.session_state[DIR_STATE] = str(READ_DIR)
     session_path = Path(st.session_state[DIR_STATE])
 
@@ -35,7 +33,7 @@ def st_directory_picker(label):
     with col2:
         if READ_DIR in session_path.parents:
             st.markdown("#")
-            st.button("⬅️", on_click=change_dir, args=(DIR_STATE, session_path.parent))
+            st.button("⬅️", on_click=change_dir, args=[session_path.parent])
 
     with col4:
         if st.session_state.get(DIR_SELECT_STATE):
@@ -43,7 +41,7 @@ def st_directory_picker(label):
             st.button(
                 "➡️",
                 on_click=change_dir,
-                args=(DIR_STATE, session_path / st.session_state[DIR_SELECT_STATE]),
+                args=[session_path / st.session_state[DIR_SELECT_STATE]],
             )
 
     with col1:

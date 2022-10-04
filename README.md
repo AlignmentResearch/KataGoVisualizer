@@ -7,6 +7,8 @@ READ_DIR=/path/to/my/dir docker-compose up --build
 ```
 `READ_DIR` is required and sets the path where the docker container is mounted (with read only permissions).
 
+### Note: this application is not very secure. Do not run on a machine with sensitive data. Also, remember, the user has read access to all the data in READ_DIR.
+
 # Development
 
 For live updating during development, go to the `Dockerfile` and comment out this line:
@@ -59,7 +61,7 @@ KataGoVisualizer/
 ```
 [Generated here](https://tree.nathanfriend.io/?s=(%27options!(%27fancy!true~fullPath!false~trailingSlash!true~rootDot!false)~2!(%272!%27KataGoVisualizer4D9erB4d9er-Ase.yml4parsing_server87458requiremC.txt*5.py*tests*07*67*0sub607%27)~version!%271%27)*400%20%202source3*PipB4%5Cn05streamlit_app6AnC*072...833.l9*9ockAcompoBfileCents%01CBA987654320*)
 
-Each container manages it dependencies with `pipenv` using a `Pipfile`. There is also a `requirements.txt` in `streamlit_app/` because of some unknown bug that means `pipenv` won't add all the recursive dependencies of the [Dtale fork](https://github.com/UFO-101/dtale) editable dependency to the `Pipfile.lock`. New packages should be added by installing with `pipenv` and then running `pip freeze`.
+Each container manages its dependencies with `pipenv` using a `Pipfile`. There is also a `requirements.txt` in `streamlit_app/` because of some unknown bug that means `pipenv` won't add all the recursive dependencies of the [Dtale fork](https://github.com/UFO-101/dtale) editable dependency to the `Pipfile.lock`. New packages should be added by installing with `pipenv` and then running `pip freeze`.
 
 To prevent circular dependencies, custom Streamlit `components/` only import `subcomponents/` and `subcomponents/` do not import any other modules in the repo.
 
@@ -88,7 +90,7 @@ x = st.slider("x")  # Render a slider. Return the current position.
 st.write(x, "squared is", x * x) # Render text.
 ```
 
-In the above example, each time the user move the slider, the script reruns.
+In the above example, each time the user moves the slider, the script reruns.
 
 ## Sessions, state and callbacks
 

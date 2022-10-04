@@ -102,7 +102,7 @@ def test_game_load_view_and_deep_link(drvr):
     drvr.switch_to.default_content()
     view_game_cell = get_xpath(drvr, "//*[contains(text(), 'Update url')]")
     view_game_cell.click()
-    time.sleep(1)
+    time.sleep(1) # Wait for url to update
 
     # Open a new tab with the updated url
     drvr.execute_script(f'window.open("{drvr.current_url}","_blank");')

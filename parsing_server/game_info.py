@@ -7,6 +7,8 @@ from typing import Any, Dict, Sequence, Union
 from itertools import chain
 import multiprocessing
 from pathlib import Path
+import warnings
+import functools
 
 MOUNT_DIR, READ_DIR = Path(os.environ["MOUNT_DIR"]), Path(os.environ["READ_DIR"])
 
@@ -27,6 +29,11 @@ def find_sgf_files(
         sgf_paths += [pathlib.Path(dirpath) / x for x in sgf_filenames]
         directories_scanned += 1
         if directories_scanned >= max_scan_length:
+            warnings.warn(
+                f"Reached max_scan_length, {max_scan_length}, while \
+                scanning subdirectories in {root}. SGF files already found \
+                will be returned."
+            )
             break
     return sgf_paths
 
@@ -45,28 +52,15 @@ def read_and_parse_file(
     return parsed_games
 
 
-# Required because only top level function can be pickled (for multiprocessing)
-def read_and_parse_file_fast(
-    path: pathlib.Path, fast_parse: bool = False
-) -> Sequence[Dict[str, Any]]:
-    return read_and_parse_file(path, fast_parse=True)
-
-
-def read_and_parse_file_slow(
-    path: pathlib.Path, fast_parse: bool = False
-) -> Sequence[Dict[str, Any]]:
-    return read_and_parse_file(path, fast_parse=False)
-
-
 def read_and_parse_all_files(
     paths: Sequence[pathlib.Path], fast_parse: bool = False, processes: int = 128
 ) -> Sequence[Dict[str, Any]]:
     """Returns concatenated contents of all files in `paths`."""
+    read_and_parse_file_partial = functools.partial(
+        read_and_parse_file, fast_parse=fast_parse
+    )
     with multiprocessing.Pool(processes=max(processes, 1)) as pool:
-        if fast_parse:
-            parsed_games = pool.map(read_and_parse_file_fast, paths)
-        else:
-            parsed_games = pool.map(read_and_parse_file_slow, paths)
+        parsed_games = pool.map(read_and_parse_file_partial, paths)
     combined_parsed_games = list(chain.from_iterable(parsed_games))
     return combined_parsed_games
 
@@ -104,6 +98,7 @@ def parse_game_str_to_dict(
     whb = "0"
     if "whb" in rule_str:
         whb = extract_re(r"whb([A-Z0-9\-]+)", rule_str)
+    board_size = (extract_prop("SZ", sgf_str),)
     b_name = extract_prop("PB", sgf_str)
     w_name = extract_prop("PW", sgf_str)
     result = extract_prop("RE", sgf_str)
@@ -180,7 +175,6 @@ def parse_game_str_to_dict(
         "sgf_line": line_number,
         "adv_name": adv_name,
         "victim_name": victim_name,
-        "is_continuation": False,
     }
 
     if not fast_parse:
@@ -188,19 +182,18 @@ def parse_game_str_to_dict(
         num_b_pass = (
             len(num_b_pass_pattern.findall(sgf_str))
             + (
-                len(
-                    re.findall(
-                        "B\\[tt]",
-                        sgf_str,
-                    )
-                )
-                if board_size <= 19
+                len(re.findall("B\\[tt]", sgf_str))
+                if isinstance(board_size, int) and board_size <= 19
                 else 0
             ),
         )
         num_w_pass = (
             len(num_w_pass_pattern.findall(sgf_str))
-            + (len(re.findall("W\\[tt]", sgf_str)) if board_size <= 19 else 0),
+            + (
+                len(re.findall("W\\[tt]", sgf_str))
+                if isinstance(board_size, int) and board_size <= 19
+                else 0
+            ),
         )
         parsed_info["num_b_pass"] = num_b_pass
         parsed_info["num_w_pass"] = num_w_pass

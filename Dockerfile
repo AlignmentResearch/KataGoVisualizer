@@ -13,7 +13,7 @@ FROM base AS pipenv
 
 # Install pipenv and compilation dependencies
 RUN pip3 install --user --no-cache-dir pipenv
-RUN apt-get update && apt-get install -y --no-install-recommends gcc python-dev git
+RUN apt-get update && apt-get install -y --no-install-recommends gcc python-dev git && rm -rf /var/lib/apt/lists/*
 
 # Tell pipenv to create venv in the current directory
 ENV PIPENV_VENV_IN_PROJECT=1
@@ -41,7 +41,7 @@ COPY --from=streamlit-app-python-deps /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
 # Install latex - https://stackoverflow.com/a/53080504/7086623
-RUN apt-get update && apt-get install -y texlive-latex-extra texlive-fonts-recommended dvipng cm-super
+RUN apt-get update && apt-get install -y texlive-latex-extra texlive-fonts-recommended dvipng cm-super && rm -rf /var/lib/apt/lists/*
 
 # Create and switch to a new user
 RUN useradd --create-home appuser

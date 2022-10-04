@@ -10,7 +10,7 @@ from pathlib import Path
 MOUNT_DIR, READ_DIR = Path(os.environ["MOUNT_DIR"]), Path(os.environ["READ_DIR"])
 
 
-def load_and_parse_games(path, fast_parse: bool = False):
+def load_and_parse_games(path: str, fast_parse: bool = False):
     if not path:
         return pd.DataFrame()
     container_path = MOUNT_DIR / Path(path).relative_to(READ_DIR)
