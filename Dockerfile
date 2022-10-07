@@ -22,6 +22,9 @@ ENV PIPENV_VENV_IN_PROJECT=1
 # ----- Build Streamlit App -----
 FROM pipenv AS streamlit-app-python-deps
 
+# Install latex - https://stackoverflow.com/a/53080504/7086623
+RUN apt-get update && apt-get install -y texlive-latex-extra texlive-fonts-recommended dvipng cm-super && rm -rf /var/lib/apt/lists/*
+
 # Install python dependencies in /.venv
 # COPY streamlit_app/Pipfile .
 # COPY streamlit_app/Pipfile.lock .
@@ -39,9 +42,6 @@ FROM base AS streamlit-app
 # COPY --from=streamlit-app-python-deps /.venv /.venv
 COPY --from=streamlit-app-python-deps /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
-
-# Install latex - https://stackoverflow.com/a/53080504/7086623
-RUN apt-get update && apt-get install -y texlive-latex-extra texlive-fonts-recommended dvipng cm-super && rm -rf /var/lib/apt/lists/*
 
 # Create and switch to a new user
 RUN useradd --create-home appuser
