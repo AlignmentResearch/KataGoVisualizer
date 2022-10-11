@@ -1,0 +1,67 @@
+version: 2.1
+
+executors:
+  ubuntu-vm:
+    machine:
+      # https://discuss.circleci.com/t/linux-machine-executor-update-2022-july-q3-update/44873
+      # This image contains Chrome (and seemingly chromedriver), Docker Compose and Python
+      image: ubuntu-2204:2022.07.1
+      docker_layer_caching: true
+
+commands:
+  dependencies:
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps-{{ checksum ".circleci/requirements.txt" }}
+      - run:
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r .circleci/requirements.txt
+      - save_cache:
+          key: deps-{{ checksum ".circleci/requirements.txt" }}
+          paths:
+            - "venv"
+
+jobs:
+  build-and-test:
+    executor: ubuntu-vm
+    steps:
+      - dependencies
+      - run:
+          command: docker-compose up -d
+          environment:
+            READ_DIR: /home/circleci/project/streamlit_app/tests
+      - run:
+          command: |
+            . venv/bin/activate
+            cd /home/circleci/project/streamlit_app/tests
+            pytest --reruns 2
+
+  pre-commit-all-files:
+    executor: ubuntu-vm
+    steps:
+      - dependencies
+      - run:
+          command: |
+            . venv/bin/activate
+            cp .pre-commit-config.yaml pre-commit-cache-key.txt
+            python --version --version >> pre-commit-cache-key.txt
+      - restore_cache:
+          key: pc-cache-{{ checksum "pre-commit-cache-key.txt" }}
+      - run:
+          command: |
+            . venv/bin/activate
+            pre-commit run --all-files
+      - save_cache:
+          key: pc-cache-{{ checksum "pre-commit-cache-key.txt" }}
+          paths:
+            - ~/.cache/pre-commit
+
+workflows:
+  version: 2
+  build-test-lint:
+    jobs:
+      - build-and-test
+      - pre-commit-all-files

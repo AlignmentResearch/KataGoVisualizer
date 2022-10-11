@@ -1,0 +1,7 @@
+# For running tests
+pytest
+selenium
+pytest-rerunfailures
+
+# For linting and formatting
+pre-commit

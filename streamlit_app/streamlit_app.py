@@ -27,6 +27,7 @@ state = st.session_state
 st.set_page_config(layout="wide")
 st.title("KataGo Attack Data Visualizer")
 
+
 def verify():
     """Authenticate with secret password"""
     state[PW_HASH_STATE] = hashlib.scrypt(
