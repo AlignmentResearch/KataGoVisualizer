@@ -22,9 +22,6 @@ ENV PIPENV_VENV_IN_PROJECT=1
 # ----- Build Streamlit App -----
 FROM pipenv AS streamlit-app-python-deps
 
-# Install latex - https://stackoverflow.com/a/53080504/7086623
-RUN apt-get update && apt-get install -y texlive-latex-extra texlive-fonts-recommended dvipng cm-super && rm -rf /var/lib/apt/lists/*
-
 # Install python dependencies in /.venv
 # COPY streamlit_app/Pipfile .
 # COPY streamlit_app/Pipfile.lock .
@@ -37,6 +34,9 @@ RUN pip3 install tensorflow
 
 
 FROM base AS streamlit-app
+
+# Install latex - https://stackoverflow.com/a/53080504/7086623
+RUN apt-get update && apt-get install -y texlive-latex-extra texlive-fonts-recommended dvipng cm-super && rm -rf /var/lib/apt/lists/*
 
 # Copy virtual env from python-deps stage
 # COPY --from=streamlit-app-python-deps /.venv /.venv
