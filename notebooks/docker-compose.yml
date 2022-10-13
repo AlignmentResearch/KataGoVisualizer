@@ -1,0 +1,25 @@
+# Launches a container for generating plots.
+#
+# See https://stackoverflow.com/a/52641495/1337463 for documentation on how to
+# run commands with `sh -c`.
+# docker-compose -f compose/plots.yml up
+
+version: "3"
+
+services:
+  plots:
+    image: humancompatibleai/katagovisualizer:plots
+    build:
+      context: ..
+      dockerfile: notebooks/Dockerfile
+    volumes:
+      - type: bind
+        source: ..
+        target: /KataGoVisualizer
+      - type: bind
+        source: /nas/ucb
+        target: /nas/ucb
+        read_only: true
+    cap_add:
+      - SYS_PTRACE  # to enable gdb debugging
+    tty: true
