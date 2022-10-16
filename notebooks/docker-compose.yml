@@ -1,17 +1,15 @@
 # Launches a container for generating plots.
-#
-# See https://stackoverflow.com/a/52641495/1337463 for documentation on how to
-# run commands with `sh -c`.
-# docker-compose -f compose/plots.yml up
+# Navigate to the *root* of this repo and run:
+# docker-compose -f notebooks/docker-compose.yml up
 
 version: "3"
 
 services:
-  plots:
-    image: humancompatibleai/katagovisualizer:plots
+  notebooks:
+    image: humancompatibleai/katagovisualizer:notebooks
     build:
       context: ..
-      dockerfile: notebooks/Dockerfile
+      dockerfile: ./notebooks/Dockerfile
     volumes:
       - type: bind
         source: ..
