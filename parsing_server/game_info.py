@@ -133,7 +133,8 @@ def parse_game_str_to_dict(
     ), f"Game doesn't have victim: path={path}, line_number={line_number}"
 
     victim_color = {b_name: "b", w_name: "w"}.get(
-        "victim", "b" if "victim" in b_name else "w"
+        "victim",
+        "b" if ("victim" in b_name or "bot" in b_name or "adv" in w_name) else "w",
     )
     victim_name = {"b": b_name, "w": w_name}[victim_color]
     adv_color = {"b": "w", "w": "b"}[victim_color]
@@ -166,8 +167,6 @@ def parse_game_str_to_dict(
     )
     victim_visits = {"b": b_visits, "w": w_visits}[victim_color]
     adv_visits = {"b": b_visits, "w": w_visits}[adv_color]
-    adv_visits = extract_param("v", adv_rank) or 1
-    victim_visits = extract_param("v", victim_rank)
     if win_color is None:
         adv_minus_victim_score = 0
     else:

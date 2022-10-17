@@ -1,5 +1,6 @@
 # To build, navigate to the *root* of this repo and run:
-# docker build . -f compose/plots/Dockerfile -t humancompatibleai/katagovisualizer:plots
+# docker-compose -f notebooks/docker-compose.yml up
+
 FROM python:3.10-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -31,6 +32,5 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Install pip requirements
 RUN pip install --no-cache-dir --upgrade pip setuptools
-RUN mkdir /tmp/build
 COPY notebooks/requirements.txt /downloads/requirements.txt
 RUN pip install --no-cache-dir -r /downloads/requirements.txt
