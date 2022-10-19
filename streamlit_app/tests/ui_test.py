@@ -8,14 +8,14 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import os
 
-WEB_DRIVER_TIMEOUT = 30
+WEB_DRIVER_TIMEOUT = 10
 END_OF_TEST_SLEEP = 0  # Useful for seeing the end state during dev
 DEEP_LINK = "http://localhost:8501/?state=gASVQAAAAAAAAAB9lIwZdGJwYXJzZV9ldmVudF90eXBlc19zdGF0ZZRdlCiMB3NjYWxhcnOUjAVh%0AdWRpb5SMB2hwYXJhbXOUZXMu%0A"  # Encodes {'tbparse_event_types_state': ['scalars', 'audio', 'hparams']}
 PW = os.environ["KATA_GO_VISUALIZER_PASSWORD"]
 
 
 # --- Utils ---
-def get_xpath(driver, xpath):
+def get_xpath(driver, xpath) -> webdriver.remote.webelement.WebElement:
     return WebDriverWait(driver, WEB_DRIVER_TIMEOUT).until(
         EC.presence_of_element_located((By.XPATH, xpath))
     )
@@ -80,9 +80,9 @@ def test_game_load_view_and_deep_link(drvr):
 
     # Focus on Dtale iframe, clear filters and click a cell
     drvr.switch_to.frame(get_xpath(drvr, "//iframe[contains(@src,'dtale')]"))
-    dtale_cell = get_xpath(drvr, "//*[@title='Clear Filters']")
-    dtale_cell.click()
-    dtale_cell = get_xpath(drvr, "//*[contains(text(), '-15.50')]")
+    dtale_button = get_xpath(drvr, "//*[@title='Clear Filters']")
+    dtale_button.click()
+    dtale_cell = get_xpath(drvr, "//*[@cell_idx='2|4']")
     dtale_cell.click()
 
     # Focus on main content again and show the selected game.
