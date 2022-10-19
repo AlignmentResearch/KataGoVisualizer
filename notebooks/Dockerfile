@@ -1,5 +1,5 @@
 # To build, navigate to the *root* of this repo and run:
-# docker-compose -f notebooks/docker-compose.yml up
+# docker build . -f notebooks/Dockerfile -t humancompatibleai/katagovisualizer:notebooks
 
 FROM python:3.10-slim
 
