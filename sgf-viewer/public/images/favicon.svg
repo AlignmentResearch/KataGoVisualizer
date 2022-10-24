@@ -1,0 +1,12 @@
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>Layer 1</title>
+  <line stroke-width="10" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_1" y2="800" x2="250" y1="0" x1="250" stroke="#000" fill="none"/>
+  <line stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_3" y2="800" x2="550" y1="0" x1="550" stroke-width="10" stroke="#000" fill="none"/>
+  <line stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_4" y2="250" x2="800" y1="250" x1="0" stroke-width="10" stroke="#000" fill="none"/>
+  <line stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_6" y2="550" x2="800" y1="550" x1="0" stroke-width="10" stroke="#000" fill="none"/>
+  <ellipse stroke="#000" ry="150" rx="150" id="svg_7" cy="250" cx="250" stroke-width="10" fill="#000000"/>
+  <ellipse stroke-width="10" stroke="#000" ry="150" rx="150" id="svg_8" cy="550" cx="550" fill="#ffffff"/>
+ </g>
+</svg>

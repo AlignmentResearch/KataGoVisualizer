@@ -1,0 +1,13 @@
+:root {
+    --page-background-color: #ffffff;
+    --primary-background-color: rgb(64, 117, 187);
+    --text-color: rgb(0, 0, 0);
+    --accent-color-1: rgb(45, 117, 200);
+    --accent-color-2: #d74949;
+    --accent-color-3: white;
+    --accent-color-4: #7dfff8;
+    --disabled-color: rgb(97, 97, 97);
+    --error-color: red;
+}
+
+/* #252525 */

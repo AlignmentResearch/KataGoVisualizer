@@ -1,0 +1,5 @@
+# Netify redirects
+# See https://docs.netlify.com/routing/redirects/
+
+# Redirect all paths to base URL
+/* /index.html 200
