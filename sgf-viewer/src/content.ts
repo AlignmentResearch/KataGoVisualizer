@@ -62,8 +62,8 @@ export const pages: object =
             }
         ]
     },
-    "human-attack": {
-        "title": "Human Attack",
+    "human-evaluation": {
+        "title": "Human Evaluation",
         "content": [
             {
                 "title": "Human amateur beats adversary",
