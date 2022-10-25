@@ -81,12 +81,20 @@
                 {/each}
             </ol>
         </div>
+        {#if pages[currentPath]["description"]}
+            <div class="centerflex">
+                <h2 id="summary">Summary</h2>
+                <p>{@html pages[currentPath]["description"]}</p>
+            </div>
+        {/if}
         {#each sections as section}
             <div class="centerflex" in:fade>
                 <h2 id={section["dir_name"]}>
                     {section["title"]}
                 </h2>
-                <p>{section["description"]}</p>
+                {#each section["description"] as description}
+                    <p>{@html description}</p>
+                {/each}
                 <GameList dirName={section["dir_name"]} />
                 <div style="display: flex">
                     <p style="align-self: flex-start">
@@ -98,6 +106,9 @@
                         {section["adversary"]}
                     </p>
                 </div>
+                {#if section["discussion"]}
+                    <p>{section["discussion"]}</p>
+                {/if}
             </div>
         {/each}
     {/key}
