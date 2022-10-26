@@ -75,8 +75,16 @@ if __name__ == "__main__":
             parsed_games = game_info.read_and_parse_all_files(
                 sgf_paths, fast_parse=True
             )
-            parsed_games = sorted(parsed_games, key=lambda x: x["adv_win"], reverse=True)
 
+            # Sort games by adv_win and then victim_color
+            sorted_paths_games = sorted(
+                list(zip(sgf_paths, parsed_games)),
+                key=lambda x: (x[1]["adv_win"], x[1]["victim_color"]),
+                reverse=True
+            )
+            parsed_games = [x[1] for x in sorted_paths_games]
+
+            # Write game_infos.csv summary
             if len(parsed_games) > 0:
                 keys = parsed_games[0].keys()
                 with open(
@@ -86,14 +94,17 @@ if __name__ == "__main__":
                     dict_writer.writeheader()
                     dict_writer.writerows(parsed_games)
 
-            for path, game in zip(sgf_paths, parsed_games):
+            # Modify SGFs to be easier to interpret
+            for path, game in sorted_paths_games:
+                print(path, game["adv_win"])
                 with open(path, "r+") as f:
                     text = f.read()
                     text = re.sub("BR\[[^]]*\]", "", text)
                     text = re.sub("WR\[[^]]*\]", "", text)
                     text = re.sub("C\[[^]]*\]", "", text)
-                    b_name = {"b": "Victim", "w": "Adversary"}[game["victim_color"]]
-                    w_name = {"b": "Victim", "w": "Adversary"}[game["adv_color"]]
+                    color_to_names = {"b": "Victim", "w": "Adversary"}
+                    b_name = color_to_names[game["victim_color"]]
+                    w_name = color_to_names[game["adv_color"]]
                     text = re.sub("PB\[[^]]*\]", f"PB[{b_name}]", text)
                     text = re.sub("PW\[[^]]*\]", f"PW[{w_name}]", text)
                     f.seek(0)
