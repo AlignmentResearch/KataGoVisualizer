@@ -101,7 +101,7 @@ if __name__ == "__main__":
                     text = f.read()
                     text = re.sub("BR\[[^]]*\]", "", text)
                     text = re.sub("WR\[[^]]*\]", "", text)
-                    text = re.sub("C\[[^]]*\]", "", text)
+                    text = re.sub("P?C\[[^]]*\]", "", text)
                     color_to_names = {"b": "Victim", "w": "Adversary"}
                     b_name = color_to_names[game["victim_color"]]
                     w_name = color_to_names[game["adv_color"]]
