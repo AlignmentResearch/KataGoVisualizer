@@ -75,7 +75,7 @@ if __name__ == "__main__":
             parsed_games = game_info.read_and_parse_all_files(
                 sgf_paths, fast_parse=True
             )
-            parsed_games = sorted(parsed_games, key=lambda x: x["adv_win"])
+            parsed_games = sorted(parsed_games, key=lambda x: x["adv_win"], reverse=True)
 
             if len(parsed_games) > 0:
                 keys = parsed_games[0].keys()
