@@ -7,7 +7,7 @@ export const pages: object =
         "description": "We attack <a href=\"https://arxiv.org/abs/1902.10565\">KataGo</a>, a state-of-the-art Go AI system, by training an adversarial policy against a frozen KataGo victim. We achieve a &gt;99% win rate against a KataGo victim <a href=\"#no_search\">playing without search</a>, which is comparable in strength to a top-100 European Go player. We achieve an &gt;80% win rate against a victim playing with <a href=\"#64_search\">64 visits</a>, which we estimate to have comparable strength to the best human Go players. Notably the games show that the adversarial policy does not win by playing a strong game of Go, but instead by tricking KataGo into ending the game prematurely at point favorable to the adversary. Indeed, our adversary is easily <a href=\"/human-attack#beats_adversary\">beaten by a human amateur</a>, despite being able to exploit policies that usually match or surpass the performance of the best human Go players. All games are randomly selected unless otherwise specified. For more information, see our <a href=\"TODO\">paper</a> and <a href=\"https://github.com/HumanCompatibleAI/go_attack\">GitHub</a>.",
         "content": [
             {
-                "title": "Attacking KataGo without search (level of top 100 European player)",
+                "title": "KataGo without search (level of top 100 European player)",
                 "dir_name": "no_search",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
@@ -79,7 +79,7 @@ export const pages: object =
                 "description": ["The adversarial policy is beaten by a huge margin by a Go novice, Tony Wang (first-author of this paper). This confirms that our adversarial policy is not generally capable, despite it beating victim policies that can themselves beat top human professionals. Instead, our victim policy harbors a subtle vulnerability; in the <a href=\"#amateur_vs_victim\">next section</a>, we attempt to mimic the adversarial policy to beat the victim."]
             },
             {
-                "title": "Human amateur mimics adversarial policy to beat state-of-the-art victim",
+                "title": "Human amateur beats SOTA victim by mimicking adversarial policy",
                 "dir_name": "amateur_vs_victim",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
