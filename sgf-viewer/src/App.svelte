@@ -143,12 +143,6 @@
         padding-bottom: 3px;
         z-index: 999;
     }
-    @counter-style counters {
-        system: cyclic;
-        /* symbols: "⚪" "⚫"; */
-        symbols: "⚫";
-        suffix: "   ";
-    }
     ol {
         list-style: none;
         padding-left: 0;
