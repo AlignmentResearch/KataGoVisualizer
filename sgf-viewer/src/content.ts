@@ -2,9 +2,11 @@
 // Line 4 onwards should be valid JSON.
 export const pages: object =
 {
-    "successful-attack": {
-        "title": "Successful Attack",
-        "description": "We attack <a href=\"https://arxiv.org/abs/1902.10565\">KataGo</a>, a state-of-the-art Go AI system, by training an adversarial policy against a frozen KataGo victim. We achieve a &gt;99% win rate against a KataGo victim <a href=\"#no_search\">playing without search</a>, which is comparable in strength to a top-100 European Go player. We achieve an &gt;80% win rate against a victim playing with <a href=\"#64_search\">64 visits</a>, which we estimate to have comparable strength to the best human Go players. Notably the games show that the adversarial policy does not win by playing a strong game of Go, but instead by tricking KataGo into ending the game prematurely at point favorable to the adversary. Indeed, our adversary is easily <a href=\"/human-attack#beats_adversary\">beaten by a human amateur</a>, despite being able to exploit policies that usually match or surpass the performance of the best human Go players. All games are randomly selected unless otherwise specified. For more information, see our <a href=\"TODO\">paper</a> and <a href=\"https://github.com/HumanCompatibleAI/go_attack\">GitHub</a>.",
+    "adversarial-policy-katago": {
+        "title": "Adversarially Exploiting KataGo",
+        "description": [
+            "We attack <a href=\"https://arxiv.org/abs/1902.10565\">KataGo</a>, a state-of-the-art Go AI system, by training an adversarial policy against a frozen KataGo victim. We achieve a &gt;99% win rate against a KataGo victim <a href=\"#no_search\">playing without search</a>, which is comparable in strength to a top-100 European Go player. We achieve a &gt;80% win rate against a victim playing with <a href=\"#64_visits\">64 visits</a>, which we estimate to have comparable strength to the best human Go players. Notably the games show that the adversarial policy does not win by playing a strong game of Go, but instead by tricking KataGo into ending the game prematurely at point favorable to the adversary. Indeed, our adversary is easily <a href=\"/human-evaluation#amateur_vs_adv\">beaten by a human amateur</a>, despite being able to exploit policies that usually match or surpass the performance of the best human Go players.",
+             "All games are randomly selected unless otherwise specified. We attack the <a href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a> network which we dub <code>Latest</code> since it is the latest confidently rated victim network at the time of writing. For more information, see our <a href=\"TODO\">paper</a> and <a href=\"https://github.com/HumanCompatibleAI/go_attack\">GitHub</a>."],
         "content": [
             {
                 "title": "KataGo without search (level of top 100 European player)",

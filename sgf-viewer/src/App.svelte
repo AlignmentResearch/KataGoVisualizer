@@ -84,7 +84,9 @@
         {#if pages[currentPath]["description"]}
             <div class="centerflex">
                 <h2 id="summary">Summary</h2>
-                <p>{@html pages[currentPath]["description"]}</p>
+                  {#each pages[currentPath]["description"] as description}
+                    <p>{@html description}</p>
+                {/each}
             </div>
         {/if}
         {#each sections as section}
