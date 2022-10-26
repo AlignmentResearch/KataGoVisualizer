@@ -58,9 +58,9 @@ export const pages: object =
                     "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/219DBF949E5229CB.sgfs"
                 ],
                 "max_games": 10,
-                "adversary": "34.1 million training steps, 8,192 visits",
+                "adversary": "34.1 million training steps, 8192 visits",
                 "victim": "Latest (cp505-v1-MCTS), 64 visits",
-                "description": ["With 64 visits, KataGo's <code>Latest</code> network plays at the level of a  <a href=\"TODO#p15\">top-20 human professional</a>. We achieve a win rate of 48% against this victim simply by increasing the number of adversary visits to 8,192. The adversary wins by the same qualitative strategy of staking out a corner, but plays significantly more stones in the victim's territory. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
+                "description": ["With 64 visits, KataGo's <code>Latest</code> network plays at the level of a  <a href=\"TODO#p15\">top-20 human professional</a>. We achieve a win rate of 48% against this victim simply by increasing the number of adversary visits to 8192. The adversary wins by the same qualitative strategy of staking out a corner, but plays significantly more stones in the victim's territory. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
             }
         ]
     },
@@ -78,7 +78,7 @@ export const pages: object =
                 "max_games": 10,
                 "adversary": "34.1 million training steps, 600 visits",
                 "victim": "Tony Wang (Author)",
-                "description": ["The adversarial policy is beaten by a huge margin by a Go novice, Tony Wang (first-author of this paper). This confirms that our adversarial policy is not generally capable, despite it beating victim policies that can themselves beat top human professionals. Instead, our victim policy harbors a subtle vulnerability; in the <a href=\"#amateur_vs_victim\">next section</a>, we attempt to mimic the adversarial policy to beat the victim."]
+                "description": ["Our adversarial policy can easily be beaten by a huge margin even by a Go novice. Tony Wang, the first-author of this paper, wins by over 250 points despite having never studied Go prior to this research project. This confirms that our adversarial policy is not generally capable, despite it beating victim policies that can themselves beat top human professionals. Instead, our victim policy harbors a subtle vulnerability; in the <a href=\"#amateur_vs_victim\">next section</a>, we attempt to mimic the adversarial policy to exploit the victim."]
             },
             {
                 "title": "Human amateur beats SOTA victim by mimicking adversarial policy",
@@ -90,7 +90,7 @@ export const pages: object =
                 "max_games": 10,
                 "adversary": "Tony Wang (Author)",
                 "victim": "NeuralZ06 (KataGo KGS bot playing without search)",
-                "description": ["A Go novice, Tony Wang (first-author of this paper), is able to exploit the top-50 KGS bot <code>NeuralZ06</code> by mimicking the behavior of the adversarial policy. The bot plays with checkpoint <code>b40c256-s11101799168-d2715431527</code> that is comparable to (but slightly weaker) than the <code>Latest</code> checkpoint. However, the bot had the <code>friendlyPassOk</code> flag enabled, which makes it easier to exploit—we have not been able to win manually against a bot with this disabled. This suggests that the easily mimicable high-level strategy of our adversarial policy explains a considerable part, but by no means all, of the adversary's success."]
+                "description": ["The same Go novice, Tony Wang, is able to exploit the top-50 KGS bot <code>NeuralZ06</code> by mimicking the behavior of our adversarial policy. The bot plays with checkpoint <code>b40c256-s11101799168-d2715431527</code> that is comparable to (but slightly weaker) than the <code>Latest</code> checkpoint. However, the bot has the <code>friendlyPassOk</code> flag enabled, which makes it easier to exploit—we have not been able to win manually against a bot with this disabled. This suggests that the easily mimicable high-level strategy of our adversarial policy explains a considerable part of the adversary's success, but by no means all of it."]
             }
         ]
     }
