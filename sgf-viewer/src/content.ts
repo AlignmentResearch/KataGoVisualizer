@@ -24,7 +24,7 @@ export const pages: object =
                 "adversary": "34.1 million training steps, 600 visits",
                 "victim": "Latest (cp505-v1-MCTS), no search",
                 "description": [
-                    "We start by attacking the strongest KataGo victim network playing without search, which is around the strength of a top-100 European professional. Our adversary achieves a 99% win rate against this victim by playing a counterintuitive strategy. We stake out a minority territory in the corner, allowing KataGo to stake the complement, and placing weak stones in KataGo’s stake.",
+                    "Even without search, Katago's <code>Latest</code> network plays at the <a href=\"TODO#p15\">strength of a top-100 European professional</a>. Yet our adversary achieves a 99% win rate against this victim by playing a counterintuitive strategy. The adversary stakes out a minority territory in the corner, allowing KataGo to stake the complement, and placing weak stones in KataGo’s stake.",
                     "KataGo predicts a high win probability for itself and, in a way, it’s right—it would be simple to capture most of the adversary’s stones in KataGo’s stake, achieving a decisive victory. However, KataGo plays a pass move before it has finished securing its territory, allowing the adversary to pass in turn and end the game. This results in a win for the adversary under the standard <a href=\"https://tromp.github.io/go.html\">Tromp-Taylor</a> ruleset for computer Go, as the adversary gets points for its corner territory (devoid of victim stones) whereas the victim does not receive points for its unsecured territory because of the presence of the adversary’s stones."
                 ]
             },
@@ -33,7 +33,7 @@ export const pages: object =
                 "dir_name": "64_visits",
                 "server": "dqn.ist.berkeley.edu",
                 "_path_comment": "Computed by `grep -l v=1024 * | head -n 10` in /nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs, see https://www.notion.so/chaiberkeley/match-cp505-64-vs-adv-1_to_8192-39e0e303cd3f45199f4ce638c92556a5 for experiment log",
-                "paths_8192": [
+                "paths": [
                     "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/033FE05C5431ED13.sgfs",
                     "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/048A6592BB515609.sgfs",
                     "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/0FF3484FD5147146.sgfs",
@@ -45,7 +45,7 @@ export const pages: object =
                     "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/1EEA60F118BBB86C.sgfs",
                     "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/2172599E22680D06.sgfs"
                 ],
-                "paths": [
+                "paths_1024": [
                     "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/00FB73C086F202A1.sgfs",
                     "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/00909067ADE53F5A.sgfs",
                     "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/02B74D9148F158A4.sgfs",
@@ -58,9 +58,9 @@ export const pages: object =
                     "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/219DBF949E5229CB.sgfs"
                 ],
                 "max_games": 10,
-                "adversary": "34.1 million training steps, 200 visits",
+                "adversary": "34.1 million training steps, 8,192 visits",
                 "victim": "Latest (cp505-v1-MCTS), 64 visits",
-                "description": ["We attack KataGo searching for 64 visits, at which point it plays at the level of one of the top human professionals in the world. We achieve a win rate of 80% against this victim, by increasing the number of adversary visits to 1,024. The adversary wins by the same qualitative strategy of staking out a corner, but plays significantly more stones in the victim's territory. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
+                "description": ["With 64 visits, KataGo's <code>Latest</code> network plays at the level of a  <a href=\"TODO#p15\">top-20 human professional</a>. We achieve a win rate of 48% against this victim simply by increasing the number of adversary visits to 8,192. The adversary wins by the same qualitative strategy of staking out a corner, but plays significantly more stones in the victim's territory. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
             }
         ]
     },
