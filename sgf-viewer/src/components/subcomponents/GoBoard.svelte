@@ -1,4 +1,5 @@
 <script lang="ts">
+  export let dirName: string;
   export let sgfPath: string;
   let goBoardDiv: HTMLElement;
   $: if (goBoardDiv)
@@ -10,11 +11,12 @@
     });
 </script>
 
-<div bind:this={goBoardDiv} />
+<div id={`${dirName}-board`} bind:this={goBoardDiv} />
 
 <style>
   div {
-    margin: 1vh;
-    margin-bottom: 0vh;
+    scroll-margin-top: 12em;
+    margin: 0vh;
+    margin-top: 1vh;
   }
 </style>

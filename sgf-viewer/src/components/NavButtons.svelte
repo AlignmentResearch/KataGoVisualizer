@@ -11,7 +11,6 @@
     export let tabsId: string | null = null; // Just needs to be unique for in:receive out:send animation
     export let selected: boolean = false;
     export let border: boolean = true;
-    export let fontSize: string = "1.1rem";
 </script>
 
 <div in:scale={{ duration: 300 }}>
@@ -29,7 +28,7 @@
             </div>
         {/if}
         {#if label}
-            <p style="padding: 0; margin: 5px; font-size: {fontSize};">
+            <p style="padding: 0; margin: 5px;">
                 {label}
             </p>
         {/if}
@@ -48,7 +47,7 @@
 <style>
     .selected {
         color: var(--accent-color-4);
-        font-size: 30px;
+        /* font-size: 1.3em; */
     }
     .current-tab-indicator {
         background-color: var(--accent-color-4);
@@ -61,8 +60,8 @@
     button {
         border-radius: 5px;
         display: flex;
-        font-weight: bold;
-        /* font-size: 0.2em; */
+        font-weight: bolder;
+        font-size: 1.1em;
         align-items: center;
         justify-content: center;
         background-color: transparent;
@@ -93,7 +92,7 @@
     button:hover:enabled {
         cursor: pointer;
         border-color: var(--accent-color-3);
-        color: var(--accent-color-3);
+        /* color: var(--accent-color-3); */
         fill: var(--accent-color-3);
         transform: scale(1.2);
     }

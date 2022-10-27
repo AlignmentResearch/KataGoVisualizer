@@ -44,11 +44,12 @@
         selectedRow = row;
         let params = new URLSearchParams();
         params.set("row", selectedRow.toString());
-        let newUrl =
-            window.location.pathname + "?" + params.toString() + "#" + dirName;
-        history.pushState({}, "", newUrl);
+        let url = `${
+            window.location.pathname
+        }?${params.toString()}#${dirName}-board`;
+        history.pushState({}, "", url);
     }
-    $: if (window.location.hash === "#" + dirName) {
+    $: if (window.location.hash.startsWith("#" + dirName)) {
         let searchParams = new URLSearchParams(window.location.search);
         if (searchParams.has("row")) {
             selectedRow = parseInt(searchParams.get("row"));
@@ -82,9 +83,7 @@
             </tr>
         {/each}
     </table>
-    {#if sgfPath}
-        <GoBoard {sgfPath} />
-    {/if}
+    <GoBoard {dirName} {sgfPath} />
 </div>
 
 <style>
@@ -93,7 +92,7 @@
     }
     table {
         border-collapse: collapse;
-        width: 100%;
+        max-width: 100%;
         /* Rounded border */
         /* Thin white border */
         /* border: 1px solid #fff; */
