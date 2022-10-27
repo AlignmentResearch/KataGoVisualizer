@@ -17,6 +17,7 @@ pandas
 # Plotting
 matplotlib
 seaborn
+statsmodels
 
 # Utilities
 black
