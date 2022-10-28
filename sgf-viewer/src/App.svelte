@@ -24,7 +24,9 @@
     {#key currentPath}
         {#if pages[currentPath]["description"]}
             <div class="centerflex">
-                <h2 id="summary">Summary</h2>
+                <!-- {#if "description" in pages[currentPath]} -->
+                <h3 id="summary" class="subheading">Summary</h3>
+                <!-- {/if} -->
                 {#each pages[currentPath]["description"] as description}
                     <p>{@html description}</p>
                 {/each}
@@ -32,9 +34,9 @@
         {/if}
         {#each sections as section}
             <div class="centerflex" in:fade>
-                <h2 id={section["dir_name"]}>
+                <h3 id={section["dir_name"]} class="subheading">
                     {section["title"]}
-                </h2>
+                </h3>
                 {#each section["description"] as description}
                     <p>{@html description}</p>
                 {/each}
@@ -58,8 +60,17 @@
 </main>
 
 <style>
-    h2 {
-        scroll-margin-top: 8em;
+    .subheading {
+        scroll-margin-top: 4em;
+        position: sticky;
+        background-color: var(--accent-color-2);
+        color: white;
+        margin: 2vh;
+        padding: 13px;
+        border-radius: 105px;
+        top: 85px;
+        /* padding: 10px; */
+        z-index: 998;
     }
     .centerflex {
         display: flex;

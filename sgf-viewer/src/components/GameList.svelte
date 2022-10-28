@@ -59,30 +59,32 @@
 </script>
 
 <div>
-    <table>
-        <!-- Loop through headers and games and put them in table -->
-        <tr>
-            {#each Object.values(tableColumns).slice(0, -1) as header}
-                <th>{header}</th>
-            {/each}
-            <th>Download</th>
-        </tr>
-        {#each games as game, index (index)}
-            <tr
-                class:selected-row={index === selectedRow}
-                on:click={() => clickCell(index)}
-            >
-                {#each game.slice(0, -1) as cell}
-                    <td>{cell}</td>
+    <div class="table-wrapper">
+        <table>
+            <!-- Loop through headers and games and put them in table -->
+            <tr>
+                {#each Object.values(tableColumns).slice(0, -1) as header}
+                    <th>{header}</th>
                 {/each}
-                <td>
-                    <a href={indexToSgfPath(index)} download={"go_game.sgf"}
-                        >⬇</a
-                    ></td
-                >
+                <th>Download</th>
             </tr>
-        {/each}
-    </table>
+            {#each games as game, index (index)}
+                <tr
+                    class:selected-row={index === selectedRow}
+                    on:click={() => clickCell(index)}
+                >
+                    {#each game.slice(0, -1) as cell}
+                        <td>{cell}</td>
+                    {/each}
+                    <td>
+                        <a href={indexToSgfPath(index)} download={"go_game.sgf"}
+                            >⬇</a
+                        ></td
+                    >
+                </tr>
+            {/each}
+        </table>
+    </div>
     <GoBoard {dirName} {sgfPath} />
 </div>
 
@@ -90,9 +92,14 @@
     div {
         max-width: 100%;
     }
+    .table-wrapper {
+        overflow-x: auto;
+    }
     table {
         border-collapse: collapse;
-        max-width: 100%;
+        /* max-width: 100%; */
+        /* table-layout: fixed; */
+        width: 100%;
         /* Rounded border */
         /* Thin white border */
         /* border: 1px solid #fff; */
@@ -102,7 +109,7 @@
     td {
         text-align: center;
         font-weight: bold;
-        width: 130px;
+        /* width: 130px; */
         padding: 8px;
         margin: 8px;
     }
@@ -111,6 +118,7 @@
         transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
     td:hover {
+        overflow: hidden;
         transform: scale(1.1);
         background-color: var(--accent-color-2);
     }

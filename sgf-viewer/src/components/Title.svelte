@@ -62,23 +62,22 @@
     }
     .logos {
         margin-top: 10vh;
-        max-width: 100%;
     }
     .logo {
-        margin: auto;
-        height: 5em;
-        padding: 1.5em;
+        object-fit: contain;
+        height: 140px;
+        padding: 20px;
         will-change: filter;
         transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .logo:hover {
-        filter: drop-shadow(0 0 2em #78a22e);
+        filter: drop-shadow(0 0 2em #77a22e9a);
         transform: scale(1.1);
     }
-    .logo.mit:hover {
-        filter: drop-shadow(0 0 2em #a32034);
+    .mit:hover {
+        filter: drop-shadow(0 0 2em #a3203497);
     }
-    .logo.far:hover {
-        filter: drop-shadow(0 0 1em #00e0da);
+    .far:hover {
+        filter: drop-shadow(0 0 1em #00e0d894);
     }
 </style>

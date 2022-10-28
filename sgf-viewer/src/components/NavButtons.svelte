@@ -47,7 +47,6 @@
 <style>
     .selected {
         color: var(--accent-color-4);
-        /* font-size: 1.3em; */
     }
     .current-tab-indicator {
         background-color: var(--accent-color-4);
@@ -66,8 +65,7 @@
         justify-content: center;
         background-color: transparent;
         color: var(--accent-color-3);
-        margin: 0.5vmax;
-        padding: 1vmin;
+        padding: 1vw;
         transition-duration: 200ms;
         border: 3px solid var(--accent-color-3);
         transform: scale(1.01); /* Prevents pixel shift during animation */
