@@ -1,6 +1,5 @@
 <script lang="ts">
     import { fade } from "svelte/transition";
-    import Saos from "saos";
     const authors: Map<string, string> = new Map([
         ["Tony Wang", "https://terveisin.tw/"],
         ["Adam Gleave", "https://www.gleave.me/"],
@@ -21,51 +20,33 @@
     ]);
 </script>
 
-<Saos
-    animation={"fade-in-bottom 0.4s cubic-bezier(0.215, 0.610, 0.355, 1.000) both"}
->
-    <div class="logos">
-        <a href="https://humancompatible.ai/" target="_blank">
-            <img
-                src="/images/chai-logo.png"
-                class="logo"
-                alt="Center for Human-Compatible Artificial Intelligence Logo"
-            />
-        </a>
-        <a href="https://www.mit.edu/" target="_blank">
-            <img src="/images/mit-logo.svg" class="logo mit" alt="MIT Logo" />
-        </a>
-        <a href="https://alignmentfund.org/" target="_blank">
-            <img src="/images/far-logo.png" class="logo far" alt="FAR Logo" />
-        </a>
+<div class="logos">
+    <a href="https://humancompatible.ai/" target="_blank">
+        <img
+            src="/images/chai-logo.png"
+            class="logo"
+            alt="Center for Human-Compatible Artificial Intelligence Logo"
+        />
+    </a>
+    <a href="https://www.mit.edu/" target="_blank">
+        <img src="/images/mit-logo.svg" class="logo mit" alt="MIT Logo" />
+    </a>
+    <a href="https://alignmentfund.org/" target="_blank">
+        <img src="/images/far-logo.png" class="logo far" alt="FAR Logo" />
+    </a>
+</div>
+<h1 in:fade style="text-align: center;">
+    Adversarial Policies Beat Professional-Level Go AIs
+</h1>
+<div>
+    <div class="authors-list">
+        {#each [...authors] as [name, link], i}
+            <a href={link} target="_blank">{name}</a>
+        {/each}
     </div>
-</Saos>
-<Saos
-    animation={"fade-in-bottom 0.4s cubic-bezier(0.215, 0.610, 0.355, 1.000) both"}
->
-    <h1 in:fade style="text-align: center;">
-        Adversarial Policies Beat Professional-Level Go AIs
-    </h1>
-    <div>
-        <div class="authors-list">
-            {#each [...authors] as [name, link], i}
-                <a href={link} target="_blank">{name}</a>
-            {/each}
-        </div>
-    </div>
-</Saos>
+</div>
 
 <style>
-    @keyframes -global-fade-in-bottom {
-        0% {
-            transform: translateY(50px);
-            opacity: 0;
-        }
-        100% {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
     h1 {
         font-size: 2em;
     }

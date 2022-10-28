@@ -71,7 +71,7 @@
     }
     .icon-link:hover {
         scale: 1.1;
-        color: var(--accent-color-4);
+        color: var(--accent-color-2);
     }
     .nav-bar {
         display: flex;

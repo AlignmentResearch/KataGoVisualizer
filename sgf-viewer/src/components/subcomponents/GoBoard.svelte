@@ -11,12 +11,20 @@
     });
 </script>
 
-<div id={`${dirName}-board`} bind:this={goBoardDiv} />
+<div id={`${dirName}-board`} bind:this={goBoardDiv} class="go-board" />
 
 <style>
   div {
     scroll-margin-top: 12em;
     margin: 0vh;
     margin-top: 1vh;
+
+  }
+  /* These values override changes in css/sanitize that break WGo's appearance */
+  :global(.wgo-board) {
+    background-repeat: repeat;
+  }
+  :global(.wgo-player-mn-value) {
+    box-sizing: content-box;
   }
 </style>
