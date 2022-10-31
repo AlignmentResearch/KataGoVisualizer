@@ -4,6 +4,7 @@
     import NavBar from "./components/NavBar.svelte";
     import Title from "./components/Title.svelte";
     import { pages } from "./content";
+
     let pagesPaths = Object.keys(pages);
     let currentPath: string = window.location.pathname.split("/").slice(-1)[0];
     currentPath = pagesPaths.includes(currentPath)
@@ -14,6 +15,8 @@
         : [];
     let navBar: HTMLElement;
     $: navBarMargin = navBar ? navBar.clientHeight : 100;
+    $: document.documentElement.style.cssText =
+        "--scroll-margin: " + navBarMargin + "px;";
 </script>
 
 <svelte:head>
@@ -26,13 +29,7 @@
     {#key currentPath}
         {#if pages[currentPath]["description"]}
             <div class="centerflex">
-                <h3
-                    id="summary"
-                    class="subheading"
-                    style="top: calc({navBarMargin}px + 1vh); scroll-margin-top: calc({navBarMargin}px + 1vh);"
-                >
-                    Summary
-                </h3>
+                <h3 id="summary" class="subheading">Summary</h3>
                 {#each pages[currentPath]["description"] as description}
                     <p>{@html description}</p>
                 {/each}
@@ -40,11 +37,7 @@
         {/if}
         {#each sections as section}
             <div class="centerflex" in:fade>
-                <h3
-                    id={section["dir_name"]}
-                    class="subheading"
-                    style="top: calc({navBarMargin}px + 1vh); scroll-margin-top: calc({navBarMargin}px + 1vh);"
-                >
+                <h3 id={section["dir_name"]} class="subheading">
                     {section["title"]}
                 </h3>
                 {#each section["description"] as description}
@@ -56,7 +49,7 @@
                         <b>Victim:</b>
                         {section["victim"]}
                     </p>
-                    <p style="align-self: flex-end; min-width=0;">
+                    <p style="align-self: flex-end;">
                         <b>Adversary:</b>
                         {section["adversary"]}
                     </p>
@@ -71,6 +64,7 @@
 
 <style>
     .subheading {
+        top: calc(var(--scroll-margin) + 1vh);
         position: sticky;
         background-color: var(--accent-color-2);
         color: white;

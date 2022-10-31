@@ -1,20 +1,24 @@
 <script lang="ts">
+    import { pages } from "../content";
+    import NavButtons from "./subcomponents/NavButtons.svelte";
     import { fade } from "svelte/transition";
     import FaGithub from "svelte-icons/fa/FaGithub.svelte";
     import FaFile from "svelte-icons/fa/FaFile.svelte";
-    import NavButtons from "./NavButtons.svelte";
-    import { pages } from "../content";
+
     export let currentPath: string;
     export let navBarElem: HTMLElement;
+
     let contentsTitle: HTMLElement;
     let pagesPaths = Object.keys(pages);
     $: sections = pagesPaths.includes(currentPath)
         ? pages[currentPath]["content"]
         : [];
+    const rmvUrlParams = () =>
+        window.history.pushState({}, "", window.location.pathname);
 </script>
 
 <div class="nav-bar" bind:this={navBarElem}>
-    <div class="icons spaced">
+    <div class="icons flex-grow-symmetric">
         <a
             href="https://github.com/HumanCompatibleAI/go_attack"
             target="_blank"
@@ -36,27 +40,29 @@
                 label={pages[page]["title"]}
                 tabsId="tabs"
                 selected={page === currentPath}
+                href="#contents"
                 onClick={() => {
-                    contentsTitle.scrollIntoView(true);
                     currentPath = page;
                     history.pushState({}, "", currentPath);
                 }}
             />
         {/each}
     </div>
-    <div class="spaced" />
+    <div class="flex-grow-symmetric" />
 </div>
 <div class="contents" bind:this={contentsTitle}>
-    <h3 style="text-align: center;">Contents</h3>
+    <h3 id="contents" class="contents-title">Contents</h3>
     <ol in:fade>
         {#if pages[currentPath]["description"]}
             <li>
-                <a href={"#summary"}>Summary</a>
+                <a href={"#summary"} on:click={rmvUrlParams}>• Summary</a>
             </li>
         {/if}
         {#each sections as section, i}
             <li>
-                <a href={"#" + section["dir_name"]}>{section["title"]}</a>
+                <a href={"#" + section["dir_name"]} on:click={rmvUrlParams}
+                    >• {section["title"]}</a
+                >
             </li>
         {/each}
     </ol>
@@ -65,20 +71,22 @@
 <style>
     .icons {
         display: flex;
-        gap: 2vw;
+        gap: 1em;
         align-items: center;
+        padding: 0.5em;
         z-index: 99999;
     }
     .icon-link {
         display: flex;
         align-items: center;
+        max-width: 50px;
         min-width: 30px;
-        height: 45px;
+        height: 50px;
         color: white;
         background-color: var(--accent-color-1);
         transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .spaced {
+    .flex-grow-symmetric {
         flex: 1;
         padding-left: 1vh;
         padding-right: 1vh;
@@ -89,6 +97,7 @@
     }
     .pages {
         display: flex;
+        gap: 1vw;
         justify-content: center;
     }
     .nav-bar {
@@ -98,12 +107,14 @@
         padding: 0px;
         display: flex;
         justify-content: center;
+        align-items: stretch;
         background-color: var(--accent-color-1);
-        padding-top: 3px;
-        padding-bottom: 3px;
+    }
+    .contents-title {
+        margin: 0px;
+        margin-top: 0.2em;
     }
     .contents {
-        scroll-margin-top: 4em;
         background-color: white;
         display: flex;
         flex-direction: column;
@@ -114,14 +125,11 @@
     ol {
         list-style: none;
         padding-left: 0;
-        text-align: center;
+        text-align: left;
+        margin-top: 0;
     }
     li {
         padding: 0px;
-        margin: 0px;
-    }
-    h3 {
-        margin: 0px;
-        margin-top: 0.2em;
+        margin: 0.6em;
     }
 </style>

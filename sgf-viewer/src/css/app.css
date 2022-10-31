@@ -11,15 +11,22 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  -webkit-overflow-scrolling: touch;
 
   scroll-behavior: smooth;
+
+  -webkit-overflow-scrolling: touch;
 }
 
-.wgo-button::before,
+* {
+  /* When a hash link scrolls to an element,
+  this ensures the navigation bar doesn't cover it. */
+  scroll-margin-top: calc(var(--scroll-margin) + 1vh);
+}
+
+/* .wgo-button::before,
 .wgo-player-mn-value {
   color: rgb(81, 81, 81);
-}
+} */
 
 a {
   font-weight: bold;
@@ -46,24 +53,4 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
-
-.card {
-  padding: 2em;
-}
-
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }

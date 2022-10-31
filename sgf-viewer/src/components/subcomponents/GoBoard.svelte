@@ -1,6 +1,7 @@
 <script lang="ts">
   export let dirName: string;
   export let sgfPath: string;
+
   let goBoardDiv: HTMLElement;
   $: if (goBoardDiv)
     new (<any>window).WGo.BasicPlayer(goBoardDiv, {
@@ -18,7 +19,6 @@
     scroll-margin-top: 12em;
     margin: 0vh;
     margin-top: 1vh;
-
   }
   /* These values override changes in css/sanitize that break WGo's appearance */
   :global(.wgo-board) {

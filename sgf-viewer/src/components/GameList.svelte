@@ -1,5 +1,7 @@
 <script lang="ts">
     import GoBoard from "./subcomponents/GoBoard.svelte";
+    import MdFileDownload from "svelte-icons/md/MdFileDownload.svelte";
+
     export let dirName: string;
 
     let selectedRow: number = 0;
@@ -51,17 +53,14 @@
     }
     $: if (window.location.hash.startsWith("#" + dirName)) {
         let searchParams = new URLSearchParams(window.location.search);
-        if (searchParams.has("row")) {
+        if (searchParams.has("row"))
             selectedRow = parseInt(searchParams.get("row"));
-            console.log("selectedRow", selectedRow);
-        }
     }
 </script>
 
 <div>
     <div class="table-wrapper">
         <table style="overflow: hidden;">
-            <!-- Loop through headers and games and put them in table -->
             <tr>
                 {#each Object.values(tableColumns).slice(0, -1) as header}
                     <th>{header}</th>
@@ -80,8 +79,9 @@
                         <a
                             href={indexToSgfPath(index)}
                             download={"go_game.sgf"}
+                            class="icon"
                         >
-                            ⬇
+                            <MdFileDownload />
                         </a>
                     </td>
                 </tr>
@@ -94,6 +94,9 @@
 <style>
     div {
         max-width: 100%;
+    }
+    .icon :global(svg) {
+        max-height: 1.5em;
     }
     .table-wrapper {
         overflow-x: auto;
@@ -134,15 +137,12 @@
     }
     th:first-of-type {
         border-top-left-radius: 10px;
-        /* border-bottom-left-radius: 10px; */
     }
     th:last-of-type {
         border-top-right-radius: 10px;
-        /* border-bottom-right-radius: 10px; */
     }
     th {
         background-color: var(--accent-color-1);
-        /* border-radius: 10px; */
         color: white;
     }
     td:first-child {
