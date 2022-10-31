@@ -12,6 +12,8 @@
     $: sections = pagesPaths.includes(currentPath)
         ? pages[currentPath]["content"]
         : [];
+    let navBar: HTMLElement;
+    $: navBarMargin = navBar ? navBar.clientHeight : 100;
 </script>
 
 <svelte:head>
@@ -20,13 +22,17 @@
 
 <main>
     <Title />
-    <NavBar bind:currentPath />
+    <NavBar bind:currentPath bind:navBarElem={navBar} />
     {#key currentPath}
         {#if pages[currentPath]["description"]}
             <div class="centerflex">
-                <!-- {#if "description" in pages[currentPath]} -->
-                <h3 id="summary" class="subheading">Summary</h3>
-                <!-- {/if} -->
+                <h3
+                    id="summary"
+                    class="subheading"
+                    style="top: calc({navBarMargin}px + 1vh); scroll-margin-top: calc({navBarMargin}px + 1vh);"
+                >
+                    Summary
+                </h3>
                 {#each pages[currentPath]["description"] as description}
                     <p>{@html description}</p>
                 {/each}
@@ -34,7 +40,11 @@
         {/if}
         {#each sections as section}
             <div class="centerflex" in:fade>
-                <h3 id={section["dir_name"]} class="subheading">
+                <h3
+                    id={section["dir_name"]}
+                    class="subheading"
+                    style="top: calc({navBarMargin}px + 1vh); scroll-margin-top: calc({navBarMargin}px + 1vh);"
+                >
                     {section["title"]}
                 </h3>
                 {#each section["description"] as description}
@@ -61,15 +71,12 @@
 
 <style>
     .subheading {
-        scroll-margin-top: 4em;
         position: sticky;
         background-color: var(--accent-color-2);
         color: white;
         margin: 2vh;
         padding: 13px;
         border-radius: 105px;
-        top: 85px;
-        /* padding: 10px; */
         z-index: 998;
     }
     .centerflex {

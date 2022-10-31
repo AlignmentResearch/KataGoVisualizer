@@ -5,6 +5,7 @@
     import NavButtons from "./NavButtons.svelte";
     import { pages } from "../content";
     export let currentPath: string;
+    export let navBarElem: HTMLElement;
     let contentsTitle: HTMLElement;
     let pagesPaths = Object.keys(pages);
     $: sections = pagesPaths.includes(currentPath)
@@ -12,7 +13,7 @@
         : [];
 </script>
 
-<div class="nav-bar" id="nav-bar">
+<div class="nav-bar" bind:this={navBarElem}>
     <div class="icons spaced">
         <a
             href="https://github.com/HumanCompatibleAI/go_attack"
