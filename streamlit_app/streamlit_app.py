@@ -62,7 +62,7 @@ if not df.empty:
 
 # Save app state in URL. Use base64 encoding to read and write python obects directly.
 if st.button("Update url (for sharing)"):
-    new_query_params = {**state}
+    new_query_params = {k: v for k, v in state.items() if not k.startswith("temp")}
     new_query_params.pop(FIRST_PASS_STATE, None)
     new_query_params.pop(PW_STATE, None)
     new_query_params.pop(PW_HASH_STATE, None)

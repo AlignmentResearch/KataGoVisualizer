@@ -2,6 +2,7 @@ import streamlit as st
 import os
 from pathlib import Path
 import signal
+import random
 from tensorboard import manager as tb_manager
 
 MOUNT_DIR, READ_DIR = Path(os.environ["MOUNT_DIR"]), Path(os.environ["READ_DIR"])
@@ -20,16 +21,15 @@ def tensorboard_session_viewer():
         ):
             col.markdown(header)
         for sesh in tb_sessions:
-            col1, col2, col3, col4 = st.columns(
-                [5, 1, 5, 1]
-            )  # New columns on each row for vertical alignment
+            # New columns on each row for vertical alignment
+            col1, col2, col3, col4 = st.columns([5, 1, 5, 1])
             server_path = READ_DIR / Path(sesh.logdir).relative_to(MOUNT_DIR)
             col1.text(str(server_path))
             col2.markdown(f"[{sesh.port}](http://localhost:{sesh.port})")
             col3.markdown(
                 f"`ssh -L {sesh.port}:localhost:{sesh.port} name@dqn.ist.berkeley.edu`"
             )
-            if col4.button("Delete", key=sesh.cache_key):
+            if col4.button("Delete", key=f"temp-{random.randint(0, 9999999)}"):
                 os.kill(sesh.pid, signal.SIGTERM)
         st.button("↻ Refresh")  # Forces Streamlit script to rerun
     else:
