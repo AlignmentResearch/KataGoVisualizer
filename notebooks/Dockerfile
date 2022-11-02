@@ -33,4 +33,5 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 # Install pip requirements
 RUN pip install --no-cache-dir --upgrade pip setuptools
 COPY notebooks/requirements.txt /downloads/requirements.txt
+COPY go_attack_utils ./../go_attack_utils
 RUN pip install --no-cache-dir -r /downloads/requirements.txt

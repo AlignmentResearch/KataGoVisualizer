@@ -5,12 +5,7 @@ import json
 import re
 import csv
 from pathlib import Path
-import sys
-
-mypath = Path(__file__).parent.parent.parent / "parsing_server"
-sys.path.append(str(mypath))
-import game_info
-
+from sgf_parser import game_info
 
 """
 Prerequisites:
@@ -80,7 +75,7 @@ if __name__ == "__main__":
             sorted_paths_games = sorted(
                 list(zip(sgf_paths, parsed_games)),
                 key=lambda x: (x[1]["adv_win"], x[1]["victim_color"]),
-                reverse=True
+                reverse=True,
             )
             parsed_games = [x[1] for x in sorted_paths_games]
 
