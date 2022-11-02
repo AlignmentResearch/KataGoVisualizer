@@ -27,7 +27,7 @@
             <FaGithub />
         </a>
         <a
-            href="https://tinyurl.com/2p8m7edv"
+            href="https://arxiv.org/abs/2211.00241"
             target="_blank"
             class="icon-link"
         >
