@@ -132,6 +132,9 @@ def parse_game_str_to_dict(
         "victim" in b_name or "victim" in w_name or "adv" in b_name or "adv" in w_name
     ), f"Game doesn't have victim: path={path}, line_number={line_number}"
 
+    parts = pathlib.Path(path).parts
+    training = "eval" if "eval" in parts else "train" if "selfplay" in parts else None
+
     victim_color = {b_name: "b", w_name: "w"}.get(
         "victim",
         "b" if ("victim" in b_name or "bot" in b_name or "adv" in w_name) else "w",
@@ -172,7 +175,11 @@ def parse_game_str_to_dict(
     else:
         win_score = float(result.split("+")[-1])
         adv_minus_victim_score = win_score if adv_color == win_color else -win_score
-    adv_steps = extract_re(r"\-s([0-9]+)\-", adv_name) or 0
+    adv_steps = (
+        extract_re(r"\-s([0-9]+)\-", adv_name)
+        or extract_re(r"t0\-s([0-9]+)\-", "/".join(parts[-3:]))
+        or 0
+    )
     adv_samples = extract_re(r"\-d([0-9]+)", adv_name) or 0
     adv_komi = komi * {"w": 1, "b": -1}[adv_color]
 
@@ -208,6 +215,7 @@ def parse_game_str_to_dict(
         "adv_minus_victim_score": adv_minus_victim_score,
         "adv_minus_victim_score_wo_komi": adv_minus_victim_score - adv_komi,
         # Other info
+        "train_status": training,
         "board_size": board_size,
         "start_turn_idx": extract_param("startTurnIdx", comment_str),
         "handicap": extract_prop("HA", sgf_str),

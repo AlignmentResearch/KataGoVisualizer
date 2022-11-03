@@ -1,31 +1,55 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from itertools import product
+
+MAX_LINES_ON_GRAPH = 100
 
 TRAINING_STEPS_SLIDER_STATE = "training_steps_slider"
+PLOT_SEPERATE_ATTRIBUTES_STATE = "plot_seperate_attributes"
 
 
 def win_rate_by_adv_steps_graph_filter(df):
     df19 = df[df.board_size == 19]
+    win_rate_df = pd.DataFrame(index=sorted(df19.adv_steps.unique()))
 
-    # Make columns with names 'adv = white' and 'adv = black'
-    win_rate_df = pd.DataFrame(index=sorted(df.adv_steps.unique()))
-    for v in sorted(df19.victim_steps.unique()):
-        victim_df = df19[df19.victim_steps == v]
-        win_rate_df = win_rate_df.join(
-            victim_df[victim_df.adv_color == "b"]
-            .groupby("adv_steps")
-            .mean(True)[["adv_win"]]
-            .rename({"adv_win": f"victim {v} steps, adv black"}, axis=1)
-            * 100,
+    st.markdown("#")
+    st.subheader("Filter by adversary training steps")
+
+    default_cols = ["victim_steps", "adv_color", "victim_visits", "train_status"]
+    cols = st.multiselect(
+        label="Plot attributes separately",
+        options=df19.columns,
+        default=default_cols,
+        format_func=lambda x: x.replace("_", " ").title(),
+        key=PLOT_SEPERATE_ATTRIBUTES_STATE,
+    )
+    try:
+        cartesian_product = list(sorted(product(*[df19[c].unique() for c in cols])))
+    except TypeError:
+        cartesian_product = list(product(*[df19[c].unique() for c in cols]))
+    line_count = 0
+    for i in cartesian_product[:99]:
+        # Surround only string values with quotes
+        query = " & ".join(
+            [
+                (c + " == " + str([v]).strip("[]")) if v or v == 0 else f"{c}.isnull()"
+                for c, v in zip(cols, i)
+            ]
         )
-        win_rate_df = win_rate_df.join(
-            victim_df[victim_df.adv_color == "w"]
-            .groupby("adv_steps")
-            .mean(True)[["adv_win"]]
-            .rename({"adv_win": f"victim {v} steps, adv white"}, axis=1)
-            * 100,
-        )
+        if line_count < MAX_LINES_ON_GRAPH:
+            df19_filtered = df19.query(query)
+            if len(df19_filtered) > 0:
+                line_count += 1
+                win_rate_df = win_rate_df.join(
+                    df19_filtered.groupby("adv_steps")
+                    .mean(True)[["adv_win"]]
+                    .rename(
+                        {"adv_win": ", ".join([f"{c}: {v}" for c, v in zip(cols, i)])},
+                        axis=1,
+                    )
+                    * 100,
+                )
 
     # Define plotly graph
     px_fig = px.line(
@@ -33,12 +57,14 @@ def win_rate_by_adv_steps_graph_filter(df):
         y=win_rate_df.columns,
         title=None,
         markers=True,
+        symbol_sequence=["x"],
     )
+    px_fig.update_traces(marker=dict(size=9, line=dict(width=1, color="White")))
     px_fig.update_layout(
-        xaxis_title="Adversary training steps", yaxis_title="Win rate% (19x19 only)"
+        xaxis_title="Adversary training steps",
+        yaxis_title="Win rate %",
     )
 
-    # Dataframe index is now 'adv_steps' due to groupby() call
     min_step, max_step = win_rate_df.index.min().item(), win_rate_df.index.max().item()
     if min_step < max_step:
         min_step, max_step = st.slider(
@@ -50,10 +76,12 @@ def win_rate_by_adv_steps_graph_filter(df):
             step=max((max_step - min_step) // 100, 1),
         )
 
-        px_fig.add_vrect(
-            x0=min_step, x1=max_step, line_width=0, fillcolor="red", opacity=0.2
-        )
-        st.markdown("#")
-        st.subheader("Filter by adversary training steps")
-        st.plotly_chart(px_fig, use_container_width=True, config={"staticPlot": True})
+    px_fig.add_vrect(
+        x0=min_step, x1=max_step, line_width=0, fillcolor="red", opacity=0.2
+    )
+    st.plotly_chart(
+        px_fig,
+        use_container_width=True,
+        config={"displaylogo": False},
+    )
     return min_step, max_step
