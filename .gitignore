@@ -7,4 +7,5 @@ node_modules/
 .cache/
 .keras/
 build/
+.vite/
 *.egg-info/

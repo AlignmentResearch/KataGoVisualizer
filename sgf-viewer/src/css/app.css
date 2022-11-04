@@ -1,4 +1,4 @@
-:root {
+html {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -15,6 +15,15 @@
   scroll-behavior: smooth;
 
   -webkit-overflow-scrolling: touch;
+
+}
+
+html,
+body {
+  min-height: 100vh;
+  max-width: 100%;
+  /*  Don't break position: sticky. See https://stackoverflow.com/a/71268988 */
+  overflow-x: clip;
 }
 
 * {
@@ -22,11 +31,6 @@
   this ensures the navigation bar doesn't cover it. */
   scroll-margin-top: calc(var(--scroll-margin) + 1vh);
 }
-
-/* .wgo-button::before,
-.wgo-player-mn-value {
-  color: rgb(81, 81, 81);
-} */
 
 a {
   font-weight: bold;

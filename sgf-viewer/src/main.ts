@@ -1,4 +1,5 @@
 import './css/app.css'
+import './css/wgo.player.css'
 import './css/sanitize/assets.css'
 import './css/sanitize/forms.css'
 import './css/sanitize/reduce-motion.css'
