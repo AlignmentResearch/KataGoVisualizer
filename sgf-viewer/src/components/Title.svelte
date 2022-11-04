@@ -20,7 +20,7 @@
     ]);
 </script>
 
-<div class="logos">
+<!-- <div class="logos">
     <a href="https://humancompatible.ai/" target="_blank">
         <img
             src="/images/chai-logo.png"
@@ -34,21 +34,23 @@
     <a href="https://alignmentfund.org/" target="_blank">
         <img src="/images/far-logo.png" class="logo far" alt="FAR Logo" />
     </a>
-</div>
+</div> -->
 <h1 in:fade style="text-align: center;">
     Adversarial Policies Beat Professional-Level Go AIs
 </h1>
-<div>
+
+<!-- <div>
     <div class="authors-list">
         {#each [...authors] as [name, link]}
             <a href={link} target="_blank">{name}</a>
         {/each}
     </div>
-</div>
-
+</div> -->
 <style>
     h1 {
         font-size: 2em;
+        margin-top: 6vh;
+        margin-bottom: 6vh;
     }
     .authors-list {
         max-width: 700px;
