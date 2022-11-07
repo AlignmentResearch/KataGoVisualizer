@@ -1,30 +1,49 @@
 <script lang="ts">
-  export let dirName: string;
-  export let sgfPath: string;
+    export let dirName: string;
+    export let sgfPath: string;
 
-  let goBoardDiv: HTMLElement;
-  $: if (goBoardDiv)
-    new (<any>window).WGo.BasicPlayer(goBoardDiv, {
-      sgfFile: sgfPath,
-      layout: (<any>window).WGo.BasicPlayer.dynamicLayout,
-      allowIllegalMoves: true,
-      move: 9999,
-    });
+    let goBoardDiv: HTMLElement;
+
+    function releaseCanvas(canvas) {
+        canvas.width = 1;
+        canvas.height = 1;
+        const ctx = canvas.getContext("2d");
+        ctx && ctx.clearRect(0, 0, 1, 1);
+    }
+
+    $: if (goBoardDiv) {
+        let canvasNodes = goBoardDiv.getElementsByTagName("CANVAS");
+        for (let i = 0; i < canvasNodes.length; i++) {
+            releaseCanvas(canvasNodes[i]);
+        }
+
+        new (<any>window).WGo.BasicPlayer(goBoardDiv, {
+            sgfFile: sgfPath,
+            layout: (<any>window).WGo.BasicPlayer.dynamicLayout,
+            allowIllegalMoves: true,
+            move: 9999,
+            board: {
+                // Options: NORMAL, PAINTED, REALISTIC, GLOW, SHELL, MONO, CR, LB, SQ, TR, MA, SL, SM, outline, mini
+                stoneHandler: (<any>window).WGo.Board.drawHandlers.MONO,
+                background: "wgo/wood1.jpg",
+            },
+        });
+    }
 </script>
 
 <div id={`${dirName}-board`} bind:this={goBoardDiv} class="go-board" />
 
 <style>
-  div {
-    scroll-margin-top: 12em;
-    margin: 0vh;
-    margin-top: 1vh;
-  }
-  /* These values override changes in css/sanitize that break WGo's appearance */
-  :global(.wgo-board) {
-    background-repeat: repeat;
-  }
-  :global(.wgo-player-mn-value) {
-    box-sizing: content-box;
-  }
+    div {
+        scroll-margin-top: 12em;
+        margin: 0vh;
+        margin-top: 1vh;
+    }
+    /* These values override changes in css/sanitize that break WGo's appearance */
+    :global(.wgo-board) {
+        background-repeat: repeat;
+    }
+    :global(.wgo-player-mn-value) {
+        box-sizing: content-box;
+    }
 </style>
