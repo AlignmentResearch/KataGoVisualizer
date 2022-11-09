@@ -36,8 +36,6 @@
 <style>
     div {
         scroll-margin-top: 12em;
-        margin: 0vh;
-        margin-top: 1vh;
     }
     /* These values override changes in css/sanitize that break WGo's appearance */
     :global(.wgo-board) {

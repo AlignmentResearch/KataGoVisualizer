@@ -44,12 +44,12 @@
                     <p>{@html description}</p>
                 {/each}
                 <GameList dirName={section["dir_name"]} />
-                <div style="display: flex">
-                    <p style="align-self: flex-start">
+                <div class="annotation">
+                    <p class="annotation-item" style="text-align: left;">
                         <b>Victim:</b>
                         {section["victim"]}
                     </p>
-                    <p style="align-self: flex-end;">
+                    <p class="annotation-item" style="text-align: right;">
                         <b>Adversary:</b>
                         {section["adversary"]}
                     </p>
@@ -78,6 +78,15 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+    }
+    .annotation {
+        display: flex;
+        position: relative;
+        top: -3vh;
+    }
+    .annotation-item {
+        align-self: flex-start;
+        margin-bottom: 1vh;
     }
     p {
         font-size: 18px;

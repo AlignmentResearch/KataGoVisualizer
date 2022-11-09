@@ -88,12 +88,23 @@
             {/each}
         </table>
     </div>
-    <GoBoard {dirName} {sgfPath} />
+    <div class="board-wrapper">
+        <GoBoard {dirName} {sgfPath} />
+    </div>
 </div>
 
 <style>
     div {
         max-width: 100%;
+    }
+    .board-wrapper {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        margin-top: 1em;
+        margin-bottom: 0px;
+        height: calc(min(450px, 95vw) + 9.5em);
+        max-width: 98%;
     }
     .icon :global(svg) {
         max-height: 1.5em;
