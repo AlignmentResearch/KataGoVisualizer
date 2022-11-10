@@ -149,7 +149,11 @@ def parse_game_str_to_dict(
             "bot-cp505-v1": 11840935168,
         }[victim_name]
     else:
-        victim_steps = extract_re("-s([^-]+?)-", victim_name) or 0
+        victim_steps = (
+            extract_re("-s([^-]+?)-", victim_name)
+            or extract_re("kata[^_]+?\-s([0-9]+)\-", "/".join(parts[-3:]))
+            or 0
+        )
     adv_rank = (
         extract_prop("BR", sgf_str) if adv_color == "b" else extract_prop("WR", sgf_str)
     )
