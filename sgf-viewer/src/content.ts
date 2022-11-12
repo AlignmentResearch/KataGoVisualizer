@@ -61,6 +61,99 @@ export const pages: object =
                 "adversary": "34.1 million training steps, 8192 visits",
                 "victim": "Latest, 64 visits",
                 "description": ["With 64 visits, KataGo's <code>Latest</code> network plays at the level of a  <a href=\"https://arxiv.org/pdf/2211.00241.pdf#page=17\">top-20 human professional</a>. We achieve a win rate of 48% against this victim simply by increasing the number of adversary visits to 8192. The adversary wins by the same qualitative strategy of staking out a corner, but plays significantly more stones in the victim's territory. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
+            },
+            {
+                "title": "KataGo without search with pass-alive defense",
+                "dir_name": "no_search_hardened",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Computed by `grep -n cp505h-v1 * | shuf | head -n 6 | cut -f1,2 -d:` in /nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs",
+                "paths_with_line_num": [
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/BEB88CB5DC883E28.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/699C18B496BE1116.sgfs",
+                        "line": 6
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/BDEA7D5310AB3A4A.sgfs",
+                        "line": 7
+                    },
+                    {   "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/88F51AE755AD0B72.sgfs",
+                        "line": 5
+                    },
+                    {   "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/F23AA96ACE3D6889.sgfs",
+                        "line": 8
+                    },
+                    {   "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/B510F069013F3D36.sgfs",
+                        "line": 2
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "349 million training steps, 600 visits",
+                "victim": "Latest (cp505-v1-MCTS), no search, pass-alive defense",
+                "description": ["We hardcode a defense for KataGo by making the victim not be able to pass until it has no more legal moves outside its territory. With more training, however, we are able to find another attack against the victim, achieving a win rate of 99%. The adversary gets the victim to form a <a href=\"https://senseis.xmp.net/?Dragon\">dragon</a> and then kills it."]
+            },
+            {
+                "title": "KataGo with 32 visits with pass-alive defense",
+                "dir_name": "32_visits_hardened",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Computed by `grep -n cp505-v32 * | grep v8192 | shuf | head -n 12 | cut -f1,2 -d:` in /nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs",
+                "paths_with_line_num": [
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/0C2F063568842B71.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/42263600CB454546.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/E318D7E225EA8B7C.sgfs",
+                        "line": 5
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/361F2BB5A2A318AA.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/831BCBEC68B177F9.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/14CB8A31767E5004.sgfs",
+                        "line": 9
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/B7D6357FEDFCF405.sgfs",
+                        "line": 6
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/AA80F7E036798F19.sgfs",
+                        "line": 7
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/2A01A2EA997969AC.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/852B0BDBEAC031C9.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/FEA0C28F2F450E4F.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/C2B031C087437008.sgfs",
+                        "line": 2
+                    }
+                ],
+                "max_games": 12,
+                "adversary": "349 million training steps, 8192 visits",
+                "victim": "Latest (cp505-v1-MCTS), no search, pass-alive defense",
+                "description": ["With 32 visits, KataGo's <code>Latest</code> network plays at the level of a top-250 human professional. After adding the hardcoded defense to the victim and boosting the number of adversary visits to 8192, we achieve a win rate of 28% against the victim."]
             }
         ]
     },
