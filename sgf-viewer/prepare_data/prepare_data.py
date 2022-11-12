@@ -71,11 +71,11 @@ if __name__ == "__main__":
                     line_num = path_with_line["line"]
                     assert ".sgf" in path
 
-                    run_cmd(
-                        ["scp", f"{server}:{path}", f"{section_path.resolve()}"]
-                    )
+                    run_cmd(["scp", f"{server}:{path}", f"{section_path.resolve()}"])
                     filename = section_path / path.split("/")[-1]
-                    new_filename = section_path / (filename.stem + f"-L{line_num}" + filename.suffix)
+                    new_filename = section_path / (
+                        filename.stem + f"-L{line_num}" + filename.suffix
+                    )
                     line = run_cmd(["sed", f"{line_num}q;d", f"{filename.resolve()}"])
                     with open(new_filename, "w") as f:
                         f.write(line)
