@@ -19,7 +19,7 @@
 %%   \import{<path to file>}{<filename>.pgf}
 %%
 %% Matplotlib used the following preamble
-%%
+%%   
 %%   \makeatletter\@ifpackageloaded{underscore}{}{\usepackage[strings]{underscore}}\makeatother
 %%
 \begingroup%
@@ -808,16 +808,16 @@
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetstrokeopacity{0.800000}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{1.546741in}{1.459873in}}%
-\pgfpathlineto{\pgfqpoint{2.501598in}{1.459873in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{2.529376in}{1.459873in}}{\pgfqpoint{2.529376in}{1.487651in}}%
+\pgfpathmoveto{\pgfqpoint{1.619657in}{1.456015in}}%
+\pgfpathlineto{\pgfqpoint{2.501598in}{1.456015in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{2.529376in}{1.456015in}}{\pgfqpoint{2.529376in}{1.483793in}}%
 \pgfpathlineto{\pgfqpoint{2.529376in}{1.861108in}}%
 \pgfpathquadraticcurveto{\pgfqpoint{2.529376in}{1.888886in}}{\pgfqpoint{2.501598in}{1.888886in}}%
-\pgfpathlineto{\pgfqpoint{1.546741in}{1.888886in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{1.518963in}{1.888886in}}{\pgfqpoint{1.518963in}{1.861108in}}%
-\pgfpathlineto{\pgfqpoint{1.518963in}{1.487651in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{1.518963in}{1.459873in}}{\pgfqpoint{1.546741in}{1.459873in}}%
-\pgfpathlineto{\pgfqpoint{1.546741in}{1.459873in}}%
+\pgfpathlineto{\pgfqpoint{1.619657in}{1.888886in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{1.591879in}{1.888886in}}{\pgfqpoint{1.591879in}{1.861108in}}%
+\pgfpathlineto{\pgfqpoint{1.591879in}{1.483793in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{1.591879in}{1.456015in}}{\pgfqpoint{1.619657in}{1.456015in}}%
+\pgfpathlineto{\pgfqpoint{1.619657in}{1.456015in}}%
 \pgfpathclose%
 \pgfusepath{stroke,fill}%
 \end{pgfscope}%
@@ -828,16 +828,16 @@
 \definecolor{currentstroke}{rgb}{0.000000,0.419608,0.643137}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{1.574519in}{1.784719in}}%
-\pgfpathlineto{\pgfqpoint{1.713408in}{1.784719in}}%
-\pgfpathlineto{\pgfqpoint{1.852297in}{1.784719in}}%
+\pgfpathmoveto{\pgfqpoint{1.647435in}{1.784719in}}%
+\pgfpathlineto{\pgfqpoint{1.786324in}{1.784719in}}%
+\pgfpathlineto{\pgfqpoint{1.925213in}{1.784719in}}%
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=1.963408in,y=1.736108in,left,base]{\color{textcolor}\rmfamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle \texttt{Latest}\)}%
+\pgftext[x=2.036324in,y=1.736108in,left,base]{\color{textcolor}\rmfamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle \texttt{Latest}\)}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
@@ -846,16 +846,16 @@
 \definecolor{currentstroke}{rgb}{1.000000,0.501961,0.054902}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{{5.550000pt}{2.400000pt}}{0.000000pt}%
-\pgfpathmoveto{\pgfqpoint{1.574519in}{1.591046in}}%
-\pgfpathlineto{\pgfqpoint{1.713408in}{1.591046in}}%
-\pgfpathlineto{\pgfqpoint{1.852297in}{1.591046in}}%
+\pgfpathmoveto{\pgfqpoint{1.647435in}{1.591046in}}%
+\pgfpathlineto{\pgfqpoint{1.786324in}{1.591046in}}%
+\pgfpathlineto{\pgfqpoint{1.925213in}{1.591046in}}%
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=1.963408in,y=1.542435in,left,base]{\color{textcolor}\rmfamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle \texttt{Initial}\)}%
+\pgftext[x=2.036324in,y=1.542435in,left,base]{\color{textcolor}\rmfamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle \texttt{cp127}\)}%
 \end{pgfscope}%
 \end{pgfpicture}%
 \makeatother%
