@@ -92,7 +92,7 @@ export const pages: object =
                 ],
                 "max_games": 10,
                 "adversary": "349 million training steps, 600 visits",
-                "victim": "Latest (cp505-v1-MCTS), no search, pass-alive defense",
+                "victim": "Latest, no search, pass-alive defense",
                 "description": ["We hardcode a defense for KataGo by making the victim not pass until it has no more legal moves outside its territory. With more training, we are able to find another attack against the victim, achieving a win rate of 98.9%. The adversary gets the victim to form a <a href=\"https://senseis.xmp.net/?Dragon\">dragon</a> and then kills it."]
             },
             {
@@ -152,7 +152,7 @@ export const pages: object =
                 ],
                 "max_games": 12,
                 "adversary": "349 million training steps, 8192 visits",
-                "victim": "Latest (cp505-v1-MCTS), no search, pass-alive defense",
+                "victim": "Latest, no search, pass-alive defense",
                 "description": ["With 32 visits, KataGo's <code>Latest</code> network plays at the level of a top-250 human professional. After adding the hardcoded defense to the victim and boosting the number of adversary visits to 8192, we achieve a win rate of 28% against the victim."]
             }
         ]
