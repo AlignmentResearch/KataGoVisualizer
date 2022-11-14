@@ -5,7 +5,7 @@ export const pages: object =
     "adversarial-policy-katago": {
         "title": "Adversarially Exploiting KataGo",
         "description": [
-            "We attack <a href=\"https://arxiv.org/abs/1902.10565\">KataGo</a>, a state-of-the-art Go AI system, by training an adversarial policy against a frozen KataGo victim. We achieve a &gt;99% win rate against a KataGo victim <a href=\"#no_search\">playing without search</a>, which is comparable in strength to a top-100 European Go player. We achieve a &gt;80% win rate against a victim playing with <a href=\"#64_visits\">64 visits</a>, which we estimate to have comparable strength to the best human Go players. Notably the games show that the adversarial policy does not win by playing a strong game of Go, but instead by tricking KataGo into ending the game prematurely at point favorable to the adversary. Indeed, our adversary is easily <a href=\"/human-evaluation#amateur_vs_adv\">beaten by a human amateur</a>, despite being able to exploit policies that usually match or surpass the performance of the best human Go players.",
+            "We attack <a href=\"https://arxiv.org/abs/1902.10565\">KataGo</a>, a state-of-the-art Go AI system, by training an adversarial policy against a frozen KataGo victim. We achieve a &gt;99% win rate against a KataGo victim <a href=\"#no_search\">playing without search</a>, which is comparable in strength to a top-100 European Go player. We achieve a &gt;48% win rate against a victim playing with <a href=\"#64_visits\">64 visits</a>, which we estimate to have comparable strength to the best human Go players. Notably the games show that the adversarial policy does not win by playing a strong game of Go, but instead by tricking KataGo into ending the game prematurely at point favorable to the adversary. Indeed, our adversary is easily <a href=\"/human-evaluation#amateur_vs_adv\">beaten by a human amateur</a>, despite being able to exploit policies that usually match or surpass the performance of the best human Go players.",
             "All games are randomly selected unless otherwise specified. We attack the <a href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a> network which we dub <code>Latest</code> since it is the latest confidently rated victim network at the time of writing. For more information, see our <a href=\"https://arxiv.org/abs/2211.00241\">paper</a> and <a href=\"https://github.com/HumanCompatibleAI/go_attack\">GitHub</a>."],
         "content": [
             {
@@ -22,7 +22,7 @@ export const pages: object =
                 ],
                 "max_games": 10,
                 "adversary": "34.1 million training steps, 600 visits",
-                "victim": "Latest (cp505-v1-MCTS), no search",
+                "victim": "Latest, no search",
                 "description": [
                     "Even without search, Katago's <code>Latest</code> network plays at the <a href=\"https://arxiv.org/pdf/2211.00241.pdf#page=16\">strength of a top-100 European professional</a>. Yet our adversary achieves a 99% win rate against this victim by playing a counterintuitive strategy. The adversary stakes out a minority territory in the corner, allowing KataGo to stake the complement, and placing weak stones in KataGo’s stake.",
                     "KataGo predicts a high win probability for itself and, in a way, it’s right—it would be simple to capture most of the adversary’s stones in KataGo’s stake, achieving a decisive victory. However, KataGo plays a pass move before it has finished securing its territory, allowing the adversary to pass in turn and end the game. This results in a win for the adversary under the standard <a href=\"https://tromp.github.io/go.html\">Tromp-Taylor</a> ruleset for computer Go, as the adversary gets points for its corner territory (devoid of victim stones) whereas the victim does not receive points for its unsecured territory because of the presence of the adversary’s stones."
@@ -59,7 +59,7 @@ export const pages: object =
                 ],
                 "max_games": 10,
                 "adversary": "34.1 million training steps, 8192 visits",
-                "victim": "Latest (cp505-v1-MCTS), 64 visits",
+                "victim": "Latest, 64 visits",
                 "description": ["With 64 visits, KataGo's <code>Latest</code> network plays at the level of a  <a href=\"https://arxiv.org/pdf/2211.00241.pdf#page=17\">top-20 human professional</a>. We achieve a win rate of 48% against this victim simply by increasing the number of adversary visits to 8192. The adversary wins by the same qualitative strategy of staking out a corner, but plays significantly more stones in the victim's territory. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
             }
         ]
