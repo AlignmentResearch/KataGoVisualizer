@@ -67,19 +67,18 @@ if __name__ == "__main__":
                         games_count += len(files)
             for path_with_line in section.get("paths_with_line_num", []):
                 if games_count < max_games:
-                    path = path_with_line["path"]
+                    path = Path(path_with_line["path"])
                     line_num = path_with_line["line"]
-                    assert ".sgf" in path
+                    assert path.suffix == ".sgfs"
 
-                    run_cmd(["scp", f"{server}:{path}", f"{section_path.resolve()}"])
-                    filename = section_path / path.split("/")[-1]
-                    new_filename = section_path / (
-                        filename.stem + f"-L{line_num}" + filename.suffix
+                    line = run_cmd(
+                        ["ssh", f"{server}", f"sed '{line_num}q;d' {path.resolve()}"]
                     )
-                    line = run_cmd(["sed", f"{line_num}q;d", f"{filename.resolve()}"])
-                    with open(new_filename, "w") as f:
+                    new_path = section_path / (
+                        path.stem + f"-L{line_num}" + path.suffix
+                    )
+                    with open(new_path, "w") as f:
                         f.write(line)
-                    run_cmd(["rm", f"{filename.resolve()}"])
                     games_count += 1
 
             sgf_paths = game_info.find_sgf_files(section_path)
