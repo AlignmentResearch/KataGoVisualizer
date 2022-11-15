@@ -63,7 +63,7 @@ export const pages: object =
                 "description": ["With 64 visits, KataGo's <code>Latest</code> network plays at the level of a  <a href=\"https://arxiv.org/pdf/2211.00241.pdf#page=17\">top-20 human professional</a>. We achieve a win rate of 48% against this victim simply by increasing the number of adversary visits to 8192. The adversary wins by the same qualitative strategy of staking out a corner, but plays significantly more stones in the victim's territory. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
             },
             {
-                "title": "KataGo without search with pass-alive defense",
+                "title": "Hardened KataGo without search (level of top 100 European player)",
                 "dir_name": "no_search_hardened",
                 "server": "dqn.ist.berkeley.edu",
                 "_path_comment": "Computed by `grep -n cp505h-v1 * | shuf | head -n 6 | cut -f1,2 -d:` in /nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs",
