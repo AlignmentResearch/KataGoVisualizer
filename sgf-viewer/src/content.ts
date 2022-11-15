@@ -96,7 +96,7 @@ export const pages: object =
                 "description": ["We hardcode a defense for KataGo by making the victim not pass until it has no more legal moves outside its territory. With more training, we are able to find another attack against the victim, achieving a win rate of 98.9%. The adversary gets the victim to form a <a href=\"https://senseis.xmp.net/?Dragon\">dragon</a> and then kills it."]
             },
             {
-                "title": "KataGo with 32 visits with pass-alive defense",
+                "title": "Hardened KataGo with 32 visits (level of top 250 world professional)",
                 "dir_name": "32_visits_hardened",
                 "server": "dqn.ist.berkeley.edu",
                 "_path_comment": "Computed by `grep -n cp505-v32 * | grep v8192 | shuf | head -n 12 | cut -f1,2 -d:` in /nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs",
