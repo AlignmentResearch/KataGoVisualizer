@@ -6,7 +6,7 @@ export const pages: object =
         "title": "Adversarially Exploiting KataGo",
         "description": [
             "We attack <a href=\"https://arxiv.org/abs/1902.10565\">KataGo</a>, a state-of-the-art Go AI system, by training an adversarial policy against a frozen KataGo victim. We achieve a &gt;99% win rate against a KataGo victim <a href=\"#no_search\">playing without search</a>, which is comparable in strength to a top-100 European Go player. We achieve a &gt;48% win rate against a victim playing with <a href=\"#64_visits\">64 visits</a>, which we estimate to have comparable strength to the best human Go players. Notably the games show that the adversarial policy does not win by playing a strong game of Go, but instead by tricking KataGo into ending the game prematurely at point favorable to the adversary. Indeed, our adversary is easily <a href=\"/human-evaluation#amateur_vs_adv\">beaten by a human amateur</a>, despite being able to exploit policies that usually match or surpass the performance of the best human Go players.",
-            "All games are randomly selected unless otherwise specified. We attack the <a href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a> network which we dub <code>Latest</code> since it is the latest confidently rated victim network at the time of writing."],
+            "All games are randomly selected unless otherwise specified. We attack the <a href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a> network which we dub <code>Latest</code> since it is the latest confidently rated victim network at the time of writing. For more information, see our <a href=\"https://arxiv.org/abs/2211.00241\">paper</a> and <a href=\"https://github.com/HumanCompatibleAI/go_attack\">GitHub</a>."],
         "content": [
             {
                 "title": "KataGo without search (level of top 100 European player)",
@@ -24,7 +24,7 @@ export const pages: object =
                 "adversary": "34.1 million training steps, 600 visits",
                 "victim": "Latest, no search",
                 "description": [
-                    "Even without search, Katago's <code>Latest</code> network plays at the strength of a top-100 European professional. Yet our adversary achieves a 99% win rate against this victim by playing a counterintuitive strategy. The adversary stakes out a minority territory in the corner, allowing KataGo to stake the complement, and placing weak stones in KataGo’s stake.",
+                    "Even without search, Katago's <code>Latest</code> network plays at the <a href=\"https://arxiv.org/pdf/2211.00241.pdf#page=16\">strength of a top-100 European professional</a>. Yet our adversary achieves a 99% win rate against this victim by playing a counterintuitive strategy. The adversary stakes out a minority territory in the corner, allowing KataGo to stake the complement, and placing weak stones in KataGo’s stake.",
                     "KataGo predicts a high win probability for itself and, in a way, it’s right—it would be simple to capture most of the adversary’s stones in KataGo’s stake, achieving a decisive victory. However, KataGo plays a pass move before it has finished securing its territory, allowing the adversary to pass in turn and end the game. This results in a win for the adversary under the standard <a href=\"https://tromp.github.io/go.html\">Tromp-Taylor</a> ruleset for computer Go, as the adversary gets points for its corner territory (devoid of victim stones) whereas the victim does not receive points for its unsecured territory because of the presence of the adversary’s stones."
                 ]
             },
@@ -48,7 +48,7 @@ export const pages: object =
                 "max_games": 10,
                 "adversary": "34.1 million training steps, 8192 visits",
                 "victim": "Latest, 64 visits",
-                "description": ["With 64 visits, KataGo's <code>Latest</code> network plays at the level of a top-20 human professional. We achieve a win rate of 48% against this victim simply by increasing the number of adversary visits to 8192. The adversary wins by the same qualitative strategy of staking out a corner, but plays significantly more stones in the victim's territory. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
+                "description": ["With 64 visits, KataGo's <code>Latest</code> network plays at the level of a  <a href=\"https://arxiv.org/pdf/2211.00241.pdf#page=17\">top-20 human professional</a>. We achieve a win rate of 48% against this victim simply by increasing the number of adversary visits to 8192. The adversary wins by the same qualitative strategy of staking out a corner, but plays significantly more stones in the victim's territory. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
             },
             {
                 "title": "Hardened KataGo without search (level of top 100 European player)",
@@ -68,16 +68,13 @@ export const pages: object =
                         "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/BDEA7D5310AB3A4A.sgfs",
                         "line": 7
                     },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/88F51AE755AD0B72.sgfs",
+                    {   "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/88F51AE755AD0B72.sgfs",
                         "line": 5
                     },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/F23AA96ACE3D6889.sgfs",
+                    {   "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/F23AA96ACE3D6889.sgfs",
                         "line": 8
                     },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/B510F069013F3D36.sgfs",
+                    {   "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/B510F069013F3D36.sgfs",
                         "line": 2
                     }
                 ],
@@ -161,8 +158,8 @@ export const pages: object =
                 ],
                 "max_games": 10,
                 "adversary": "34.1 million training steps, 600 visits",
-                "victim": "Author",
-                "description": ["Our adversarial policy can easily be beaten by a huge margin even by a Go novice. The first-author of this paper wins by over 250 points despite having never studied Go prior to this research project. This confirms that our adversarial policy is not generally capable, despite it beating victim policies that can themselves beat top human professionals. Instead, our victim policy harbors a subtle vulnerability; in the <a href=\"#amateur_vs_victim\">next section</a>, we attempt to mimic the adversarial policy to exploit the victim."]
+                "victim": "Tony Wang (Author)",
+                "description": ["Our adversarial policy can easily be beaten by a huge margin even by a Go novice. Tony Wang, the first-author of this paper, wins by over 250 points despite having never studied Go prior to this research project. This confirms that our adversarial policy is not generally capable, despite it beating victim policies that can themselves beat top human professionals. Instead, our victim policy harbors a subtle vulnerability; in the <a href=\"#amateur_vs_victim\">next section</a>, we attempt to mimic the adversarial policy to exploit the victim."]
             },
             {
                 "title": "Human amateur beats SOTA victim by mimicking adversarial policy",
@@ -172,9 +169,9 @@ export const pages: object =
                     "/nas/ucb/josephmiller/tony-vs-victim/sgfs/tony-neuralz06.sgfs"
                 ],
                 "max_games": 10,
-                "adversary": "Author",
+                "adversary": "Tony Wang (Author)",
                 "victim": "NeuralZ06 (KataGo KGS bot playing without search)",
-                "description": ["The same Go novice is able to exploit the top-50 KGS bot <code>NeuralZ06</code> by mimicking the behavior of our adversarial policy. The bot plays with checkpoint <code>b40c256-s11101799168-d2715431527</code> that is comparable to (but slightly weaker) than the <code>Latest</code> checkpoint. However, the bot has the <code>friendlyPassOk</code> flag enabled, which makes it easier to exploit—we have not been able to win manually against a bot with this disabled. This suggests that the easily mimicable high-level strategy of our adversarial policy explains a considerable part of the adversary's success, but by no means all of it.  We score the game under <a href=\"https://tromp.github.io/go.html\">Tromp-Taylor</a> rules as the rulesets supported by KGS cannot be automatically evaluated."]
+                "description": ["The same Go novice, Tony Wang, is able to exploit the top-50 KGS bot <code>NeuralZ06</code> by mimicking the behavior of our adversarial policy. The bot plays with checkpoint <code>b40c256-s11101799168-d2715431527</code> that is comparable to (but slightly weaker) than the <code>Latest</code> checkpoint. However, the bot has the <code>friendlyPassOk</code> flag enabled, which makes it easier to exploit—we have not been able to win manually against a bot with this disabled. This suggests that the easily mimicable high-level strategy of our adversarial policy explains a considerable part of the adversary's success, but by no means all of it.  We score the game under <a href=\"https://tromp.github.io/go.html\">Tromp-Taylor</a> rules as the rulesets supported by KGS cannot be automatically evaluated."]
             },
             {
                 "title": "Human amateur beats adversary (hardened)",
@@ -185,7 +182,7 @@ export const pages: object =
                 ],
                 "max_games": 10,
                 "adversary": "349 million training steps, 600 visits",
-                "victim": "Author",
+                "victim": "Tony Wang (Author)",
                 "description": ["The first-author of this paper (a Go novice) also managed to beat the adversary that was trained against our hardened victim, which had a pass-alive defense. The author was able to win with a small margin, demonstrating that this alternate version of our adversary is also not generally capable."]
             }
         ]
