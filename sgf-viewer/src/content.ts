@@ -32,7 +32,7 @@ export const pages: object =
                 "title": "KataGo with 64 visits (level of top world professionals)",
                 "dir_name": "64_visits",
                 "server": "dqn.ist.berkeley.edu",
-                "_path_comment": "Computed by `grep -l v=1024 * | head -n 10` in /nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs, see https://www.notion.so/chaiberkeley/match-cp505-64-vs-adv-1_to_8192-39e0e303cd3f45199f4ce638c92556a5 for experiment log",
+                "_path_comment": "Computed by `grep -l v=8192 * | head -n 10` in /nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs, see https://www.notion.so/chaiberkeley/match-cp505-64-vs-adv-1_to_8192-39e0e303cd3f45199f4ce638c92556a5 for experiment log",
                 "paths": [
                     "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/033FE05C5431ED13.sgfs",
                     "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/048A6592BB515609.sgfs",
