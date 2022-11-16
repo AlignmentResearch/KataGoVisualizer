@@ -852,6 +852,7 @@
 \pgfpathlineto{\pgfqpoint{1.467623in}{1.734232in}}%
 \pgfpathlineto{\pgfqpoint{1.675182in}{1.423943in}}%
 \pgfpathlineto{\pgfqpoint{1.882741in}{1.044701in}}%
+\pgfpathlineto{\pgfqpoint{2.090300in}{0.703383in}}%
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \end{pgfpicture}%
