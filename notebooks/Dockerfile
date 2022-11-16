@@ -33,4 +33,6 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 # Install pip requirements
 RUN pip install --no-cache-dir --upgrade pip setuptools
 COPY notebooks/requirements.txt /downloads/requirements.txt
+# The current directory is /workspace (in the container), so this copies to / (in the container). This works because the requirements.txt file in /workspace specifies a dependency on ./../go_attack_utils. The reason I did it like this is so that the folder is in the same relative directory in the container as it is in the repo. So you could install the same requirements.txt locally.
+COPY go_attack_utils ./../go_attack_utils
 RUN pip install --no-cache-dir -r /downloads/requirements.txt

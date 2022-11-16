@@ -1,3 +1,5 @@
+./../go_attack_utils
+
 # For Jupyter notebooks
 ipykernel
 

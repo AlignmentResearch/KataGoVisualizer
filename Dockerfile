@@ -62,6 +62,7 @@ FROM pipenv AS parsing-server-python-deps
 # Install python dependencies in /.venv
 COPY parsing_server/Pipfile .
 COPY parsing_server/Pipfile.lock .
+COPY go_attack_utils ./../go_attack_utils
 RUN /root/.local/bin/pipenv sync
 
 
