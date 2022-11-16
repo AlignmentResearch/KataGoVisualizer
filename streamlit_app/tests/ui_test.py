@@ -11,7 +11,6 @@ import os
 WEB_DRIVER_TIMEOUT = 10
 END_OF_TEST_SLEEP = 0  # Useful for seeing the end state during dev
 DEEP_LINK = "http://localhost:8501/?state=gASVQAAAAAAAAAB9lIwZdGJwYXJzZV9ldmVudF90eXBlc19zdGF0ZZRdlCiMB3NjYWxhcnOUjAVh%0AdWRpb5SMB2hwYXJhbXOUZXMu%0A"  # Encodes {'tbparse_event_types_state': ['scalars', 'audio', 'hparams']}
-PW = os.environ["KATA_GO_VISUALIZER_PASSWORD"]
 
 
 # --- Utils ---
@@ -26,12 +25,6 @@ def assert_xpath_exists(driver, xpath):
         get_xpath(driver, xpath)
     except TimeoutException:
         pytest.fail(f"Failed to find element with xpath {xpath}")
-
-
-def enter_password(driver):
-    password_input = get_xpath(driver, "//input[@type='password']")
-    password_input.send_keys(PW)
-    password_input.send_keys(Keys.RETURN)
 
 
 # --- Setup and Teardown ---
@@ -50,22 +43,12 @@ def test_deep_linking(drvr):
     Deep link with the only non-default state being two extra tbparse event types.
     """
     drvr.get(DEEP_LINK)
-    enter_password(drvr)
     assert_xpath_exists(drvr, "//*[contains(text(), 'audio')]")
     assert_xpath_exists(drvr, "//*[contains(text(), 'hparams')]")
 
 
-def test_wrong_password(drvr):
-    password_input = get_xpath(drvr, "//input[@type='password']")
-    password_input.send_keys("not the password")
-    submit_password_button = get_xpath(drvr, "//*[contains(text(), 'Submit')]")
-    submit_password_button.click()
-    assert_xpath_exists(drvr, "//*[contains(text(), 'Wrong password')]")
-
-
 def test_game_load_view_and_deep_link(drvr):
     assert "Streamlit" in drvr.title
-    enter_password(drvr)
 
     # Load data/test_games.sgfs
     filepath_input = get_xpath(drvr, "//input[@type='text']")
@@ -107,7 +90,6 @@ def test_game_load_view_and_deep_link(drvr):
     # Open a new tab with the updated url
     drvr.execute_script(f'window.open("{drvr.current_url}","_blank");')
     drvr.switch_to.window(drvr.window_handles[1])
-    enter_password(drvr)
 
     # Focus on WGO.js iframe. Check the same game is displayed.
     drvr.switch_to.frame(
