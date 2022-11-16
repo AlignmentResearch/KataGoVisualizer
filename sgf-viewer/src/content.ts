@@ -181,7 +181,7 @@ export const pages: object =
                 "dir_name": "amateur_vs_advh_349mil",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
-                    "/nas/ucb/tony/go-attack/manual-games/tony-def-dragonslayer-349mil.sgf"
+                    "/nas/ucb/tony/go-attack/manual-games/tony-def-dragonslayer-349mil.sgfs"
                 ],
                 "max_games": 10,
                 "adversary": "349 million training steps, 600 visits",
