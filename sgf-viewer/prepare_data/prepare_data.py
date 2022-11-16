@@ -49,7 +49,7 @@ if __name__ == "__main__":
             games_count = 0
             section_path = public_sgfs_path / section["dir_name"]
             run_cmd(["mkdir", "-p", str(section_path.resolve())])
-            for path in section["paths"]:
+            for path in section.get("paths", []):
                 if games_count < max_games:
                     if ".sgf" in path:
                         run_cmd(
@@ -65,6 +65,21 @@ if __name__ == "__main__":
                         ]
                         run_cmd(shell_cmd, shell=True, dry_run=False)
                         games_count += len(files)
+            for path_with_line in section.get("paths_with_line_num", []):
+                if games_count < max_games:
+                    path = Path(path_with_line["path"])
+                    line_num = path_with_line["line"]
+                    assert path.suffix == ".sgfs"
+
+                    line = run_cmd(
+                        ["ssh", f"{server}", f"sed '{line_num}q;d' {path.resolve()}"]
+                    )
+                    new_path = section_path / (
+                        path.stem + f"-L{line_num}" + path.suffix
+                    )
+                    with open(new_path, "w") as f:
+                        f.write(line)
+                    games_count += 1
 
             sgf_paths = game_info.find_sgf_files(section_path)
             parsed_games = game_info.read_and_parse_all_files(
