@@ -186,7 +186,7 @@ export const pages: object =
                 "max_games": 10,
                 "adversary": "349 million training steps, 600 visits",
                 "victim": "Author",
-                "description": ["The first-author of this paper (a Go novice) managed to beat our hardened policy with a small margin, demonstrating that our hardened adversary is also not generally capable."]
+                "description": ["The first-author of this paper (a Go novice) also managed to beat the adversary that was trained against our hardened victim, which had a pass-alive defense. The author was able to win with a small margin, demonstrating that this alternate version of our adversary is also not generally capable."]
             }
         ]
     }
