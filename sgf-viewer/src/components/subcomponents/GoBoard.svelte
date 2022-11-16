@@ -12,10 +12,7 @@
     }
 
     $: if (goBoardDiv) {
-        let canvasNodes = goBoardDiv.getElementsByTagName("CANVAS");
-        for (let i = 0; i < canvasNodes.length; i++) {
-            releaseCanvas(canvasNodes[i]);
-        }
+        [...goBoardDiv.getElementsByTagName("CANVAS")].forEach(releaseCanvas);
 
         new (<any>window).WGo.BasicPlayer(goBoardDiv, {
             sgfFile: sgfPath,

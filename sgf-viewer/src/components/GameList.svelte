@@ -17,7 +17,7 @@
     };
     function indexToSgfPath(index: number) {
         let keyIndex = Object.keys(tableColumns).indexOf("sgf_path");
-        let fileName = games[index][keyIndex].split("/").slice(-1)[0];
+        let fileName = games[index][keyIndex].split("/").slice(-1)[0]; // Get last element
         return `/sgfs/${dirName}/${fileName}`;
     }
     $: if (games.length < selectedRow + 1) selectedRow = 0;
@@ -62,6 +62,7 @@
     <div class="table-wrapper">
         <table style="overflow: hidden;">
             <tr>
+                <!-- slice(0, 1) drops the sgf_path column -->
                 {#each Object.values(tableColumns).slice(0, -1) as header}
                     <th>{header}</th>
                 {/each}

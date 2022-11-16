@@ -40,7 +40,7 @@
 </h1>
 <div>
     <div class="authors-list">
-        {#each [...authors] as [name, link], i}
+        {#each [...authors] as [name, link]}
             <a href={link} target="_blank">{name}</a>
         {/each}
     </div>

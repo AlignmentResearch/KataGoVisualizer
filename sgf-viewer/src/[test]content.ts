@@ -6,7 +6,7 @@ export const pages: object =
         "title": "Human Attack",
         "content": [
             {
-                "title": "Human ameteur vs Adversary",
+                "title": "Human amateur vs Adversary",
                 "dir_name": "tony_vs_adv",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
@@ -15,7 +15,7 @@ export const pages: object =
                 "max_games": 10,
                 "adversary": "34.1 million training steps, 600 visits",
                 "victim": "Author",
-                "description": "The adversarial policy is easily beaten by a human ameteur (an author of this paper), demonstrating the non-transitivity of the policy."
+                "description": "The adversarial policy is easily beaten by a human amateur (an author of this paper), demonstrating the non-transitivity of the policy."
             }
         ]
     }

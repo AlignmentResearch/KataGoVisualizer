@@ -45,18 +45,6 @@ export const pages: object =
                     "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/1EEA60F118BBB86C.sgfs",
                     "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/2172599E22680D06.sgfs"
                 ],
-                "paths_1024": [
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/00FB73C086F202A1.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/00909067ADE53F5A.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/02B74D9148F158A4.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/02BFDE5F2ABA9C17.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/02EC7837398A88A5.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/0BDC4333B1246AA1.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/0EB3ADD4EAD8FE3F.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/1F2744213F4A1059.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/2132D23369A7A7FF.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/219DBF949E5229CB.sgfs"
-                ],
                 "max_games": 10,
                 "adversary": "34.1 million training steps, 8192 visits",
                 "victim": "Latest, 64 visits",

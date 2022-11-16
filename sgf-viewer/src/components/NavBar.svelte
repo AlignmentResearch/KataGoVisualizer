@@ -58,7 +58,7 @@
                 <a href={"#summary"} on:click={rmvUrlParams}>• Summary</a>
             </li>
         {/if}
-        {#each sections as section, i}
+        {#each sections as section}
             <li>
                 <a href={"#" + section["dir_name"]} on:click={rmvUrlParams}
                     >• {section["title"]}</a

@@ -97,9 +97,8 @@ if __name__ == "__main__":
                     text = re.sub("BR\[[^]]*\]", "", text)
                     text = re.sub("WR\[[^]]*\]", "", text)
                     text = re.sub("P?C\[[^]]*\]", "", text)
-                    color_to_names = {"b": "Victim", "w": "Adversary"}
-                    b_name = color_to_names[game["victim_color"]]
-                    w_name = color_to_names[game["adv_color"]]
+                    b_name = "Victim" if game["victim_color"] == "b" else "Adversary"
+                    w_name = "Victim" if game["victim_color"] == "w" else "Adversary"
                     text = re.sub("PB\[[^]]*\]", f"PB[{b_name}]", text)
                     text = re.sub("PW\[[^]]*\]", f"PW[{w_name}]", text)
                     f.seek(0)

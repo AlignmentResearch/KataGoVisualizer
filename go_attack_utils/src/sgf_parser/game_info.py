@@ -180,6 +180,7 @@ def parse_game_str_to_dict(
         win_score = (
             float(result.split("+")[-1])
             if "+" in result
+            # Sgfs for manual games can have a space instead of a +
             else float(result.split(" ")[-1])
         )
         adv_minus_victim_score = win_score if adv_color == win_color else -win_score
