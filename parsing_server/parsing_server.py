@@ -1,4 +1,5 @@
-import game_info
+from sgf_parser import game_info
+
 import os
 import traceback
 import atexit

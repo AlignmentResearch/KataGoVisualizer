@@ -5,3 +5,4 @@
 !parsing_server/*
 !streamlit_app/*
 !notebooks/*
+!go_attack_utils/*

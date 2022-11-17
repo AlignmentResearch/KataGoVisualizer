@@ -149,7 +149,11 @@ def parse_game_str_to_dict(
             "bot-cp505-v1": 11840935168,
         }[victim_name]
     else:
-        victim_steps = extract_re("-s([^-]+?)-", victim_name) or 0
+        victim_steps = (
+            extract_re("-s([^-]+?)-", victim_name)
+            or extract_re("kata[^_]+?\-s([0-9]+)\-", "/".join(parts[-3:]))
+            or 0
+        )
     adv_rank = (
         extract_prop("BR", sgf_str) if adv_color == "b" else extract_prop("WR", sgf_str)
     )
@@ -173,7 +177,12 @@ def parse_game_str_to_dict(
     if win_color is None:
         adv_minus_victim_score = 0
     else:
-        win_score = float(result.split("+")[-1])
+        win_score = (
+            float(result.split("+")[-1])
+            if "+" in result
+            # Sgfs for manual games can have a space instead of a +
+            else float(result.split(" ")[-1])
+        )
         adv_minus_victim_score = win_score if adv_color == win_color else -win_score
     adv_steps = (
         extract_re(r"\-s([0-9]+)\-", adv_name)
@@ -224,9 +233,9 @@ def parse_game_str_to_dict(
         "score_rule": extract_re(r"score([A-Z]+)", rule_str),
         "tax_rule": extract_re(r"tax([A-Z]+)", rule_str),
         "sui_legal": extract_re(r"sui([0-9])", rule_str) == 1,
-        "has_button": "button1" in rule_str,
+        "has_button": "button1" in rule_str if rule_str else False,
         "whb": whb,
-        "fpok": "fpok" in rule_str,
+        "fpok": "fpok" in rule_str if rule_str else False,
         "init_turn_num": extract_param("initTurnNum", comment_str),
         "used_initial_position": extract_param("usedInitialPosition", comment_str) == 1,
         "gtype": extract_param("gtype", comment_str),

@@ -29,7 +29,7 @@ def win_rate_by_adv_steps_graph_filter(df):
     except TypeError:
         cartesian_product = list(product(*[df19[c].unique() for c in cols]))
     line_count = 0
-    for i in cartesian_product[:99]:
+    for i in cartesian_product:
         # Surround only string values with quotes
         query = " & ".join(
             [
@@ -75,10 +75,8 @@ def win_rate_by_adv_steps_graph_filter(df):
             key=TRAINING_STEPS_SLIDER_STATE,
             step=max((max_step - min_step) // 100, 1),
         )
-
-    px_fig.add_vrect(
-        x0=min_step, x1=max_step, line_width=0, fillcolor="red", opacity=0.2
-    )
+    px_fig.add_vline(x=min_step, line_width=3, line_dash="dash", line_color="red")
+    px_fig.add_vline(x=max_step, line_width=3, line_dash="dash", line_color="red")
     st.plotly_chart(
         px_fig,
         use_container_width=True,

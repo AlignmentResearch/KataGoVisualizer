@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 pandas = "*"
+go-attack-utils = {path = "./../go_attack_utils"}
 
 [dev-packages]
 
