@@ -175,6 +175,18 @@ export const pages: object =
                 "adversary": "Author",
                 "victim": "NeuralZ06 (KataGo KGS bot playing without search)",
                 "description": ["The same Go novice is able to exploit the top-50 KGS bot <code>NeuralZ06</code> by mimicking the behavior of our adversarial policy. The bot plays with checkpoint <code>b40c256-s11101799168-d2715431527</code> that is comparable to (but slightly weaker) than the <code>Latest</code> checkpoint. However, the bot has the <code>friendlyPassOk</code> flag enabled, which makes it easier to exploit—we have not been able to win manually against a bot with this disabled. This suggests that the easily mimicable high-level strategy of our adversarial policy explains a considerable part of the adversary's success, but by no means all of it.  We score the game under <a href=\"https://tromp.github.io/go.html\">Tromp-Taylor</a> rules as the rulesets supported by KGS cannot be automatically evaluated."]
+            },
+            {
+                "title": "Human amateur beats adversary (hardened)",
+                "dir_name": "amateur_vs_advh_349mil",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/tony/go-attack/manual-games/tony-def-dragonslayer-349mil.sgfs"
+                ],
+                "max_games": 10,
+                "adversary": "349 million training steps, 600 visits",
+                "victim": "Author",
+                "description": ["The first-author of this paper (a Go novice) also managed to beat the adversary that was trained against our hardened victim, which had a pass-alive defense. The author was able to win with a small margin, demonstrating that this alternate version of our adversary is also not generally capable."]
             }
         ]
     }

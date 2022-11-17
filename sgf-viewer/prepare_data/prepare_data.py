@@ -86,10 +86,22 @@ if __name__ == "__main__":
                 sgf_paths, fast_parse=True
             )
 
-            # Sort games by adv_win and then victim_color
+            # Make paths not depend on where repo is cloned
+            for parsed_game in parsed_games:
+                # Take last 4 parts of path
+                parsed_game["sgf_path"] = "/".join(
+                    Path(parsed_game["sgf_path"]).parts[-4:]
+                )
+
+            # Sort games by adv_win, victim_color, -score_diff, sgf_path
             sorted_paths_games = sorted(
                 list(zip(sgf_paths, parsed_games)),
-                key=lambda x: (x[1]["adv_win"], x[1]["victim_color"]),
+                key=lambda x: (
+                    x[1]["adv_win"],
+                    x[1]["victim_color"],
+                    -int(x[1]["adv_minus_victim_score"]),
+                    x[1]["sgf_path"],
+                ),
                 reverse=True,
             )
             parsed_games = [x[1] for x in sorted_paths_games]
