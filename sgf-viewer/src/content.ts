@@ -183,7 +183,7 @@ export const pages: object =
                 "max_games": 10,
                 "adversary": "349 million training steps, 600 visits",
                 "victim": "Tony Wang (Author)",
-                "description": ["The first-author of this paper (a Go novice) also managed to beat the adversary that was trained against our hardened victim, which had a pass-alive defense. The author was able to win with a small margin, demonstrating that this alternate version of our adversary is also not generally capable."]
+                "description": ["The first-author of this paper (a Go novice) also managed to beat the adversary that was trained against our hardened victim, which had a pass-alive defense. The author was still able to win, albeit only by a small margin. This demonstrates this alternate version of our adversary is still no stronger than a Go amateur."]
             }
         ]
     }
