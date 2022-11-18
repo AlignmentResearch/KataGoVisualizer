@@ -140,7 +140,7 @@ export const pages: object =
                 ],
                 "max_games": 12,
                 "adversary": "349 million training steps, 8192 visits",
-                "victim": "Latest, no search, pass-alive defense",
+                "victim": "Latest, 32 visits, pass-alive defense",
                 "description": ["With 32 visits, KataGo's <code>Latest</code> network plays at the level of a top-250 human professional. After adding the hardcoded defense to the victim and boosting the number of adversary visits to 8192, we achieve a win rate of 28% against the victim."]
             }
         ]
