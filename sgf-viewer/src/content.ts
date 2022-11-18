@@ -170,7 +170,7 @@ export const pages: object =
             },
             {
                 "title": "Human amateur beats adversary (hardened)",
-                "dir_name": "amateur_vs_advh_498mil",
+                "dir_name": "amateur_vs_advh_497mil",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
                     "/nas/ucb/ttseng/go_attack/misc/tony-vs-dragonslayer-497mil.sgfs"
