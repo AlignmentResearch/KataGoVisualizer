@@ -1,7 +1,6 @@
 <script lang="ts">
-    import { fade } from "svelte/transition";
-    import GameList from "./components/GameList.svelte";
     import NavBar from "./components/NavBar.svelte";
+    import Section from "./components/Section.svelte";
     import Title from "./components/Title.svelte";
     import { pages } from "./content";
 
@@ -36,28 +35,7 @@
             </div>
         {/if}
         {#each sections as section}
-            <div class="centerflex" in:fade>
-                <h3 id={section["dir_name"]} class="subheading">
-                    {section["title"]}
-                </h3>
-                {#each section["description"] as description}
-                    <p>{@html description}</p>
-                {/each}
-                <GameList dirName={section["dir_name"]} />
-                <div class="annotation">
-                    <p class="annotation-item" style="text-align: left;">
-                        <b>Victim:</b>
-                        {section["victim"]}
-                    </p>
-                    <p class="annotation-item" style="text-align: right;">
-                        <b>Adversary:</b>
-                        {section["adversary"]}
-                    </p>
-                </div>
-                {#if section["discussion"]}
-                    <p>{section["discussion"]}</p>
-                {/if}
-            </div>
+            <Section {section} />
         {/each}
     {/key}
 </main>
@@ -78,15 +56,6 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-    }
-    .annotation {
-        display: flex;
-        position: relative;
-        top: -3vh;
-    }
-    .annotation-item {
-        align-self: flex-start;
-        margin-bottom: 1vh;
     }
     p {
         font-size: 18px;

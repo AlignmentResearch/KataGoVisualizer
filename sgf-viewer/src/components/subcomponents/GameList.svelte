@@ -1,12 +1,11 @@
 <script lang="ts">
-    import GoBoard from "./subcomponents/GoBoard.svelte";
     import MdFileDownload from "svelte-icons/md/MdFileDownload.svelte";
 
     export let dirName: string;
+    export let sgfPath: string = "";
 
     let selectedRow: number = 0;
     let games: Array<Array<string>> = [];
-    let sgfPath: string = "";
     const tableColumns = {
         victim_color: "Victim Color",
         win_color: "Win color",
@@ -58,40 +57,35 @@
     }
 </script>
 
-<div>
-    <div class="table-wrapper">
-        <table style="overflow: hidden;">
-            <tr>
-                <!-- slice(0, 1) drops the sgf_path column -->
-                {#each Object.values(tableColumns).slice(0, -1) as header}
-                    <th>{header}</th>
-                {/each}
-                <th>Download</th>
-            </tr>
-            {#each games as game, index (index)}
-                <tr
-                    class:selected-row={index === selectedRow}
-                    on:click={() => clickCell(index)}
-                >
-                    {#each game.slice(0, -1) as cell}
-                        <td>{cell}</td>
-                    {/each}
-                    <td>
-                        <a
-                            href={indexToSgfPath(index)}
-                            download={"go_game.sgf"}
-                            class="icon"
-                        >
-                            <MdFileDownload />
-                        </a>
-                    </td>
-                </tr>
+<div class="table-wrapper">
+    <table style="overflow: hidden;">
+        <tr>
+            <!-- slice(0, 1) drops the sgf_path column -->
+            {#each Object.values(tableColumns).slice(0, -1) as header}
+                <th>{header}</th>
             {/each}
-        </table>
-    </div>
-    <div class="board-wrapper">
-        <GoBoard {dirName} {sgfPath} />
-    </div>
+            <th>Download</th>
+        </tr>
+        {#each games as game, index (index)}
+            <tr
+                class:selected-row={index === selectedRow}
+                on:click={() => clickCell(index)}
+            >
+                {#each game.slice(0, -1) as cell}
+                    <td>{cell}</td>
+                {/each}
+                <td>
+                    <a
+                        href={indexToSgfPath(index)}
+                        download={"go_game.sgf"}
+                        class="icon"
+                    >
+                        <MdFileDownload />
+                    </a>
+                </td>
+            </tr>
+        {/each}
+    </table>
 </div>
 
 <style>
