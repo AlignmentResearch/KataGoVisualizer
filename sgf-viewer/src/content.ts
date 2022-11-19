@@ -173,8 +173,8 @@ export const pages: object =
                 "dir_name": "amateur_vs_advh_497mil",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
-                    "/nas/ucb/tony/go-attack/manual-games/tony-b-def-dragonslayer-s497mil-w-anon.sgf",
-                    "/nas/ucb/tony/go-attack/manual-games/tony-w-def-dragonslayer-s497mil-b-anon.sgf"
+                    "/nas/ucb/ttseng/go_attack/misc/tony-b-def-dragonslayer-s497mil-w-anon.sgfs",
+                    "/nas/ucb/ttseng/go_attack/misc/tony-w-def-dragonslayer-s497mil-b-anon.sgfs"
                 ],
                 "max_games": 10,
                 "adversary": "498 million training steps, 600 visits",
