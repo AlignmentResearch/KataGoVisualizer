@@ -33,7 +33,9 @@ def find_sgf_files(
     sgf_paths = []
     directories_scanned = 0
     for dirpath, _, filenames in os.walk(root):
-        sgf_filenames = [x for x in filenames if x.endswith(".sgfs")]
+        sgf_filenames = [
+            x for x in filenames if x.endswith(".sgfs") or x.endswith(".sgf")
+        ]
         sgf_paths += [pathlib.Path(dirpath) / x for x in sgf_filenames]
         directories_scanned += 1
         if directories_scanned >= max_scan_length:
@@ -126,7 +128,8 @@ def parse_game_str_to_dict(
     b_name = extract_prop("PB", sgf_str)
     w_name = extract_prop("PW", sgf_str)
     result = extract_prop("RE", sgf_str)
-    komi = float(extract_prop("KM", sgf_str))
+    komi = extract_prop("KM", sgf_str)
+    komi = float(komi) if komi else komi
     win_color = result[0].lower() if result else None
     assert (
         "victim" in b_name or "victim" in w_name or "adv" in b_name or "adv" in w_name

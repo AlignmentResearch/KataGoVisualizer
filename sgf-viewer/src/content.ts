@@ -54,97 +54,89 @@ export const pages: object =
                 "title": "Hardened KataGo without search (level of top 100 European player)",
                 "dir_name": "no_search_hardened",
                 "server": "dqn.ist.berkeley.edu",
-                "_path_comment": "Computed by `grep -n cp505h-v1 * | shuf | head -n 6 | cut -f1,2 -d:` in /nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs",
+                "_path_comment": "Computed by `grep -n cp505h-v1 /nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/* | shuf | head -n 6 | cut -f1,2 -d:`",
                 "paths_with_line_num": [
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/BEB88CB5DC883E28.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/CDEA87E336954AF0.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/3AC0B3B4A652F8B4.sgfs",
                         "line": 3
                     },
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/699C18B496BE1116.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/82174235A50699C3.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/A9F0F3DF9A86AEB5.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/0793EAB13C28E292.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/1FF2A995D6DFD75E.sgfs",
+                        "line": 6
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "498 million training steps, 600 visits",
+                "victim": "Latest, no search, pass-alive defense",
+                "description": ["We hardcode a defense for KataGo by making the victim not pass until it has no more legal moves outside its territory. With more training, we are able to find another attack against the victim, achieving a win rate of 99.8%. The adversary gets the victim to form a circular structure and then kills it."]
+            },
+            {
+                "title": "Hardened KataGo with 2048 visits (superhuman)",
+                "dir_name": "2048_visits_hardened",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Computed by `grep -n cp505h-v2048 /nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/* | shuf | head -n 6 | cut -f1,2 -d:`",
+                "paths_with_line_num": [
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/C67CEC1CBE0D110C.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/140B61E20958D34E.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/FDE67BC4EBF3B925.sgfs",
                         "line": 6
                     },
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/BDEA7D5310AB3A4A.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/FB9CCDE8CFA30860.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/1699746B30810F31.sgfs",
                         "line": 7
                     },
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/88F51AE755AD0B72.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/7F4399AD734E5858.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/A1E32217EDBDA9B5.sgfs",
                         "line": 5
                     },
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/F23AA96ACE3D6889.sgfs",
-                        "line": 8
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/79F771D48B203E64.sgfs",
+                        "line": 5
                     },
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-20221108/43-extra/sgfs/B510F069013F3D36.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/1D73164FB6B05D12.sgfs",
+                        "line": 9
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/A90E6794DFA32722.sgfs",
                         "line": 2
                     }
                 ],
                 "max_games": 10,
-                "adversary": "349 million training steps, 600 visits",
-                "victim": "Latest, no search, pass-alive defense",
-                "description": ["We hardcode a defense for KataGo by making the victim not pass until it has no more legal moves outside its territory. With more training, we are able to find another attack against the victim, achieving a win rate of 98.9%. The adversary gets the victim to form a <a href=\"https://senseis.xmp.net/?Dragon\">dragon</a> and then kills it."]
-            },
-            {
-                "title": "Hardened KataGo with 32 visits (level of top 250 world professional)",
-                "dir_name": "32_visits_hardened",
-                "server": "dqn.ist.berkeley.edu",
-                "_path_comment": "Computed by `grep -n cp505-v32 * | grep v8192 | shuf | head -n 12 | cut -f1,2 -d:` in /nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs",
-                "paths_with_line_num": [
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/0C2F063568842B71.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/42263600CB454546.sgfs",
-                        "line": 4
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/E318D7E225EA8B7C.sgfs",
-                        "line": 5
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/361F2BB5A2A318AA.sgfs",
-                        "line": 4
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/831BCBEC68B177F9.sgfs",
-                        "line": 4
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/14CB8A31767E5004.sgfs",
-                        "line": 9
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/B7D6357FEDFCF405.sgfs",
-                        "line": 6
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/AA80F7E036798F19.sgfs",
-                        "line": 7
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/2A01A2EA997969AC.sgfs",
-                        "line": 3
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/852B0BDBEAC031C9.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/FEA0C28F2F450E4F.sgfs",
-                        "line": 2
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-v-sweep-v16-v32-20221109-102538/sgfs/C2B031C087437008.sgfs",
-                        "line": 2
-                    }
-                ],
-                "max_games": 12,
-                "adversary": "349 million training steps, 8192 visits",
-                "victim": "Latest, no search, pass-alive defense",
-                "description": ["With 32 visits, KataGo's <code>Latest</code> network plays at the level of a top-250 human professional. After adding the hardcoded defense to the victim and boosting the number of adversary visits to 8192, we achieve a win rate of 28% against the victim."]
+                "adversary": "498 million training steps, 600 visits",
+                "victim": "Latest, 2048 visits, pass-alive defense",
+                "description": ["With 2048 visits, KataGo's <code>Latest</code> network plays at a superhuman level, but our adversary still achieves a 72.6% win rate."]
             }
         ]
     },
@@ -178,16 +170,55 @@ export const pages: object =
             },
             {
                 "title": "Human amateur beats adversary (hardened)",
-                "dir_name": "amateur_vs_advh_349mil",
+                "dir_name": "amateur_vs_advh_497mil",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
-                    "/nas/ucb/tony/go-attack/manual-games/tony-def-dragonslayer-349mil.sgfs"
+                    "/nas/ucb/ttseng/go_attack/misc/tony-b-def-dragonslayer-s497mil-w-anon.sgfs",
+                    "/nas/ucb/ttseng/go_attack/misc/tony-w-def-dragonslayer-s497mil-b-anon.sgfs"
                 ],
                 "max_games": 10,
-                "adversary": "349 million training steps, 600 visits",
+                "adversary": "498 million training steps, 600 visits",
                 "victim": "Author",
-                "description": ["The first-author of this paper (a Go novice) also managed to beat the adversary that was trained against our hardened victim, which had a pass-alive defense. The author was able to win with a small margin, demonstrating that this alternate version of our adversary is also not generally capable."]
+                "description": ["The same Go novice also managed to beat the adversary that was trained against our hardened victim, which had a pass-alive defense. The author was still able to win, demonstrating that this alternate version of our adversary is still no stronger than a Go amateur."]
             }
+        ]
+    },
+    "game-analysis": {
+	    "title": "Game Analysis",
+	    "description": [],
+	    "content": [
+            {
+                "title": "Qualitative analysis of adversary behavior",
+                "dir_name": "qualitative",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/josephmiller/sgf-viewer-games/kellin-analysis-game.sgfs"
+                ],
+                "max_games": 10,
+                "adversary": "498 million training steps, 600 visits",
+                "victim": "Latest, 1600 visits, pass-alive defense",
+                "description": [
+                    "An expert-level (6 dan) human player analyzed the following game. It shows typical behavior and outcomes with an adversary trained on and playing a hardened KataGo victim: the victim gains an early and soon seemingly insurmountable lead. The adversary sets a trap that would be easy for a human to see and avoid. But the victim is oblivious and collapses.",
+                    "The adversary plays non-standard, subpar moves right from the beginning. The victim's estimate of its winrate is over 90% by <a onclick='setMove(`qualitative`, 9)'>move 9</a>, and a human in a high-level match would likewise hold a large advantage from this position.",
+                    "On <a onclick='setMove(`qualitative`, 20)'>move 20</a>, the adversary initiates a tactic we see consistently, to produce a 'dead' (at least, according to normal judgment) square 4 group in one quadrant of the board. Elsewhere, the adversary plays low, mostly second and third line moves. This is also common in its games, and leads to the victim turning the rest of the center into its sphere of influence. We suspect this helps the adversary later play moves in that area without the victim responding directly, because the victim is already strong in that area and feels confident ignoring a number of moves.",
+                    "On <a onclick='setMove(`qualitative`, 74)'>move 74</a>, the adversary begins mobilizing its 'dead' stones to set up an encirclement. Over the next 100+ moves, it gradually surrounds the victim in the top left. A key pattern here is that it leads the victim into forming an isolated group that loops around and connects to itself (a group with a cycle instead of tree structure). David Wu, creator of KataGo, suggested Go-playing agents like the victim struggle to accurately judge the status of such groups, but they are normally very rare. This adversary seems to produce them consistently.",
+                    "Until the adversary plays <a onclick='setMove(`qualitative`, 189)'>move 189</a>, the victim could still save that cycle group, and in turn still win by a huge margin. There are straightforward moves to do so that would be trivial to find for any human playing at the victim's normal level. Even a human who has only played for a few months or less might find them. For instance, on 189 it could have instead played at the place marked 'A.' But after 189, it is impossible to escape, and the game is reversed. The victim seems to have been unable to detect the danger. Play continues for another 109 moves but there is no chance for the victim (nor would there be for a human player) to get out of the massive deficit it was tricked into."
+                ]
+            },
+	        {
+		        "title": "How the victim's predicted win rate varies over time",
+                "dir_name": "win-rate",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/norabelrose/latest@1600-dragonslayer-fixed/cleaned/9C6532F01A5E87E3D227BC12FC9443B7.sgf"
+                ],
+                "max_games": 10,
+                "adversary": "494 million training steps, 200 visits",
+                "victim": "Latest, 1600 visits, pass-alive defense",
+                "description": [
+                    "In this game, we find the victim's predicted win rate oscillates several times before the victim's group is captured at <a onclick='setMove(`win-rate`, 207)'>move 207</a>. At <a onClick='setMove(`win-rate`, 196)'>move 196</a>, the victim predicted it would win with 88% confidence, yet at its next turn at <a onClick='setMove(`win-rate`, 198)'>move 198</a> it has gone down to a 2% win rate prediction. It grows more optimistic by <a onClick='setMove(`win-rate`, 202)'>move 202</a>, predicting a 17% win rate, and by <a onclick='setMove(`win-rate`, 204)'>move 204</a>, the victim predicts it will win with an impressive 98% confidence. Yet at its next turn on <a onClick='setMove(`win-rate`, 206)'>move 206</a>, its predicted win rate has dropped to less than 1%. After the capture on the following turn, the victim (correctly) predicts a <1% win rate until the end."
+                ]
+	        }
         ]
     }
 }

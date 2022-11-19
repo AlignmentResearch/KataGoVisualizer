@@ -85,6 +85,11 @@ if __name__ == "__main__":
             parsed_games = game_info.read_and_parse_all_files(
                 sgf_paths, fast_parse=True
             )
+            if len(parsed_games) != games_count:
+                print(
+                    f"Warning: copied {games_count} but only parsed "
+                    f"{len(parsed_games)}"
+                )
 
             # Make paths not depend on where repo is cloned
             for parsed_game in parsed_games:
@@ -118,7 +123,6 @@ if __name__ == "__main__":
 
             # Modify SGFs to be easier to interpret
             for path, game in sorted_paths_games:
-                print(path, game["adv_win"])
                 with open(path, "r+") as f:
                     text = f.read()
                     text = re.sub("BR\[[^]]*\]", "", text)

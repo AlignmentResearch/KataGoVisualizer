@@ -1,3 +1,8 @@
+<script context="module">
+    let wgoPlayers = {};
+    window.setMove = (dirName, move) => wgoPlayers[dirName].goTo(move);
+</script>
+
 <script lang="ts">
     export let dirName: string;
     export let sgfPath: string;
@@ -14,7 +19,7 @@
     $: if (goBoardDiv) {
         [...goBoardDiv.getElementsByTagName("CANVAS")].forEach(releaseCanvas);
 
-        new (<any>window).WGo.BasicPlayer(goBoardDiv, {
+        let wgoPlayer = new (<any>window).WGo.BasicPlayer(goBoardDiv, {
             sgfFile: sgfPath,
             layout: (<any>window).WGo.BasicPlayer.dynamicLayout,
             allowIllegalMoves: true,
@@ -25,6 +30,7 @@
                 background: "wgo/wood1.jpg",
             },
         });
+        wgoPlayers[dirName] = wgoPlayer;
     }
 </script>
 
