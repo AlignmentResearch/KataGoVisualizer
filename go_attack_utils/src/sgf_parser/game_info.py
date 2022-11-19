@@ -33,7 +33,7 @@ def find_sgf_files(
     sgf_paths = []
     directories_scanned = 0
     for dirpath, _, filenames in os.walk(root):
-        sgf_filenames = [x for x in filenames if x.endswith(".sgfs")]
+        sgf_filenames = [x for x in filenames if x.endswith(".sgfs") or x.endswith(".sgf")]
         sgf_paths += [pathlib.Path(dirpath) / x for x in sgf_filenames]
         directories_scanned += 1
         if directories_scanned >= max_scan_length:
