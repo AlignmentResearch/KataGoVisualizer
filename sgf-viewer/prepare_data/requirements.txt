@@ -1,2 +1,2 @@
 # Install from the same directory as this file
-../../go_attack_utils
+-e ../../go_attack_utils
