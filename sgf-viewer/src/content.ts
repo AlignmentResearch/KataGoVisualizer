@@ -180,6 +180,20 @@ export const pages: object =
                 "adversary": "498 million training steps, 600 visits",
                 "victim": "Tony Wang (Author)",
                 "description": ["The first-author of this paper (a Go novice) also managed to beat the adversary that was trained against our hardened victim, which had a pass-alive defense. The author was still able to win, demonstrating that this alternate version of our adversary is still no stronger than a Go amateur."]
+            },
+            {
+                "title": "Human analysis of hardened victim vs. adversary",
+                "dir_name": "analysis",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/josephmiller/sgf-viewer-games/kellin-analysis-game.sgfs"
+                ],
+                "max_games": 10,
+                "adversary": "498 million training steps, 600 visits",
+                "victim": "Latest, 1600 visits, pass-alive defense",
+                "description": [
+                    "An expert-level (6 dan) human player on our team analyzed the following game. It shows typical behavior and outcomes with an adversary trained on and playing a hardened KataGo victim: the victim gains an early and soon seemingly insurmountable lead. The adversary sets a trap that would be easy for a human to see and avoid. But the victim is oblivious and collapses. <br><br>The adversary plays non-standard, subpar moves right from the beginning. The victim's estimate of its winrate is over 90% by <a onclick='setMove(`analysis`, 9)'>move 9</a>, and a human in a high-level match would likewise hold a large advantage from this position. <br><br>On <a onclick='setMove(`analysis`, 20)'>move 20</a>, the adversary initiates a tactic we see consistently, to produce a 'dead' (at least, according to normal judgment) square 4 group in one quadrant of the board. Elsewhere, the adversary plays low, mostly second and third line moves. This is also common in its games, and leads to the victim turning the rest of the center into its sphere of influence. We suspect this helps the adversary later play moves in that area without the victim responding directly, because the victim is already strong in that area and feels confident ignoring a number of moves. <br><br>On <a onclick='setMove(`analysis`, 74)'>move 74</a>, the adversary begins mobilizing its 'dead' stones to set up an encirclement. Over the next 100+ moves, it gradually surrounds the victim in the top left. A key pattern here is that it leads the victim into forming an isolated group that loops around and connects to itself (a group with a cycle instead of tree structure). David Wu, creator of KataGo, suggested Go-playing agents like the victim struggle to accurately judge the status of such groups, but they are normally very rare. This adversary seems to produce them consistently. <br><br>Until the adversary plays <a onclick='setMove(`analysis`, 189)'>move 189</a>, the victim could still save that cycle group, and in turn still win by a huge margin. There are straightforward moves to do so that would be trivial to find for any human playing at the victim's normal level. Even a human who has only played for a few months or less might find them. For instance, on 189 it could have instead played at the place marked 'A.' But after 189, it is impossible to escape, and the game is reversed. The victim seems to have been unable to detect the danger. Play continues for another 109 moves but there is no chance for the victim (nor would there be for a human player) to get out of the massive deficit it was tricked into."
+                ]
             }
         ]
     }

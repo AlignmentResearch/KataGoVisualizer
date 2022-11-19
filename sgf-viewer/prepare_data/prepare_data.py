@@ -123,7 +123,6 @@ if __name__ == "__main__":
 
             # Modify SGFs to be easier to interpret
             for path, game in sorted_paths_games:
-                print(path, game["adv_win"])
                 with open(path, "r+") as f:
                     text = f.read()
                     text = re.sub("BR\[[^]]*\]", "", text)

@@ -128,7 +128,8 @@ def parse_game_str_to_dict(
     b_name = extract_prop("PB", sgf_str)
     w_name = extract_prop("PW", sgf_str)
     result = extract_prop("RE", sgf_str)
-    komi = float(extract_prop("KM", sgf_str))
+    komi = extract_prop("KM", sgf_str)
+    komi = float(komi) if komi else komi
     win_color = result[0].lower() if result else None
     assert (
         "victim" in b_name or "victim" in w_name or "adv" in b_name or "adv" in w_name
