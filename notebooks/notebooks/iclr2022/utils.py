@@ -13,7 +13,7 @@ def flatten_2d_list(lists):
 
 
 def set_plot_formatting():
-    """Sets matplotlib plot formatting."""
+    """Sets Matplotlib plot formatting."""
     plt.rcParams.update(
         {
             "pgf.texsystem": "pdflatex",
