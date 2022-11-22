@@ -1,4 +1,4 @@
-# Sources: https://sourcery.ai/blog/python-docker/ and
+# Sources: https://sourcery.ai/blog/python-docker/
 # and https://github.com/pypa/pipenv/blob/2bf70b74167868133809a926aa6393438fb06db4/docs/basics.rst#-pipenv-and-docker-containers
 FROM python:3.10-slim as base
 
@@ -28,6 +28,7 @@ FROM pipenv AS streamlit-app-python-deps
 # RUN /root/.local/bin/pipenv sync
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
+COPY go_attack_utils ./../go_attack_utils
 COPY streamlit_app/requirements.txt .
 RUN pip3 install -r requirements.txt
 RUN pip3 install tensorflow
@@ -49,36 +50,7 @@ WORKDIR /home/appuser
 USER appuser
 
 # Install application into container
-# Comment out for live updating
 COPY streamlit_app .
 
 # Run the application
-CMD ["dtale-streamlit", "run", "streamlit_app.py"]
-
-
-# ----- Build Parsing Server -----
-FROM pipenv AS parsing-server-python-deps
-
-# Install python dependencies in /.venv
-COPY parsing_server/Pipfile .
-COPY parsing_server/Pipfile.lock .
-COPY go_attack_utils ./../go_attack_utils
-RUN /root/.local/bin/pipenv sync
-
-
-FROM base AS parsing-server
-
-# Copy virtual env from python-deps stage
-COPY --from=parsing-server-python-deps /.venv /.venv
-ENV PATH="/.venv/bin:$PATH"
-
-# Create and switch to a new user
-RUN useradd --create-home appuser
-WORKDIR /home/appuser
-USER appuser
-
-# Install application into container
-COPY parsing_server .
-
-# Run the application
-CMD ["python", "parsing_server.py"]
+CMD (trap 'kill 0' INT; python parsing_server.py & dtale-streamlit run streamlit_app.py)

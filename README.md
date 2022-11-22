@@ -1,127 +1,57 @@
-# Getting started
 
-To build and run the app, clone this repository, navigate to the repository root and run:
+# KataGo Visualizer
 
-```
-READ_DIR=/path/to/my/dir docker-compose up --build
-```
-`READ_DIR` is required and sets the path where the docker container is mounted (with read only permissions).
+This repo contains visualization tools for the paper ['Adversarial Policies Beat Professional-Level Go AIs'](https://arxiv.org/abs/2211.00241) ([website](https://goattack.alignmentfund.org/))
 
-### Note: this application is not very secure. Do not run on a machine with sensitive data. Also, remember, the user has read access to all the data in READ_DIR.
 
-# Development
+## Contents
 
-For live updating during development, go to the `Dockerfile` and comment out this line:
-```
-COPY streamlit_app .
-```
-and uncomment this line in `docker-compose.yml`
-```
-      -  ./streamlit_app:/home/appuser
-```
-Both lines are indicated by comments in their respective files.
+ ### [go_attack_utils](go_attack_utils)
+ Python package containing general tools used throughout the repo, in particular the code to parse sgf files.
 
-## Architecture
-The app consists of two Docker containers, running in a single Docker network orchestrated by Docker compose.
+ ### [notebooks](notebooks)
+ Python notebooks used to produce figures for the paper.
 
-The first container, `streamlit-app` is the main webapp. It listens for HTTP traffic on port `8501`, which is exposed outside the container, so that browsers can connect to it to view the webpage.
+ ### [sgf-viewer](sgf-viewer)
+ Source for the [website](https://goattack.alignmentfund.org/) that accompanies the paper.
 
-The `streamlit-app` container is a webserver that runs both [Dtale](https://github.com/man-group/dtale) (an webapp for viewing and analyzing tabular data) and [Streamlit](https://streamlit.io/) (a python webapp framework). This uses a Dtale command
-```
-dtale-streamlit run streamlit_app.py
-```
-which is a [hack implemented by Dtale](https://github.com/man-group/dtale/blob/master/docs/EMBEDDED_STREAMLIT.md) so that you can run these two apps on one server and embed Dtale iframes within Streamlit.
-
-The second container, `parsing-server`, listens on port `6536`, using `multiprocessing.connection.Listener`. This port is not exposed outside the Docker network, it is only used by the other container to parse sgf files. The reason for this container is that Streamlit apps cannot start `multiprocessing` tasks in a user session, which is essential to quickly parse large files.
-
-The project depends on a [custom fork of Dtale](https://github.com/UFO-101/dtale). It has two additional features.
- 1. The frontend reports the last clicked cell to the backend which can be accessed with `global_state.get_last_clicked_cell(data_id)`. This us to display the Go game when the user clicks on a row in the table.
- 2. The sort algorithm is stable. This ensures the order of the Dtale table is fully determined by the Streamlit session state, enabling deep linking to a particular table state and game.
+ ### [streamlit_app](streamlit_app)
+ Source for a data visualization web app used internally to help with research and monitoring training runs.
 
 ## Directory Structure
 ```
 KataGoVisualizer/
+├── .circleci/
 ├── Dockerfile
-├── docker-compose.yml
-├── parsing_server/
-│   ├── Pipfile
-│   ├── Pipfile.lock
-│   └── source...
+├── go_attack_utils/
+│   ├── src/
+│   │   └── sgf_parser/
+│   │       └── game_info.py
+│   └── setup.py
+├── notebooks/
+│   ├── .devcontainer/
+│   ├── notebooks/
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   └── requirements.txt
+├── sgf-viewer/
+│   ├── prepare_data/
+│   │   └── prepare_data.py
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── App.svelte
+│   │   └── content.ts
+│   ├── index.html
+│   └── package.json
 └── streamlit_app/
     ├── Pipfile
     ├── Pipfile.lock
     ├── requirements.txt
+    ├── parsing_server.py
     ├── streamlit_app.py
     ├── tests/
-    │   └── source...
     └── components/
-        ├── source...
         └── subcomponents/
-            └── source...
 ```
-[Generated here](https://tree.nathanfriend.io/?s=(%27options!(%27fancy!true~fullPath!false~trailingSlash!true~rootDot!false)~2!(%272!%27KataGoVisualizer4D9erB4d9er-Ase.yml4parsing_server87458requiremC.txt*5.py*tests*07*67*0sub607%27)~version!%271%27)*400%20%202source3*PipB4%5Cn05streamlit_app6AnC*072...833.l9*9ockAcompoBfileCents%01CBA987654320*)
-
-Each container manages its dependencies with `pipenv` using a `Pipfile`. There is also a `requirements.txt` in `streamlit_app/` because of some unknown bug that means `pipenv` won't add all the recursive dependencies of the [Dtale fork](https://github.com/UFO-101/dtale) editable dependency to the `Pipfile.lock`. New packages should be added by installing with `pipenv` and then running `pip freeze`.
-
-To prevent circular dependencies, custom Streamlit `components/` only import `subcomponents/` and `subcomponents/` do not import any other modules in the repo.
-
-## Testing
-
-Tests are end-to-end UI tests running with Selenium.
-
-### Prerequisites
-
- 1. Chrome or Chromium browser
- 2. ChromeDriver for your browser version available on PATH
- 3. `pipenv` environment with all dependencies and dev dependencies (`pipenv sync -d`)
- 4. App running locally (`READ_DIR=/path/to/my/dir docker-compose up --build`)
- 5. `KATA_GO_VISUALIZER_PASSWORD` environment variable set to a valid password.
-
-To run the tests, navigate to `streamlit_app/tests`. Inside your `pipenv` environment run `pytest`.
-
-# Quick introduction to Streamlit
-
-Streamlit webapps are written in python in an imperative style. A python script is run from top to bottom, rendering UI elements as they are encountered. Every time the user interacts with the UI, the script is rerun, with interactive components returning their current states.
-
-Example:
-```
-import streamlit as st
-x = st.slider("x")  # Render a slider. Return the current position.
-st.write(x, "squared is", x * x) # Render text.
-```
-
-In the above example, each time the user moves the slider, the script reruns.
-
-## Sessions, state and callbacks
-
-Each time a user navigates to a Streamlit app, a new session begins. Each browser tab corresponds to a different session and refreshing the page starts a new session. Streamlit reruns our whole imperative script on each user iteration, so we need to use a special object, `st.session_state`, to maintain state during a session.
-
-Interactive streamlit elements usually have a `key` parameter, which corresponds to the key in `st.session_state` which maintains the state for that element. Interactive elements also usually have some optional callback parameters. These are called after a user interacts with the element, but before our script reruns.
-
-An example that illustrates all these concepts is the password authentication element in `streamlit_app.py`:
-
-```
-# Authenticate with secret password
-state = st.session_state
-def verify():
-    state["hash"] = hashlib.scrypt(str.encode(state.pw), salt=b"salt", n=2048, r=8, p=1)
-
-if state.get("hash") != HASH:
-    password = st.text_input("Password", type="password", on_change=verify, key="pw")
-    if st.button("Submit"):
-        st.error("Wrong password")
-    st.stop()
-```
-
-Initially, `state["hash"]` is unset, so the password input UI is rendered and the script exits at `st.stop()`. As the user types, the `verify()` callback updates `state["hash"]`, getting the current input text from `state.pw`. When the user clicks on `st.button("Submit")`, the script will rerun. If the password is correct, `state.get("hash") != HASH` will evaluate to `false`, the password input UI will be skipped and the rest of the app will render. If the password is incorrect, the password input UI will be rendered and this time `st.button("Submit")` will evaluate to `True` (because it was just clicked) and the `"Wrong password"` message will render.
-
-# Design principles for Streamlit
-
-State and deep linking (restoring state from URL parameters) have been the sources of most bugs and complexity during development. For this reason the codebase now adheres to two rules that simplify these aspects:
-
- 1. Don't read the URL parameters, except once at the start of a session to restore state.
- 2. Don't reference any state variable in more than one component.
-
-The aim is to emulate the functional/declarative paradigm of React and similar frameworks. The appearance of a component should be fully determined by a known list of variables in `st.session_state` (and these variables should be named in ALL_CAPS at the top of the module). No component should modify any state variable that is used by another component.
-
-__Note:__ Many of the custom components in `/components` will raise an error if more than one is rendered on the same page because the keys are hardcoded and Streamlit components must have unique keys. If multiple copies of a custom component are required it should be simple to pass the key as a parameter to the custom component instead, or append a random UUID to the state variable names.
+[Generated here](https://tree.nathanfriend.io/?s=(%27optiHs!(%27fancy!true~fullPath!false~trailingSlash!true~rootDot!false)~F(%27F%27KataGoVisualiz83.circleci%2F3O3go_attack_utilsIsgf_pars8200game_infoBsetup.py3C.devcHtain82CO*dE8-Nose.yml53sgf-view827*07BpublicI420App.svelte*0cHtL.ts*index.html*package.jsH36MM.lE5*parsing_s8v8B6Btests24*0sub4%2F%27)~v8siH!%271%27)*300%20%202%2F*3%5Cn04NHLs5*JquiJmLs.txt6stJamlit_app7pJpaJ_data8er9fileB.py*Cnotebooks2EockFsource!HonI2src20JreLentM*Pip9NcompODE89%01ONMLJIHFECB987654320*)

@@ -24,7 +24,7 @@ def load_and_parse_games(path: str, fast_parse: bool = False):
 
 
 if __name__ == "__main__":
-    listener = Listener(("parsing-server", 6536), authkey=b"secret password")
+    listener = Listener(("localhost", 6536), authkey=b"secret password")
 
     def exit_handler():
         listener.close()
