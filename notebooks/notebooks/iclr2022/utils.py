@@ -1,3 +1,4 @@
+"""Utility functions for plot notebooks."""
 import pathlib
 
 import matplotlib.pyplot as plt
@@ -6,10 +7,13 @@ import pandas as pd
 from sgf_parser import game_info
 
 
-flatten_2d_list = lambda lists: sum(lists, [])
+def flatten_2d_list(lists):
+    """Flattens a 2D list into a 1D list."""
+    return sum(lists, [])
 
 
 def set_plot_formatting():
+    """Sets matplotlib plot formatting."""
     plt.rcParams.update(
         {
             "pgf.texsystem": "pdflatex",
@@ -25,6 +29,7 @@ def set_plot_formatting():
 
 
 def parse_for_match(df: pd.DataFrame, victim_name_prefix="cp505-v"):
+    """Adds additional useful info to a dataframe of match SGFs."""
     adv_is_black = df.b_name.str.contains("adv")
     adv_is_white = df.w_name.str.contains("adv")
     victim_is_black = ~adv_is_black
@@ -49,10 +54,12 @@ def parse_for_match(df: pd.DataFrame, victim_name_prefix="cp505-v"):
 
 
 def parse_sgfs(paths):
+    """Parses a list of paths into a dataframe of SGFs."""
     game_infos = flatten_2d_list(
         [
             game_info.read_and_parse_all_files(
-                game_info.find_sgf_files(pathlib.Path(path)), fast_parse=True
+                game_info.find_sgf_files(pathlib.Path(path)),
+                fast_parse=True,
             )
             for path in paths
         ]
