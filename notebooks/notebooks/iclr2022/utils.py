@@ -7,6 +7,10 @@ import pandas as pd
 from sgf_parser import game_info
 
 
+ONE_COL_PLOT_WIDTH = 5.50107
+TWO_COL_PLOT_WIDTH = ONE_COL_PLOT_WIDTH * 0.48
+
+
 def flatten_2d_list(lists):
     """Flattens a 2D list into a 1D list."""
     return sum(lists, [])
