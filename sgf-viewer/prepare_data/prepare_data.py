@@ -122,16 +122,9 @@ if __name__ == "__main__":
                     dict_writer.writerows(parsed_games)
 
             # Matches comments containing winrate, lossrate, tie rate, and score
-            b_regex = re.compile(  # For black
-                r"(B\[[a-z]{,2}\])C\["
-                + r"(-?\d+\.\d{1,2}) " * 4
-                + r"v=[0-9]+( result=.+)?\]"
-            )
-            w_regex = re.compile(  # For white
-                r"(W\[[a-z]{,2}\])C\["
-                + r"(-?\d+\.\d{1,2}) " * 4
-                + r"v=[0-9]+( result=.+)?\]"
-            )
+            comment = r"C\[" + r"(-?\d+\.\d{1,2}) " * 4 + r"v=[0-9]+( result=.+)?\]"
+            b_regex = re.compile(r"(B\[[a-z]{,2}\])" + comment)  # For black
+            w_regex = re.compile(r"(W\[[a-z]{,2}\])" + comment)  # For white
 
             # Modify SGFs to be easier to interpret
             for path, game in sorted_paths_games:
