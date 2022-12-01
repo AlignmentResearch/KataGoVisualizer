@@ -121,13 +121,16 @@ if __name__ == "__main__":
                     dict_writer.writeheader()
                     dict_writer.writerows(parsed_games)
 
-            # Regex that matches 4 decimal numbers separated by spaces; eats anything
-            # inside the brackets after the 4th number
-            b_regex = re.compile(
-                r"(B\[[a-z]{,2}\])C\[" + r"(-?\d+\.\d{1,2}) " * 4 + r"v=[0-9]+( result=.+)?\]"
+            # Matches comments containing winrate, lossrate, tie rate, and score
+            b_regex = re.compile(  # For black
+                r"(B\[[a-z]{,2}\])C\["
+                + r"(-?\d+\.\d{1,2}) " * 4
+                + r"v=[0-9]+( result=.+)?\]"
             )
-            w_regex = re.compile(
-                r"(W\[[a-z]{,2}\])C\[" + r"(-?\d+\.\d{1,2}) " * 4 + r"v=[0-9]+( result=.+)?\]"
+            w_regex = re.compile(  # For white
+                r"(W\[[a-z]{,2}\])C\["
+                + r"(-?\d+\.\d{1,2}) " * 4
+                + r"v=[0-9]+( result=.+)?\]"
             )
 
             # Modify SGFs to be easier to interpret
@@ -140,12 +143,18 @@ if __name__ == "__main__":
                     b_name = "Victim" if game["victim_color"] == "b" else "Adversary"
                     w_name = "Victim" if game["victim_color"] == "w" else "Adversary"
                     text = b_regex.sub(
-                        r"\1C[" + b_name.lower() + r" win: \3 loss: \2 tie: \4 score: -\5]",
-                        text
-                    ).replace("--", "") # Two negatives make a positive
+                        r"\1C["
+                        + b_name.lower()
+                        + r" predicted win prob: \3 loss: \2 tie: \4, predicted score: -\5]",
+                        text,
+                    ).replace(
+                        "--", ""
+                    )  # Two negatives make a positive
                     text = w_regex.sub(
-                        r"\1C[" + w_name.lower() + r" win: \2 loss: \3 tie: \4 score: \5]",
-                        text
+                        r"\1C["
+                        + w_name.lower()
+                        + r" predicted win prob: \2 loss: \3 tie: \4, predicted score: \5]",
+                        text,
                     )
 
                     # Don't display the tie prob unless it's nonzero
