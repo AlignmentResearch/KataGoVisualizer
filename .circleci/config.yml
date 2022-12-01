@@ -30,9 +30,22 @@ jobs:
     steps:
       - dependencies
       - run:
-          command: docker-compose up -d
+          command: |
+            docker build --target streamlit-app -t kata-go-visualizer . \
+            && \
+            docker run \
+              --mount type=bind,source=$READ_DIR,target=$MOUNT_DIR,readonly \
+              -e READ_DIR=$READ_DIR \
+              -e MOUNT_DIR=$MOUNT_DIR \
+              -e PYTHONUNBUFFERED=1 \
+              --hostname='localhost' \
+              -p 8501:8501 \
+              -p 6001-6005:6001-6005 \
+              -d \
+              kata-go-visualizer
           environment:
             READ_DIR: /home/circleci/project/streamlit_app/tests
+            MOUNT_DIR: /mnt
       - run:
           command: |
             . venv/bin/activate
