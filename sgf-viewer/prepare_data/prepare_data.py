@@ -121,15 +121,36 @@ if __name__ == "__main__":
                     dict_writer.writeheader()
                     dict_writer.writerows(parsed_games)
 
+            # Regex that matches 4 decimal numbers separated by spaces; eats anything
+            # inside the brackets after the 4th number
+            b_regex = re.compile(
+                r"(B\[[a-z]{,2}\])C\[" + r"(-?\d+\.\d{1,2}) " * 4 + r"v=[0-9]+( result=.+)?\]"
+            )
+            w_regex = re.compile(
+                r"(W\[[a-z]{,2}\])C\[" + r"(-?\d+\.\d{1,2}) " * 4 + r"v=[0-9]+( result=.+)?\]"
+            )
+
             # Modify SGFs to be easier to interpret
             for path, game in sorted_paths_games:
                 with open(path, "r+") as f:
                     text = f.read()
                     text = re.sub("BR\[[^]]*\]", "", text)
                     text = re.sub("WR\[[^]]*\]", "", text)
-                    text = re.sub("P?C\[[^]]*\]", "", text)
+
                     b_name = "Victim" if game["victim_color"] == "b" else "Adversary"
                     w_name = "Victim" if game["victim_color"] == "w" else "Adversary"
+                    text = b_regex.sub(
+                        r"\1C[" + b_name.lower() + r" win: \3 loss: \2 tie: \4 score: -\5]",
+                        text
+                    ).replace("--", "") # Two negatives make a positive
+                    text = w_regex.sub(
+                        r"\1C[" + w_name.lower() + r" win: \2 loss: \3 tie: \4 score: \5]",
+                        text
+                    )
+
+                    # Don't display the tie prob unless it's nonzero
+                    text = text.replace(" tie: 0.00", "")
+                    text = re.sub(r"C\[startTurnIdx.*gtype=normal\]", "", text)
                     text = re.sub("PB\[[^]]*\]", f"PB[{b_name}]", text)
                     text = re.sub("PW\[[^]]*\]", f"PW[{w_name}]", text)
                     f.seek(0)
