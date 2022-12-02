@@ -137,10 +137,6 @@ if __name__ == "__main__":
                     text = re.sub("BR\[[^]]*\]", "", text)
                     text = re.sub("WR\[[^]]*\]", "", text)
 
-                    if "20221115-153814" in text:
-                        print("omfg")
-                        print(text)
-
                     b_name = "Victim" if game["victim_color"] == "b" else "Adversary"
                     w_name = "Victim" if game["victim_color"] == "w" else "Adversary"
                     text = b_regex.sub(
