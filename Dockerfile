@@ -65,7 +65,7 @@ CMD (trap 'kill 0' INT; \
     /ngrok config add-authtoken $NGROK_AUTHTOKEN; \
     /ngrok http \
     # Only include the --hostname flag if $NGROK_HOSTNAME is not empty
-    $( [ ! -z $NGROK_HOSTNAME ] && printf %s '--hostname=$NGROK_HOSTNAME' ) 8501 \
+    $( [ ! -z $NGROK_HOSTNAME ] && printf %s "--hostname=$NGROK_HOSTNAME" ) 8501 \
     --oauth=google --oauth-allow-domain=humancompatible.ai,alignmentfund.org \
     --oauth-allow-email=$NGROK_EMAILS \
     > /dev/null & \
