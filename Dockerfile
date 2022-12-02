@@ -56,6 +56,10 @@ COPY streamlit_app .
 # Run ngrok, the parsing server, and the main dtale/streamlit application.
 # Trap allows all processes and subprocesses to exit gracefully.
 CMD (trap 'kill 0' INT; \
+    if [ ! -z $HOFVARPNIR_HACK ]; \
+    then \
+    echo nameserver 4.2.2.1 > /etc/resolv.conf; \
+    fi; \
     if [ ! -z $NGROK_AUTHTOKEN ]; \
     then \
     /ngrok config add-authtoken $NGROK_AUTHTOKEN; \
