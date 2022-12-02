@@ -192,7 +192,7 @@ export const pages: object =
                 "dir_name": "qualitative",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
-                    "/nas/ucb/josephmiller/sgf-viewer-games/kellin-analysis-game.sgfs"
+                    "/nas/ucb/norabelrose/kellin-analysis-game-fixed.sgf"
                 ],
                 "max_games": 10,
                 "adversary": "498 million training steps, 600 visits",
