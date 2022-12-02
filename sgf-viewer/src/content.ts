@@ -192,7 +192,7 @@ export const pages: object =
                 "dir_name": "qualitative",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
-                    "/nas/ucb/josephmiller/sgf-viewer-games/kellin-analysis-game.sgfs"
+                    "/nas/ucb/norabelrose/kellin-analysis-game-fixed.sgf"
                 ],
                 "max_games": 10,
                 "adversary": "498 million training steps, 600 visits",
@@ -210,7 +210,7 @@ export const pages: object =
                 "dir_name": "win-rate",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
-                    "/nas/ucb/norabelrose/latest@1600-dragonslayer-fixed/cleaned/9C6532F01A5E87E3D227BC12FC9443B7.sgf"
+                    "/nas/ucb/norabelrose/latest@1600-dragonslayer-fixed/13B12C1F869DEB8C-cleaned.sgf"
                 ],
                 "max_games": 10,
                 "adversary": "494 million training steps, 200 visits",
