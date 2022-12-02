@@ -48,11 +48,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 RUN curl https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz --output /tmp/ngrok.tgz
 RUN tar -xvzf /tmp/ngrok.tgz -C / && rm /tmp/ngrok.tgz
 
-# Create and switch to a new user
-RUN useradd --create-home appuser
-WORKDIR /home/appuser
-USER appuser
-RUN mkdir -p /home/appuser/.config/ngrok && chmod -R 777 /home/appuser
+WORKDIR /workspace
 
 # Install application into container
 COPY streamlit_app .
@@ -74,4 +70,4 @@ CMD (trap 'kill 0' INT; \
     printf "\n --- Ngrok running at $(curl -s http://localhost:4040/api/tunnels | jq ".tunnels[0].public_url") ---\n\n"; \
     fi; \
     python parsing_server.py & \
-    dtale-streamlit run streamlit_app.py)
+    dtale-streamlit run /workspace/streamlit_app.py)
