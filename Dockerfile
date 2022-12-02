@@ -57,17 +57,6 @@ RUN mkdir -p /home/appuser/.config/ngrok && chmod -R 777 /home/appuser
 # Install application into container
 COPY streamlit_app .
 
-ARG NGROK_AUTHTOKEN
-ARG NGROK_HOSTNAME
-# emails in format "email1,email2" (no spaces). Max 5 emails.
-ARG NGROK_EMAILS
-
-# Make build args available to the CMD step
-ENV NGROK_HOSTNAME=$NGROK_HOSTNAME
-ENV NGROK_AUTHTOKEN=$NGROK_AUTHTOKEN
-ENV NGROK_EMAILS=$NGROK_EMAILS
-
-
 # Run ngrok, the parsing server, and the main dtale/streamlit application.
 # Trap allows all processes and subprocesses to exit gracefully.
 CMD (trap 'kill 0' INT; \

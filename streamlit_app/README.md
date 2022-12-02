@@ -5,12 +5,12 @@ To build and run the app, clone this repository, **navigate to the repository ro
 ```
 READ_DIR=/your/path/here MOUNT_DIR=/mnt; \
 docker build --target streamlit-app -t kata-go-visualizer \
-    <optional> --build-arg NGROK_AUTHTOKEN='mytoken' \
-    <optional> --build-arg NGROK_HOSTNAME='my.host.com' \
-    <optional> --build-arg NGROK_EMAILS='email1@example.com,email2@example.com' \
-    . \
+   . \
 && docker run \
     --mount type=bind,source=$READ_DIR,target=$MOUNT_DIR,readonly \
+    <optional> -e NGROK_AUTHTOKEN='mytoken' \
+    <optional> -e NGROK_HOSTNAME='my.host.com' \
+    <optional> -e NGROK_EMAILS='email1@example.com,email2@example.com' \
     -e READ_DIR=$READ_DIR \
     -e MOUNT_DIR=$MOUNT_DIR \
     -e PYTHONUNBUFFERED=1 \
