@@ -4,9 +4,12 @@ To build and run the app, clone this repository, **navigate to the repository ro
 
 ```
 READ_DIR=/your/path/here MOUNT_DIR=/mnt; \
-docker build --target streamlit-app -t kata-go-visualizer . \
-&& \
-docker run \
+docker build --target streamlit-app -t kata-go-visualizer \
+    <optional> --build-arg NGROK_AUTHTOKEN='mytoken' \
+    <optional> --build-arg NGROK_HOSTNAME='my.host.com' \
+    <optional> --build-arg NGROK_EMAILS='email1@example.com,email2@example.com' \
+    . \
+&& docker run \
     --mount type=bind,source=$READ_DIR,target=$MOUNT_DIR,readonly \
     -e READ_DIR=$READ_DIR \
     -e MOUNT_DIR=$MOUNT_DIR \
@@ -35,6 +38,8 @@ The first process, `dtale-streamlit run streamlit_app.py` is the main webapp. It
 The command `dtale-streamlit` starts a webserver that runs both [Dtale](https://github.com/man-group/dtale) (an webapp for viewing and analyzing tabular data) and [Streamlit](https://streamlit.io/) (a python webapp framework). This command is a [hack implemented by Dtale](https://github.com/man-group/dtale/blob/master/docs/EMBEDDED_STREAMLIT.md) so that you can run these two apps on one server and embed Dtale iframes within Streamlit.
 
 The second process, `python parsing_server.py`, listens on port `6536`, using `multiprocessing.connection.Listener`. This port is not exposed outside the container, it is only used by the other process to parse sgf files. The reason for this being a separate server is that Streamlit apps cannot start `multiprocessing` tasks in a user session, which is essential to quickly parse large files.
+
+The Docker container call also optionally run ngrok, which exposes the webapp to the internet.
 
 The project depends on a [custom fork of Dtale](https://github.com/UFO-101/dtale). It has two additional features.
  1. The frontend reports the last clicked cell to the backend which can be accessed with `global_state.get_last_clicked_cell(data_id)`. This us to display the Go game when the user clicks on a row in the table.
