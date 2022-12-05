@@ -1,38 +1,26 @@
 """Utility functions for plot notebooks."""
 import pathlib
+from typing import Iterable, List, TypeVar
 
-import matplotlib.pyplot as plt
 import pandas as pd
 
 from sgf_parser import game_info
 
 
-ONE_COL_PLOT_WIDTH = 5.50107
-TWO_COL_PLOT_WIDTH = ONE_COL_PLOT_WIDTH * 0.48
+T = TypeVar("T")
 
 
-def flatten_2d_list(lists):
+def flatten_2d_list(lists: Iterable[List[T]]) -> List[T]:
     """Flattens a 2D list into a 1D list."""
     return sum(lists, [])
 
 
-def set_plot_formatting():
-    """Sets Matplotlib plot formatting."""
-    plt.rcParams.update(
-        {
-            "pgf.texsystem": "pdflatex",
-            "font.family": "serif",
-            "font.serif": ["Times"],
-            "text.usetex": True,
-            "pgf.rcfonts": False,
-            "font.size": 10,
-            "font.weight": "medium",
-        }
-    )
-    plt.style.use("tableau-colorblind10")
+def get_style(style_name: str) -> str:
+    """Gets Matplotlib style sheet with a given name."""
+    return f"./matplotlib-style-sheets/{style_name}.mlpstyle"
 
 
-def parse_for_match(df: pd.DataFrame, victim_name_prefix="cp505-v"):
+def parse_for_match(df: pd.DataFrame, victim_name_prefix="cp505-v") -> None:
     """Adds additional useful info to a dataframe of match SGFs."""
     adv_is_black = df.b_name.str.contains("adv")
     adv_is_white = df.w_name.str.contains("adv")
@@ -57,7 +45,7 @@ def parse_for_match(df: pd.DataFrame, victim_name_prefix="cp505-v"):
     )
 
 
-def parse_sgfs(paths):
+def parse_sgfs(paths: Iterable[str]) -> pd.DataFrame:
     """Parses a list of paths into a dataframe of SGFs."""
     game_infos = flatten_2d_list(
         [
