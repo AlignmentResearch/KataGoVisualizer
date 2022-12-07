@@ -1,4 +1,5 @@
 """Utility functions for plot notebooks."""
+import os
 import pathlib
 from typing import Iterable, List, TypeVar
 
@@ -17,7 +18,10 @@ def flatten_2d_list(lists: Iterable[List[T]]) -> List[T]:
 
 def get_style(style_name: str) -> str:
     """Gets Matplotlib style sheet with a given name."""
-    return f"./matplotlib-style-sheets/{style_name}.mlpstyle"
+    style_sheets_dir = (
+        pathlib.Path(os.path.realpath(__file__)).parent / "matplotlib-style-sheets"
+    )
+    return str(style_sheets_dir / f"{style_name}.mlpstyle")
 
 
 def parse_for_match(df: pd.DataFrame, victim_name_prefix="cp505-v") -> None:
