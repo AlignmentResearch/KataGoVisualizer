@@ -10,3 +10,5 @@ build/
 .vite/
 *.egg-info/
 .ipynb_checkpoints/
+
+notebooks/notebooks/**/*.pgf

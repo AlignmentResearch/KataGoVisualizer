@@ -1,0 +1,10 @@
+pgf.texsystem: pdflatex
+font.family: serif
+font.serif: Times
+text.usetex: True
+pgf.rcfonts: False
+font.size: 10
+font.weight: medium
+
+figure.constrained_layout.use: True
+figure.dpi: 240
