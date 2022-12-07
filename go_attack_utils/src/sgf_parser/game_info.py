@@ -49,7 +49,7 @@ def find_sgf_files(
 
 
 def read_and_parse_file(
-    path: pathlib.Path, fast_parse: bool = False
+    path: pathlib.Path, fast_parse: bool = False, victim_color: Optional[str] = None
 ) -> Sequence[Dict[str, Any]]:
     """Parse all lines of an sgf file to a list of dictionaries with game info."""
     parsed_games = []
@@ -57,7 +57,11 @@ def read_and_parse_file(
         for i, line in enumerate(f):
             parsed_games.append(
                 parse_game_str_to_dict(
-                    str(path), i + 1, line.strip(), fast_parse=fast_parse
+                    str(path),
+                    i + 1,
+                    line.strip(),
+                    fast_parse=fast_parse,
+                    victim_color=victim_color,
                 )
             )
     return parsed_games
@@ -104,7 +108,11 @@ semicolon_pattern = re.compile(";")
 
 
 def parse_game_str_to_dict(
-    path: str, line_number: int, sgf_str: str, fast_parse: bool = False
+    path: str,
+    line_number: int,
+    sgf_str: str,
+    fast_parse: bool = False,
+    victim_color: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Parse an sgf string to a dictionary containing game_info.
 
@@ -132,16 +140,21 @@ def parse_game_str_to_dict(
     komi = float(komi) if komi else komi
     win_color = result[0].lower() if result else None
     assert (
-        "victim" in b_name or "victim" in w_name or "adv" in b_name or "adv" in w_name
+        "victim" in b_name
+        or "victim" in w_name
+        or "adv" in b_name
+        or "adv" in w_name
+        or victim_color
     ), f"Game doesn't have victim: path={path}, line_number={line_number}"
 
     parts = pathlib.Path(path).parts
     training = "eval" if "eval" in parts else "train" if "selfplay" in parts else None
 
-    victim_color = {b_name: "b", w_name: "w"}.get(
-        "victim",
-        "b" if ("victim" in b_name or "bot" in b_name or "adv" in w_name) else "w",
-    )
+    if victim_color is None:
+        victim_color = {b_name: "b", w_name: "w"}.get(
+            "victim",
+            "b" if ("victim" in b_name or "bot" in b_name or "adv" in w_name) else "w",
+        )
     victim_name = {"b": b_name, "w": w_name}[victim_color]
     adv_color = {"b": "w", "w": "b"}[victim_color]
     adv_name = b_name if adv_color == "b" else w_name
