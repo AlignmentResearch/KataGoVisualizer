@@ -314,7 +314,7 @@ export const pages: object =
                 "max_games": 8,
                 "adversary": "Edge attack",
                 "victim": "Latest, 8 visits",
-                "description": ["We also test a hard-coded \"edge attack\" adversarial policy inspired by the behavior of one of our early trained adversaries. The policy plays random legal moves in the outermost squares of the board. It is able to achieve a win rate of about 50% against <code>Latest</code> when <code>Latest</code> is playing as black with at most 8 visits, and a win rate of 13.8% against <code>Lastest</code> playing as black with 32 visits. When <code>Latest</code> plays as white with at most 8 visits, the win rate drops to about 5%."]
+                "description": ["We also test a hard-coded \"edge attack\" adversarial policy inspired by the behavior of one of our early trained adversaries. The policy plays random legal moves in the outermost squares of the board. It is able to achieve a win rate of about 50% against <code>Latest</code> when <code>Latest</code> is playing as black with at most 8 visits, and a win rate of 13.8% against <code>Latest</code> playing as black with 32 visits. When <code>Latest</code> plays as white with at most 8 visits, the attack's win rate drops to about 5%."]
             },
             {
                 "title": "Edge attack against hardened KataGo",
