@@ -146,7 +146,7 @@ export const pages: object =
         ],
         "content": [
             {
-                "title": "KataGo without search (level of top 100 European player)",
+                "title": "KataGo without search (top-100 European player level)",
                 "dir_name": "no_search",
                 "server": "dqn.ist.berkeley.edu",
                 "_path_comment": "Computed by `grep -n cp505-v1 /nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/* | shuf | head -n 6 | cut -f1,2 -d:`",
