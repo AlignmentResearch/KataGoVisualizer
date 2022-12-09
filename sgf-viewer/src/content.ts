@@ -234,7 +234,6 @@ export const pages: object =
     },
     "game-analysis": {
         "title": "Game Analysis",
-        "description": [],
         "content": [
             {
                 "title": "Qualitative analysis of adversary behavior",
