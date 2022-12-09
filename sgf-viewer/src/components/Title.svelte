@@ -1,8 +1,8 @@
 <script lang="ts">
     import { fade } from "svelte/transition";
     const authors: Map<string, string> = new Map([
-        ["Tony Wang", "https://terveisin.tw/"],
-        ["Adam Gleave", "https://www.gleave.me/"],
+        ["Tony Wang*", "https://terveisin.tw/"],
+        ["Adam Gleave*", "https://www.gleave.me/"],
         ["Nora Belrose", "https://twitter.com/norabelrose"],
         ["Tom Tseng", "https://www.tomhmtseng.com/"],
         ["Joseph Miller", "https://alignmentfund.org/author/joseph-miller/"],

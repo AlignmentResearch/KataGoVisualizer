@@ -27,7 +27,7 @@
             <FaGithub />
         </a>
         <a
-            href="https://arxiv.org/abs/2211.00241"
+            href="/pdfs/go_attack_paper.pdf"
             target="_blank"
             class="icon-link"
         >

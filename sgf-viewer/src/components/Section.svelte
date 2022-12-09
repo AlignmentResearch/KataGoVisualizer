@@ -23,11 +23,11 @@
     <div class="annotation">
         <p class="annotation-item" style="text-align: left;">
             <b>Victim:</b>
-            {section["victim"]}
+            {@html section["victim"]}
         </p>
         <p class="annotation-item" style="text-align: right;">
             <b>Adversary:</b>
-            {section["adversary"]}
+            {@html section["adversary"]}
         </p>
     </div>
     {#if section["discussion"]}
@@ -64,7 +64,7 @@
     }
     p {
         font-size: 18px;
-        align-self: center;
+        align-self: left;
         margin: 0.5vw;
         max-width: min(90vw, 800px);
         text-align: justify;
