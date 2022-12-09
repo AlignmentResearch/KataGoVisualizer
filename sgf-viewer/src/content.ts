@@ -272,6 +272,7 @@ export const pages: object =
     },
     "baseline-attack": {
         "title": "Baseline attacks",
+        "description": ["In this section we examine simple, no-learning attacks. These test the robustness of KataGo to some types of unsophisticated but likely out-of-distribution play. We find these attacks are generally ineffective against the hardened version of KataGo, although the mirror go attack still gets some wins at low visits. Overall, to find consistent weaknesses, a learning-based approach like ours seems necessary."],
         "content": [
             {
                 "title": "Edge attack against KataGo",
