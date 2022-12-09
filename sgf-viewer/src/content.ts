@@ -259,7 +259,7 @@ export const pages: object =
                 "dir_name": "win-rate",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
-                    "/nas/ucb/norabelrose/latest@1600-dragonslayer-fixed/13B12C1F869DEB8C-cleaned.sgf"
+                    "/nas/ucb/tony/go-attack/manual-games/nora-analysis-13B12C1F869DEB8C-cleaned-fixed.sgf"
                 ],
                 "max_games": 10,
                 "adversary": "494 million training steps, 200 visits",
