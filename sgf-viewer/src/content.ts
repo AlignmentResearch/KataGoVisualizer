@@ -315,7 +315,7 @@ export const pages: object =
                 "max_games": 8,
                 "adversary": "Edge attack",
                 "victim": "Latest, 8 visits",
-                "description": ["We also test a hard-coded \"edge attack\" adversarial policy inspired by the behavior of one of our early trained adversaries. The policy plays random legal moves in the outermost squares of the board. It is able to achieve a win rate of about 50% against <code>Latest</code> when <code>Latest</code> is playing as black with at most 8 visits, and a win rate of 13.8% against <code>Latest</code> playing as black with 32 visits. When <code>Latest</code> plays as white with at most 8 visits, the attack's win rate drops to about 5%."]
+                "description": ["We tested a hard-coded \"edge attack\" adversarial policy inspired by the behavior of one of our early trained adversaries. The policy plays random legal moves in the outermost squares of the board. It is able to achieve a win rate of about 50% against <code>Latest</code> when <code>Latest</code> is playing as black with at most 8 visits, and a win rate of 13.8% against <code>Latest</code> playing as black with 32 visits. When <code>Latest</code> plays as white with at most 8 visits, the attack's win rate drops to about 5%."]
             },
             {
                 "title": "Edge attack against hardened KataGo",
@@ -377,7 +377,7 @@ export const pages: object =
                 "max_games": 6,
                 "adversary": "Mirror Go",
                 "victim": "Latest, no search",
-                "description": ["Another hard-coded strategy we test is Mirror Go, a classic novice strategy for black in which black plays the opponent's last move reflected about the diagonal. Mirror Go wins a few games against <code>Latest</code> as well, with a 7.5% win rate against <code>Latest</code> with no search and a 1.9% win rate against <code>Latest</code> with 32 visits."]
+                "description": ["Another hard-coded strategy we test is Mirror Go, a classic novice strategy for white in which white plays the opponent's last move reflected about the diagonal. Mirror Go wins a few games against <code>Latest</code> as well, with a 7.5% win rate against <code>Latest</code> with no search and a 1.9% win rate against <code>Latest</code> with 32 visits."]
             }
         ]
     }
