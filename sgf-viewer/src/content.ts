@@ -5,20 +5,39 @@ export const pages: object =
     "adversarial-policy-katago": {
         "title": "Adversarially Exploiting KataGo",
         "description": [
-            "We attack <a href=\"https://arxiv.org/abs/1902.10565\">KataGo</a>, a state-of-the-art Go AI system, by training an adversarial policy against a frozen KataGo victim. We achieve a &gt;99% win rate against a KataGo victim <a href=\"#no_search\">playing without search</a>, which is comparable in strength to a top-100 European Go player. We achieve a &gt;48% win rate against a victim playing with <a href=\"#64_visits\">64 visits</a>, which we estimate to have comparable strength to the best human Go players. Notably the games show that the adversarial policy does not win by playing a strong game of Go, but instead by tricking KataGo into ending the game prematurely at point favorable to the adversary. Indeed, our adversary is easily <a href=\"/human-evaluation#amateur_vs_adv\">beaten by a human amateur</a>, despite being able to exploit policies that usually match or surpass the performance of the best human Go players.",
+            "We attack <a href=\"https://arxiv.org/abs/1902.10565\">KataGo</a>, a state-of-the-art Go AI system, by training an adversarial policy against a frozen KataGo victim. We achieve a &gt;99% win rate against a KataGo victim <a href=\"#no_search\">playing without search</a>, which is comparable in strength to a top-100 European Go player. We achieve a &gt;87% win rate against a victim playing with <a href=\"#8_visits\">8 visits</a>, which we estimate to have comparable strength to the top 750 human Go players. Notably the games show that the adversarial policy does not win by playing a strong game of Go, but instead by tricking KataGo into ending the game prematurely at point favorable to the adversary. Indeed, our adversary is easily <a href=\"/human-evaluation#amateur_vs_adv\">beaten by a human amateur</a>, despite being able to exploit policies that usually match or surpass the performance of the best human Go players.",
             "All games are randomly selected unless otherwise specified. We attack the <a href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a> network which we dub <code>Latest</code> since it is the latest confidently rated victim network at the time of writing. For more information, see our <a href=\"https://arxiv.org/abs/2211.00241\">paper</a> and <a href=\"https://github.com/HumanCompatibleAI/go_attack\">GitHub</a>."],
         "content": [
             {
                 "title": "KataGo without search (level of top 100 European player)",
                 "dir_name": "no_search",
                 "server": "dqn.ist.berkeley.edu",
-                "paths": [
-                    "/nas/ucb/ttseng/go_attack/match/adv-checkpoints/33-extra/sgfs/2782FF00582288C8.sgfs",
-                    "/nas/ucb/ttseng/go_attack/match/adv-checkpoints/33-extra/sgfs/2797913CD0AAD6C1.sgfs",
-                    "/nas/ucb/ttseng/go_attack/match/adv-checkpoints/33-extra/sgfs/27A3CFF58C2E44BE.sgfs",
-                    "/nas/ucb/ttseng/go_attack/match/adv-checkpoints/33-extra/sgfs/282923DD52BC6029.sgfs",
-                    "/nas/ucb/ttseng/go_attack/match/adv-checkpoints/33-extra/sgfs/298DA53FEAF14D4B.sgfs",
-                    "/nas/ucb/ttseng/go_attack/match/adv-checkpoints/33-extra/sgfs/2A02D8CCF5291DAB.sgfs"
+                "_path_comment": "Computed by `grep -n cp505-v1 /nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/* | shuf | head -n 6 | cut -f1,2 -d:`",
+                "paths_with_line_num": [
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/68970420A37B288E.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/9900E1AA3223E803.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/F73C301340CB2C94.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/8A89BB10D44F759F.sgfs",
+                        "line": 7
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/04541438A78DF265.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/7E2F2D69066744F8.sgfs",
+                        "line": 5
+                    }
                 ],
                 "max_games": 10,
                 "adversary": "34.1 million training steps, 600 visits",
@@ -29,26 +48,56 @@ export const pages: object =
                 ]
             },
             {
-                "title": "KataGo with 64 visits (level of top world professionals)",
-                "dir_name": "64_visits",
+                "title": "KataGo with 8 visits (level of top 750 player)",
+                "dir_name": "8_visits",
                 "server": "dqn.ist.berkeley.edu",
-                "_path_comment": "Computed by `grep -l v=8192 * | head -n 10` in /nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs, see https://www.notion.so/chaiberkeley/match-cp505-64-vs-adv-1_to_8192-39e0e303cd3f45199f4ce638c92556a5 for experiment log",
-                "paths": [
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/033FE05C5431ED13.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/048A6592BB515609.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/0FF3484FD5147146.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/14F7EEBACD86547C.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/16E93C54A1C3773E.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/187A346B3CC632E1.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/1CEF0F7800D4E196.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/1DF2F4ED5B859942.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/1EEA60F118BBB86C.sgfs",
-                    "/nas/ucb/tony/go-attack/matches/cp505-v64-vs-adv-1-to-8192/sgfs/2172599E22680D06.sgfs"
+                "_path_comment": "Computed by `grep -n cp505-v8] /nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/* | shuf | head -n 10 | cut -f1,2 -d:`",
+                "paths_with_line_num": [
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/5157F816018CB4D4.sgfs",
+                    "line": 1
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/F6DBA08D32F3161D.sgfs",
+                    "line": 2
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/2D7B37D38A30BFF5.sgfs",
+                    "line": 2
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/8EEBABA9C5B3A7FC.sgfs",
+                    "line": 2
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/4876135715F8EF63.sgfs",
+                    "line": 1
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/DC2248371CC26E2A.sgfs",
+                    "line": 1
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/81BFB902057EAD6B.sgfs",
+                    "line": 4
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/255D65B54C80B63C.sgfs",
+                    "line": 2
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/9472DACCBBF272FB.sgfs",
+                    "line": 4
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/A262DF8E9F1DB313.sgfs",
+                    "line": 1
+                  }
                 ],
                 "max_games": 10,
-                "adversary": "34.1 million training steps, 8192 visits",
-                "victim": "Latest, 64 visits",
-                "description": ["With 64 visits, KataGo's <code>Latest</code> network plays at the level of a  <a href=\"https://arxiv.org/pdf/2211.00241.pdf#page=17\">top-20 human professional</a>. We achieve a win rate of 48% against this victim simply by increasing the number of adversary visits to 8192. The adversary wins by the same qualitative strategy of staking out a corner, but plays significantly more stones in the victim's territory. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
+                "adversary": "34.1 million training steps, 200 visits, recursive modeling",
+                "victim": "Latest, 8 visits",
+                "description": ["With 8 visits, KataGo's <code>Latest</code> network plays at the level of a  <a href=\"https://arxiv.org/pdf/2211.00241.pdf#page=17\">top-750 human professional</a>. We achieve a win rate of 87.8% against this victim by modeling the victim perfectly during the adversary's search. The adversary wins by the same strategy of staking out a corner. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
             },
             {
                 "title": "Hardened KataGo without search (level of top 100 European player)",
@@ -184,9 +233,9 @@ export const pages: object =
         ]
     },
     "game-analysis": {
-	    "title": "Game Analysis",
-	    "description": [],
-	    "content": [
+        "title": "Game Analysis",
+        "description": [],
+        "content": [
             {
                 "title": "Qualitative analysis of adversary behavior",
                 "dir_name": "qualitative",
@@ -205,12 +254,12 @@ export const pages: object =
                     "Until the adversary plays <a onclick='setMove(`qualitative`, 189)'>move 189</a>, the victim could still save that cycle group, and in turn still win by a huge margin. There are straightforward moves to do so that would be trivial to find for any human playing at the victim's normal level. Even a human who has only played for a few months or less might find them. For instance, on 189 it could have instead played at the place marked 'A.' But after 189, it is impossible to escape, and the game is reversed. The victim seems to have been unable to detect the danger. Play continues for another 109 moves but there is no chance for the victim (nor would there be for a human player) to get out of the massive deficit it was tricked into."
                 ]
             },
-	        {
-		        "title": "How the victim's predicted win rate varies over time",
+            {
+                "title": "How the victim's predicted win rate varies over time",
                 "dir_name": "win-rate",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
-                    "/nas/ucb/norabelrose/latest@1600-dragonslayer-fixed/13B12C1F869DEB8C-cleaned.sgf"
+                    "/nas/ucb/tony/go-attack/manual-games/nora-analysis-13B12C1F869DEB8C-cleaned-fixed.sgf"
                 ],
                 "max_games": 10,
                 "adversary": "494 million training steps, 200 visits",
@@ -218,7 +267,118 @@ export const pages: object =
                 "description": [
                     "In this game, we find the victim's predicted win rate oscillates several times before the victim's group is captured at <a onclick='setMove(`win-rate`, 207)'>move 207</a>. At <a onClick='setMove(`win-rate`, 196)'>move 196</a>, the victim predicted it would win with 88% confidence, yet at its next turn at <a onClick='setMove(`win-rate`, 198)'>move 198</a> it has gone down to a 2% win rate prediction. It grows more optimistic by <a onClick='setMove(`win-rate`, 202)'>move 202</a>, predicting a 17% win rate, and by <a onclick='setMove(`win-rate`, 204)'>move 204</a>, the victim predicts it will win with an impressive 98% confidence. Yet at its next turn on <a onClick='setMove(`win-rate`, 206)'>move 206</a>, its predicted win rate has dropped to less than 1%. After the capture on the following turn, the victim (correctly) predicts a <1% win rate until the end."
                 ]
-	        }
+            }
+        ]
+    },
+    "baseline-attack": {
+        "title": "Baseline attacks",
+        "description": ["In this section we examine simple, no-learning attacks. These test the robustness of KataGo to some types of unsophisticated but likely out-of-distribution play. We find these attacks are generally ineffective against the hardened version of KataGo, although the mirror go attack still gets some wins at low visits. Overall, to find consistent weaknesses, a learning-based approach like ours seems necessary."],
+        "content": [
+            {
+                "title": "Edge attack against KataGo",
+                "dir_name": "edge_vs_cp505",
+                "server": "dqn.ist.berkeley.edu",
+                "paths_with_line_num": [
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-b-vs-edge.sgfs",
+                        "line": 70
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-b-vs-edge.sgfs",
+                        "line": 96
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-b-vs-edge.sgfs",
+                        "line": 32
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-b-vs-edge.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-w-vs-edge.sgfs",
+                        "line": 88
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-w-vs-edge.sgfs",
+                        "line": 117
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-w-vs-edge.sgfs",
+                        "line": 21
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-w-vs-edge.sgfs",
+                        "line": 123
+                    }
+                ],
+                "max_games": 8,
+                "adversary": "Edge attack",
+                "victim": "Latest, 8 visits",
+                "description": ["We tested a hard-coded \"edge attack\" adversarial policy inspired by the behavior of one of our early trained adversaries. The policy plays random legal moves in the outermost squares of the board. It is able to achieve a win rate of about 50% against <code>Latest</code> when <code>Latest</code> is playing as black with at most 8 visits, and a win rate of 13.8% against <code>Latest</code> playing as black with 32 visits. When <code>Latest</code> plays as white with at most 8 visits, the attack's win rate drops to about 5%."]
+            },
+            {
+                "title": "Edge attack against hardened KataGo",
+                "dir_name": "edge_vs_cp505h",
+                "server": "dqn.ist.berkeley.edu",
+                "paths_with_line_num": [
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505h-v1-w-vs-edge.sgfs",
+                        "line": 83
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505h-v1-w-vs-edge.sgfs",
+                        "line": 34
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505h-v1-b-vs-edge.sgfs",
+                        "line": 42
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505h-v1-b-vs-edge.sgfs",
+                        "line": 154
+                    }
+                ],
+                "max_games": 4,
+                "adversary": "Edge attack",
+                "victim": "Latest, no search, pass-alive defense",
+                "description": ["The edge attack no longer works against <code>Latest</code> with the pass-alive defense applied, even when <code>Latest</code> plays with no search."]
+            },
+            {
+                "title": "Mirror Go against KataGo",
+                "dir_name": "mirror_vs_cp505",
+                "server": "dqn.ist.berkeley.edu",
+                "paths_with_line_num": [
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v1-b-vs-mirror.sgfs",
+                        "line": 34
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v1-b-vs-mirror.sgfs",
+                        "line": 124
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v1-b-vs-mirror.sgfs",
+                        "line": 10
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v1-b-vs-mirror.sgfs",
+                        "line": 158
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v1-b-vs-mirror.sgfs",
+                        "line": 101
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v1-b-vs-mirror.sgfs",
+                        "line": 83
+                    }
+                ],
+                "max_games": 6,
+                "adversary": "Mirror Go",
+                "victim": "Latest, no search",
+                "description": ["Another hard-coded strategy we test is Mirror Go, a classic novice strategy for white in which white plays the opponent's last move reflected about the diagonal. Mirror Go wins a few games against <code>Latest</code> as well, with a 7.5% win rate against <code>Latest</code> with no search and a 1.9% win rate against <code>Latest</code> with 32 visits."]
+            }
         ]
     }
 }
