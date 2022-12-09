@@ -40,6 +40,7 @@
         display: flex;
         position: relative;
         top: -3vh;
+        margin-top: 2vw;
     }
     .annotation-item {
         align-self: flex-start;
@@ -64,8 +65,9 @@
     p {
         font-size: 18px;
         align-self: center;
-        margin: 2vw;
+        margin: 0.5vw;
         max-width: min(90vw, 800px);
+        text-align: justify;
     }
     .board-wrapper {
         display: flex;

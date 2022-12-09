@@ -105,6 +105,7 @@
         max-height: 1.5em;
     }
     .table-wrapper {
+        margin: 2vw;
         overflow-x: auto;
     }
     table {
