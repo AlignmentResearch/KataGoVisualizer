@@ -13,6 +13,7 @@ dtale = {editable = true, ref = "master", git = "https://github.com/UFO-101/dtal
 plotly = "*"
 statsmodels = "*"
 tbparse = "*"
+go-attack-utils = {path = "./../go_attack_utils"}
 
 [dev-packages]
 black = "*"

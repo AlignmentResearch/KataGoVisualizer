@@ -34,7 +34,7 @@ def load_and_parse_data(data_source, fast_parse):
     Errors in the parsing-server will be sent in the response and displayed in the UI.
     """
     delete_dtale_instance()  # Each DataFrame has a new Dtale instance
-    address = ("parsing-server", 6536)
+    address = ("localhost", 6536)
     conn = Client(address, authkey=b"secret password")
     conn.send((data_source, fast_parse))
     print(f"Sent request: data_source={data_source}, fast_parse={fast_parse}")

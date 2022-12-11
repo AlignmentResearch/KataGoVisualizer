@@ -1,14 +1,18 @@
 <script lang="ts">
     import { fade } from "svelte/transition";
     const authors: Map<string, string> = new Map([
-        ["Tony Wang", "https://terveisin.tw/"],
-        ["Adam Gleave", "https://www.gleave.me/"],
+        ["Tony Wang*", "https://terveisin.tw/"],
+        ["Adam Gleave*", "https://www.gleave.me/"],
         ["Nora Belrose", "https://twitter.com/norabelrose"],
         ["Tom Tseng", "https://www.tomhmtseng.com/"],
         ["Joseph Miller", "https://alignmentfund.org/author/joseph-miller/"],
         [
             "Michael D Dennis",
             "https://scholar.google.com/citations?user=WXXu26AAAAAJ&hl=en&authuser=1",
+        ],
+        [
+            "Kellin Pelrine",
+            "https://scholar.google.com/citations?user=_s2HT_0AAAAJ&hl=en",
         ],
         [
             "Yawen Duan",
@@ -36,9 +40,8 @@
     </a>
 </div> -->
 <h1 in:fade style="text-align: center;">
-    Adversarial Policies Beat Professional-Level Go AIs
+    Adversarial Policies Beat Superhuman Go AIs
 </h1>
-
 <!-- <div>
     <div class="authors-list">
         {#each [...authors] as [name, link]}
@@ -46,11 +49,10 @@
         {/each}
     </div>
 </div> -->
+
 <style>
     h1 {
         font-size: 2em;
-        margin-top: 6vh;
-        margin-bottom: 6vh;
     }
     .authors-list {
         max-width: 700px;
