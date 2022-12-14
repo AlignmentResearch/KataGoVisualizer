@@ -123,6 +123,8 @@ def parse_game_str_to_dict(
         sgf_str: The string to parse.
         fast_parse: Include additional fields that are slower to extract
             or generally less useful.
+        victim_color: Which color is the victim (for SGFs whose PB and PW fields
+            don't label the adversary or victim).
 
     Returns:
         Dictionary containing game_info.
