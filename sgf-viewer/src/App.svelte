@@ -60,7 +60,8 @@
     p {
         font-size: 18px;
         align-self: center;
-        margin: 2vw;
+        margin: 0.5vw;
         max-width: min(90vw, 800px);
+        text-align: justify;
     }
 </style>

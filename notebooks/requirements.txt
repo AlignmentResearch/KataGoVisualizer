@@ -1,4 +1,4 @@
-./../go_attack_utils
+-e ./../go_attack_utils
 
 # For Jupyter notebooks
 ipykernel

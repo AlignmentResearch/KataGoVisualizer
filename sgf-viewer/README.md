@@ -10,7 +10,19 @@ Recommended dev environment is VSCode with the official Svelte extension.
 
 # Preparing Data
 
-The text content of the site is determined by the `pages` object in `src/content.ts`. This object also specifies the path of `sgf` files on the CHAI `nas` filesystem. To automatically download the files to the correct locations in `public`, run the script `prepare-data/prepare_data.py` (see the script for full instructions). You will first need to `pip install -e go_attack_utils` from the root of the repository.
+The text content of the site is determined by the `pages` object in `src/content.ts`.
+This object also specifies the path of `sgf` files on the CHAI `nas` filesystem.
+To automatically download the files to the correct locations in `public`,
+run the script `prepare_data/prepare_data.py` (see the script for full instructions).
 
-To run the script, you'll want to use python=3.9+ and install the
-`requirements.txt` while having your cwd as the `prepare-data` directory.
+You will first need to `pip install -e go_attack_utils` from the root of the repository.
+
+One tip to make downloading files faster is to piggyback
+off an existing ssh connection to `dqn`.
+To enable piggybacking you can add the following lines to your `.ssh/config`:
+```
+host *
+  ControlMaster auto
+  ControlPath ~/.ssh/ssh_mux_%h_%p_%r
+```
+See https://stackoverflow.com/a/20410383/1337463 for details.
