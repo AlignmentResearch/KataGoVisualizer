@@ -150,7 +150,13 @@ def parse_game_str_to_dict(
     ), f"Game doesn't have victim: path={path}, line_number={line_number}"
 
     parts = pathlib.Path(path).parts
-    training = "eval" if "eval" in parts else "train" if "selfplay" in parts else None
+    training = None
+    if "eval" in parts:
+        training = "eval"
+    elif "selfplay" in parts:
+        training = "train"
+    elif "gatekeepersgf" in parts:
+        training = "gating"
 
     if victim_color is None:
         victim_color = {b_name: "b", w_name: "w"}.get(
@@ -195,12 +201,17 @@ def parse_game_str_to_dict(
     if win_color is None:
         adv_minus_victim_score = 0
     else:
-        win_score = (
-            float(result.split("+")[-1])
+        win_score_str = (
+            result.split("+")[-1]
             if "+" in result
             # Sgfs for manual games can have a space instead of a +
-            else float(result.split(" ")[-1])
+            else result.split(" ")[-1]
         )
+        if win_score_str == "R":
+            # Resignation
+            win_score = 0
+        else:
+            win_score = float(win_score_str)
         adv_minus_victim_score = win_score if adv_color == win_color else -win_score
     adv_steps = (
         extract_re(r"\-s([0-9]+)\-", adv_name)
