@@ -2,7 +2,7 @@
 # See https://docs.netlify.com/routing/redirects/
 
 # Redirect old domain to new domain
-https://goattack.alignmentfund.org/* https://goattack.far.ai/:splat 301
+https://goattack.alignmentfund.org/* https://goattack.far.ai/:splat 301!
 
 # Redirect all paths to base URL
 /* /index.html 200
