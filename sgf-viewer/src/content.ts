@@ -47,7 +47,7 @@ export const pages: object =
                     "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#page=18\">strength of a top-100 European professional</a>. We trained an adversary that wins 99.8% of the time against this victim<sup>1</sup>. Our adversary gets the victim to form a large circular structure, and then tricks the victim into allowing the circular structure to be killed. See the <a href=\"/game-analysis#contents\">\"Game Analysis\"</a> tab for a more in depth analysis of this adversarial strategy.",
                     "<sup>[1]</sup> The games below are actually against a version of <code>Latest</code> that was patched to be immune to a simpler <a href=\"/pass-based-attack#contents\">pass-based attack</a>. We applied this patch to the victim to force our adversary to learn a more interesting attack. The patch is a hardcoded defense that forbids the victim from passing until it has no more legal moves outside its territory. We call the patched victim <code>Latest</code><sub><code>def</code></sub>. Because we limit the victim's passing, games are usually played out to the end, <a href=\"https://archive.ph/xmPrw#:~:text=(if%20SelfPlayOpts%20is%20Enabled)\">terminating automatically</a> once all points belong to a pass-alive-group or pass-alive-territory."
                 ],
-		"_comment": "Snapshot at archive.ph is from https://lightvector.github.io/KataGo/rules.html -- using in case rules change semantics in future versions of KataGo"
+                "_comment": "Snapshot at archive.ph is from https://lightvector.github.io/KataGo/rules.html -- using in case rules change semantics in future versions of KataGo"
             },
             {
                 "title": "KataGo with 2048 visits (superhuman)",
@@ -99,8 +99,8 @@ export const pages: object =
                 "max_games": 10,
                 "adversary": "498 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, 2048 visits",
-                "description": ["With 2048 visits, KataGo's <code>Latest</code> network <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#page=19\">plays at a superhuman level</a>. Nonetheless, our adversary still achieves a 77.6% win rate against <code>Latest</code> and a 72.4\% win rate against <code>Latest</code><sub><code>def</code></sub>. Games against <code>Latest</code><sub><code>def</code></sub> are shown below."],
-            },
+                "description": ["With 2048 visits, KataGo's <code>Latest</code> network <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#page=19\">plays at a superhuman level</a>. Nonetheless, our adversary still achieves a 77.6% win rate against <code>Latest</code> and a 72.4% win rate against <code>Latest</code><sub><code>def</code></sub>. Games against <code>Latest</code><sub><code>def</code></sub> are shown below."]
+            }
         ]
     },
     "game-analysis": {
@@ -143,7 +143,7 @@ export const pages: object =
     "pass-based-attack": {
         "title": "Pass-based Attack",
         "description": [
-            "Our initial attempts at attacking KataGo resulted in adversaries that exploited KataGo's passing behavior. These pass-based adversaries trick KataGo into passing when it shouldn't. While this attack is effective against victims which do not use tree-search, it stops working once victims are able to use even a small amount of tree-search. We developed the pass-hardening defense so that our adversaries would not get stuck learning this pass-exploit. This worked surprisingly well &mdash; training against pass-hardened victims resulted in our adversaries learning <a href=\"/adversarial-policy-katago#contents\">an alternate strategy that works even in the high search regime.</a>",
+            "Our initial attempts at attacking KataGo resulted in adversaries that exploited KataGo's passing behavior. These pass-based adversaries trick KataGo into passing when it shouldn't. While this attack is effective against victims which do not use tree-search, it stops working once victims are able to use even a small amount of tree-search. We developed the pass-hardening defense so that our adversaries would not get stuck learning this pass-exploit. This worked surprisingly well &mdash; training against pass-hardened victims resulted in our adversaries learning <a href=\"/adversarial-policy-katago#contents\">an alternate strategy that works even in the high search regime.</a>"
         ],
         "content": [
             {
@@ -289,50 +289,51 @@ export const pages: object =
     },
     "baseline-attack": {
         "title": "Baseline Attacks",
-        "description": ["In this section we examine simple, no-learning attacks. These test the robustness of KataGo to some types of unsophisticated but likely out-of-distribution play. We find these attacks are generally ineffective against the hardened version of KataGo, although the mirror go attack still gets some wins at low visits. Overall, to find consistent weaknesses, a learning-based approach like ours seems necessary."],
+        "description": ["In this section we examine simple, no-learning attacks. These test the robustness of KataGo to some types of unsophisticated but likely out-of-distribution play. We find these attacks are generally ineffective against the hardened version of KataGo, although the mirror Go attack still gets some wins at low visits. Overall, to find consistent weaknesses, a learning-based approach like ours seems necessary."],
         "content": [
             {
                 "title": "Edge attack against KataGo",
                 "dir_name": "edge_vs_cp505",
                 "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "The games in each of these .sgfs files were run sequentially, so sampling lines from these files in order is OK.",
                 "paths_with_line_num": [
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-b-vs-edge.sgfs",
-                        "line": 70
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-B-vs-edge.sgfs",
+                        "line": 1
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-b-vs-edge.sgfs",
-                        "line": 96
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-B-vs-edge.sgfs",
+                        "line": 2
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-b-vs-edge.sgfs",
-                        "line": 32
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-B-vs-edge.sgfs",
+                        "line": 3
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-b-vs-edge.sgfs",
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-B-vs-edge.sgfs",
                         "line": 4
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-w-vs-edge.sgfs",
-                        "line": 88
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-W-vs-edge.sgfs",
+                        "line": 1
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-w-vs-edge.sgfs",
-                        "line": 117
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-W-vs-edge.sgfs",
+                        "line": 2
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-w-vs-edge.sgfs",
-                        "line": 21
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-W-vs-edge.sgfs",
+                        "line": 3
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v8-w-vs-edge.sgfs",
-                        "line": 123
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-W-vs-edge.sgfs",
+                        "line": 4
                     }
                 ],
                 "max_games": 8,
                 "adversary": "Edge attack",
-                "victim": "<code>Latest</code>, 8 visits",
-                "description": ["We tested a hard-coded \"edge attack\" adversarial policy inspired by the behavior of our pass-based adversaries. The policy plays random legal moves in the outermost squares of the board, and passes if passing results in an instant win. It is able to achieve a win rate of about 50% against <code>Latest</code> when <code>Latest</code> is playing as black with at most 8 visits, and a win rate of 13.8% against <code>Latest</code> playing as black with 32 visits. When <code>Latest</code> plays as white with at most 8 visits, the attack's win rate drops to about 5%."]
+                "victim": "<code>Latest</code>, 4 visits",
+                "description": ["We tested a hard-coded \"edge attack\" adversarial policy inspired by the behavior of our pass-based adversaries. The policy plays random legal moves in the outermost squares of the board, and passes if passing results in an instant win. It is able to achieve a win rate of about 55% against <code>Latest</code> when <code>Latest</code> is playing as black with at most 4 visits, and a win rate of 16.0% against <code>Latest</code> playing as black with 16 visits. When <code>Latest</code> plays as white with at most 4 visits, the attack's win rate drops to about 2%."]
             },
             {
                 "title": "Edge attack against hardened KataGo",
@@ -340,20 +341,20 @@ export const pages: object =
                 "server": "dqn.ist.berkeley.edu",
                 "paths_with_line_num": [
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505h-v1-w-vs-edge.sgfs",
-                        "line": 83
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v1-W-vs-edge.sgfs",
+                        "line": 1
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505h-v1-w-vs-edge.sgfs",
-                        "line": 34
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v1-W-vs-edge.sgfs",
+                        "line": 2
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505h-v1-b-vs-edge.sgfs",
-                        "line": 42
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v1-B-vs-edge.sgfs",
+                        "line": 1
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505h-v1-b-vs-edge.sgfs",
-                        "line": 154
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v1-B-vs-edge.sgfs",
+                        "line": 2
                     }
                 ],
                 "max_games": 4,
@@ -367,34 +368,34 @@ export const pages: object =
                 "server": "dqn.ist.berkeley.edu",
                 "paths_with_line_num": [
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v1-b-vs-mirror.sgfs",
-                        "line": 34
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-W-vs-mirror.sgfs",
+                        "line": 38
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v1-b-vs-mirror.sgfs",
-                        "line": 124
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-B-vs-mirror.sgfs",
+                        "line": 60
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v1-b-vs-mirror.sgfs",
-                        "line": 10
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-B-vs-mirror.sgfs",
+                        "line": 65
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v1-b-vs-mirror.sgfs",
-                        "line": 158
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-W-vs-mirror.sgfs",
+                        "line": 1
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v1-b-vs-mirror.sgfs",
-                        "line": 101
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-W-vs-mirror.sgfs",
+                        "line": 2
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221122-rescored/renamed/cp505-v1-b-vs-mirror.sgfs",
-                        "line": 83
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-B-vs-mirror.sgfs",
+                        "line": 1
                     }
                 ],
                 "max_games": 6,
                 "adversary": "Mirror Go",
-                "victim": "<code>Latest</code>, no search",
-                "description": ["Another hard-coded strategy we test is Mirror Go, a classic novice strategy for white in which white plays the opponent's last move reflected about the diagonal. Mirror Go wins a few games against <code>Latest</code> as well, with a 7.5% win rate against <code>Latest</code> with no search and a 1.9% win rate against <code>Latest</code> with 32 visits."]
+                "victim": "<code>Latest</code>, 32 visits",
+                "description": ["Another hard-coded strategy we test is Mirror Go, a classic novice strategy in which the novice plays the opponent's last move reflected about the diagonal. Mirror Go wins a few games against <code>Latest</code> as well, with a win rate of about 1.4% against <code>Latest</code> up to 32 visits. (The games displayed are non-randomly selected to show some of the wins achieved by Mirror Go.)"]
             }
         ]
     }
