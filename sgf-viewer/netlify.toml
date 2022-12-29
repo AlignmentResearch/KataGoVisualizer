@@ -1,5 +1,14 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
 [[redirects]]
   from = "https://goattack.alignmentfund.org/*"
   to = "https://goattack.far.ai/:splat"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/foobar"
+  to = "/test"
+  status = 301
