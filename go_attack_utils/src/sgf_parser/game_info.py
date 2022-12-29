@@ -150,7 +150,13 @@ def parse_game_str_to_dict(
     ), f"Game doesn't have victim: path={path}, line_number={line_number}"
 
     parts = pathlib.Path(path).parts
-    training = "eval" if "eval" in parts else "train" if "selfplay" in parts else None
+    training = None
+    if "eval" in parts:
+        training = "eval"
+    elif "selfplay" in parts:
+        training = "train"
+    elif "gatekeepersgf" in parts:
+        training = "gating"
 
     if victim_color is None:
         victim_color = {b_name: "b", w_name: "w"}.get(
@@ -192,23 +198,31 @@ def parse_game_str_to_dict(
     )
     victim_visits = {"b": b_visits, "w": w_visits}[victim_color]
     adv_visits = {"b": b_visits, "w": w_visits}[adv_color]
+    adv_komi = komi * {"w": 1, "b": -1}[adv_color]
     if win_color is None:
         adv_minus_victim_score = 0
     else:
-        win_score = (
-            float(result.split("+")[-1])
+        win_score_str = (
+            result.split("+")[-1]
             if "+" in result
             # Sgfs for manual games can have a space instead of a +
-            else float(result.split(" ")[-1])
+            else result.split(" ")[-1]
         )
-        adv_minus_victim_score = win_score if adv_color == win_color else -win_score
+        if win_score_str == "R":
+            # Resignation
+            win_score = None
+            adv_minus_victim_score = None
+            adv_minus_victim_score_wo_komi = None
+        else:
+            win_score = float(win_score_str)
+            adv_minus_victim_score = win_score if adv_color == win_color else -win_score
+            adv_minus_victim_score_wo_komi = adv_minus_victim_score - adv_komi
     adv_steps = (
         extract_re(r"\-s([0-9]+)\-", adv_name)
         or extract_re(r"t0\-s([0-9]+)\-", "/".join(parts[-3:]))
         or 0
     )
     adv_samples = extract_re(r"\-d([0-9]+)", adv_name) or 0
-    adv_komi = komi * {"w": 1, "b": -1}[adv_color]
 
     parsed_info = {
         "b_name": b_name,
@@ -240,7 +254,7 @@ def parse_game_str_to_dict(
         "komi": komi,
         "adv_komi": adv_komi,
         "adv_minus_victim_score": adv_minus_victim_score,
-        "adv_minus_victim_score_wo_komi": adv_minus_victim_score - adv_komi,
+        "adv_minus_victim_score_wo_komi": adv_minus_victim_score_wo_komi,
         # Other info
         "train_status": training,
         "board_size": board_size,
