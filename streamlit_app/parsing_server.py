@@ -16,7 +16,6 @@ def load_and_parse_games(path: str, fast_parse: bool = False):
         return pd.DataFrame()
     container_path = MOUNT_DIR / Path(path).relative_to(READ_DIR)
     sgf_paths = game_info.find_sgf_files(container_path)
-    sgf_paths = [p for p in sgf_paths if "gatekeepersgf" not in p.parts]
     print(f"Found {len(sgf_paths)} SGF files in {container_path}")
     parsed_dicts = game_info.read_and_parse_all_files(
         sgf_paths, fast_parse=fast_parse, processes=min(128, len(sgf_paths) // 2)
