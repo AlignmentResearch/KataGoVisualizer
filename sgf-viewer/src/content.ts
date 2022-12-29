@@ -368,34 +368,34 @@ export const pages: object =
                 "server": "dqn.ist.berkeley.edu",
                 "paths_with_line_num": [
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-W-vs-mirror.sgfs",
-                        "line": 38
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v32-W-vs-mirror.sgfs",
+                        "line": 56
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-B-vs-mirror.sgfs",
-                        "line": 60
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v32-B-vs-mirror.sgfs",
+                        "line": 18
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-B-vs-mirror.sgfs",
-                        "line": 65
-                    },
-                    {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-W-vs-mirror.sgfs",
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v32-W-vs-mirror.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-W-vs-mirror.sgfs",
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v32-W-vs-mirror.sgfs",
                         "line": 2
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-B-vs-mirror.sgfs",
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v32-B-vs-mirror.sgfs",
                         "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v32-B-vs-mirror.sgfs",
+                        "line": 2
                     }
                 ],
                 "max_games": 6,
                 "adversary": "Mirror Go",
                 "victim": "<code>Latest</code>, 32 visits",
-                "description": ["Another hard-coded strategy we test is Mirror Go, a classic novice strategy in which the novice plays the opponent's last move reflected about the diagonal. Mirror Go wins a few games against <code>Latest</code> as well, with a win rate of about 1.4% against <code>Latest</code> up to 32 visits. (The games displayed are non-randomly selected to show some of the wins achieved by Mirror Go.)"]
+                "description": ["Another hard-coded strategy we test is Mirror Go, a classic novice strategy in which the novice plays the opponent's last move reflected about the diagonal. Mirror Go wins a few games against <code>Latest</code> as well, with a win rate of about 6.3% against <code>Latest</code> at 1 visit and about 0.7% at 32 visits. (The games displayed are non-randomly selected to show some of the wins achieved by Mirror Go.)"]
             }
         ]
     }
