@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "https://goattack.alignmentfund.org/*"
+  to = "https://goattack.far.ai/:splat"
+  status = 301
+  force = true
