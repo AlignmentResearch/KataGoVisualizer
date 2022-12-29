@@ -12,3 +12,6 @@ build/
 .ipynb_checkpoints/
 
 notebooks/notebooks/**/*.pgf
+
+# Local Netlify folder
+.netlify
