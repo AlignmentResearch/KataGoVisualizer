@@ -21,3 +21,9 @@ services:
     cap_add:
       - SYS_PTRACE  # to enable gdb debugging
     tty: true
+    ports:
+      # Host will chose a random available port. To find the port allocated, run
+      # docker-compose -f notebooks/docker-compose.yml port notebooks 8888
+      - 127.0.0.1::8888
+    working_dir: /KataGoVisualizer
+    entrypoint: "jupyter-notebook --allow-root --ip=*"
