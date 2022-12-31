@@ -1,0 +1,3 @@
+[submodule "submodules/KataGo-pytorch-rewrite"]
+	path = submodules/KataGo-pytorch-rewrite
+	url = https://github.com/lightvector/KataGo.git
