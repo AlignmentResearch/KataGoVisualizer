@@ -16,6 +16,9 @@ scipy
 numpy
 pandas
 
+# To parse Go game SGF files
+sgfmill
+
 # Plotting
 matplotlib
 seaborn
