@@ -395,7 +395,7 @@ export const pages: object =
                 "max_games": 6,
                 "adversary": "Mirror Go",
                 "victim": "<code>Latest</code>, 32 visits",
-                "description": ["Another hard-coded strategy we test is Mirror Go, a classic novice strategy in which the novice plays the opponent's last move reflected about the diagonal. Mirror Go wins a few games against <code>Latest</code> as well, with a win rate of about 1.4% against <code>Latest</code> up to 32 visits. (The games displayed are non-randomly selected to show some of the wins achieved by Mirror Go.)"]
+                "description": ["Another hard-coded strategy we test is Mirror Go, a classic strategy in which the initiator repeatedly plays the opponent's last move reflected about the diagonal. Mirror Go wins a few games against <code>Latest</code> as well, with a win rate of about 1.4% against <code>Latest</code> up to 32 visits. (The games displayed are non-randomly selected to show some of the wins achieved by Mirror Go.)"]
             }
         ]
     },
