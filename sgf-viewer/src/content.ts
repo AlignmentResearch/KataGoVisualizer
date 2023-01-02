@@ -270,7 +270,7 @@ export const pages: object =
                 "adversary": "34.1 million training steps, 600 visits",
                 "victim": "Tony Wang (Author)",
                 "description": [
-                    "The same Go novice (Tony Wang) also managed to beat our pass-based adversary by a large margin of over 250 points. This demonstrates our pass-based adversary is also not generally capable. In the <a href=\"#amateur_vs_victim\">next section</a>, we attempt to mimic the adversarial policy to exploit the victim."
+                    "The same Go novice (Tony Wang) also managed to beat our pass-based adversary by a large margin of over 250 points. This demonstrates our pass-based adversary is also not generally capable. In the first game here (human = white) the adversary uses A-MCTS-S++, while in the second one (human = black) the adversary uses A-MCTS-S."
                 ]
             },
             {
