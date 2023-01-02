@@ -398,5 +398,52 @@ export const pages: object =
                 "description": ["Another hard-coded strategy we test is Mirror Go, a classic novice strategy in which the novice plays the opponent's last move reflected about the diagonal. Mirror Go wins a few games against <code>Latest</code> as well, with a win rate of about 1.4% against <code>Latest</code> up to 32 visits. (The games displayed are non-randomly selected to show some of the wins achieved by Mirror Go.)"]
             }
         ]
+    },
+    "training-sample": {
+        "title": "Training Sample Games",
+        "description": [
+            "We present here sample games throughout the training process, against <code>Latest</code><sub><code>def</code></sub> with either no search or 2048 visits.",
+            "10 games against each victim are randomly sampled at every 10% of the training process."
+        ],
+        "content": [
+            {
+                "title": "10%",
+                "dir_name": "no_search_hardened",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Computed by `grep -n cp505h-v1 /nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/* | shuf | head -n 6 | cut -f1,2 -d:`",
+                "paths_with_line_num": [
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/CDEA87E336954AF0.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/3AC0B3B4A652F8B4.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/82174235A50699C3.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/A9F0F3DF9A86AEB5.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/0793EAB13C28E292.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/1FF2A995D6DFD75E.sgfs",
+                        "line": 6
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "498 million training steps, 600 visits",
+                "victim": "<code>Latest</code><sub><code>def</code></sub>, no search",
+                "description": [
+                    
+                ],
+            },
+        ]
     }
 }
