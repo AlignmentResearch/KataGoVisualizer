@@ -1,13 +1,15 @@
 # To build, navigate to the *root* of this repo and run:
 # docker build . -f notebooks/Dockerfile -t humancompatibleai/katagovisualizer:notebooks
 
-FROM python:3.10-slim
+FROM nvidia/cuda:11.7.1-runtime-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install utilities
 RUN apt-get update -q \
   && apt-get install -y \
+  # python
+  python3.10-venv \
   # latex
   texlive-latex-extra \
   texlive-fonts-recommended \

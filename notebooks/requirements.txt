@@ -35,6 +35,7 @@ statsmodels
 beautifulsoup4
 black
 flake8
+GitPython
 isort
 ipywidgets
 jupyterlab
