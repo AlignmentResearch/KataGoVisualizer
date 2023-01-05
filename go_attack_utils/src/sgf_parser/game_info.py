@@ -201,6 +201,7 @@ def parse_game_str_to_dict(
     adv_komi = komi * {"w": 1, "b": -1}[adv_color]
     if win_color is None:
         adv_minus_victim_score = 0
+        adv_minus_victim_score_wo_komi = None
     else:
         win_score_str = (
             result.split("+")[-1]
