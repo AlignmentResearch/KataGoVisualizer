@@ -7,12 +7,12 @@
         ["Tom Tseng", "https://www.tomhmtseng.com/"],
         ["Joseph Miller", "https://far.ai/author/joseph-miller/"],
         [
-            "Michael D Dennis",
-            "https://scholar.google.com/citations?user=WXXu26AAAAAJ&hl=en&authuser=1",
-        ],
-        [
             "Kellin Pelrine",
             "https://scholar.google.com/citations?user=_s2HT_0AAAAJ&hl=en",
+        ],
+        [
+            "Michael D Dennis",
+            "https://scholar.google.com/citations?user=WXXu26AAAAAJ&hl=en&authuser=1",
         ],
         [
             "Yawen Duan",
