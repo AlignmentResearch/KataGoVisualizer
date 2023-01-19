@@ -289,7 +289,7 @@ export const pages: object =
     },
     "baseline-attack": {
         "title": "Baseline Attacks",
-        "description": ["In this section we examine simple, no-learning attacks. These test the robustness of KataGo to some types of unsophisticated but likely out-of-distribution play. We find these attacks are generally ineffective against the hardened version of KataGo, although the mirror Go attack still gets some wins at low visits. Overall, to find consistent weaknesses, a learning-based approach like ours seems necessary."],
+        "description": ["In this section we examine simple, no-learning attacks. These test the robustness of KataGo to some types of unsophisticated but likely out-of-distribution play. We find these attacks are generally ineffective against KataGo playing with search and against the hardened version of KataGo, although the mirror Go attack still gets some wins at low visits. Overall, to find consistent weaknesses, a learning-based approach like ours seems necessary."],
         "content": [
             {
                 "title": "Edge attack against KataGo",
@@ -298,42 +298,42 @@ export const pages: object =
                 "_path_comment": "The games in each of these .sgfs files were run sequentially, so sampling lines from these files in order is OK.",
                 "paths_with_line_num": [
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-B-vs-edge.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-katago-raw-20230113-163611/rescored/cp505-v1-B-vs-edge.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-B-vs-edge.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-katago-raw-20230113-163611/rescored/cp505-v1-B-vs-edge.sgfs",
                         "line": 2
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-B-vs-edge.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-katago-raw-20230113-163611/rescored/cp505-v1-B-vs-edge.sgfs",
                         "line": 3
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-B-vs-edge.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-katago-raw-20230113-163611/rescored/cp505-v1-B-vs-edge.sgfs",
                         "line": 4
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-W-vs-edge.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-katago-raw-20230113-163611/rescored/cp505-v1-W-vs-edge.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-W-vs-edge.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-katago-raw-20230113-163611/rescored/cp505-v1-W-vs-edge.sgfs",
                         "line": 2
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-W-vs-edge.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-katago-raw-20230113-163611/rescored/cp505-v1-W-vs-edge.sgfs",
                         "line": 3
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505-v4-W-vs-edge.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-katago-raw-20230113-163611/rescored/cp505-v1-W-vs-edge.sgfs",
                         "line": 4
                     }
                 ],
                 "max_games": 8,
                 "adversary": "Edge attack",
-                "victim": "<code>Latest</code>, 4 visits",
-                "description": ["We tested a hard-coded \"edge attack\" adversarial policy inspired by the behavior of our pass-based adversaries. The policy plays random legal moves in the outermost squares of the board, and passes if passing results in an instant win. It is able to achieve a win rate of about 55% against <code>Latest</code> when <code>Latest</code> is playing as black with at most 4 visits, and a win rate of 16.0% against <code>Latest</code> playing as black with 16 visits. When <code>Latest</code> plays as white with at most 4 visits, the attack's win rate drops to about 2%."]
+                "victim": "<code>Latest</code>, no search",
+                "description": ["We tested a hard-coded \"edge attack\" adversarial policy inspired by the behavior of our pass-based adversaries. The policy plays random legal moves in the outermost squares of the board, and passes if passing results in an instant win. It achieves a win rate of 45% against <code>Latest</code> when <code>Latest</code> is playing as black without search, but the win rate drops to 3.8% when <code>Latest</code> uses 4–32 visits. When <code>Latest</code> plays as white without search, the attack's win rate is only 2.7%, and the win rate is zero when <code>Latest</code> uses 4–32 visits."]
             },
             {
                 "title": "Edge attack against hardened KataGo",
@@ -341,19 +341,19 @@ export const pages: object =
                 "server": "dqn.ist.berkeley.edu",
                 "paths_with_line_num": [
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v1-W-vs-edge.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-pass-hardened-20230117-154153/rescored/cp505h-v1-W-vs-edge.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v1-W-vs-edge.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-pass-hardened-20230117-154153/rescored/cp505h-v1-W-vs-edge.sgfs",
                         "line": 2
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v1-B-vs-edge.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-pass-hardened-20230117-154153/rescored/cp505h-v1-B-vs-edge.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v1-B-vs-edge.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-pass-hardened-20230117-154153/rescored/cp505h-v1-B-vs-edge.sgfs",
                         "line": 2
                     }
                 ],
@@ -368,34 +368,34 @@ export const pages: object =
                 "server": "dqn.ist.berkeley.edu",
                 "paths_with_line_num": [
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-W-vs-mirror.sgfs",
-                        "line": 38
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-katago-raw-20230113-163611/rescored/cp505-v32-B-vs-mirror.sgfs",
+                        "line": 37
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-B-vs-mirror.sgfs",
-                        "line": 60
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-katago-raw-20230113-163611/rescored/cp505-v32-B-vs-mirror.sgfs",
+                        "line": 102
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-B-vs-mirror.sgfs",
-                        "line": 65
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-katago-raw-20230113-163611/rescored/cp505-v32-B-vs-mirror.sgfs",
+                        "line": 122
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-W-vs-mirror.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-katago-raw-20230113-163611/rescored/cp505-v32-W-vs-mirror.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-W-vs-mirror.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-katago-raw-20230113-163611/rescored/cp505-v32-W-vs-mirror.sgfs",
                         "line": 2
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/baseline-attack/20221227/rescored/cp505h-v32-B-vs-mirror.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/baseline-attack/ttseng-katago-raw-20230113-163611/rescored/cp505-v32-B-vs-mirror.sgfs",
                         "line": 1
                     }
                 ],
                 "max_games": 6,
                 "adversary": "Mirror Go",
                 "victim": "<code>Latest</code>, 32 visits",
-                "description": ["Another hard-coded strategy we test is Mirror Go, a classic novice strategy in which the novice plays the opponent's last move reflected about the diagonal. Mirror Go wins a few games against <code>Latest</code> as well, with a win rate of about 1.4% against <code>Latest</code> up to 32 visits. (The games displayed are non-randomly selected to show some of the wins achieved by Mirror Go.)"]
+                "description": ["Another hard-coded strategy we test is Mirror Go, a classic strategy in which the mirroring player plays the opponent's last move reflected about the diagonal. Mirror Go wins a few games against <code>Latest</code> as well, with a win rate of about 1.7% against <code>Latest</code> with 32 visits. (The games displayed are non-randomly selected to show the wins achieved by Mirror Go.)"]
             }
         ]
     }
