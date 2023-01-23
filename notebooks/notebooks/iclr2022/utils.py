@@ -44,7 +44,7 @@ def parse_for_match(df: pd.DataFrame) -> None:
 
     df.adv_win = df.adv_color == df.win_color
 
-    df.victim_visits = df.victim_name.str.extract(r'-v(\d+)').astype(int)
+    df.victim_visits = df.victim_name.str.extract(r"-v(\d+)").astype(int)
 
 
 def parse_sgfs(paths: Iterable[str]) -> pd.DataFrame:
