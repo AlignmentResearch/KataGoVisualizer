@@ -111,7 +111,7 @@ export const pages: object =
                 "dir_name": "qualitative",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
-                    "/nas/ucb/norabelrose/kellin-analysis-game-fixed.sgf"
+                    "/nas/ucb/ttseng/go_attack/backup/sgf-viewer-sgfs/kellin-analysis-game-fixed.sgf"
                 ],
                 "max_games": 10,
                 "adversary": "498 million training steps, 600 visits",
@@ -263,8 +263,8 @@ export const pages: object =
                 "dir_name": "amateur_vs_adv",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
-                    "/nas/ucb/josephmiller/tony-vs-adversary/sgfs/tony-black.sgfs",
-                    "/nas/ucb/josephmiller/tony-vs-adversary/sgfs/tony-white.sgfs"
+                    "/nas/ucb/ttseng/go_attack/backup/sgf-viewer-sgfs/tony-black.sgfs",
+                    "/nas/ucb/ttseng/go_attack/backup/sgf-viewer-sgfs/tony-white.sgfs"
                 ],
                 "max_games": 10,
                 "adversary": "34.1 million training steps, 600 visits",
@@ -278,7 +278,7 @@ export const pages: object =
                 "dir_name": "amateur_vs_victim",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
-                    "/nas/ucb/josephmiller/tony-vs-victim/sgfs/tony-neuralz06.sgfs"
+                    "/nas/ucb/ttseng/go_attack/backup/sgf-viewer-sgfs/tony-neuralz06.sgfs"
                 ],
                 "max_games": 10,
                 "adversary": "Tony Wang (Author)",
