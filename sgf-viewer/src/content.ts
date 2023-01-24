@@ -5,7 +5,7 @@ export const pages: object =
     "adversarial-policy-katago": {
         "title": "Adversarially Exploiting KataGo",
         "description": [
-            "We attack <a target=\"_blank\" href=\"https://github.com/lightvector/KataGo\">KataGo</a>, a state-of-the-art Go AI system, by training adversarial policies that play against frozen KataGo victims. Our attack achieves a &gt;99% win-rate when KataGo <a href=\"#no_search_hardened\">uses no tree-search</a>, and a &gt;77% win-rate when KataGo <a href=\"#2048_visits_hardened\">uses enough search to be superhuman</a>. Notably, our adversaries do not win by learning to play Go better than KataGo &mdash; in fact, our adversaries are easily <a href=\"/human-evaluation#amateur_vs_advh_497mil\">beaten by a human amateur</a>. Instead, our adversaries win by tricking KataGo into making serious blunders. Our results demonstrate that even superhuman AI systems may harbor surprising failure modes.",
+            "We attack <a target=\"_blank\" href=\"https://github.com/lightvector/KataGo\">KataGo</a>, a state-of-the-art Go AI system, by training adversarial policies that play against frozen KataGo victims. Our attack achieves a 100% win rate over 1000 games when KataGo <a href=\"#no_search_hardened\">uses no tree-search</a>, and a &gt;97% win rate when KataGo <a href=\"#4096_visits_hardened\">uses enough search to be superhuman</a>. Notably, our adversaries do not win by learning to play Go better than KataGo &mdash; in fact, our adversaries are easily <a href=\"/human-evaluation#amateur_vs_advh_497mil\">beaten by a human amateur</a>. Instead, our adversaries win by tricking KataGo into making serious blunders. Our results demonstrate that even superhuman AI systems may harbor surprising failure modes.",
             "All games are randomly selected unless otherwise specified. We primarily attack KataGo network checkpoint <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a>, which we dub <code>Latest</code> since it is the latest confidently rated KataGo network at the time of writing. For more information, see our <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf\">paper</a> and <a target=\"_blank\" href=\"https://github.com/HumanCompatibleAI/go_attack\">GitHub</a>."
         ],
         "content": [
@@ -13,35 +13,35 @@ export const pages: object =
                 "title": "KataGo without search (top-100 European player level)",
                 "dir_name": "no_search_hardened",
                 "server": "dqn.ist.berkeley.edu",
-                "_path_comment": "Computed by `grep -n cp505h-v1 /nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/* | shuf | head -n 6 | cut -f1,2 -d:`",
+                "_path_comment": "Computed by `grep -n cp505h-v1 /nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/* | shuf | head -n 6 | cut -f1,2 -d:`",
                 "paths_with_line_num": [
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/CDEA87E336954AF0.sgfs",
-                        "line": 2
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/C240D2DE4B3BBBE6.sgfs",
+                        "line": 9
                     },
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/3AC0B3B4A652F8B4.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/F14B57FB4A3522EE.sgfs",
+                        "line": 7
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/A36354486923B9BE.sgfs",
                         "line": 3
                     },
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/82174235A50699C3.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/0C9084416E51D058.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/FA57EC5F966F7D15.sgfs",
+                        "line": 7
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/4F13E50A81714B91.sgfs",
                         "line": 2
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/A9F0F3DF9A86AEB5.sgfs",
-                        "line": 3
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/0793EAB13C28E292.sgfs",
-                        "line": 2
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/1FF2A995D6DFD75E.sgfs",
-                        "line": 6
                     }
                 ],
                 "max_games": 10,
-                "adversary": "498 million training steps, 600 visits",
+                "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, no search",
                 "description": [
                     "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.D.1\">strength of a top-100 European professional</a>. We trained an adversary that wins 99.8% of the time against this victim<sup>1</sup>. Our adversary gets the victim to form a large circular structure, and then tricks the victim into allowing the circular structure to be killed. See the <a href=\"/game-analysis#contents\">\"Game Analysis\"</a> tab for a more in depth analysis of this adversarial strategy.",
@@ -50,56 +50,75 @@ export const pages: object =
                 "_comment": "Snapshot at archive.ph is from https://lightvector.github.io/KataGo/rules.html -- using in case rules change semantics in future versions of KataGo"
             },
             {
-                "title": "KataGo with 2048 visits (superhuman)",
-                "dir_name": "2048_visits_hardened",
+                "title": "KataGo with 4096 visits (superhuman)",
+                "dir_name": "4096_visits_hardened",
                 "server": "dqn.ist.berkeley.edu",
-                "_path_comment": "Computed by `grep -n cp505h-v2048 /nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/* | shuf | head -n 6 | cut -f1,2 -d:`",
+                "_path_comment": "Computed by `grep -n cp505h-v4096 /nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/* | shuf | head -n 10 | cut -f1,2 -d:`",
                 "paths_with_line_num": [
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/C67CEC1CBE0D110C.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/732A09F13C043EC6.sgfs",
                         "line": 2
                     },
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/140B61E20958D34E.sgfs",
-                        "line": 2
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/FDE67BC4EBF3B925.sgfs",
-                        "line": 6
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/FB9CCDE8CFA30860.sgfs",
-                        "line": 2
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/1699746B30810F31.sgfs",
-                        "line": 7
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/7F4399AD734E5858.sgfs",
-                        "line": 4
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/A1E32217EDBDA9B5.sgfs",
-                        "line": 5
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/79F771D48B203E64.sgfs",
-                        "line": 5
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/1D73164FB6B05D12.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/3D34AB2A44801730.sgfs",
                         "line": 9
                     },
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-s497m-eval-20221114-221825/sgfs/A90E6794DFA32722.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/E5C30F15C197A9F4.sgfs",
                         "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/2BC0E7D645F8DB6F.sgfs",
+                        "line": 5
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/FF58AF83EF1F6A88.sgfs",
+                        "line": 9
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/4FD7720AD7C8F513.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/680F95F38A4872F1.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/A5CD644B3E2E4719.sgfs",
+                        "line": 12
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/ADE19CD52436A275.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/3C8D77BF0F673F1C.sgfs",
+                        "line": 12
                     }
                 ],
                 "max_games": 10,
-                "adversary": "498 million training steps, 600 visits",
+                "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, 2048 visits",
-                "description": ["With 2048 visits, KataGo's <code>Latest</code> network <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.D.2\">plays at a superhuman level</a>. Nonetheless, our adversary still achieves a 77.6% win rate against <code>Latest</code> and a 72.4% win rate against <code>Latest</code><sub><code>def</code></sub>. Games against <code>Latest</code><sub><code>def</code></sub> are shown below."]
+                "description": ["With 4096 visits, KataGo's <code>Latest</code> network <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.D.2\">plays at a superhuman level</a>. Nonetheless, our adversary still achieves a 97.3% win rate against <code>Latest</code> and a 95.7% win rate against <code>Latest</code><sub><code>def</code></sub>. Games against <code>Latest</code><sub><code>def</code></sub> are shown below."]
+            },
+            {
+                "title": "KataGo with 10,000,000 visits",
+                "dir_name": "10mil_visits",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-0.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-1.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-2.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-3.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-4.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-5.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-6.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-7.sgf"
+                ],
+                "max_games": 8,
+                "adversary": "545 million training steps, 600 visits",
+                "victim": "<code>Latest</code>, 10,000,000 visits",
+                "description": ["Our adversary with 600 visits still achieves a 75.0% win rate against <code>Latest</code> with 10,000,000 visits, demonstrating that large amounts of search is not a practical defense against the adversary."]
             }
         ]
     },
@@ -114,7 +133,7 @@ export const pages: object =
                     "/nas/ucb/norabelrose/kellin-analysis-game-fixed.sgf"
                 ],
                 "max_games": 10,
-                "adversary": "498 million training steps, 600 visits",
+                "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, 1600 visits",
                 "description": [
                     "An expert-level (6 dan) human player on our team (Kellin Pelrine) analyzed the following game. It shows typical behavior and outcomes with an adversary trained on and playing a pass-hardened KataGo victim: the victim gains an early and soon seemingly insurmountable lead. The adversary sets a trap that would be easy for a human to see and avoid. But the victim is oblivious and collapses.",
@@ -139,6 +158,52 @@ export const pages: object =
                 ]
             }
         ]
+    },
+    "transfer": {
+      "title": "Transfer to ELF/Leela",
+      "description": [
+          "Our adversary apparently exploits a weakness common across several Go AI systems. We find that our attacks transfer zero-shot against against ELF OpenGo and Leela Zero, two other Go AI systems that can play at a superhuman level."
+      ],
+      "content": [
+          {
+              "title": "ELF OpenGo",
+              "dir_name": "elf",
+              "server": "dqn.ist.berkeley.edu",
+              "paths": [
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread0/sgfs/game-8.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread3/sgfs/game-6.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread0/sgfs/game-0.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread0/sgfs/game-1.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread0/sgfs/game-2.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread0/sgfs/game-3.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread0/sgfs/game-4.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread0/sgfs/game-5.sgf"
+              ],
+              "max_games": 8,
+              "adversary": "545 million training steps, 600 visits",
+              "victim": "ELF OpenGo, final network, 80,000 rollouts per move",
+              "description": "We play our adversary against ELF OpenGo with its final network and 80,000 rollouts per move. The <a href=\"https://arxiv.org/pdf/1902.04522.pdf\">authors of ELF found</a> that this number of rollouts with a weaker network was sufficient with to consistently beat several top-30 Go players. Our adversary achives a win rate of 3.7%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"
+          },
+          {
+              "title": "Leela Zero",
+              "dir_name": "leela",
+              "server": "dqn.ist.berkeley.edu",
+              "paths": [
+                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-16.sgf",
+                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-23.sgf",
+                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-0.sgf",
+                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-1.sgf",
+                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-2.sgf",
+                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-3.sgf",
+                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-4.sgf",
+                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-5.sgf"
+              ],
+              "max_games": 8,
+              "adversary": "545 million training steps, 600 visits",
+              "victim": "Leela Zero, final network, max 40,000 visits per move",
+              "description": "We play our adversary against Leela Zero OpenGo with its final network, no time limit, and a maximum of 40,000 visits per move. Our adversary achives a win rate of 6.7%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"
+          }
+      ]
     },
     "pass-based-attack": {
         "title": "Pass-based Attack",
