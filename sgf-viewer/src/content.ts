@@ -117,7 +117,7 @@ export const pages: object =
                 ],
                 "max_games": 8,
                 "adversary": "545 million training steps, 600 visits",
-                "victim": "<code>Latest</code>, 10,000,000 visits",
+                "victim": "<code>Latest</code>, 10,000,000 visits, 1,024 search threads",
                 "description": ["Our adversary with 600 visits still achieves a 75.0% win rate against <code>Latest</code> with 10,000,000 visits, demonstrating that large amounts of search is not a practical defense against the adversary. (We enabled resignation for these games to shorten them since such high visit counts are computationally expensive.)"]
             }
         ]
@@ -182,7 +182,7 @@ export const pages: object =
               "max_games": 8,
               "adversary": "545 million training steps, 600 visits",
               "victim": "ELF OpenGo, final network, 80,000 rollouts per move",
-              "description": ["We play our adversary against ELF OpenGo with its final network and 80,000 rollouts per move. The <a href=\"https://arxiv.org/pdf/1902.04522.pdf\">authors of ELF found</a> that this number of rollouts with a weaker network was sufficient with to consistently beat several top-30 Go players. Our adversary achives a win rate of 3.7%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
+              "description": ["We play our adversary against ELF OpenGo with its final network and 80,000 rollouts per move. The <a href=\"https://arxiv.org/pdf/1902.04522.pdf\">authors of ELF found</a> that this number of rollouts with a weaker network was sufficient with to consistently beat several top-30 Go players. Our adversary acheives a win rate of 3.7%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
           },
           {
               "title": "Leela Zero",
