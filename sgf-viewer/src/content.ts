@@ -118,7 +118,7 @@ export const pages: object =
                 "max_games": 8,
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code>, 10,000,000 visits, 1,024 search threads",
-                "description": ["Our adversary with 600 visits still achieves a 75.0% win rate against <code>Latest</code> with 10,000,000 visits, demonstrating that large amounts of search is not a practical defense against the adversary. (We enabled resignation for these games to shorten them since such high visit counts are computationally expensive.)"]
+                "description": ["Our adversary with 600 visits still achieves a 76.7% win rate against <code>Latest</code> with 10,000,000 visits, demonstrating that large amounts of search is not a practical defense against the adversary. (We enabled resignation for these games to shorten them since such high visit counts are computationally expensive.)"]
             }
         ]
     },
