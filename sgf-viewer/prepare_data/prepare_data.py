@@ -104,12 +104,16 @@ if __name__ == "__main__":
                 key=lambda x: (
                     x[1]["adv_win"],
                     x[1]["victim_color"],
-                    -int(x[1]["adv_minus_victim_score"]),
+                    0 if x[1]["adv_minus_victim_score"] is None else -int(x[1]["adv_minus_victim_score"]),
                     x[1]["sgf_path"],
                 ),
                 reverse=True,
             )
             parsed_games = [x[1] for x in sorted_paths_games]
+
+            for parsed_game in parsed_games:
+                if parsed_game["is_resignation"]:
+                    parsed_game["adv_minus_victim_score"] = "resignation"
 
             # Write game_infos.csv summary
             if len(parsed_games) > 0:

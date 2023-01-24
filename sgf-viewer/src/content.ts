@@ -98,7 +98,7 @@ export const pages: object =
                 ],
                 "max_games": 10,
                 "adversary": "545 million training steps, 600 visits",
-                "victim": "<code>Latest</code><sub><code>def</code></sub>, 2048 visits",
+                "victim": "<code>Latest</code><sub><code>def</code></sub>, 4096 visits",
                 "description": ["With 4096 visits, KataGo's <code>Latest</code> network <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.D.2\">plays at a superhuman level</a>. Nonetheless, our adversary still achieves a 97.3% win rate against <code>Latest</code> and a 95.7% win rate against <code>Latest</code><sub><code>def</code></sub>. Games against <code>Latest</code><sub><code>def</code></sub> are shown below."]
             },
             {
@@ -106,19 +106,19 @@ export const pages: object =
                 "dir_name": "10mil_visits",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-0.sgf",
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-1.sgf",
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-2.sgf",
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-3.sgf",
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-4.sgf",
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-5.sgf",
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-6.sgf",
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-7.sgf"
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-0.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-1.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-2.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-3.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-4.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-5.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-6.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-7.sgf"
                 ],
                 "max_games": 8,
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code>, 10,000,000 visits",
-                "description": ["Our adversary with 600 visits still achieves a 75.0% win rate against <code>Latest</code> with 10,000,000 visits, demonstrating that large amounts of search is not a practical defense against the adversary."]
+                "description": ["Our adversary with 600 visits still achieves a 75.0% win rate against <code>Latest</code> with 10,000,000 visits, demonstrating that large amounts of search is not a practical defense against the adversary. (We enabled resignation for these games to shorten them since such high visit counts are computationally expensive.)"]
             }
         ]
     },
@@ -170,38 +170,38 @@ export const pages: object =
               "dir_name": "elf",
               "server": "dqn.ist.berkeley.edu",
               "paths": [
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread0/sgfs/game-8.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread3/sgfs/game-6.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread0/sgfs/game-0.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread0/sgfs/game-1.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread0/sgfs/game-2.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread0/sgfs/game-3.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread0/sgfs/game-4.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/katago-vs-elf/20230119-194538/thread0/sgfs/game-5.sgf"
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-8.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread3/sgfs/game-6.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-0.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-1.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-2.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-3.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-4.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-5.sgf"
               ],
               "max_games": 8,
               "adversary": "545 million training steps, 600 visits",
               "victim": "ELF OpenGo, final network, 80,000 rollouts per move",
-              "description": "We play our adversary against ELF OpenGo with its final network and 80,000 rollouts per move. The <a href=\"https://arxiv.org/pdf/1902.04522.pdf\">authors of ELF found</a> that this number of rollouts with a weaker network was sufficient with to consistently beat several top-30 Go players. Our adversary achives a win rate of 3.7%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"
+              "description": ["We play our adversary against ELF OpenGo with its final network and 80,000 rollouts per move. The <a href=\"https://arxiv.org/pdf/1902.04522.pdf\">authors of ELF found</a> that this number of rollouts with a weaker network was sufficient with to consistently beat several top-30 Go players. Our adversary achives a win rate of 3.7%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
           },
           {
               "title": "Leela Zero",
               "dir_name": "leela",
               "server": "dqn.ist.berkeley.edu",
               "paths": [
-                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-16.sgf",
-                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-23.sgf",
-                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-0.sgf",
-                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-1.sgf",
-                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-2.sgf",
-                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-3.sgf",
-                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-4.sgf",
-                  "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/sgfs/game-5.sgf"
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-16.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-23.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-0.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-1.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-2.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-3.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-4.sgf",
+                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-5.sgf"
               ],
               "max_games": 8,
               "adversary": "545 million training steps, 600 visits",
               "victim": "Leela Zero, final network, max 40,000 visits per move",
-              "description": "We play our adversary against Leela Zero OpenGo with its final network, no time limit, and a maximum of 40,000 visits per move. Our adversary achives a win rate of 6.7%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"
+              "description": ["We play our adversary against Leela Zero OpenGo with its final network, no time limit, and a maximum of 40,000 visits per move. Our adversary achives a win rate of 6.7%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
           }
       ]
     },
