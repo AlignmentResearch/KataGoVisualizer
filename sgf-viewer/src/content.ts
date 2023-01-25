@@ -165,7 +165,7 @@ export const pages: object =
     "transfer": {
       "title": "Transfer to ELF/Leela",
       "description": [
-          "Our adversary apparently exploits a weakness common across several Go AI systems. We find that our attacks transfer zero-shot against against ELF OpenGo and Leela Zero, two other Go AI systems that can play at a superhuman level."
+          "Our adversary apparently exploits a weakness common across several Go AI systems. We find that the attack transfers zero-shot against against ELF OpenGo and Leela Zero, two other open-source Go AI systems that can play at a superhuman level."
       ],
       "content": [
           {
