@@ -185,7 +185,7 @@ export const pages: object =
               "max_games": 8,
               "adversary": "545 million training steps, 600 visits",
               "victim": "ELF OpenGo, final network, 80,000 rollouts per move",
-              "description": ["We play our adversary against ELF OpenGo with its final network and 80,000 rollouts per move. The <a href=\"https://arxiv.org/pdf/1902.04522.pdf\">authors of ELF found</a> that this number of rollouts with a weaker network was sufficient with to consistently beat several top-30 Go players. Our adversary achieves a win rate of 3.5%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
+              "description": ["We play our adversary against ELF OpenGo with its <a href=\"https://github.com/pytorch/ELF/releases/tag/pretrained-go-19x19-v2\">final network</a> and 80,000 rollouts per move. The <a href=\"https://arxiv.org/pdf/1902.04522.pdf\">authors of ELF found</a> that this number of rollouts with a weaker network was sufficient with to consistently beat several top-30 Go players. Our adversary achieves a win rate of 3.5%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
           },
           {
               "title": "Leela Zero",
@@ -204,7 +204,7 @@ export const pages: object =
               "max_games": 8,
               "adversary": "545 million training steps, 600 visits",
               "victim": "Leela Zero, final network, max 40,000 visits per move",
-              "description": ["We play our adversary against Leela Zero OpenGo with its final network, no time limit, and a maximum of 40,000 visits per move. Our adversary achieves a win rate of 6.1%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
+              "description": ["We play our adversary against Leela Zero OpenGo with its final network (hash 0e9ea880 on the <a href=\"https://zero.sjeng.org/\">Leela training website</a>), no time limit, and a maximum of 40,000 visits per move. Our adversary achieves a win rate of 6.1%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
           }
       ]
     },
