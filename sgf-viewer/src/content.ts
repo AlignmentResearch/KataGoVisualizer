@@ -284,6 +284,68 @@ export const pages: object =
                 "adversary": "Tony Wang (Author)",
                 "victim": "NeuralZ06 (KataGo KGS bot playing without search)",
                 "description": ["The same Go novice (Tony Wang) was able to exploit the top-50 KGS bot <code>NeuralZ06</code> by mimicking the behavior of our adversarial policy. The bot plays with checkpoint <code>b40c256-s11101799168-d2715431527</code> that is comparable to (but slightly weaker) than the <code>Latest</code> checkpoint. However, the bot has the <code>friendlyPassOk</code> flag enabled, which makes it easier to exploit—we have not been able to win manually against a bot with this disabled. This suggests that the easily mimicable high-level strategy of our adversarial policy explains a considerable part of the adversary's success, but by no means all of it.  We score the game under <a target=\"_blank\" href=\"https://tromp.github.io/go.html\">Tromp-Taylor</a> rules as the rulesets supported by KGS cannot be automatically evaluated."]
+            },
+            {
+                "title": "Human exploits KataGo",
+                "dir_name": "human_vs_kata100k",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/kpelrine/humanatk/humanattack-KataGo-100kvisits.sgfs"
+                ],
+                "max_games": 10,
+                "adversary": "Kellin Pelrine (Author)",
+                "victim": "KataGo, 100K visits",
+                "description": ["A Go expert (Kellin Pelrine) was able to learn and apply the cyclic-adversary's strategy to attack multiple types and configurations of AI Go systems. In this example they exploited KataGo with 100K visits, which would normally be strongly superhuman. Besides previously studying our adversary's game records, no algorithmic assistance was used in this or any of the following examples."]
+            },
+            {
+                "title": "Human exploits Leela Zero",
+                "dir_name": "human_vs_lz100k",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/kpelrine/humanatk/humanattack-LZ-100kvisits.sgfs"
+                ],
+                "max_games": 10,
+                "adversary": "Kellin Pelrine (Author)",
+                "victim": "Leela Zero, 100K visits",
+                "description": ["The same Go expert (Kellin Pelrine) also exploited Leela Zero with 100K visits, which would likewise normally be superhuman."]
+            },
+            {
+                "title": "Human exploits a top KGS bot",
+                "dir_name": "human_vs_jbxkata005",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-2.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-3.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-4.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-5.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-6.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-7.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-8.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-9.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/JBXKata005-corners.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/JBXKata005-corners-2.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/JBXKata005-corners-3.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/JBXKata005-corners-4.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/JBXKata005-corners-5.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/JBXKata005-corners-6.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005.sgfs"
+                ],
+                "max_games": 15,
+                "adversary": "Kellin Pelrine (Author)",
+                "victim": "JBXKata005, 9 dan on KGS",
+                "description": ["Playing under standard human conditions on the online Go server KGS, the same Go expert (Kellin Pelrine) successfully exploited the bot JBXKata005 in 14/15 games. This bot uses a custom KataGo implementation, and at the time of the games was the strongest bot available to play and rank #4 of all accounts on KGS."]
+            },
+            {
+                "title": "Human exploits top KGS bot with large handicap",
+                "dir_name": "human_vs_jbxkata005_handicap",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/kpelrine/humanatk/corners-JBXKata005-9stones.sgfs"
+                ],
+                "max_games": 10,
+                "adversary": "Kellin Pelrine (Author)",
+                "victim": "JBXKata005, 9 dan on KGS, with 9 stone handicap",
+                "description": ["In this last example, the same Go expert (Kellin Pelrine) exploited JBXKata005 while giving it a huge initial advantage through a 9 stone handicap. A top level human player with this much advantage would have virtually 100% win rate against any opponent, human or algorithmic."]
             }
         ]
     },
