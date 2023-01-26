@@ -333,7 +333,7 @@ export const pages: object =
                 "max_games": 15,
                 "adversary": "Kellin Pelrine (Author)",
                 "victim": "JBXKata005, 9 dan on KGS",
-                "description": ["Playing under standard human conditions on the online Go server KGS, the same Go expert (Kellin Pelrine) successfully exploited the bot JBXKata005 in 14/15 games. In the remaining game, the cyclic group attack still led to a successful capture, but the victim had enough points remaining to win. This bot uses a custom KataGo implementation, and at the time of the games was the strongest bot available to play and ranks #4 of all accounts on KGS."]
+                "description": ["Playing under standard human conditions on the online Go server KGS, the same Go expert (Kellin Pelrine) successfully exploited the bot JBXKata005 in 14/15 games. In the remaining game, the cyclic group attack still led to a successful capture, but the victim had enough points remaining to win. This bot uses a custom KataGo implementation, and at the time of the games was the strongest bot available to play on KGS."]
             },
             {
                 "title": "Human exploits top KGS bot with large handicap",
