@@ -186,7 +186,7 @@ export const pages: object =
                 "adversary": "498 million training steps, 600 visits",
                 "victim": "<code>Latest</code>, 1600 visits",
                 "description": [
-                    "We make available here the full game records for the positions analyzed with different levels of visits in the paper appendix discussing the role of search in robustness. For details, please refer to the appendix."
+                    "We make available here the full game records for the positions analyzed with different levels of visits in the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#appendix.H\">paper appendix discussing the role of search in robustness</a>. For details, please refer to the appendix."
                 ]
             }
         ]
