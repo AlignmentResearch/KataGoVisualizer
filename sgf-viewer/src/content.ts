@@ -5,7 +5,7 @@ export const pages: object =
     "adversarial-policy-katago": {
         "title": "Adversarially Exploiting KataGo",
         "description": [
-            "We attack <a target=\"_blank\" href=\"https://github.com/lightvector/KataGo\">KataGo</a>, a state-of-the-art Go AI system, by training adversarial policies that play against frozen KataGo victims. Our attack achieves a 100% win rate over 1000 games when KataGo <a href=\"#no_search_hardened\">uses no tree-search</a>, and a &gt;97% win rate when KataGo <a href=\"#4096_visits_hardened\">uses enough search to be superhuman</a>. Notably, our adversaries do not win by learning to play Go better than KataGo &mdash; in fact, our adversaries are easily <a href=\"/human-evaluation#amateur_vs_advh_497mil\">beaten by a human amateur</a>. Instead, our adversaries win by tricking KataGo into making serious blunders. Our results demonstrate that even superhuman AI systems may harbor surprising failure modes.",
+            "We attack <a target=\"_blank\" href=\"https://github.com/lightvector/KataGo\">KataGo</a>, a state-of-the-art Go AI system, by training adversarial policies that play against frozen KataGo victims. Our attack achieves a 100% win rate over 1000 games when KataGo <a href=\"#no_search_hardened\">uses no tree-search</a>, and a &gt;97% win rate when KataGo <a href=\"#4096_visits_hardened\">uses enough search to be superhuman</a>. Notably, our adversaries do not win by learning to play Go better than KataGo &mdash; in fact, our adversaries are easily <a href=\"/human-evaluation#amateur_vs_advh_545mil\">beaten by a human amateur</a>. Instead, our adversaries win by tricking KataGo into making serious blunders. Our results demonstrate that even superhuman AI systems may harbor surprising failure modes.",
             "All games are randomly selected unless otherwise specified. We primarily attack KataGo network checkpoint <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a>, which we dub <code>Latest</code> since it is the latest confidently rated KataGo network at the time of writing. For more information, see our <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf\">paper</a> and <a target=\"_blank\" href=\"https://github.com/HumanCompatibleAI/go_attack\">GitHub</a>."
         ],
         "content": [
@@ -341,14 +341,14 @@ export const pages: object =
         "content": [
             {
                 "title": "Human amateur beats cyclic-adversary",
-                "dir_name": "amateur_vs_advh_497mil",
+                "dir_name": "amateur_vs_advh_545mil",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
-                    "/nas/ucb/ttseng/go_attack/misc/tony-b-def-dragonslayer-s497mil-w-anon.sgfs",
-                    "/nas/ucb/ttseng/go_attack/misc/tony-w-def-dragonslayer-s497mil-b-anon.sgfs"
+                    "/nas/ucb/tony/go-attack/manual-games/tony-b-def-adv505h-s545m-w-anon.sgf",
+                    "/nas/ucb/tony/go-attack/manual-games/tony-w-def-adv505h-s545m-b-anon.sgf"
                 ],
                 "max_games": 10,
-                "adversary": "498 million training steps, 600 visits",
+                "adversary": "Cyclic-adversary, 545 million training steps, 600 visits",
                 "victim": "Tony Wang (Author)",
                 "description": [
                     "Our <a target=\"_blank\" href=\"/adversarial-policy-katago#contents\">strongest adversarial policy</a> (trained against <code>Latest</code><sub><code>def</code></sub>) is able to reliably beat KataGo at superhuman strength settings. However, a member of our team (Tony Wang) who is a novice Go player managed to convincingly beat this same adversary. This confirms that our adversarial policy is not generally capable, despite it beating victim policies that can themselves beat top human professionals. Instead, our victim policy harbors a subtle vulnerability.",
@@ -356,7 +356,7 @@ export const pages: object =
                 ]
             },
             {
-                "title": "Human amateur beats pass-based adversary",
+                "title": "Human amateur beats pass-adversary",
                 "dir_name": "amateur_vs_adv",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
@@ -364,10 +364,10 @@ export const pages: object =
                     "/nas/ucb/ttseng/go_attack/backup/sgf-viewer-sgfs/tony-white.sgfs"
                 ],
                 "max_games": 10,
-                "adversary": "34.1 million training steps, 600 visits",
+                "adversary": "Pass-adversary, 34.1 million training steps, 600 visits",
                 "victim": "Tony Wang (Author)",
                 "description": [
-                    "The same Go novice (Tony Wang) also managed to beat our pass-based adversary by a large margin of over 250 points. This demonstrates our pass-based adversary is also not generally capable. In the <a href=\"#amateur_vs_victim\">next section</a>, we attempt to mimic the adversarial policy to exploit the victim."
+                    "The same Go novice (Tony Wang) also managed to beat our pass-adversary by a large margin of over 250 points. This demonstrates our pass-adversary is also not generally capable."
                 ]
             },
             {
