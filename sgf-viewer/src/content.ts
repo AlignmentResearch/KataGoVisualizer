@@ -99,7 +99,7 @@ export const pages: object =
                 "max_games": 10,
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, 4096 visits",
-                "description": ["With 4096 visits, KataGo's <code>Latest</code> network <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.D.2\">plays at a superhuman level</a>. Nonetheless, our adversary still achieves a 97.3% win rate against <code>Latest</code> and a 95.7% win rate against the defended victim <code>Latest</code><sub><code>def</code></sub>. Games against <code>Latest</code><sub><code>def</code></sub> are shown below."]
+                "description": ["With 4096 visits, KataGo's <code>Latest</code> network <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.E.2\">plays at a superhuman level</a>. Nonetheless, our adversary still achieves a 97.3% win rate against <code>Latest</code> and a 95.7% win rate against the defended victim <code>Latest</code><sub><code>def</code></sub>. Games against <code>Latest</code><sub><code>def</code></sub> are shown below."]
             },
             {
                 "title": "KataGo with 10,000,000 visits",
