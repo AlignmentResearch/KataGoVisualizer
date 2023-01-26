@@ -345,7 +345,7 @@ export const pages: object =
                 "max_games": 10,
                 "adversary": "Kellin Pelrine (Author)",
                 "victim": "JBXKata005, 9 dan on KGS, with 9 stone handicap",
-                "description": ["In this last example, the same Go expert (Kellin Pelrine) exploited JBXKata005 while giving it a huge initial advantage through a 9 stone handicap. A top level human player with this much advantage would have virtually 100% win rate against any opponent, human or algorithmic."]
+                "description": ["In this last example, the same Go expert (Kellin Pelrine) exploited JBXKata005 while giving it a huge initial advantage through a 9 stone handicap. A top level human player with this much advantage would have a virtually 100% win rate against any opponent, human or algorithmic."]
             }
         ]
     },
