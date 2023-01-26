@@ -174,7 +174,7 @@ export const pages: object =
                     "/nas/ucb/kpelrine/position-analysis/F60F14F76A3EC9374AEC037F61DF35ED.sgf",
                     "/nas/ucb/kpelrine/position-analysis/3EEF60B71376DF13DCFC585958F7AA97.sgf",
                     "/nas/ucb/kpelrine/position-analysis/8A7C8591E9B7308CF65E0F1EDC3160E7.sgf",
-                    "/nas/ucb/kpelrine/position-analysis/584B06F5C32ADE1D1C57621FBB7997E5.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/35271149C9656EBEACC462C78885E17C.sgf",
                     "/nas/ucb/kpelrine/position-analysis/D7D74BD8D0B17EB04E9DC856D4EE46AB.sgf",
                     "/nas/ucb/kpelrine/position-analysis/8E68B87F7316905795CF27C1904E5C7D.sgf",
                     "/nas/ucb/kpelrine/position-analysis/667CF02E24A2FD141A82C5D1755A2AE2.sgf",
