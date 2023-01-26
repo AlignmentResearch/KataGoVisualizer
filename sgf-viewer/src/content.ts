@@ -159,6 +159,35 @@ export const pages: object =
                 "description": [
                     "In this game, we find the victim's predicted win rate oscillates several times before the victim's group is captured at <a onclick='setMove(`win-rate`, 273)'>move 273</a>. At <a onClick='setMove(`win-rate`, 248)'>move 248</a>, the victim predicted it would win with 91% confidence, yet at its next turn at <a onClick='setMove(`win-rate`, 250)'>move 250</a> it has gone down to a <1% win rate prediction. At <a onClick='setMove(`win-rate`, 254)'>move 254</a>, it jumps back to a >99% win rate prediction. A few moves later, the victim's win rate prediction again fluctuates dramatically, hitting <1% at <a onClick='setMove(`win-rate`, 266)'>move 266</a>, 99% at <a onClick='setMove(`win-rate`, 268)'>move 268</a>, and <1% at <a onClick='setMove(`win-rate`, 272)'>move 272</a>.  After the capture on the following turn, the victim (correctly) predicts a <1% win rate until the end of the game."
                 ]
+            },
+            {
+                "title": "Positions analyzed with varying visits",
+                "dir_name": "position-analysis",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/kpelrine/position-analysis/D21A3637ED1950A3F5E2ECBD067192D3.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/A4F97F173E7FFD4DA8EA0B44CC498217.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/BAE6EE5C6A92A349F5C3F40A5A749D3D.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/9769802A41A0936FFC3F49F567F4E27E.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/B303C7624A8D43C86218D8A090A89432.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/EED83A03FE5ADA6488362D70B4652B74.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/F60F14F76A3EC9374AEC037F61DF35ED.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/3EEF60B71376DF13DCFC585958F7AA97.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/8A7C8591E9B7308CF65E0F1EDC3160E7.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/35271149C9656EBEACC462C78885E17C.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/D7D74BD8D0B17EB04E9DC856D4EE46AB.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/8E68B87F7316905795CF27C1904E5C7D.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/667CF02E24A2FD141A82C5D1755A2AE2.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/F15A82698AC1537184C30E2A2D1A4603.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/9BD1667E79D20D46FB261E22A2478C4F.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/0107B1AE44B5395A6EAABFBEC119E664.sgf"
+                ],
+                "max_games": 16,
+                "adversary": "498 million training steps, 600 visits",
+                "victim": "<code>Latest</code>, 1600 visits",
+                "description": [
+                    "We make available here the full game records for the positions analyzed with different levels of visits in the paper appendix discussing the role of search in robustness. For details, please refer to the appendix."
+                ]
             }
         ]
     },
@@ -352,6 +381,68 @@ export const pages: object =
                 "adversary": "Tony Wang (Author)",
                 "victim": "NeuralZ06 (KataGo KGS bot playing without search)",
                 "description": ["The same Go novice (Tony Wang) was able to exploit the top-50 KGS bot <code>NeuralZ06</code> by mimicking the behavior of our adversarial policy. The bot plays with checkpoint <code>b40c256-s11101799168-d2715431527</code> that is comparable to (but slightly weaker) than the <code>Latest</code> checkpoint. However, the bot has the <code>friendlyPassOk</code> flag enabled, which makes it easier to exploit—we have not been able to win manually against a bot with this disabled. This suggests that the easily mimicable high-level strategy of our adversarial policy explains a considerable part of the adversary's success, but by no means all of it.  We score the game under <a target=\"_blank\" href=\"https://tromp.github.io/go.html\">Tromp-Taylor</a> rules as the rulesets supported by KGS cannot be automatically evaluated."]
+            },
+            {
+                "title": "Human exploits KataGo",
+                "dir_name": "human_vs_kata100k",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/kpelrine/humanatk/humanattack-KataGo-100kvisits.sgfs"
+                ],
+                "max_games": 10,
+                "adversary": "Kellin Pelrine (Author)",
+                "victim": "KataGo, 100K visits",
+                "description": ["A Go expert (Kellin Pelrine) was able to learn and apply the cyclic-adversary's strategy to attack multiple types and configurations of AI Go systems. In this example they exploited KataGo with 100K visits, which would normally be strongly superhuman. Besides previously studying our adversary's game records, no algorithmic assistance was used in this or any of the following examples. The KataGo network and weights used here were b18c384nbt-uec, which is a newly released version the author of KataGo (David Wu) trained for a tournament. This network should be as strong or stronger than <code>Latest</code>."]
+            },
+            {
+                "title": "Human exploits Leela Zero",
+                "dir_name": "human_vs_lz100k",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/kpelrine/humanatk/humanattack-LZ-100kvisits.sgfs"
+                ],
+                "max_games": 10,
+                "adversary": "Kellin Pelrine (Author)",
+                "victim": "Leela Zero, 100K visits",
+                "description": ["The same Go expert (Kellin Pelrine) also exploited Leela Zero with 100K visits, which would likewise normally be superhuman."]
+            },
+            {
+                "title": "Human exploits a top KGS bot",
+                "dir_name": "human_vs_jbxkata005",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-2.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-3.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-4.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-5.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-6.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-7.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-8.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005-9.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/JBXKata005-corners.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/JBXKata005-corners-2.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/JBXKata005-corners-3.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/JBXKata005-corners-4.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/JBXKata005-corners-5.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/JBXKata005-corners-6.sgfs",
+                    "/nas/ucb/kpelrine/humanatk/vs-JBXKata005/corners-JBXKata005.sgfs"
+                ],
+                "max_games": 15,
+                "adversary": "Kellin Pelrine (Author)",
+                "victim": "JBXKata005, 9 dan on KGS",
+                "description": ["Playing under standard human conditions on the online Go server KGS, the same Go expert (Kellin Pelrine) successfully exploited the bot JBXKata005 in 14/15 games. In the remaining game, the cyclic group attack still led to a successful capture, but the victim had enough points remaining to win. This bot uses a custom KataGo implementation, and at the time of the games was the strongest bot available to play on KGS."]
+            },
+            {
+                "title": "Human exploits top KGS bot with large handicap",
+                "dir_name": "human_vs_jbxkata005_handicap",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/kpelrine/humanatk/corners-JBXKata005-9stones.sgfs"
+                ],
+                "max_games": 10,
+                "adversary": "Kellin Pelrine (Author)",
+                "victim": "JBXKata005, 9 dan on KGS, with 9 stone handicap",
+                "description": ["In this last example, the same Go expert (Kellin Pelrine) exploited JBXKata005 while giving it a huge initial advantage through a 9 stone handicap. A top level human player with this much advantage would have a virtually 100% win rate against any opponent, human or algorithmic."]
             }
         ]
     },

@@ -210,7 +210,7 @@ def parse_game_str_to_dict(
             # Sgfs for manual games can have a space instead of a +
             else result.split(" ")[-1]
         )
-        if win_score_str == "R":
+        if win_score_str == "R" or win_score_str == "Resign":
             # Resignation
             win_score = None
             adv_minus_victim_score = None
