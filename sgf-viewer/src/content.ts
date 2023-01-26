@@ -133,7 +133,7 @@ export const pages: object =
                     "/nas/ucb/ttseng/go_attack/backup/sgf-viewer-sgfs/kellin-analysis-game-fixed.sgf"
                 ],
                 "max_games": 10,
-                "adversary": "545 million training steps, 600 visits",
+                "adversary": "498 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, 1600 visits",
                 "description": [
                     "An expert-level (6 dan) human player on our team (Kellin Pelrine) analyzed the following game. It shows typical behavior and outcomes with an adversary trained on and playing a pass-hardened KataGo victim: the victim gains an early and soon seemingly insurmountable lead. The adversary sets a trap that would be easy for a human to see and avoid. But the victim is oblivious and collapses.",
