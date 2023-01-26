@@ -44,7 +44,7 @@ export const pages: object =
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, no search",
                 "description": [
-                    "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.D.1\">strength of a top-100 European professional</a>. We trained an adversary that wins 99.8% of the time against this victim<sup>1</sup>. Our adversary gets the victim to form a large circular structure, and then tricks the victim into allowing the circular structure to be killed. See the <a href=\"/game-analysis#contents\">\"Game Analysis\"</a> tab for a more in depth analysis of this adversarial strategy.",
+                    "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.D.1\">strength of a top-100 European professional</a>. We trained an adversary that wins 100% of the time over 1000 games against this victim<sup>1</sup>. Our adversary gets the victim to form a large circular structure, and then tricks the victim into allowing the circular structure to be killed. See the <a href=\"/game-analysis#contents\">\"Game Analysis\"</a> tab for a more in depth analysis of this adversarial strategy.",
                     "<sup>[1]</sup> The games below are actually against a version of <code>Latest</code> that was patched to be immune to a simpler <a href=\"/pass-based-attack#contents\">pass-based attack</a>. We applied this patch to the victim to force our adversary to learn a more interesting attack. The patch is a hardcoded defense that forbids the victim from passing until it has no more legal moves outside its territory. We call the patched victim <code>Latest</code><sub><code>def</code></sub>. Because we limit the victim's passing, games are usually played out to the end, <a href=\"https://archive.ph/xmPrw#:~:text=(if%20SelfPlayOpts%20is%20Enabled)\">terminating automatically</a> once all points belong to a pass-alive-group or pass-alive-territory."
                 ],
                 "_comment": "Snapshot at archive.ph is from https://lightvector.github.io/KataGo/rules.html -- using in case rules change semantics in future versions of KataGo"
@@ -99,7 +99,7 @@ export const pages: object =
                 "max_games": 10,
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, 4096 visits",
-                "description": ["With 4096 visits, KataGo's <code>Latest</code> network <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.D.2\">plays at a superhuman level</a>. Nonetheless, our adversary still achieves a 97.3% win rate against <code>Latest</code> and a 95.7% win rate against <code>Latest</code><sub><code>def</code></sub>. Games against <code>Latest</code><sub><code>def</code></sub> are shown below."]
+                "description": ["With 4096 visits, KataGo's <code>Latest</code> network <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.D.2\">plays at a superhuman level</a>. Nonetheless, our adversary still achieves a 97.3% win rate against <code>Latest</code> and a 95.7% win rate against the defended victim <code>Latest</code><sub><code>def</code></sub>. Games against <code>Latest</code><sub><code>def</code></sub> are shown below."]
             },
             {
                 "title": "KataGo with 10,000,000 visits",
@@ -118,7 +118,7 @@ export const pages: object =
                 "max_games": 8,
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code>, 10,000,000 visits, 1,024 search threads",
-                "description": ["Our adversary with 600 visits still achieves a 76.7% win rate against <code>Latest</code> with 10,000,000 visits, demonstrating that large amounts of search is not a practical defense against the adversary. (We enabled resignation for these games to shorten them since such high visit counts are computationally expensive.)"]
+                "description": ["Our adversary with 600 visits still achieves a 76.7% win rate against <code>Latest</code> with 10,000,000 visits, demonstrating that large amounts of search is not a practical defense against the adversary. We enabled resignation for these games to shorten them since such high visit counts are computationally expensive."]
             }
         ]
     },
@@ -165,7 +165,7 @@ export const pages: object =
     "transfer": {
       "title": "Transfer to ELF/Leela",
       "description": [
-          "Our adversary apparently exploits a weakness common across several Go AI systems. We find that the attack transfers zero-shot against against ELF OpenGo and Leela Zero, two other open-source Go AI systems that can play at a superhuman level."
+          "Our adversary apparently exploits a weakness common across several Go AI systems. We find that the attack transfers zero-shot against ELF OpenGo and Leela Zero, two other open-source Go AI systems that can play at a superhuman level."
       ],
       "content": [
           {
@@ -185,7 +185,7 @@ export const pages: object =
               "max_games": 8,
               "adversary": "545 million training steps, 600 visits",
               "victim": "ELF OpenGo, final network, 80,000 rollouts per move",
-              "description": ["We play our adversary against ELF OpenGo with its <a href=\"https://github.com/pytorch/ELF/releases/tag/pretrained-go-19x19-v2\">final network</a> and 80,000 rollouts per move. The <a href=\"https://arxiv.org/pdf/1902.04522.pdf\">authors of ELF found</a> that this number of rollouts with a weaker network was sufficient with to consistently beat several top-30 Go players. Our adversary achieves a win rate of 3.5%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
+              "description": ["We pit our adversary against ELF OpenGo playing with its <a href=\"https://github.com/pytorch/ELF/releases/tag/pretrained-go-19x19-v2\">final network</a> and 80,000 rollouts per move. The <a href=\"https://arxiv.org/pdf/1902.04522.pdf\">authors of ELF found</a> that this number of rollouts was sufficient with to consistently beat several top-30 Go players even using a weaker network. Our adversary achieves a win rate of 3.5% against ELF. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
           },
           {
               "title": "Leela Zero",
@@ -204,7 +204,7 @@ export const pages: object =
               "max_games": 8,
               "adversary": "545 million training steps, 600 visits",
               "victim": "Leela Zero, final network, max 40,000 visits per move",
-              "description": ["We play our adversary against Leela Zero OpenGo with its final network (hash 0e9ea880 on the <a href=\"https://zero.sjeng.org/\">Leela training website</a>), no time limit, and a maximum of 40,000 visits per move. Our adversary achieves a win rate of 6.1%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
+              "description": ["We pit our adversary against Leela Zero OpenGo playing with its final network (hash 0e9ea880 on the <a href=\"https://zero.sjeng.org/\">Leela training website</a>), no time limit, and a maximum of 40,000 visits per move. Our adversary achieves a win rate of 6.1%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
           }
       ]
     },
