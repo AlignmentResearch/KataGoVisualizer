@@ -186,7 +186,7 @@ export const pages: object =
                 "adversary": "498 million training steps, 600 visits",
                 "victim": "<code>Latest</code>, 1600 visits",
                 "description": [
-                    "We make available here the full game records for the positions analyzed with different levels of visits in the paper appendix discussing the role of search in robustness. For details, please refer to the appendix."
+                    "We make available here the full game records for the positions analyzed with different levels of visits in the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#appendix.H\">paper appendix discussing the role of search in robustness</a>. For details, please refer to the appendix."
                 ]
             }
         ]
@@ -214,7 +214,7 @@ export const pages: object =
               "max_games": 8,
               "adversary": "545 million training steps, 600 visits",
               "victim": "ELF OpenGo, final network, 80,000 rollouts per move",
-              "description": ["We pit our adversary against ELF OpenGo playing with its <a href=\"https://github.com/pytorch/ELF/releases/tag/pretrained-go-19x19-v2\">final network</a> and 80,000 rollouts per move. The <a href=\"https://arxiv.org/pdf/1902.04522.pdf\">authors of ELF found</a> that this number of rollouts was sufficient with to consistently beat several top-30 Go players even using a weaker network. Our adversary achieves a win rate of 3.5% against ELF. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
+              "description": ["We pit our adversary against ELF OpenGo playing with its <a href=\"https://github.com/pytorch/ELF/releases/tag/pretrained-go-19x19-v2\">final network</a> and 80,000 rollouts per move. The <a href=\"https://arxiv.org/pdf/1902.04522.pdf#subsection.4.1\">authors of ELF found</a> that this number of rollouts was sufficient with to consistently beat several top-30 Go players even using a weaker network. Our adversary achieves a win rate of 3.5% against ELF. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
           },
           {
               "title": "Leela Zero",
@@ -332,7 +332,7 @@ export const pages: object =
                 "max_games": 10,
                 "adversary": "34.1 million training steps, 200 visits, recursive modeling",
                 "victim": "<code>Latest</code>, 8 visits",
-                "description": ["A search budget of 8 visits / move is around the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.E.3\">limit of what our pass-based adversary can exploit</a>. We achieve a win rate of 87.8% against this victim by modeling the victim perfectly during the adversary's search. The adversary wins by the same strategy of staking out a corner. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
+                "description": ["A search budget of 8 visits / move is around the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.F.3\">limit of what our pass-based adversary can exploit</a>. We achieve a win rate of 87.8% against this victim by modeling the victim perfectly during the adversary's search. The adversary wins by the same strategy of staking out a corner. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
             }
         ]
     },
