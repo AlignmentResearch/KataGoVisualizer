@@ -1,7 +1,7 @@
 
 # KataGo Visualizer
 
-This repo contains visualization tools for the paper ['Adversarial Policies Beat Professional-Level Go AIs'](https://goattack.alignmentfund.org/pdfs/go_attack_paper.pdf) ([website](https://goattack.alignmentfund.org/))
+This repo contains visualization tools for the paper ['Adversarial Policies Beat Professional-Level Go AIs'](https://goattack.far.ai/pdfs/go_attack_paper.pdf) ([website](https://goattack.far.ai/))
 
 
 ## Contents
@@ -13,7 +13,7 @@ This repo contains visualization tools for the paper ['Adversarial Policies Beat
  Python notebooks used to produce figures for the paper.
 
  ### [sgf-viewer](sgf-viewer)
- Source for the [website](https://goattack.alignmentfund.org/) that accompanies the paper.
+ Source for the [website](https://goattack.far.ai/) that accompanies the paper.
 
  ### [streamlit_app](streamlit_app)
  Source for a data visualization web app used internally to help with research and monitoring training runs.

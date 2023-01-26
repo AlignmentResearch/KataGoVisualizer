@@ -5,7 +5,11 @@
         ["Adam Gleave*", "https://www.gleave.me/"],
         ["Nora Belrose", "https://twitter.com/norabelrose"],
         ["Tom Tseng", "https://www.tomhmtseng.com/"],
-        ["Joseph Miller", "https://alignmentfund.org/author/joseph-miller/"],
+        ["Joseph Miller", "https://far.ai/author/joseph-miller/"],
+        [
+            "Kellin Pelrine",
+            "https://scholar.google.com/citations?user=_s2HT_0AAAAJ&hl=en",
+        ],
         [
             "Michael D Dennis",
             "https://scholar.google.com/citations?user=WXXu26AAAAAJ&hl=en&authuser=1",
@@ -35,7 +39,7 @@
     <a href="https://www.mit.edu/" target="_blank">
         <img src="/images/mit-logo.svg" class="logo mit" alt="MIT Logo" />
     </a>
-    <a href="https://alignmentfund.org/" target="_blank">
+    <a href="https://far.ai/" target="_blank">
         <img src="/images/far-logo.png" class="logo far" alt="FAR Logo" />
     </a>
 </div> -->

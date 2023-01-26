@@ -104,6 +104,7 @@ def dtale_table_and_go_board(df, lower_step, upper_step):
 
     if st.button("View selected game"):
         state[SGF_ROW_STATE] = row
+
     if state.get(SGF_ROW_STATE):  # Rows are 1-indexed
         curr_settings = global_state.get_settings(dtale_data_id) or {}
         final_query = build_query(dtale_data_id, curr_settings.get("query"))
@@ -114,14 +115,15 @@ def dtale_table_and_go_board(df, lower_step, upper_step):
                 global_state.get_context_variables(dtale_data_id),
                 ignore_empty=True,
             )
-        game_to_view_path = df.iloc[state[SGF_ROW_STATE] - 1]["sgf_path"]
-        game_to_view_line = df.iloc[state[SGF_ROW_STATE] - 1]["sgf_line"]
-        game_to_view_str = ""
-        with open(game_to_view_path, "r") as f:
-            for i, line in enumerate(f):
-                if i + 1 == game_to_view_line:
-                    game_to_view_str = line
-                    break
+        if state[SGF_ROW_STATE] <= len(df.index):
+            game_to_view_path = df.iloc[state[SGF_ROW_STATE] - 1]["sgf_path"]
+            game_to_view_line = df.iloc[state[SGF_ROW_STATE] - 1]["sgf_line"]
+            game_to_view_str = ""
+            with open(game_to_view_path, "r") as f:
+                for i, line in enumerate(f):
+                    if i + 1 == game_to_view_line:
+                        game_to_view_str = line
+                        break
 
-        st.subheader(f"Viewing game on row {int(state[SGF_ROW_STATE]) - 1}")
-        go_board(game_to_view_str)
+            st.subheader(f"Viewing game on row {int(state[SGF_ROW_STATE]) - 1}")
+            go_board(game_to_view_str)
