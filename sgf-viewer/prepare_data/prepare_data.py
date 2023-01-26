@@ -104,9 +104,11 @@ if __name__ == "__main__":
                 key=lambda x: (
                     x[1]["adv_win"],
                     x[1]["victim_color"],
-                    0
-                    if x[1]["adv_minus_victim_score"] is None
-                    else -int(x[1]["adv_minus_victim_score"]),
+                    (
+                        0
+                        if x[1]["adv_minus_victim_score"] is None
+                        else -int(x[1]["adv_minus_victim_score"])
+                    ),
                     x[1]["sgf_path"],
                 ),
                 reverse=True,
