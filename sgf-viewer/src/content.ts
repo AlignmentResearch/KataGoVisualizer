@@ -295,7 +295,7 @@ export const pages: object =
                 "max_games": 10,
                 "adversary": "Kellin Pelrine (Author)",
                 "victim": "KataGo, 100K visits",
-                "description": ["A Go expert (Kellin Pelrine) was able to learn and apply the cyclic-adversary's strategy to attack multiple types and configurations of AI Go systems. In this example they exploited KataGo with 100K visits, which would normally be strongly superhuman. Besides previously studying our adversary's game records, no algorithmic assistance was used in this or any of the following examples."]
+                "description": ["A Go expert (Kellin Pelrine) was able to learn and apply the cyclic-adversary's strategy to attack multiple types and configurations of AI Go systems. In this example they exploited KataGo with 100K visits, which would normally be strongly superhuman. Besides previously studying our adversary's game records, no algorithmic assistance was used in this or any of the following examples. The KataGo network and weights used here were b18c384nbt-uec, which is a newly released version the author of KataGo (David Wu) trained for a tournament. This network should be as strong or stronger than <code>Latest</code>."]
             },
             {
                 "title": "Human exploits Leela Zero",
