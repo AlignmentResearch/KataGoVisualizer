@@ -340,7 +340,7 @@ export const pages: object =
         "title": "Human Evaluation",
         "content": [
             {
-                "title": "Human amateur beats adversary (hardened)",
+                "title": "Human amateur beats cyclic-adversary",
                 "dir_name": "amateur_vs_advh_497mil",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
@@ -369,18 +369,6 @@ export const pages: object =
                 "description": [
                     "The same Go novice (Tony Wang) also managed to beat our pass-based adversary by a large margin of over 250 points. This demonstrates our pass-based adversary is also not generally capable. In the <a href=\"#amateur_vs_victim\">next section</a>, we attempt to mimic the adversarial policy to exploit the victim."
                 ]
-            },
-            {
-                "title": "Manually mimicking the pass-based adversary",
-                "dir_name": "amateur_vs_victim",
-                "server": "dqn.ist.berkeley.edu",
-                "paths": [
-                    "/nas/ucb/ttseng/go_attack/backup/sgf-viewer-sgfs/tony-neuralz06.sgfs"
-                ],
-                "max_games": 10,
-                "adversary": "Tony Wang (Author)",
-                "victim": "NeuralZ06 (KataGo KGS bot playing without search)",
-                "description": ["The same Go novice (Tony Wang) was able to exploit the top-50 KGS bot <code>NeuralZ06</code> by mimicking the behavior of our adversarial policy. The bot plays with checkpoint <code>b40c256-s11101799168-d2715431527</code> that is comparable to (but slightly weaker) than the <code>Latest</code> checkpoint. However, the bot has the <code>friendlyPassOk</code> flag enabled, which makes it easier to exploit—we have not been able to win manually against a bot with this disabled. This suggests that the easily mimicable high-level strategy of our adversarial policy explains a considerable part of the adversary's success, but by no means all of it.  We score the game under <a target=\"_blank\" href=\"https://tromp.github.io/go.html\">Tromp-Taylor</a> rules as the rulesets supported by KGS cannot be automatically evaluated."]
             },
             {
                 "title": "Human exploits KataGo",
