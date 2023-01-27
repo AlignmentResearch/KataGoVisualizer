@@ -3,6 +3,16 @@
 # For Jupyter notebooks
 ipykernel
 
+# Libs needed by submodules/KataGo-pytorch-rewrite
+torch==1.13.1
+torchaudio==0.13.1
+torchvision==0.14.1
+packaging==22.0
+
+# For measuring FLOPs of models
+ptflops
+thop
+
 # tbparse stuff
 tbparse
 tensorboard
@@ -16,14 +26,19 @@ scipy
 numpy
 pandas
 
+# To parse Go game SGF files
+sgfmill
+
 # Plotting
 matplotlib
 seaborn
 statsmodels
 
 # Utilities
+beautifulsoup4
 black
 flake8
+GitPython
 isort
 ipywidgets
 jupyterlab

@@ -20,4 +20,11 @@ services:
         read_only: true
     cap_add:
       - SYS_PTRACE  # to enable gdb debugging
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ["gpu"]
+              driver: nvidia
+              device_ids: ["1"]
     tty: true

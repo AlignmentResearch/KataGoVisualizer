@@ -49,7 +49,7 @@ def find_sgf_files(
 
 
 def read_and_parse_file(
-    path: pathlib.Path, fast_parse: bool = False
+    path: pathlib.Path, fast_parse: bool = False, victim_color: Optional[str] = None
 ) -> Sequence[Dict[str, Any]]:
     """Parse all lines of an sgf file to a list of dictionaries with game info."""
     parsed_games = []
@@ -57,7 +57,11 @@ def read_and_parse_file(
         for i, line in enumerate(f):
             parsed_games.append(
                 parse_game_str_to_dict(
-                    str(path), i + 1, line.strip(), fast_parse=fast_parse
+                    str(path),
+                    i + 1,
+                    line.strip(),
+                    fast_parse=fast_parse,
+                    victim_color=victim_color,
                 )
             )
     return parsed_games
@@ -104,7 +108,11 @@ semicolon_pattern = re.compile(";")
 
 
 def parse_game_str_to_dict(
-    path: str, line_number: int, sgf_str: str, fast_parse: bool = False
+    path: str,
+    line_number: int,
+    sgf_str: str,
+    fast_parse: bool = False,
+    victim_color: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Parse an sgf string to a dictionary containing game_info.
 
@@ -115,6 +123,8 @@ def parse_game_str_to_dict(
         sgf_str: The string to parse.
         fast_parse: Include additional fields that are slower to extract
             or generally less useful.
+        victim_color: Which color is the victim (for SGFs whose PB and PW fields
+            don't label the adversary or victim).
 
     Returns:
         Dictionary containing game_info.
@@ -132,16 +142,27 @@ def parse_game_str_to_dict(
     komi = float(komi) if komi else komi
     win_color = result[0].lower() if result else None
     assert (
-        "victim" in b_name or "victim" in w_name or "adv" in b_name or "adv" in w_name
+        "victim" in b_name
+        or "victim" in w_name
+        or "adv" in b_name
+        or "adv" in w_name
+        or victim_color
     ), f"Game doesn't have victim: path={path}, line_number={line_number}"
 
     parts = pathlib.Path(path).parts
-    training = "eval" if "eval" in parts else "train" if "selfplay" in parts else None
+    training = None
+    if "eval" in parts:
+        training = "eval"
+    elif "selfplay" in parts:
+        training = "train"
+    elif "gatekeepersgf" in parts:
+        training = "gating"
 
-    victim_color = {b_name: "b", w_name: "w"}.get(
-        "victim",
-        "b" if ("victim" in b_name or "bot" in b_name or "adv" in w_name) else "w",
-    )
+    if victim_color is None:
+        victim_color = {b_name: "b", w_name: "w"}.get(
+            "victim",
+            "b" if ("victim" in b_name or "bot" in b_name or "adv" in w_name) else "w",
+        )
     victim_name = {"b": b_name, "w": w_name}[victim_color]
     adv_color = {"b": "w", "w": "b"}[victim_color]
     adv_name = b_name if adv_color == "b" else w_name
@@ -177,23 +198,34 @@ def parse_game_str_to_dict(
     )
     victim_visits = {"b": b_visits, "w": w_visits}[victim_color]
     adv_visits = {"b": b_visits, "w": w_visits}[adv_color]
+    adv_komi = komi * {"w": 1, "b": -1}[adv_color]
+    is_resignation = False
     if win_color is None:
         adv_minus_victim_score = 0
+        adv_minus_victim_score_wo_komi = None
     else:
-        win_score = (
-            float(result.split("+")[-1])
+        win_score_str = (
+            result.split("+")[-1]
             if "+" in result
             # Sgfs for manual games can have a space instead of a +
-            else float(result.split(" ")[-1])
+            else result.split(" ")[-1]
         )
-        adv_minus_victim_score = win_score if adv_color == win_color else -win_score
+        if win_score_str == "R" or win_score_str == "Resign":
+            # Resignation
+            win_score = None
+            adv_minus_victim_score = None
+            adv_minus_victim_score_wo_komi = None
+            is_resignation = True
+        else:
+            win_score = float(win_score_str)
+            adv_minus_victim_score = win_score if adv_color == win_color else -win_score
+            adv_minus_victim_score_wo_komi = adv_minus_victim_score - adv_komi
     adv_steps = (
         extract_re(r"\-s([0-9]+)\-", adv_name)
         or extract_re(r"t0\-s([0-9]+)\-", "/".join(parts[-3:]))
         or 0
     )
     adv_samples = extract_re(r"\-d([0-9]+)", adv_name) or 0
-    adv_komi = komi * {"w": 1, "b": -1}[adv_color]
 
     parsed_info = {
         "b_name": b_name,
@@ -225,7 +257,7 @@ def parse_game_str_to_dict(
         "komi": komi,
         "adv_komi": adv_komi,
         "adv_minus_victim_score": adv_minus_victim_score,
-        "adv_minus_victim_score_wo_komi": adv_minus_victim_score - adv_komi,
+        "adv_minus_victim_score_wo_komi": adv_minus_victim_score_wo_komi,
         # Other info
         "train_status": training,
         "board_size": board_size,
@@ -243,6 +275,7 @@ def parse_game_str_to_dict(
         "used_initial_position": extract_param("usedInitialPosition", comment_str) == 1,
         "gtype": extract_param("gtype", comment_str),
         "is_continuation": False,
+        "is_resignation": is_resignation,
         # Parsing metadata
         "sgf_path": path,
         "sgf_line": line_number,

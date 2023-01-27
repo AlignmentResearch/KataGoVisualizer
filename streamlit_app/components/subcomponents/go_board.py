@@ -12,4 +12,5 @@ Sorry, your browser doesn't support WGo.js. Download SGF <a href="game.sgf">dire
 
 
 def go_board(sgf_str):
+    sgf_str = sgf_str.replace('"', "")  # Wgo.js can't parse quotes
     components.html(WGO_HTML.format(sgf_str=sgf_str), height=600)
