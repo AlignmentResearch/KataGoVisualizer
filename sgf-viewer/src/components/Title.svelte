@@ -3,13 +3,13 @@
     const authors: Map<string, string> = new Map([
         ["Tony Wang*", "https://terveisin.tw/"],
         ["Adam Gleave*", "https://www.gleave.me/"],
-        ["Nora Belrose", "https://twitter.com/norabelrose"],
         ["Tom Tseng", "https://www.tomhmtseng.com/"],
-        ["Joseph Miller", "https://far.ai/author/joseph-miller/"],
+        ["Nora Belrose", "https://twitter.com/norabelrose"],
         [
             "Kellin Pelrine",
             "https://scholar.google.com/citations?user=_s2HT_0AAAAJ&hl=en",
         ],
+        ["Joseph Miller", "https://far.ai/author/joseph-miller/"],
         [
             "Michael D Dennis",
             "https://scholar.google.com/citations?user=WXXu26AAAAAJ&hl=en&authuser=1",
