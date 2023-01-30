@@ -66,7 +66,7 @@ CMD (trap 'kill 0' INT; \
     /ngrok http \
     # Only include the --hostname flag if $NGROK_HOSTNAME is not empty
     $( [ ! -z $NGROK_HOSTNAME ] && printf %s "--hostname=$NGROK_HOSTNAME" ) 8501 \
-    --oauth=google --oauth-allow-domain=humancompatible.ai,alignmentfund.org \
+    --oauth=google --oauth-allow-domain=alignmentfund.org,far.ai \
     --oauth-allow-email=$NGROK_EMAILS \
     > /dev/null & \
     # Wait for ngrok to start
