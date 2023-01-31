@@ -25,18 +25,18 @@
 </script>
 
 <div class="logos">
+    <a href="https://far.ai/" target="_blank">
+        <img src="/images/far-logo.png" class="logo far" alt="FAR Logo" />
+    </a>
+    <a href="https://www.mit.edu/" target="_blank">
+        <img src="/images/mit-logo.svg" class="logo mit" alt="MIT Logo" />
+    </a>
     <a href="https://humancompatible.ai/" target="_blank">
         <img
             src="/images/chai-logo.png"
             class="logo"
             alt="Center for Human-Compatible Artificial Intelligence Logo"
         />
-    </a>
-    <a href="https://www.mit.edu/" target="_blank">
-        <img src="/images/mit-logo.svg" class="logo mit" alt="MIT Logo" />
-    </a>
-    <a href="https://far.ai/" target="_blank">
-        <img src="/images/far-logo.png" class="logo far" alt="FAR Logo" />
     </a>
 </div>
 <h1 in:fade style="text-align: center;">

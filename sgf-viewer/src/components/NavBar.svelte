@@ -27,14 +27,14 @@
 <div class="nav-bar" bind:this={navBarElem}>
     <div class="icons flex-grow-symmetric">
         <a
-            href="https://github.com/HumanCompatibleAI/go_attack"
+            href="https://github.com/AlignmentResearch/go_attack"
             target="_blank"
             class="icon-link"
         >
             <FaGithub />
         </a>
         <a
-            href="/pdfs/go_attack_paper.pdf"
+            href="https://arxiv.org/pdf/2211.00241.pdf"
             target="_blank"
             class="icon-link"
         >
