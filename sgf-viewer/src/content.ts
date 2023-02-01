@@ -545,5 +545,231 @@ export const pages: object =
                 "description": ["Another hard-coded strategy we test is Mirror Go, a classic strategy in which the mirroring player plays the opponent's last move reflected about the diagonal. Mirror Go wins a few games against <code>Latest</code> as well, with a win rate of about 1.7% against <code>Latest</code> with 32 visits. (The games displayed are non-randomly selected to show the wins achieved by Mirror Go.)"]
             }
         ]
+    },
+    "training-sample": {
+        "title": "Training Sample Games",
+        "description": ["In this section we present samples of games showing the training process of our adversary. In particular, we sample 10 games approximately every 10% through training up to 498 million steps."],
+        "content": [
+            {
+                "title": "10%",
+                "dir_name": "training_sample_games",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Sampled using sample_training_games.py",
+                "paths_with_line_num": [
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-0-to-6-20221115-223912/sgfs/11A66DE0E200A0BC.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-0-to-6-20221115-223912/sgfs/5BAAD99038C360E5.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-0-to-6-20221115-223912/sgfs/7B2E045DA319B5DF.sgfs", "line": 4},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-0-to-6-20221115-223912/sgfs/24065310CC8501F1.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-0-to-6-20221115-223912/sgfs/23465483EF866142.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-0-to-6-20221115-223912/sgfs/BCA434E39A7D28AC.sgfs", "line": 4},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-0-to-6-20221115-223912/sgfs/0BF7E4F9529CCC6A.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-0-to-6-20221115-223912/sgfs/B7F7C8D87513B76E.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-0-to-6-20221115-223912/sgfs/CF4AD191CC5E9F27.sgfs", "line": 5},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-0-to-6-20221115-223912/sgfs/F4EF647E82B38386.sgfs", "line": 3}
+                ],
+                "max_games": 10,
+                "adversary": "43 million training steps, 600 visits",
+                "victim": "<code>Latest</code>, no search",
+                "description": []
+            },
+            {
+                "title": "20%",
+                "dir_name": "training_sample_games",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Sampled using sample_training_games.py",
+                "paths_with_line_num": [
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/9D587AFC0E626106.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/B20CEC508E9F8666.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/03BEDEED97A21BB9.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/1164AC2BCAE850FD.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/02BCCC01EBE0EE51.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/E3DDA67DB70F4280.sgfs", "line": 5},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/B078BD41BDCBEA36.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/6745A7C63A100614.sgfs", "line": 3},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/573CD8CE73D9633C.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/CCCAD9D8DC44A54E.sgfs", "line": 2}
+                ],
+                "max_games": 10,
+                "adversary": "103 million training steps, 600 visits",
+                "victim": "<code>Latest</code>, no search",
+                "description": []
+            },
+            {
+                "title": "30%",
+                "dir_name": "training_sample_games",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Sampled using sample_training_games.py",
+                "paths_with_line_num": [
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/0DDE9CAC99D4BCDD.sgfs", "line": 3},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/C8868AC13F4A8ADD.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/3ED74812C37A2230.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/2F6C6A8A795CB0D6.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/B6D77E11E3527717.sgfs", "line": 5},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/94A48D151AF88C9E.sgfs", "line": 3},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/08CD5D22EE7CF883.sgfs", "line": 5},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/3F2F5FD46158D385.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/C983570A998FBF70.sgfs", "line": 3},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-06-to-12-20221115-223955/sgfs/F3AE7F1E41484BBA.sgfs", "line": 1}
+                ],
+                "max_games": 10,
+                "adversary": "147 million training steps, 600 visits",
+                "victim": "<code>Latest</code>, no search",
+                "description": []
+            },
+            {
+                "title": "40%",
+                "dir_name": "training_sample_games",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Sampled using sample_training_games.py",
+                "paths_with_line_num": [
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/C511DEDDF2969D2B.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/797485B2CC23F51E.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/890735928D2386AE.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/7812AFE5D1D9F105.sgfs", "line": 4},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/D1F6DAC34C801B25.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/6C2E3B0ECD5D0610.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/D4239C3A8B33B1E2.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/5CAC93D37F183E04.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/59083EB758FEEBE5.sgfs", "line": 4},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/76B3A5D3899535D3.sgfs", "line": 4}
+                ],
+                "max_games": 10,
+                "adversary": "192 million training steps, 600 visits",
+                "victim": "<code>Latest</code>, no search",
+                "description": []
+            },
+            {
+                "title": "50%",
+                "dir_name": "training_sample_games",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Sampled using sample_training_games.py",
+                "paths_with_line_num": [
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/24E0A3838BF759BC.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/0D6885FF2E454BA0.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/9A6043D4C6984656.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/3D3CCE74C5201391.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/41E04C3B2AAE77A9.sgfs", "line": 3},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/76B3A5D3899535D3.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/0CB9A84DFF45D38E.sgfs", "line": 5},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/EEDEA52A7636AD25.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/1B31C8DB8F619BD2.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-12-to-18-20221115-224043/sgfs/309C80C72F25BFAA.sgfs", "line": 1}
+                ],
+                "max_games": 10,
+                "adversary": "251 million training steps, 600 visits",
+                "victim": "<code>Latest</code>, no search",
+                "description": []
+            },
+            {
+                "title": "60%",
+                "dir_name": "training_sample_games",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Sampled using sample_training_games.py",
+                "paths_with_line_num": [
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/7D35DB5EE6227647.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/2F7F361286148E69.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/0FD0A936A0187CA4.sgfs", "line": 4},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/FDAA823C4E0D8EF8.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/0FCED8F338CE94D4.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/8C98368414D752E0.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/F95FEF2F7BFA1BA1.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/54ED29D782A3A6DB.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/75A9283095C73354.sgfs", "line": 5},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/BEA280FDCBCFBC60.sgfs", "line": 5}
+                ],
+                "max_games": 10,
+                "adversary": "297 million training steps, 600 visits",
+                "victim": "<code>Latest</code>, no search",
+                "description": []
+            },
+            {
+                "title": "70%",
+                "dir_name": "training_sample_games",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Sampled using sample_training_games.py",
+                "paths_with_line_num": [
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/ED7AB9AAFF10A21A.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/AEC85127FA0F0979.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/32FABB84AF6C08C6.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/CC2535ED9C2F3D35.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/EDF006C27B261602.sgfs", "line": 5},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/B194BE61DBB37758.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/37D0B8CF2CA02A91.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/8E87047FB9250EAF.sgfs", "line": 3},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/24690BE630FBC1F0.sgfs", "line": 3},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-18-to-24-20221115-224139/sgfs/32FABB84AF6C08C6.sgfs", "line": 4}
+                ],
+                "max_games": 10,
+                "adversary": "342 million training steps, 600 visits",
+                "victim": "<code>Latest</code>, no search",
+                "description": []
+            },
+            {
+                "title": "80%",
+                "dir_name": "training_sample_games",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Sampled using sample_training_games.py",
+                "paths_with_line_num": [
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-24-to-30-20221115-224250/sgfs/8B5E2535940324CD.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-24-to-30-20221115-224250/sgfs/F80B64AA35F8E781.sgfs", "line": 3},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-24-to-30-20221115-224250/sgfs/C41B12DDFDD50A36.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-24-to-30-20221115-224250/sgfs/7469C7CBB6A03D3E.sgfs", "line": 4},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-24-to-30-20221115-224250/sgfs/A995003430763EF1.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-24-to-30-20221115-224250/sgfs/4506D13925762801.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-24-to-30-20221115-224250/sgfs/75096E6B8B00FEE4.sgfs", "line": 3},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-24-to-30-20221115-224250/sgfs/A406DD62F3447DF8.sgfs", "line": 3},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-24-to-30-20221115-224250/sgfs/953332D81C0D858F.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-24-to-30-20221115-224250/sgfs/9D302266A9B57734.sgfs", "line": 1}
+                ],
+                "max_games": 10,
+                "adversary": "402 million training steps, 600 visits",
+                "victim": "<code>Latest</code>, no search",
+                "description": []
+            },
+            {
+                "title": "90%",
+                "dir_name": "training_sample_games",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Sampled using sample_training_games.py",
+                "paths_with_line_num": [
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/4885D6912D803A83.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/F800E97575CC3F74.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/9596D1911B278B61.sgfs", "line": 5},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/33A3E9361F71AFE3.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/33A3E9361F71AFE3.sgfs", "line": 5},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/DB5895A191363532.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/EB08786BCD65ABDD.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/E911ECDEE6393068.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/FCE66B6E2858ED7F.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/001C9179F670B15D.sgfs", "line": 2}
+                ],
+                "max_games": 10,
+                "adversary": "447 million training steps, 600 visits",
+                "victim": "<code>Latest</code>, no search",
+                "description": []
+            },
+            {
+                "title": "100%",
+                "dir_name": "training_sample_games",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Sampled using sample_training_games.py",
+                "paths_with_line_num": [
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/25497CF5DC5E4879.sgfs", "line": 3},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/09FCC4B035D6BB44.sgfs", "line": 3},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/A631F008C596648C.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/D8F425724FAA4D05.sgfs", "line": 2},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/06576782CC5D0B54.sgfs", "line": 4},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/4BD91D8D13AA3E99.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/ACD93F53735E3FA2.sgfs", "line": 3},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/BDD429CCC6D1E729.sgfs", "line": 1},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/943C71F34118E346.sgfs", "line": 4},
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/D8CDCC3B304AFFE0.sgfs", "line": 1}                    
+                ],
+                "max_games": 10,
+                "adversary": "498 million training steps, 600 visits",
+                "victim": "<code>Latest</code>, no search",
+                "description": []
+            }
+        ]
     }
 }
