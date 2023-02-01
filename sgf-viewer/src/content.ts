@@ -763,7 +763,7 @@ export const pages: object =
                     {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/ACD93F53735E3FA2.sgfs", "line": 3},
                     {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/BDD429CCC6D1E729.sgfs", "line": 1},
                     {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/943C71F34118E346.sgfs", "line": 4},
-                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/D8CDCC3B304AFFE0.sgfs", "line": 1}                    
+                    {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-30-to-36-20221115-224252/sgfs/D8CDCC3B304AFFE0.sgfs", "line": 1}
                 ],
                 "max_games": 10,
                 "adversary": "498 million training steps, 600 visits",
