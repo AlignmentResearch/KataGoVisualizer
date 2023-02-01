@@ -161,7 +161,13 @@ def parse_game_str_to_dict(
     if victim_color is None:
         victim_color = {b_name: "b", w_name: "w"}.get(
             "victim",
-            "b" if ("victim" in b_name.lower() or "bot" in b_name.lower() or "adv" in w_name.lower()) else "w",
+            "b"
+            if (
+                "victim" in b_name.lower()
+                or "bot" in b_name.lower()
+                or "adv" in w_name.lower()
+            )
+            else "w",
         )
     victim_name = {"b": b_name, "w": w_name}[victim_color]
     adv_color = {"b": "w", "w": "b"}[victim_color]
