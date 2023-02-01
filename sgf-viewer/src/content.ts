@@ -552,7 +552,7 @@ export const pages: object =
         "content": [
             {
                 "title": "10%",
-                "dir_name": "training_sample_games",
+                "dir_name": "training_sample_games1",
                 "server": "dqn.ist.berkeley.edu",
                 "_path_comment": "Sampled using sample_training_games.py",
                 "paths_with_line_num": [
@@ -574,7 +574,7 @@ export const pages: object =
             },
             {
                 "title": "20%",
-                "dir_name": "training_sample_games",
+                "dir_name": "training_sample_games2",
                 "server": "dqn.ist.berkeley.edu",
                 "_path_comment": "Sampled using sample_training_games.py",
                 "paths_with_line_num": [
@@ -596,7 +596,7 @@ export const pages: object =
             },
             {
                 "title": "30%",
-                "dir_name": "training_sample_games",
+                "dir_name": "training_sample_games3",
                 "server": "dqn.ist.berkeley.edu",
                 "_path_comment": "Sampled using sample_training_games.py",
                 "paths_with_line_num": [
@@ -618,7 +618,7 @@ export const pages: object =
             },
             {
                 "title": "40%",
-                "dir_name": "training_sample_games",
+                "dir_name": "training_sample_games4",
                 "server": "dqn.ist.berkeley.edu",
                 "_path_comment": "Sampled using sample_training_games.py",
                 "paths_with_line_num": [
@@ -640,7 +640,7 @@ export const pages: object =
             },
             {
                 "title": "50%",
-                "dir_name": "training_sample_games",
+                "dir_name": "training_sample_games5",
                 "server": "dqn.ist.berkeley.edu",
                 "_path_comment": "Sampled using sample_training_games.py",
                 "paths_with_line_num": [
@@ -662,7 +662,7 @@ export const pages: object =
             },
             {
                 "title": "60%",
-                "dir_name": "training_sample_games",
+                "dir_name": "training_sample_games6",
                 "server": "dqn.ist.berkeley.edu",
                 "_path_comment": "Sampled using sample_training_games.py",
                 "paths_with_line_num": [
@@ -684,7 +684,7 @@ export const pages: object =
             },
             {
                 "title": "70%",
-                "dir_name": "training_sample_games",
+                "dir_name": "training_sample_games7",
                 "server": "dqn.ist.berkeley.edu",
                 "_path_comment": "Sampled using sample_training_games.py",
                 "paths_with_line_num": [
@@ -706,7 +706,7 @@ export const pages: object =
             },
             {
                 "title": "80%",
-                "dir_name": "training_sample_games",
+                "dir_name": "training_sample_games8",
                 "server": "dqn.ist.berkeley.edu",
                 "_path_comment": "Sampled using sample_training_games.py",
                 "paths_with_line_num": [
@@ -728,7 +728,7 @@ export const pages: object =
             },
             {
                 "title": "90%",
-                "dir_name": "training_sample_games",
+                "dir_name": "training_sample_games9",
                 "server": "dqn.ist.berkeley.edu",
                 "_path_comment": "Sampled using sample_training_games.py",
                 "paths_with_line_num": [
@@ -750,7 +750,7 @@ export const pages: object =
             },
             {
                 "title": "100%",
-                "dir_name": "training_sample_games",
+                "dir_name": "training_sample_games10",
                 "server": "dqn.ist.berkeley.edu",
                 "_path_comment": "Sampled using sample_training_games.py",
                 "paths_with_line_num": [
