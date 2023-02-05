@@ -28,3 +28,10 @@ services:
               driver: nvidia
               device_ids: ["1"]
     tty: true
+    ports:
+      # Host will bind a randomly chosen available port on localhost (127.0.0.1)
+      # to the container's port 8888 that Jupyter notebook listens on.
+      # To find the port allocated, run `docker ps`.
+      - 127.0.0.1::8888
+    working_dir: /KataGoVisualizer
+    entrypoint: "jupyter-notebook --allow-root --ip=*"
