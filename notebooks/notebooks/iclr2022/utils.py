@@ -1,7 +1,7 @@
 """Utility functions for plot notebooks."""
 import os
 import pathlib
-from typing import Iterable, List, TypeVar
+from typing import Dict, Iterable, List, Tuple, TypeVar
 
 import pandas as pd
 
@@ -60,3 +60,31 @@ def parse_sgfs(paths: Iterable[str]) -> pd.DataFrame:
     )
     df = pd.DataFrame(game_infos)
     return df
+
+
+def get_victim_active_ranges(df: pd.DataFrame) -> Dict[str, Tuple[int, int]]:
+    """Get victims' active ranges during training."""
+    df = df[df.gtype == "normal"]
+    df = df[df.board_size == 19]
+    df["victim_name_v2"] = (
+        df.victim_name.str.strip("kata1-").str.strip(".bin.gz").str.strip(".txt.gz")
+        + "-v"
+        + df.victim_visits.astype("str")
+    )
+
+    grouped_df = df[["victim_name_v2", "adv_steps"]].groupby("victim_name_v2")
+    min_dict = grouped_df.adv_steps.min()
+    max_dict = grouped_df.adv_steps.max()
+
+    victim_ranges: Dict[str, Tuple[int, int]] = {}
+    for v in df.victim_name_v2.unique():
+        start = min_dict[v]
+        end = max_dict[v]
+        victim_ranges[v] = (start, end)
+    victim_ranges = dict(sorted(victim_ranges.items(), key=lambda x: x[1][1]))
+    return victim_ranges
+
+
+def get_victim_change_steps(df: pd.DataFrame) -> List[int]:
+    """Get steps at which victim changes during training."""
+    return [r[0] for r in get_victim_active_ranges(df).values()]

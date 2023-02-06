@@ -199,6 +199,7 @@ def parse_game_str_to_dict(
     victim_visits = {"b": b_visits, "w": w_visits}[victim_color]
     adv_visits = {"b": b_visits, "w": w_visits}[adv_color]
     adv_komi = komi * {"w": 1, "b": -1}[adv_color]
+    is_resignation = False
     if win_color is None:
         adv_minus_victim_score = 0
         adv_minus_victim_score_wo_komi = None
@@ -209,11 +210,12 @@ def parse_game_str_to_dict(
             # Sgfs for manual games can have a space instead of a +
             else result.split(" ")[-1]
         )
-        if win_score_str == "R":
+        if win_score_str == "R" or win_score_str == "Resign":
             # Resignation
             win_score = None
             adv_minus_victim_score = None
             adv_minus_victim_score_wo_komi = None
+            is_resignation = True
         else:
             win_score = float(win_score_str)
             adv_minus_victim_score = win_score if adv_color == win_color else -win_score
@@ -273,6 +275,7 @@ def parse_game_str_to_dict(
         "used_initial_position": extract_param("usedInitialPosition", comment_str) == 1,
         "gtype": extract_param("gtype", comment_str),
         "is_continuation": False,
+        "is_resignation": is_resignation,
         # Parsing metadata
         "sgf_path": path,
         "sgf_line": line_number,
