@@ -24,7 +24,7 @@ def get_style(style_name: str) -> str:
     return str(style_sheets_dir / f"{style_name}.mlpstyle")
 
 
-def parse_for_match(df: pd.DataFrame, victim_name_prefix="cp505-v") -> None:
+def parse_for_match(df: pd.DataFrame) -> None:
     """Adds additional useful info to a dataframe of match SGFs."""
     adv_is_black = df.b_name.str.contains("adv")
     adv_is_white = df.w_name.str.contains("adv")
@@ -44,9 +44,7 @@ def parse_for_match(df: pd.DataFrame, victim_name_prefix="cp505-v") -> None:
 
     df.adv_win = df.adv_color == df.win_color
 
-    df.victim_visits = df.victim_name.str.slice(start=len(victim_name_prefix)).astype(
-        int
-    )
+    df.victim_visits = df.victim_name.str.extract(r"-v(\d+)").astype(int)
 
 
 def parse_sgfs(paths: Iterable[str]) -> pd.DataFrame:
