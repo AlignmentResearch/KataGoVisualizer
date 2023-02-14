@@ -70,9 +70,9 @@ for decile in range(1, 11):
             victim_name = "<code>Latest</code><sub><code>def</code></sub>"
             victim_name_nocode = "Latest"
         if victim_name[-1] == "h":
-            victim_name = f'<code>{victim_name[:-1]}</code><sub><code>def</code></sub>'
+            victim_name = f"<code>{victim_name[:-1]}</code><sub><code>def</code></sub>"
             victim_name_nocode = victim_name[:-1]
-        
+
         victim_visits = victim.split("-v")[1]
         if victim_visits == "1":
             victim_visits = ", no search"
