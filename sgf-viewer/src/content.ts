@@ -548,7 +548,7 @@ export const pages: object =
     },
     "training-sample": {
         "title": "Training Sample Games",
-        "description": ["In this section we present samples of games showing the training process of our adversary. In particular, we sample 10 games approximately every 10% through training up to 498 million steps."],
+        "description": ["In this section we present samples of games showing the training process of our adversary. In particular, we sample 10 games approximately every 10% through training up to 498 million steps. All victims are defended against the <a href=\"/pass-based-attack#contents\">pass-based attack</a>. We see the adversary implementing other attacks before discovering and ultimately consistently using the cyclic attack. This progression is analyzed in more detail in <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.I.3\">the paper appendix</a>"],
         "jump_to": {
             "base": "VAR vs. VAR",
             "vars": [
