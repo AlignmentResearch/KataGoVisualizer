@@ -155,7 +155,7 @@ export const pages: object =
                 ],
                 "max_games": 1,
                 "adversary": "545 million training steps, 600 visits",
-                "victim": "<code>Latest</code><sub><code>def</code></sub>, 4096 visits",
+                "victim": "<code>Latest</code>, 4096 visits",
                 "description": [
                     "In this game, we find the victim's predicted win rate oscillates several times before the victim's group is captured at <a onclick='setMove(`win-rate`, 273)'>move 273</a>. At <a onClick='setMove(`win-rate`, 248)'>move 248</a>, the victim predicted it would win with 91% confidence, yet at its next turn at <a onClick='setMove(`win-rate`, 250)'>move 250</a> it has gone down to a <1% win rate prediction. At <a onClick='setMove(`win-rate`, 254)'>move 254</a>, it jumps back to a >99% win rate prediction. A few moves later, the victim's win rate prediction again fluctuates dramatically, hitting <1% at <a onClick='setMove(`win-rate`, 266)'>move 266</a>, 99% at <a onClick='setMove(`win-rate`, 268)'>move 268</a>, and <1% at <a onClick='setMove(`win-rate`, 272)'>move 272</a>.  After the capture on the following turn, the victim (correctly) predicts a <1% win rate until the end of the game."
                 ]
@@ -202,7 +202,7 @@ export const pages: object =
                 ],
                 "max_games": 5,
                 "adversary": "545 million training steps, 600 visits",
-                "victim": "<code>Latest</code><sub><code>def</code></sub>, 1 million visits",
+                "victim": "<code>Latest</code>, 1 million visits",
                 "description": [
                     "The following game records correspond to positions that were analyzed with 1 billion visits, where the victim still failed to find the correct move. For details, please refer to the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#appendix.H\">paper appendix discussing the role of search in robustness</a>."
                 ]
