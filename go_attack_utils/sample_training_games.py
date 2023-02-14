@@ -66,12 +66,13 @@ for decile in range(1, 11):
         assert victim in results_dict[nearest_match]
 
         victim_name = victim.split("-v")[0]
-        victim_name_nocode = victim_name
         if victim_name == "cp505" or victim_name == "cp505h":
-            victim_name = "<code>Latest</code>"
+            victim_name = "<code>Latest</code><sub><code>def</code></sub>"
             victim_name_nocode = "Latest"
         if victim_name[-1] == "h":
-            victim_name = victim_name[:-1]
+            victim_name = f'<code>{victim_name[:-1]}</code><sub><code>def</code></sub>'
+            victim_name_nocode = victim_name[:-1]
+        
         victim_visits = victim.split("-v")[1]
         if victim_visits == "1":
             victim_visits = ", no search"
