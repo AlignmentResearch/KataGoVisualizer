@@ -15,8 +15,12 @@
     const rmvUrlParams = () =>
         window.history.pushState({}, "", window.location.pathname);
 
+    // Base JumpTo string split by VAR
     $: jumpToBase = (pages[currentPath].jump_to?.base ?? "").split("VAR");
+    // Current values of VARs, these are bound to the dropdowns in the jump_to UI
     $: jumpSelect = (pages[currentPath].jump_to?.vars ?? []).map(v => v[0]);
+    // Construct the title to jump to. jumpSelect[i] is undefined for final index.
+    // This is converted to the empty string by `join()`
     $: jumpTitle = jumpToBase.flatMap((x, i) => [x, jumpSelect[i]]).join('')
 </script>
 
