@@ -184,9 +184,27 @@ export const pages: object =
                 ],
                 "max_games": 16,
                 "adversary": "498 million training steps, 600 visits",
-                "victim": "<code>Latest</code>, 1600 visits",
+                "victim": "<code>Latest</code><sub><code>def</code></sub>, 1600 visits",
                 "description": [
                     "We make available here the full game records for the positions analyzed with different levels of visits in the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#appendix.H\">paper appendix discussing the role of search in robustness</a>. For details, please refer to the appendix."
+                ]
+            },
+            {
+                "title": "Positions analyzed with 1 billion visits",
+                "dir_name": "position-analysis-1b",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/kpelrine/position-analysis/1b/17C295C81D606485.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/1b/410B1AA59B8501F3.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/1b/517ACE2F2CF6A19C.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/1b/6E4A22DAD4680325.sgf",
+                    "/nas/ucb/kpelrine/position-analysis/1b/9E85957D1FD7E400.sgf"
+                ],
+                "max_games": 5,
+                "adversary": "545 million training steps, 600 visits",
+                "victim": "<code>Latest</code>, 1 million visits",
+                "description": [
+                    "The following game records correspond to positions that were analyzed with 1 billion visits, where the victim still failed to find the correct move. The original victim that played the games had 1 million visits. For details, please refer to the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#appendix.H\">paper appendix discussing the role of search in robustness</a>."
                 ]
             }
         ]
