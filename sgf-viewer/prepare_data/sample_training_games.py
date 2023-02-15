@@ -23,11 +23,13 @@ def get_victim(input_text_line):
 
     raise Exception("Victim not identified")
 
+
 # we will use this to find the nearest match (for which games are available) to the exact decile of training steps
 def find_nearest(array, value):
     array = np.asarray(array)
     idx = (np.abs(array - value)).argmin()
     return array[idx]
+
 
 if __name__ == "__main__":
     all_files = glob.glob(
@@ -43,13 +45,12 @@ if __name__ == "__main__":
                 num_steps = int(adv.group(0).split("s")[1])
                 victim = get_victim(line)
                 results_dict[num_steps][victim].append(
-                            {"path": filename, "line": line_num + 1}
-                        )
+                    {"path": filename, "line": line_num + 1}
+                )
 
     last_step = np.max(
         list(results_dict.keys())
     )  # last training step for adversary, i.e. "strongest" one
-
 
     for decile in range(1, 11):
         decile_steps = decile * last_step / 10
@@ -59,13 +60,15 @@ if __name__ == "__main__":
 
             victim_name = victim.split("-v")[0]
 
-            assert victim_name[-1] == 'h'
+            assert victim_name[-1] == "h"
             if victim_name == "cp505h":
                 victim_name_nocode = "Latest"
                 victim_name = "<code>Latest</code><sub><code>def</code></sub>"
             else:
                 victim_name_nocode = victim_name[:-1]
-                victim_name = f"<code>{victim_name[:-1]}</code><sub><code>def</code></sub>"
+                victim_name = (
+                    f"<code>{victim_name[:-1]}</code><sub><code>def</code></sub>"
+                )
 
             victim_visits = victim.split("-v")[1]
             if victim_visits == "1":
@@ -82,14 +85,21 @@ if __name__ == "__main__":
             ]  # round down to nearest million (remove last 6 digits)
 
             output_dict = {
-                "title": str(decile * 10) + "% vs. " + victim_name_nocode + victim_visits
+                "title": str(decile * 10)
+                + "% vs. "
+                + victim_name_nocode
+                + victim_visits
             }
-            output_dict["dir_name"] = "training_sample_games" + str(decile) + "_" + victim
+            output_dict["dir_name"] = (
+                "training_sample_games" + str(decile) + "_" + victim
+            )
             output_dict["server"] = "dqn.ist.berkeley.edu"
             output_dict["_path_comment"] = "Sampled using sample_training_games.py"
             output_dict["paths_with_line_num"] = sample_games
             output_dict["max_games"] = GAMES_TO_SAMPLE
-            output_dict["adversary"] = f"{rounded_steps} million training steps, 600 visits"
+            output_dict[
+                "adversary"
+            ] = f"{rounded_steps} million training steps, 600 visits"
             output_dict["victim"] = victim_name + victim_visits
             output_dict["description"] = []
 
