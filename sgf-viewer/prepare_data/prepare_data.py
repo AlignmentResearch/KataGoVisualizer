@@ -47,15 +47,19 @@ if __name__ == "__main__":
             title = section["title"]
             max_games = section["max_games"]
             games_count = 0
+            # Maps destination path to the original index of the source path in
+            # section["paths"] or section["paths_with_line_num"].
+            path_to_original_index = {}
             section_path = public_sgfs_path / section["dir_name"]
             run_cmd(["mkdir", "-p", str(section_path.resolve())])
-            for path in section.get("paths", []):
+            for i, path in enumerate(section.get("paths", [])):
                 if games_count < max_games:
                     if ".sgf" in path:
                         run_cmd(
                             ["scp", f"{server}:{path}", f"{section_path.resolve()}"]
                         )
                         games_count += 1
+                        path_to_original_index[Path(path).name] = i
                     else:
                         limit = max_games - games_count
                         command = ["ssh", server, "ls", path, "|", "head", f"-{limit}"]
@@ -65,7 +69,9 @@ if __name__ == "__main__":
                         ]
                         run_cmd(shell_cmd, shell=True, dry_run=False)
                         games_count += len(files)
-            for path_with_line in section.get("paths_with_line_num", []):
+                        for f in files:
+                            path_to_original_index[f] = i
+            for i, path_with_line in enumerate(section.get("paths_with_line_num", [])):
                 if games_count < max_games:
                     path = Path(path_with_line["path"])
                     line_num = path_with_line["line"]
@@ -80,6 +86,7 @@ if __name__ == "__main__":
                     with open(new_path, "w") as f:
                         f.write(line)
                     games_count += 1
+                    path_to_original_index[new_path.name] = i
 
             sgf_paths = game_info.find_sgf_files(section_path)
             parsed_games = game_info.read_and_parse_all_files(
@@ -98,22 +105,33 @@ if __name__ == "__main__":
                     Path(parsed_game["sgf_path"]).parts[-4:]
                 )
 
-            # Sort games by adv_win, victim_color, -score_diff, sgf_path
-            sorted_paths_games = sorted(
-                list(zip(sgf_paths, parsed_games)),
-                key=lambda x: (
-                    x[1]["adv_win"],
-                    x[1]["victim_color"],
-                    (
-                        0
-                        if x[1]["adv_minus_victim_score"] is None
-                        else -int(x[1]["adv_minus_victim_score"])
+            if section.get("sort_games", True):
+                # Sort games by adv_win, victim_color, -score_diff, sgf_path
+                parsed_games = sorted(
+                    parsed_games,
+                    key=lambda x: (
+                        x["adv_win"],
+                        x["victim_color"],
+                        (
+                            0
+                            if x["adv_minus_victim_score"] is None
+                            else -int(x["adv_minus_victim_score"])
+                        ),
+                        x["sgf_path"],
                     ),
-                    x[1]["sgf_path"],
-                ),
-                reverse=True,
-            )
-            parsed_games = [x[1] for x in sorted_paths_games]
+                    reverse=True,
+                )
+            else:
+                # Preserve games' order in `section["paths"]` or
+                # `section["paths_with_line_num"]`.
+                parsed_games = sorted(
+                    parsed_games,
+                    key=lambda x: (
+                        path_to_original_index[Path(x["sgf_path"]).name],
+                        x["sgf_path"],
+                        x["sgf_line"],
+                    ),
+                )
 
             for parsed_game in parsed_games:
                 if parsed_game["is_resignation"]:
@@ -139,8 +157,8 @@ if __name__ == "__main__":
             w_regex = re.compile(r"(W\[[a-z]{,2}\])" + comment)  # For white
 
             # Modify SGFs to be easier to interpret
-            for path, game in sorted_paths_games:
-                with open(path, "r+") as f:
+            for game in parsed_games:
+                with open(game["sgf_path"], "r+") as f:
                     text = f.read()
                     text = re.sub("BR\[[^]]*\]", "", text)
                     text = re.sub("WR\[[^]]*\]", "", text)

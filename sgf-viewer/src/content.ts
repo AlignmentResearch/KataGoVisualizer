@@ -183,6 +183,7 @@ export const pages: object =
                     "/nas/ucb/kpelrine/position-analysis/0107B1AE44B5395A6EAABFBEC119E664.sgf"
                 ],
                 "max_games": 16,
+                "sort_games": false,
                 "adversary": "498 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, 1600 visits",
                 "description": [
@@ -201,6 +202,7 @@ export const pages: object =
                     "/nas/ucb/kpelrine/position-analysis/1b/9E85957D1FD7E400.sgf"
                 ],
                 "max_games": 5,
+                "sort_games": false,
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code>, 1 million visits",
                 "description": [
