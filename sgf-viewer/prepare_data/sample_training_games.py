@@ -1,7 +1,7 @@
 # samples games over the training progression, to add to website and analyze
 # output: prints json lines to stdout (for copying to content.ts)
-# note it prints a comma between lines for easier pasting - remove comma from end of last line manually
 
+from collections import defaultdict
 import glob
 import json
 import random
@@ -35,26 +35,16 @@ if __name__ == "__main__":
     )
 
     # structure of below dict will be {adv_train_steps : {victim : [(filename0, linenum0), (filename1, linenum1), ...]}}
-    results_dict = {}
+    results_dict = defaultdict(lambda: defaultdict(list))
     for filename in all_files:
         with open(filename, "r") as f:
             for line_num, line in enumerate(f):
                 adv = ADV_PATTERN.search(line)
                 num_steps = int(adv.group(0).split("s")[1])
                 victim = get_victim(line)
-                if num_steps in results_dict:
-                    if victim in results_dict[num_steps]:
-                        results_dict[num_steps][victim].append(
+                results_dict[num_steps][victim].append(
                             {"path": filename, "line": line_num + 1}
                         )
-                    else:
-                        results_dict[num_steps][victim] = [
-                            {"path": filename, "line": line_num + 1}
-                        ]
-                else:
-                    results_dict[num_steps] = {
-                        victim: [{"path": filename, "line": line_num + 1}]
-                    }
 
     last_step = np.max(
         list(results_dict.keys())
@@ -103,4 +93,7 @@ if __name__ == "__main__":
             output_dict["victim"] = victim_name + victim_visits
             output_dict["description"] = []
 
-            print(json.dumps(output_dict) + ",")
+            if decile == 10 and victim == VICTIM_LIST[-1]:
+                print(json.dumps(output_dict))
+            else:
+                print(json.dumps(output_dict) + ",")
