@@ -11,7 +11,7 @@ import numpy as np
 
 random.seed(42)
 
-GAMES_TO_SAMPLE = 5 # this many games per training step decile and per victim
+GAMES_TO_SAMPLE = 5  # this many games per training step decile and per victim
 ADV_PATTERN = re.compile("adv-s[0-9]+")
 VICTIM_LIST = ["cp39h-v1", "cp127h-v1", "cp505h-v1", "cp505h-v2048"]
 
@@ -29,9 +29,7 @@ all_files = glob.glob(
 )
 
 # structure of below dict will be {adv_train_steps : {victim : [(filename0, linenum0), (filename1, linenum1), ...]}}
-results_dict = (
-    {}
-) 
+results_dict = {}
 for filename in all_files:
     with open(filename, "r") as f:
         for line_num, line in enumerate(f.readlines()):
@@ -85,7 +83,9 @@ for decile in range(1, 11):
         else:
             victim_visits = f", {victim_visits} visits"
 
-        sample_games = random.sample(results_dict[nearest_match][victim], GAMES_TO_SAMPLE)
+        sample_games = random.sample(
+            results_dict[nearest_match][victim], GAMES_TO_SAMPLE
+        )
 
         rounded_steps = str(nearest_match)[
             :-6
@@ -103,6 +103,4 @@ for decile in range(1, 11):
         output_dict["victim"] = victim_name + victim_visits
         output_dict["description"] = []
 
-        print(
-            json.dumps(output_dict) + ","
-        )
+        print(json.dumps(output_dict) + ",")
