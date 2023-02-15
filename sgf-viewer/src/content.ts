@@ -204,7 +204,7 @@ export const pages: object =
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code>, 1 million visits",
                 "description": [
-                    "The following game records correspond to positions that were analyzed with 1 billion visits, where the victim still failed to find the correct move. For details, please refer to the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#appendix.H\">paper appendix discussing the role of search in robustness</a>."
+                    "The following game records correspond to positions that were analyzed with 1 billion visits, where the victim still failed to find the correct move. The original victim that played the games had 1 million visits. For details, please refer to the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#appendix.H\">paper appendix discussing the role of search in robustness</a>."
                 ]
             }
         ]
