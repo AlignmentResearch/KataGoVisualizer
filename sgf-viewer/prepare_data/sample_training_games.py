@@ -13,7 +13,7 @@ random.seed(42)
 
 GAMES_TO_SAMPLE = 5  # this many games per training step decile and per victim
 ADV_PATTERN = re.compile("adv-s[0-9]+")
-VICTIM_LIST = ["cp39h-v1", "cp127h-v1", "cp505h-v1", "cp505h-v2048"]
+VICTIM_LIST = ["cp39h-v1", "cp127h-v1", "cp505h-v1", "cp505h-v4096"]
 
 
 def get_victim(input_text_line):
@@ -33,7 +33,7 @@ def find_nearest(array, value):
 
 if __name__ == "__main__":
     all_files = glob.glob(
-        "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-497mil-221115/ttseng-hard-match-*/sgfs/*.sgfs"
+        "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-*/sgfs/*.sgfs"
     )
 
     # structure of below dict will be {adv_train_steps : {victim : [(filename0, linenum0), (filename1, linenum1), ...]}}
