@@ -142,10 +142,10 @@ def parse_game_str_to_dict(
     komi = float(komi) if komi else komi
     win_color = result[0].lower() if result else None
     assert (
-        "victim" in b_name
-        or "victim" in w_name
-        or "adv" in b_name
-        or "adv" in w_name
+        "victim" in b_name.lower()
+        or "victim" in w_name.lower()
+        or "adv" in b_name.lower()
+        or "adv" in w_name.lower()
         or victim_color
     ), f"Game doesn't have victim: path={path}, line_number={line_number}"
 
@@ -161,7 +161,13 @@ def parse_game_str_to_dict(
     if victim_color is None:
         victim_color = {b_name: "b", w_name: "w"}.get(
             "victim",
-            "b" if ("victim" in b_name or "bot" in b_name or "adv" in w_name) else "w",
+            "b"
+            if (
+                "victim" in b_name.lower()
+                or "bot" in b_name.lower()
+                or "adv" in w_name.lower()
+            )
+            else "w",
         )
     victim_name = {"b": b_name, "w": w_name}[victim_color]
     adv_color = {"b": "w", "w": "b"}[victim_color]
