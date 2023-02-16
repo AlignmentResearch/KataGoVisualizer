@@ -106,19 +106,19 @@ export const pages: object =
                 "dir_name": "10mil_visits",
                 "server": "dqn.ist.berkeley.edu",
                 "paths": [
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-0.sgf",
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-1.sgf",
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-2.sgf",
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-3.sgf",
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-4.sgf",
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-5.sgf",
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-6.sgf",
-                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230113-130256/cleaned-sgfs/game-7.sgf"
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230123-233145/cleaned-sgfs/game-0.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230123-233145/cleaned-sgfs/game-1.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230123-233145/cleaned-sgfs/game-2.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230123-233145/cleaned-sgfs/game-3.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230123-233145/cleaned-sgfs/game-4.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230123-233145/cleaned-sgfs/game-5.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230123-233145/cleaned-sgfs/game-6.sgf",
+                    "/nas/ucb/ttseng/go_attack/backup/ttseng-v10mil-20230123-233145/cleaned-sgfs/game-7.sgf"
                 ],
                 "max_games": 8,
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code>, 10,000,000 visits, 1,024 search threads",
-                "description": ["Our adversary with 600 visits still achieves a 76.7% win rate against <code>Latest</code> with 10,000,000 visits, demonstrating that large amounts of search is not a practical defense against the adversary. We enabled resignation for these games to shorten them since such high visit counts are computationally expensive."]
+                "description": ["Our adversary with 600 visits still achieves a 72% win rate against <code>Latest</code> with 10,000,000 visits, demonstrating that large amounts of search is not a practical defense against the adversary."]
             }
         ]
     },
