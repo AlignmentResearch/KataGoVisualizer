@@ -30,8 +30,8 @@ See https://stackoverflow.com/a/20410383/1337463 for details.
 ### 'Jump to' menu
 For pages with many sections with similar names, you can have a 'Jump to' menu instead of contents at the top.
 To do this, add a `jump_to` object with two attributes to any `page` object in `src/content.ts`.
-The first attribute is `base` which is the Title of each section with all the variable components replaced by VAR.
-The second attribute is `vars` which is an array of arrays of strings. There should be one array for each `VAR`in `base`.
+The first attribute is `base` which is the title of each section with all the variable components replaced by VAR.
+The second attribute is `vars` which is an array of arrays of strings. There should be one array for each `VAR` in `base`.
 
 example:
 ```
