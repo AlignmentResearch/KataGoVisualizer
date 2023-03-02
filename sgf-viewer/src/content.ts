@@ -6,7 +6,7 @@ export const pages: object =
         "title": "Adversarially Exploiting KataGo",
         "description": [
             "We attack <a target=\"_blank\" href=\"https://github.com/lightvector/KataGo\">KataGo</a>, a state-of-the-art Go AI system, by training adversarial policies that play against frozen KataGo victims. Our attack achieves a 100% win rate over 1000 games when KataGo <a href=\"#no_search_hardened\">uses no tree-search</a>, and a &gt;97% win rate when KataGo <a href=\"#4096_visits_hardened\">uses enough search to be superhuman</a>. Notably, our adversaries do not win by learning to play Go better than KataGo &mdash; in fact, our adversaries are easily <a href=\"/human-evaluation#amateur_vs_advh_545mil\">beaten by a human amateur</a>. Instead, our adversaries win by tricking KataGo into making serious blunders. Our results demonstrate that even superhuman AI systems may harbor surprising failure modes.",
-            "All games are randomly selected unless otherwise specified. We primarily attack KataGo network checkpoint <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a>, which we dub <code>Latest</code> since it is the latest confidently rated KataGo network at the time of writing. For more information, see our <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf\">paper</a> and <a target=\"_blank\" href=\"https://github.com/HumanCompatibleAI/go_attack\">GitHub</a>."
+            "All games are randomly selected unless otherwise specified. We primarily attack KataGo network checkpoint <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a>, which we dub <code>Latest</code> since it is the latest confidently rated KataGo network at the time of writing. For more information, see our <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf\">paper</a> and <a target=\"_blank\" href=\"https://github.com/AlignmentResearch/go_attack\">GitHub</a>."
         ],
         "content": [
             {
@@ -44,7 +44,7 @@ export const pages: object =
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, no search",
                 "description": [
-                    "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.E.1\">strength of a top-100 European professional</a>. We trained an adversary that wins 100% of the time over 1000 games against this victim<sup>1</sup>. Our adversary gets the victim to form a large circular structure, and then tricks the victim into allowing the circular structure to be killed. See the <a href=\"/game-analysis#contents\">\"Game Analysis\"</a> tab for a more in depth analysis of this adversarial strategy.",
+                    "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.E.1\">strength of a top-100 European professional</a>. We trained an adversary that wins 100% of the time over 1000 games against this victim<sup>1</sup>. Our adversary gets the victim to form a large circular structure, and then tricks the victim into allowing the circular structure to be killed. See the <a href=\"/game-analysis#contents\">\"Game Analysis\"</a> tab for a more in depth analysis of this adversarial strategy.",
                     "<sup>[1]</sup> The games below are actually against a version of <code>Latest</code> that was patched to be immune to a simpler <a href=\"/pass-based-attack#contents\">pass-based attack</a>. We applied this patch to the victim to force our adversary to learn a more interesting attack. The patch is a hardcoded defense that forbids the victim from passing until it has no more legal moves outside its territory. We call the patched victim <code>Latest</code><sub><code>def</code></sub>. Because we limit the victim's passing, games are usually played out to the end, <a href=\"https://archive.ph/xmPrw#:~:text=(if%20SelfPlayOpts%20is%20Enabled)\">terminating automatically</a> once all points belong to a pass-alive-group or pass-alive-territory."
                 ],
                 "_comment": "Snapshot at archive.ph is from https://lightvector.github.io/KataGo/rules.html -- using in case rules change semantics in future versions of KataGo"
@@ -99,7 +99,7 @@ export const pages: object =
                 "max_games": 10,
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, 4096 visits",
-                "description": ["With 4096 visits, KataGo's <code>Latest</code> network <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.E.2\">plays at a superhuman level</a>. Nonetheless, our adversary still achieves a 97.3% win rate against <code>Latest</code> and a 95.7% win rate against the defended victim <code>Latest</code><sub><code>def</code></sub>. Games against <code>Latest</code><sub><code>def</code></sub> are shown below."]
+                "description": ["With 4096 visits, KataGo's <code>Latest</code> network <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.E.2\">plays at a superhuman level</a>. Nonetheless, our adversary still achieves a 97.3% win rate against <code>Latest</code> and a 95.7% win rate against the defended victim <code>Latest</code><sub><code>def</code></sub>. Games against <code>Latest</code><sub><code>def</code></sub> are shown below."]
             },
             {
                 "title": "KataGo with 10,000,000 visits",
@@ -187,7 +187,7 @@ export const pages: object =
                 "adversary": "498 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, 1600 visits",
                 "description": [
-                    "We make available here the full game records for the positions analyzed with different levels of visits in the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#appendix.H\">paper appendix discussing the role of search in robustness</a>. For details, please refer to the appendix."
+                    "We make available here the full game records for the positions analyzed with different levels of visits in the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#appendix.H\">paper appendix discussing the role of search in robustness</a>. For details, please refer to the appendix."
                 ]
             },
             {
@@ -206,7 +206,7 @@ export const pages: object =
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code>, 1 million visits",
                 "description": [
-                    "The following game records correspond to positions that were analyzed with 1 billion visits, where the victim still failed to find the correct move. The original victim that played the games had 1 million visits. For details, please refer to the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#appendix.H\">paper appendix discussing the role of search in robustness</a>."
+                    "The following game records correspond to positions that were analyzed with 1 billion visits, where the victim still failed to find the correct move. The original victim that played the games had 1 million visits. For details, please refer to the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#appendix.H\">paper appendix discussing the role of search in robustness</a>."
                 ]
             }
         ]
@@ -298,7 +298,7 @@ export const pages: object =
                 "adversary": "34.1 million training steps, 600 visits",
                 "victim": "<code>Latest</code>, no search",
                 "description": [
-                    "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.E.1\">strength of a top-100 European professional</a>. Our pass-based adversary achieves a 99% win rate against this victim by playing a counterintuitive strategy. The adversary stakes out a minority territory in the corner, allowing KataGo to stake the complement, and placing weak stones in KataGo’s stake.",
+                    "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.E.1\">strength of a top-100 European professional</a>. Our pass-based adversary achieves a 99% win rate against this victim by playing a counterintuitive strategy. The adversary stakes out a minority territory in the corner, allowing KataGo to stake the complement, and placing weak stones in KataGo’s stake.",
                     "KataGo predicts a high win probability for itself and, in a way, it’s right—it would be simple to capture most of the adversary’s stones in KataGo’s stake, achieving a decisive victory. However, KataGo plays a pass move before it has finished securing its territory, allowing the adversary to pass in turn and end the game. This results in a win for the adversary under the standard <a href=\"https://tromp.github.io/go.html\">Tromp-Taylor</a> ruleset for computer Go, as the adversary gets points for its corner territory (devoid of victim stones) whereas the victim does not receive points for its unsecured territory because of the presence of the adversary’s stones."
                 ]
             },
@@ -352,7 +352,7 @@ export const pages: object =
                 "max_games": 10,
                 "adversary": "34.1 million training steps, 200 visits, recursive modeling",
                 "victim": "<code>Latest</code>, 8 visits",
-                "description": ["A search budget of 8 visits / move is around the <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.F.3\">limit of what our pass-based adversary can exploit</a>. We achieve a win rate of 87.8% against this victim by modeling the victim perfectly during the adversary's search. The adversary wins by the same strategy of staking out a corner. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
+                "description": ["A search budget of 8 visits / move is around the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.F.3\">limit of what our pass-based adversary can exploit</a>. We achieve a win rate of 87.8% against this victim by modeling the victim perfectly during the adversary's search. The adversary wins by the same strategy of staking out a corner. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
             }
         ]
     },
@@ -372,7 +372,7 @@ export const pages: object =
                 "victim": "Tony Wang (Author)",
                 "description": [
                     "Our <a target=\"_blank\" href=\"/adversarial-policy-katago#contents\">strongest adversarial policy</a> (trained against <code>Latest</code><sub><code>def</code></sub>) is able to reliably beat KataGo at superhuman strength settings. However, a member of our team (Tony Wang) who is a novice Go player managed to convincingly beat this same adversary. This confirms that our adversarial policy is not generally capable, despite it beating victim policies that can themselves beat top human professionals. Instead, our victim policy harbors a subtle vulnerability.",
-                    "Our evaluation is imperfect in one significant way: the adversary was not playing with an accurate model of its human opponent (rather it modeled Tony as <code>Latest</code> with 1 visit). However, given the poor transferability of our adversary to different KataGo checkpoints (see <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#figure.caption.3\">Figure 5.1 of the paper</a>), we predict that the adversary would not win even if it had access to an accurate model of its human opponent."
+                    "Our evaluation is imperfect in one significant way: the adversary was not playing with an accurate model of its human opponent (rather it modeled Tony as <code>Latest</code> with 1 visit). However, given the poor transferability of our adversary to different KataGo checkpoints (see <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#figure.caption.3\">Figure 5.1 of the paper</a>), we predict that the adversary would not win even if it had access to an accurate model of its human opponent."
                 ]
             },
             {
@@ -568,7 +568,7 @@ export const pages: object =
     },
     "training-sample": {
         "title": "Training Sample Games",
-        "description": ["In this section we present samples of games showing the training process of our adversary. In particular, we sample 5 games against each of 4 victims approximately every 10% of training steps up to 545 million steps. All victims are defended against the <a href=\"/pass-based-attack#contents\">pass-based attack</a>. We see the adversary implementing other attacks before discovering and ultimately consistently using the cyclic attack. This progression is analyzed in more detail in <a target=\"_blank\" href=\"/pdfs/go_attack_paper.pdf#subsection.I.3\">the paper appendix</a>."],
+        "description": ["In this section we present samples of games showing the training process of our adversary. In particular, we sample 5 games against each of 4 victims approximately every 10% of training steps up to 545 million steps. All victims are defended against the <a href=\"/pass-based-attack#contents\">pass-based attack</a>. We see the adversary implementing other attacks before discovering and ultimately consistently using the cyclic attack. This progression is analyzed in more detail in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.I.3\">the paper appendix</a>."],
         "jump_to": {
             "base": "VAR vs. VAR",
             "vars": [

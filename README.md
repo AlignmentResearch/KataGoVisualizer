@@ -1,7 +1,7 @@
 
 # KataGo Visualizer
 
-This repo contains visualization tools for the paper ['Adversarial Policies Beat Professional-Level Go AIs'](https://goattack.far.ai/pdfs/go_attack_paper.pdf) ([website](https://goattack.far.ai/))
+This repo contains visualization tools for the paper ['Adversarial Policies Beat Professional-Level Go AIs'](https://arxiv.org/abs/2211.00241) ([website](https://goattack.far.ai/))
 
 
 ## Contents
