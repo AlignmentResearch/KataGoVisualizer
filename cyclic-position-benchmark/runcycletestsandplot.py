@@ -401,7 +401,7 @@ if __name__ == "__main__":
         fig.savefig(plotfilename, dpi=90)
 
     def plot_winrate(
-        plotfilename, ylabel, series_names, data, global_accumulate_winrate=False
+        plotfilename, ylabel, series_names, data, global_accumulate_winrate=None
     ):
         data = {
             series_name: data[series_name]
@@ -451,12 +451,11 @@ if __name__ == "__main__":
 
         fig.savefig(plotfilename, dpi=90)
 
-        if global_accumulate_winrate is not False:
-            if global_accumulate_winrate is not None:
-                global_accumulate_winrate = accumulate_data_of_type
-            else:
-                global_accumulate_winrate += accumulate_data_of_type
-            return global_accumulate_winrate
+        if global_accumulate_winrate is None:
+            global_accumulate_winrate = accumulate_data_of_type
+        else:
+            global_accumulate_winrate += accumulate_data_of_type
+        return global_accumulate_winrate
 
     def plot_average_winrate(plotfilename, raw_wr, search_wr):
         # for plotting the final, overall average wr
@@ -508,8 +507,8 @@ if __name__ == "__main__":
 
         plot_wr_wrapper(save_name_firstpart, series_names_var)
 
-    global_accumulate_winrate_raw = 0
-    global_accumulate_winrate_search = 0
+    global_accumulate_winrate_raw = None
+    global_accumulate_winrate_search = None
     global_accumulate_winrate_denom = 0
 
     race_series_names = [
