@@ -2,7 +2,6 @@ import collections
 import json
 import math
 import os
-import sys
 import subprocess
 import time
 from threading import Thread
@@ -316,13 +315,6 @@ if __name__ == "__main__":
     ):
         for katago in katagos:
             response = katago.query(board_at_setup, moves_since_setup, komi)
-            player = (
-                "b"
-                if len(moves_since_setup) == 0
-                or moves_since_setup[-1][0] == "w"
-                or moves_since_setup[-1][0] == "W"
-                else "w"
-            )
 
             modelname = os.path.basename(filename)
             if len(correct_moves) > 0:
@@ -409,7 +401,7 @@ if __name__ == "__main__":
         fig.savefig(plotfilename, dpi=90)
 
     def plot_winrate(
-        plotfilename, ylabel, series_names, data, global_accumulate_winrate=None
+        plotfilename, ylabel, series_names, data, global_accumulate_winrate=False
     ):
         data = {
             series_name: data[series_name]
@@ -459,8 +451,8 @@ if __name__ == "__main__":
 
         fig.savefig(plotfilename, dpi=90)
 
-        if global_accumulate_winrate is not None:
-            if global_accumulate_winrate is 0:
+        if global_accumulate_winrate != False:
+            if global_accumulate_winrate is not None:
                 global_accumulate_winrate = accumulate_data_of_type
             else:
                 global_accumulate_winrate += accumulate_data_of_type
