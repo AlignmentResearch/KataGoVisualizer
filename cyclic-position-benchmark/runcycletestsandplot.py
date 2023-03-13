@@ -451,7 +451,7 @@ if __name__ == "__main__":
 
         fig.savefig(plotfilename, dpi=90)
 
-        if global_accumulate_winrate != False:
+        if global_accumulate_winrate is not False:
             if global_accumulate_winrate is not None:
                 global_accumulate_winrate = accumulate_data_of_type
             else:
