@@ -24,38 +24,40 @@
     $: jumpTitle = jumpToBase.flatMap((x, i) => [x, jumpSelect[i]]).join('')
 </script>
 
-<div class="nav-bar" bind:this={navBarElem}>
-    <div class="icons flex-grow-symmetric">
-        <a
-            href="https://github.com/AlignmentResearch/go_attack"
-            target="_blank"
-            class="icon-link"
-        >
-            <FaGithub />
-        </a>
-        <a
-            href="https://arxiv.org/pdf/2211.00241.pdf"
-            target="_blank"
-            class="icon-link"
-        >
-            <FaFile />
-        </a>
+<div class="nav-bar-container">
+    <div class="nav-bar" bind:this={navBarElem}>
+        <div class="icons flex-grow-symmetric">
+            <a
+                href="https://github.com/AlignmentResearch/go_attack"
+                target="_blank"
+                class="icon-link"
+            >
+                <FaGithub />
+            </a>
+            <a
+                href="https://arxiv.org/pdf/2211.00241.pdf"
+                target="_blank"
+                class="icon-link"
+            >
+                <FaFile />
+            </a>
+        </div>
+        <div class="pages">
+            {#each pagesPaths as page}
+                <NavButtons
+                    label={pages[page]["title"]}
+                    tabsId="tabs"
+                    selected={page === currentPath}
+                    href="#contents"
+                    onClick={() => {
+                        currentPath = page;
+                        history.pushState({}, "", currentPath);
+                    }}
+                />
+            {/each}
+        </div>
+        <div class="flex-grow-symmetric" />
     </div>
-    <div class="pages">
-        {#each pagesPaths as page}
-            <NavButtons
-                label={pages[page]["title"]}
-                tabsId="tabs"
-                selected={page === currentPath}
-                href="#contents"
-                onClick={() => {
-                    currentPath = page;
-                    history.pushState({}, "", currentPath);
-                }}
-            />
-        {/each}
-    </div>
-    <div class="flex-grow-symmetric" />
 </div>
 {#if pages[currentPath]["jump_to"]}
     <div class="jump-to-div" id="contents">
@@ -131,14 +133,18 @@
         gap: 1vw;
         justify-content: center;
     }
-    .nav-bar {
+    .nav-bar-container {
+        width: 100%;
         position: sticky;
         top: 0px;
         z-index: 999;
+    }
+    .nav-bar {
+        overflow-x: auto;
+        scrollbar-width: none;
         padding: 0px;
         display: flex;
-        justify-content: center;
-        align-items: stretch;
+        justify-content: space-between;
         background-color: var(--accent-color-1);
     }
     .contents-title {
