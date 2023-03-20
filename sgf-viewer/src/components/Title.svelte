@@ -42,6 +42,9 @@
 <h1 in:fade style="text-align: center;">
     Adversarial Policies Beat Superhuman Go AIs
 </h1>
+<p style="text-align:center;">
+ICML reviewers: an updated version of our paper, as discussed in our review responses, is available <a target="_blank" href="/pdfs/go_attack_paper.pdf">here</a>.
+</p>
 <!-- <div>
     <div class="authors-list">
         {#each [...authors] as [name, link]}

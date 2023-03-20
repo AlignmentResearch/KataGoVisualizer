@@ -18,14 +18,14 @@
 </script>
 
 <div class="nav-bar" bind:this={navBarElem}>
-    <!-- <div class="icons flex-grow-symmetric">
-        <a
+    <div class="icons flex-grow-symmetric">
+       <!--  <a
             href="https://github.com/HumanCompatibleAI/go_attack"
             target="_blank"
             class="icon-link"
         >
             <FaGithub />
-        </a>
+        </a>  -->
         <a
             href="/pdfs/go_attack_paper.pdf"
             target="_blank"
@@ -33,7 +33,7 @@
         >
             <FaFile />
         </a>
-    </div> -->
+    </div>
     <div class="pages">
         {#each pagesPaths as page}
             <NavButtons
@@ -48,7 +48,7 @@
             />
         {/each}
     </div>
-    <!-- <div class="flex-grow-symmetric" /> -->
+    <div class="flex-grow-symmetric" />
 </div>
 <div class="contents" bind:this={contentsTitle}>
     <h3 id="contents" class="contents-title">Contents</h3>
