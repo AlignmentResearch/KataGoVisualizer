@@ -18,10 +18,10 @@
     // Base JumpTo string split by VAR
     $: jumpToBase = (pages[currentPath].jump_to?.base ?? "").split("VAR");
     // Current values of VARs, these are bound to the dropdowns in the jump_to UI
-    $: jumpSelect = (pages[currentPath].jump_to?.vars ?? []).map(v => v[0]);
+    $: jumpSelect = (pages[currentPath].jump_to?.vars ?? []).map((v) => v[0]);
     // Construct the title to jump to. jumpSelect[i] is undefined for final index.
     // undefined is converted to the empty string by `join()`
-    $: jumpTitle = jumpToBase.flatMap((x, i) => [x, jumpSelect[i]]).join('')
+    $: jumpTitle = jumpToBase.flatMap((x, i) => [x, jumpSelect[i]]).join("");
 </script>
 
 <div class="nav-bar-container">
@@ -60,26 +60,31 @@
     </div>
 </div>
 {#if pages[currentPath]["jump_to"]}
-    <div class="jump-to-div" id="contents">
-        <h3 class="contents-title" style="text-align: right; flex: 1">Jump to</h3>
-        <div class="jump-to">
-            {#each jumpToBase.slice(0, -1) as jumpToSegment, i}
-                <h3>{jumpToSegment}</h3>
-                <select bind:value={jumpSelect[i]}>
-                    {#each pages[currentPath].jump_to.vars[i] as val}
-                        <option value={val}>{val}</option>
-                    {/each}
-                </select>
-            {/each}
-            <h3>{jumpToBase[jumpToBase.length - 1]}</h3>
+    <div class="jump-to-container" id="contents">
+        <h3 class="contents-title" style="text-align: right; flex: 1">
+            Jump to
+        </h3>
+        <div class="jump-to-buttons">
+            <div class="jump-to">
+                {#each jumpToBase.slice(0, -1) as jumpToSegment, i}
+                    <h3>{jumpToSegment}</h3>
+                    <select bind:value={jumpSelect[i]}>
+                        {#each pages[currentPath].jump_to.vars[i] as val}
+                            <option value={val}>{val}</option>
+                        {/each}
+                    </select>
+                {/each}
+                <h3>{jumpToBase[jumpToBase.length - 1]}</h3>
+            </div>
+            <a
+                href={"#" +
+                    sections.find((sec) => sec.title == jumpTitle).dir_name}
+                on:click={rmvUrlParams}
+                style="flex: 1"
+            >
+                Go
+            </a>
         </div>
-        <a
-            href={"#" + sections.find(sec => sec.title == jumpTitle).dir_name}
-            on:click={rmvUrlParams}
-            style="flex: 1"
-        >
-            Go
-        </a>
     </div>
 {:else}
     <div class="contents">
@@ -151,11 +156,20 @@
         margin: 0px;
         margin-top: 0.2em;
     }
-    .jump-to-div {
+    .jump-to-container {
+        flex-direction: column;
+        margin-top: 4vh;
+        margin-bottom: 4vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 1vh;
+        gap: 1vh;
+    }
+    .jump-to-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1vh;
     }
     .jump-to {
         display: flex;
@@ -163,7 +177,6 @@
         border: 3px solid var(--accent-color-2);
         background-color: var(--accent-color-2);
         color: white;
-        margin: 2vh;
         padding: 13px;
         border-radius: 105px;
         z-index: 998;
