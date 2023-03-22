@@ -1,4 +1,4 @@
-This directory contains a script and sgf files for evaluating KataGo networks against various cyclic positions, based on an original version made by KataGo author David Wu.
+This directory contains a script and SGF files for evaluating KataGo networks against various cyclic positions, based on [an original version](https://discord.com/channels/417022162348802048/459783732182777876/1079125236059996261) made by KataGo author David Wu.
 
 Please note that this is not a conclusive, encompassing test for robustness, especially if considering only the overall averages. It can be used as an exploratory tool, as a preliminary indicator for performance in cyclic positions, or as one piece of evidence in a broader analysis. But better numbers here, on their own, do not guarantee a more robust model.
 
