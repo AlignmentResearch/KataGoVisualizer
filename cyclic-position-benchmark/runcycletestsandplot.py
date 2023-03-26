@@ -284,7 +284,7 @@ if __name__ == "__main__":
         default="/go_attack/victim_models/",
     )
 
-    args = parser.parse_args()
+    args = parser.parse_args()asdf
 
     PLOTS_PATH = args.PLOTS_PATH
     SGFS_PATH = args.SGFS_PATH
