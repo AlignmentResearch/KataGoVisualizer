@@ -4,6 +4,7 @@ import math
 import os
 import subprocess
 import time
+import argparse
 from threading import Thread
 import sgfmill
 import sgfmill.sgf
@@ -12,12 +13,6 @@ import sgfmill.ascii_boards
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-
-PLOTS_PATH = "generated_plots"  # path to output plots
-SGFS_PATH = "sgfs"  # path to input positions
-KATAGO_PATH = "/engines/KataGo-raw/cpp/katago"  # path to compiled KataGo
-MODELS_PATH = "/go_attack/victim_models/"  # path to models to be tested
-
 
 def get_model_name_for_plotting(input_model_path):
     """
@@ -259,6 +254,38 @@ def walk_game_tree(
 
 
 if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(
+            description="Tests KataGo networks in a set of cyclic positions, and plots how well they do.",
+        )
+    parser.add_argument("--PLOTS_PATH",
+                        type=str,
+                        help="path to output plots",
+                        default="generated_plots",
+                        )
+    parser.add_argument("--SGFS_PATH",
+                        type=str,
+                        help="path to input positions",
+                        default="sgfs",
+                        )
+    parser.add_argument("--KATAGO_PATH",
+                        type=str,
+                        help="path to compiled KataGo",
+                        default="/engines/KataGo-raw/cpp/katago",
+                        )
+    parser.add_argument("--MODELS_PATH",
+                        type=str,
+                        help="path to models to be tested",
+                        default="/go_attack/victim_models/",
+                        )
+
+    args = parser.parse_args()
+
+    PLOTS_PATH = args.PLOTS_PATH
+    SGFS_PATH = args.SGFS_PATH
+    KATAGO_PATH = args.KATAGO_PATH
+    MODELS_PATH = args.MODELS_PATH
+    
     os.makedirs(PLOTS_PATH, exist_ok=True)
     config_path = "analysis_config.cfg"
     with open(config_path, "w") as f:
