@@ -38,6 +38,7 @@ jobs:
               -e READ_DIR=$READ_DIR \
               -e MOUNT_DIR=$MOUNT_DIR \
               -e PYTHONUNBUFFERED=1 \
+              -e PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python \
               --hostname='localhost' \
               -p 8501:8501 \
               -p 6001-6005:6001-6005 \
