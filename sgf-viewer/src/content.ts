@@ -626,13 +626,6 @@ export const pages: object =
                         "<b>A</b>: No, the adversary was trained from scratch (random initialization) and learned only through playing games. To construct the cyclic adversary, we actually help the victim by patching the pass-based attack, which forces the adversary to find a different attack. But we do not give the adversary any information or hints towards what it should find. More details can be found in Section 4 of our paper."
         ],
         "content": [
-            {
-                "title": "Human guidance in adversary?",
-                "description": [
-                    "<b>Q:</b> Did the adversary algorithm include any initial knowledge or human guidance to find a weakness?",
-                    "<b>A:</b> No, the adversary was trained from scratch (random initialization) and learned only through playing games. To construct the cyclic adversary, we actually help the victim by patching the pass-based attack, which forces the adversary to find a different attack. But we do not give the adversary any information or hints towards what it should find. More details can be found in Section 4 of our paper."
-                ]
-            },
         ]
     }
 }
