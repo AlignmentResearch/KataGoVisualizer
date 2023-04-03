@@ -8,28 +8,32 @@
 </script>
 
 <div class="centerflex" in:fade>
-    <h3 id={section["dir_name"]} class="subheading">
-        {section["title"]}
-    </h3>
-    {#each section["description"] as description}
-        <p>{@html description}</p>
-    {/each}
-    <div style="max-width: 100%;">
-        <GameList dirName={section["dir_name"]} bind:sgfPath />
-        <div class="board-wrapper">
-            <GoBoard dirName={section["dir_name"]} {sgfPath} />
+    <div class="text-wrapper">
+        <h3 id={section["dir_name"]} class="subheading">
+            {section["title"]}
+        </h3>
+        {#each section["description"] as description}
+            <p>{@html description}</p>
+        {/each}
+    </div>
+    {#if section["paths"]}
+        <div style="max-width: 100%;">
+            <GameList dirName={section["dir_name"]} bind:sgfPath />
+            <div class="board-wrapper">
+                <GoBoard dirName={section["dir_name"]} {sgfPath} />
+            </div>
         </div>
-    </div>
-    <div class="annotation">
-        <p class="annotation-item" style="text-align: left;">
-            <b>Victim:</b>
-            {@html section["victim"]}
-        </p>
-        <p class="annotation-item" style="text-align: right;">
-            <b>Adversary:</b>
-            {@html section["adversary"]}
-        </p>
-    </div>
+        <div class="annotation">
+            <p class="annotation-item" style="text-align: left;">
+                <b>Victim:</b>
+                {@html section["victim"]}
+            </p>
+            <p class="annotation-item" style="text-align: right;">
+                <b>Adversary:</b>
+                {@html section["adversary"]}
+            </p>
+        </div>
+    {/if}
     {#if section["discussion"]}
         <p>{section["discussion"]}</p>
     {/if}
@@ -62,12 +66,19 @@
         align-items: center;
         justify-content: center;
     }
+    .text-wrapper {
+        width: min(90vw, 800px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
     p {
         font-size: 18px;
-        align-self: left;
+        align-self: flex-start;
         margin: 0.5vw;
         max-width: min(90vw, 800px);
-        text-align: justify;
+        text-align: left;
     }
     .board-wrapper {
         display: flex;

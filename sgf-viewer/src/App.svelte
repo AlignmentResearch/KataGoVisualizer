@@ -55,13 +55,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
     }
     p {
         font-size: 18px;
         align-self: center;
         margin: 0.5vw;
         max-width: min(90vw, 800px);
-        text-align: justify;
+        text-align: left;
     }
 </style>
