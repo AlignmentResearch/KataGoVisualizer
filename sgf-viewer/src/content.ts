@@ -635,7 +635,7 @@ export const pages: object =
                 "dir_name": "game_rules",
                 "description": [
                     "<b>Q: I saw some games you mark as wins, but I play Go and they don’t look like wins to me. What’s going on?</b>",
-                    "<b>A</b>: You are probably referring to our <a target=\"_blank\" href=\"https://goattack.far.ai/pass-based-attack#contents\">pass-based attack</a>, which is the first attack we found. This attack works in a specific ruleset, based on the Tromp-Taylor rules which are widely used for computer Go. KataGo is trained with this ruleset (among others), and therefore should know how to play them correctly - this work though showed otherwise. After we patched this vulnerability, we then found other attacks which work in all standard rulesets and agree with standard human evaluation of game results."
+                    "<b>A</b>: You are probably referring to our <a target=\"_blank\" href=\"https://goattack.far.ai/pass-based-attack#contents\">pass-based attack</a>, which is the first attack we found. This attack works in a specific ruleset, based on the Tromp-Taylor rules which are widely used for computer Go. KataGo is trained with this ruleset (among others), and therefore should know how to play them correctly &mdash; though this work showed otherwise. After we patched this vulnerability, we then found other attacks which work in all standard rulesets and agree with standard human evaluation of game results."
                 ]
             },
             {
