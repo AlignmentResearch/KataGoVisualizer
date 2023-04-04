@@ -618,5 +618,50 @@ export const pages: object =
             {"title": "100% vs. Latest, no search", "dir_name": "training_sample_games10_cp505h-v1", "server": "dqn.ist.berkeley.edu", "_path_comment": "Sampled using sample_training_games.py", "paths_with_line_num": [{"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/6C799DC8B9CF47D5.sgfs", "line": 4}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/8472071DAD568C7D.sgfs", "line": 2}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/300D19B57CFA0D57.sgfs", "line": 5}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/B8F378B85EF63DB8.sgfs", "line": 5}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/1F87750F7DF8A39E.sgfs", "line": 4}], "max_games": 5, "adversary": "545 million training steps, 600 visits", "victim": "<code>Latest</code><sub><code>def</code></sub>, no search", "description": []},
             {"title": "100% vs. Latest, 4096 visits", "dir_name": "training_sample_games10_cp505h-v4096", "server": "dqn.ist.berkeley.edu", "_path_comment": "Sampled using sample_training_games.py", "paths_with_line_num": [{"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/A3235D3F37F3549E.sgfs", "line": 8}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/2BE0EE6FA67CE3D0.sgfs", "line": 8}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/E5637DACDFC22C28.sgfs", "line": 3}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/4F74D51B2572A264.sgfs", "line": 6}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/0273BF36E295C5FE.sgfs", "line": 1}], "max_games": 5, "adversary": "545 million training steps, 600 visits", "victim": "<code>Latest</code><sub><code>def</code></sub>, 4096 visits", "description": []}
         ]
+    },
+    "faq": {
+        "title": "FAQ",
+        "content": [
+            {
+                "title": "Q: Initialization",
+                "dir_name": "initialization",
+                "description": [
+                    "<b>Q: Did the adversary algorithm include any initial knowledge or human guidance to find a weakness?</b>",
+                    "<b>A</b>: No, the adversary was trained from scratch (random initialization) and learned only through playing games. To construct the cyclic adversary, we actually help the victim by patching the pass-based attack, which forces the adversary to find a different attack. But we do not give the adversary any information or hints towards what it should find. More details can be found in Section 4 of our paper."
+                ]
+            },
+            {
+                "title": "Q: Game rules",
+                "dir_name": "game_rules",
+                "description": [
+                    "<b>Q: I saw some games you mark as wins, but I play Go and they don’t look like wins to me. What’s going on?</b>",
+                    "<b>A</b>: You are probably referring to our <a target=\"_blank\" href=\"https://goattack.far.ai/pass-based-attack#contents\">pass-based attack</a>, which is the first attack we found. This attack works in a specific ruleset, based on the Tromp-Taylor rules which are widely used for computer Go. KataGo is trained with this ruleset (among others), and therefore should know how to play them correctly &mdash; though this work showed otherwise. After we patched this vulnerability, we then found other attacks which work in all standard rulesets and agree with standard human evaluation of game results."
+                ]
+            },
+            {
+                "title": "Q: Known weaknesses",
+                "dir_name": "known_weaknesses",
+                "description": [
+                    "<b>Q: I’ve played Go AIs myself and seen them make mistakes. How is the vulnerability you found different?</b>",
+                    "<b>A</b>: While Go AIs do already have known weaknesses, for instance the common “ladder” tactic, there are 3 key factors here whose confluence makes this vulnerability different. First, this affects top AIs, including when they have a very large amount of search. Second, the attack works consistently to produce a game-winning advantage. Third, this consistency does not require repeating exact sequences or board positions."
+                ]
+            },
+            {
+                "title": "Q: Defending",
+                "dir_name": "adversarial_training",
+                "description": [
+                    "<b>Q: Now that this vulnerability and its severity is known, is it easy to fix? Can we just show the AI a few examples?</b>",
+                    "<b>A</b>: It is not straightforward. KataGo is currently training with numerous positions from games our adversary algorithm played. There are clear improvements, but so far it is still vulnerable. The process is not complete, so it may just need more time (and computation), but already this shows it is not as easy as one might hope to fix an issue like this."
+                ]
+            },
+            {
+                "title": "Q: AlphaZero",
+                "dir_name": "alpha_zero",
+                "description": [
+                    "<b>Q: Would this exploit work on AlphaZero?</b>",
+                    "<b>A</b>: It's extremely likely the vulnerability exists in AlphaZero. It exists in KataGo, LeelaZero, and ELF (we've won games with it), all of which are based on AlphaZero, with the latter two self-describing as reimplementations of AlphaZero. It also likely exists in FineArt and Golaxy (we are still in the process of getting access to play them, but others have shown these networks also misevaluate positions involving cyclic groups). And it's also very likely that multiple of these systems are now substantially stronger than AlphaZero ever was. So in short, although AlphaZero is unfortunately closed source and not available to test directly, there's no evidence we are aware of that it would be immune, and quite a lot of evidence that it would be vulnerable."
+                ]
+            }
+        ]
     }
 }
