@@ -647,7 +647,7 @@ export const pages: object =
                 ]
             },
             {
-                "title": "Q: Adversarial training",
+                "title": "Q: Defending",
                 "dir_name": "adversarial_training",
                 "description": [
                     "<b>Q: Now that this vulnerability and its severity is known, is it easy to fix? Can we just show the AI a few examples?</b>",
