@@ -16,7 +16,7 @@
             <p>{@html description}</p>
         {/each}
     </div>
-    {#if section["paths"] or section["paths_with_line_num"]}
+    {#if (section["paths"] || section["paths_with_line_num"])}
         <div style="max-width: 100%;">
             <GameList dirName={section["dir_name"]} bind:sgfPath />
             <div class="board-wrapper">
