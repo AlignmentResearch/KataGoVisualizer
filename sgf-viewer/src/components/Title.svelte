@@ -39,8 +39,6 @@
         />
     </a>
 </div>
-<!-- Empty anchor target. Named for link backwards compatibility. -->
-<div id="contents" />
 <h1 in:fade style="text-align: center;">
     Adversarial Policies Beat Superhuman Go AIs
 </h1>
@@ -53,9 +51,6 @@
 </div>
 
 <style>
-    #contents {
-        scroll-margin-top: 0px;
-    }
     h1 {
         font-size: 2em;
     }
