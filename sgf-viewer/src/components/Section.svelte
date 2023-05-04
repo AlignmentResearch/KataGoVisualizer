@@ -8,15 +8,15 @@
 </script>
 
 <div class="centerflex" in:fade>
+    <h3 id={section["dir_name"]} class="subheading">
+        {section["title"]}
+    </h3>
     <div class="text-wrapper">
-        <h3 id={section["dir_name"]} class="subheading">
-            {section["title"]}
-        </h3>
         {#each section["description"] as description}
             <p>{@html description}</p>
         {/each}
     </div>
-    {#if (section["paths"] || section["paths_with_line_num"])}
+    {#if section["paths"] || section["paths_with_line_num"]}
         <div style="max-width: 100%;">
             <GameList dirName={section["dir_name"]} bind:sgfPath />
             <div class="board-wrapper">
@@ -51,7 +51,7 @@
         margin-bottom: 1vh;
     }
     .subheading {
-        top: calc(var(--scroll-margin) + 1vh);
+        top: calc(var(--scroll-margin) + 2.5vh);
         position: sticky;
         background-color: var(--accent-color-2);
         color: white;

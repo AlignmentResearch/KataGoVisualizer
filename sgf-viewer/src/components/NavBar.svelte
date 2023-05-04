@@ -1,29 +1,20 @@
 <script lang="ts">
     import { pages } from "../content";
     import NavButtons from "./subcomponents/NavButtons.svelte";
-    import { fade } from "svelte/transition";
+    import Contents from "./subcomponents/Contents.svelte";
     import FaGithub from "svelte-icons/fa/FaGithub.svelte";
     import FaFile from "svelte-icons/fa/FaFile.svelte";
 
     export let currentPath: string;
     export let navBarElem: HTMLElement;
 
-    let pagesPaths = Object.keys(pages);
-    $: sections = pagesPaths.includes(currentPath)
-        ? pages[currentPath]["content"]
-        : [];
-    const rmvUrlParams = () =>
-        window.history.pushState({}, "", window.location.pathname);
+    const contentsFloatWidth = 1439;
 
-    // Base JumpTo string split by VAR
-    $: jumpToBase = (pages[currentPath].jump_to?.base ?? "").split("VAR");
-    // Current values of VARs, these are bound to the dropdowns in the jump_to UI
-    $: jumpSelect = (pages[currentPath].jump_to?.vars ?? []).map((v) => v[0]);
-    // Construct the title to jump to. jumpSelect[i] is undefined for final index.
-    // undefined is converted to the empty string by `join()`
-    $: jumpTitle = jumpToBase.flatMap((x, i) => [x, jumpSelect[i]]).join("");
+    let pagesPaths = Object.keys(pages);
+    let innerWidth;
 </script>
 
+<svelte:window bind:innerWidth />
 <div class="nav-bar-container">
     <div class="nav-bar" bind:this={navBarElem}>
         <div class="icons flex-grow-symmetric">
@@ -35,7 +26,7 @@
                 <FaGithub />
             </a>
             <a
-                href="https://arxiv.org/pdf/2211.00241.pdf"
+                href="https://arxiv.org/abs/2211.00241"
                 target="_blank"
                 class="icon-link"
             >
@@ -58,52 +49,12 @@
         </div>
         <div class="flex-grow-symmetric" />
     </div>
+    {#if innerWidth > contentsFloatWidth}
+        <Contents {currentPath} />
+    {/if}
 </div>
-{#if pages[currentPath]["jump_to"]}
-    <div class="jump-to-container" id="contents">
-        <h3 class="contents-title" style="text-align: right; flex: 1">
-            Jump to
-        </h3>
-        <div class="jump-to-buttons">
-            <div class="jump-to">
-                {#each jumpToBase.slice(0, -1) as jumpToSegment, i}
-                    <h3>{jumpToSegment}</h3>
-                    <select bind:value={jumpSelect[i]}>
-                        {#each pages[currentPath].jump_to.vars[i] as val}
-                            <option value={val}>{val}</option>
-                        {/each}
-                    </select>
-                {/each}
-                <h3>{jumpToBase[jumpToBase.length - 1]}</h3>
-            </div>
-            <a
-                href={"#" +
-                    sections.find((sec) => sec.title == jumpTitle).dir_name}
-                on:click={rmvUrlParams}
-                style="flex: 1"
-            >
-                Go
-            </a>
-        </div>
-    </div>
-{:else}
-    <div class="contents">
-        <h3 id="contents" class="contents-title">Contents</h3>
-        <ol in:fade>
-            {#if pages[currentPath]["description"]}
-                <li>
-                    <a href={"#summary"} on:click={rmvUrlParams}>• Summary</a>
-                </li>
-            {/if}
-            {#each sections as section}
-                <li>
-                    <a href={"#" + section["dir_name"]} on:click={rmvUrlParams}>
-                        • {section["title"]}
-                    </a>
-                </li>
-            {/each}
-        </ol>
-    </div>
+{#if innerWidth <= contentsFloatWidth}
+    <Contents {currentPath} />
 {/if}
 
 <style>
@@ -151,62 +102,5 @@
         display: flex;
         justify-content: space-between;
         background-color: var(--accent-color-1);
-    }
-    .contents-title {
-        margin: 0px;
-        margin-top: 0.2em;
-    }
-    .jump-to-container {
-        flex-direction: column;
-        margin-top: 4vh;
-        margin-bottom: 4vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1vh;
-    }
-    .jump-to-buttons {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1vh;
-    }
-    .jump-to {
-        display: flex;
-        justify-content: center;
-        border: 3px solid var(--accent-color-2);
-        background-color: var(--accent-color-2);
-        color: white;
-        padding: 13px;
-        border-radius: 105px;
-        z-index: 998;
-    }
-    select {
-        border: 0px;
-        border-bottom: 2px solid var(--accent-color-2);
-        background-color: white;
-        margin: 0.7em;
-        color: black;
-        border-radius: 8px;
-        text-align: center;
-        font-weight: bold;
-    }
-    .contents {
-        background-color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding-top: 1vh;
-    }
-    ol {
-        list-style: none;
-        padding-left: 0;
-        text-align: left;
-        margin-top: 0;
-    }
-    li {
-        padding: 0px;
-        margin: 0.6em;
     }
 </style>
