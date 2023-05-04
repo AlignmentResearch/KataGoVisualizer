@@ -65,7 +65,11 @@
             <h3 id="contents" style="text-align: center;">Contents</h3>
             <ol in:fade>
                 {#if pages[currentPath]["description"]}
-                    <li>
+                    <li
+                        class={topHeadingIdx == 0
+                            ? "curr-section"
+                            : "other-section"}
+                    >
                         <a
                             href={"#summary"}
                             on:click={rmvUrlParams}
@@ -76,13 +80,17 @@
                     </li>
                 {/if}
                 {#each sections as section, i}
-                    <li>
+                    <li
+                        class={topHeadingIdx == i + summaryOffset
+                            ? "curr-section"
+                            : "other-section"}
+                    >
                         <a
                             href={"#" + section["dir_name"]}
+                            on:click={rmvUrlParams}
                             class={topHeadingIdx == i + summaryOffset
                                 ? "curr-section"
                                 : "other-section"}
-                            on:click={rmvUrlParams}
                         >
                             • {section["title"]}
                         </a>
@@ -94,8 +102,24 @@
 </div>
 
 <style>
+    ol {
+        list-style: none;
+        padding-left: 0;
+        margin-top: 0;
+    }
+    li {
+        padding: 0px;
+        margin: 0.6em;
+        transition: all 0.4s;
+        text-align: left;
+        font-weight: normal;
+    }
+    a {
+        font-weight: normal;
+    }
     .curr-section {
         color: black;
+        transform: translateX(0.5em) scale(1.02);
     }
     .other-section {
         color: grey;
@@ -144,19 +168,6 @@
         flex-direction: column;
         justify-content: center;
         padding: 1vh;
-    }
-    ol {
-        list-style: none;
-        padding-left: 0;
-        text-align: left;
-        margin-top: 0;
-    }
-    a {
-        font-weight: normal;
-    }
-    li {
-        padding: 0px;
-        margin: 0.6em;
     }
     select {
         border: 0px;

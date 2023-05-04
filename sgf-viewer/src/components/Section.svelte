@@ -7,8 +7,8 @@
     let sgfPath: string;
 </script>
 
-<div class="centerflex" in:fade>
-    <h3 id={section["dir_name"]} class="subheading">
+<div class="centerflex" in:fade id={section["dir_name"]}>
+    <h3 class="subheading">
         {section["title"]}
     </h3>
     <div class="text-wrapper">
