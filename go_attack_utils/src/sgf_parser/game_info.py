@@ -18,6 +18,24 @@ def get_game_str(path: pathlib.Path, line_num: int):
                 return line
 
 
+def minimize_game_str(game_str: str) -> str:
+    """Strips all substrings of the form 'C[...]' from `game_str`."""
+    return re.sub(r"C\[.*?\]", "", game_str)
+
+
+def get_viz_link(
+    path: pathlib.Path,
+    line_num: int,
+    minimize: bool = True,
+):
+    """Return a visualization link for a given path and line number."""
+    game_str = get_game_str(path, line_num)
+    assert game_str is not None, f"Could not find game at {path}:{line_num}"
+    if minimize:
+        game_str = minimize_game_str(game_str)
+    return f"https://humancompatibleai.github.io/sgf-viewer/#sgf={game_str}"
+
+
 def find_sgf_files(
     root: pathlib.Path, max_scan_length: int = 10000
 ) -> Sequence[pathlib.Path]:
