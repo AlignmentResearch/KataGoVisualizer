@@ -652,7 +652,8 @@ export const pages: object =
                 "description": [
                     "<b>Q: Now that this vulnerability and its severity is known, is it easy to fix? Can we just show the AI a few examples?</b>",
                     "<b>A</b>: It is not straightforward. KataGo is currently training with numerous positions from games our adversary algorithm played. There are clear improvements, but so far it is still vulnerable. The process is not complete, so it may just need more time (and computation), but already this shows it is not as easy as one might hope to fix an issue like this."
-                ]
+                ],
+                "figure": "figures/layer_31_neuron_892_logit_diff.html"
             },
             {
                 "title": "Q: AlphaZero",

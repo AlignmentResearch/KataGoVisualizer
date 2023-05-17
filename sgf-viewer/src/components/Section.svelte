@@ -34,6 +34,9 @@
             </p>
         </div>
     {/if}
+    {#if section["figure"]}
+        <iframe src="{section["figure"]}" title={section["title"]}></iframe>
+    {/if}
     {#if section["discussion"]}
         <p>{section["discussion"]}</p>
     {/if}
@@ -49,6 +52,12 @@
     .annotation-item {
         align-self: flex-start;
         margin-bottom: 1vh;
+    }
+    iframe {
+        width: min(90vw, 800px);
+        height: 600px;
+        border: none;
+        margin-top: 1em;
     }
     .subheading {
         top: calc(var(--scroll-margin) + 1vh);
