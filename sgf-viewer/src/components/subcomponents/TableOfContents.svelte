@@ -1,7 +1,8 @@
 <script lang="ts">
     import { onMount, onDestroy } from "svelte";
-    import { pages } from "../../content";
     import { fade } from "svelte/transition";
+
+    import { pages } from "../../content";
 
     export let currentPath: string;
 

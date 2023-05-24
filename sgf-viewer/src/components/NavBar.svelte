@@ -1,7 +1,7 @@
 <script lang="ts">
     import { pages } from "../content";
     import NavButtons from "./subcomponents/NavButtons.svelte";
-    import Contents from "./subcomponents/Contents.svelte";
+    import TableOfContents from "./subcomponents/TableOfContents.svelte";
     import FaGithub from "svelte-icons/fa/FaGithub.svelte";
     import FaFile from "svelte-icons/fa/FaFile.svelte";
 
@@ -50,11 +50,11 @@
         <div class="flex-grow-symmetric" />
     </div>
     {#if innerWidth > contentsFloatWidth}
-        <Contents {currentPath} />
+        <TableOfContents {currentPath} />
     {/if}
 </div>
 {#if innerWidth <= contentsFloatWidth}
-    <Contents {currentPath} />
+    <TableOfContents {currentPath} />
 {/if}
 
 <style>
