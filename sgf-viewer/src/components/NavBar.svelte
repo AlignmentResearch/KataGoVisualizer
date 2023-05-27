@@ -8,7 +8,7 @@
     export let currentPath: string;
     export let navBarElem: HTMLElement;
 
-    const contentsFloatWidth = 1439;
+    const contentsFloatWidth = 1500;
 
     let pagesPaths = Object.keys(pages);
     let innerWidth;

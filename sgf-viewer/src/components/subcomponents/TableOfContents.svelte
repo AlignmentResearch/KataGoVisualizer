@@ -147,14 +147,15 @@
     .contents-container {
         position: absolute;
         top: 200px;
-        margin: 1vh;
+        margin-left: calc(((100% - 1439px) / 4) + 8px);
     }
     /* Media queries declarations don't support CSS vars so we have to hardcode */
-    @media (max-width: 1439px) {
+    @media (max-width: 1500px) {
         .contents-container {
             position: static;
             background-color: transparent;
             display: flex;
+            margin-left: 0;
             justify-content: center;
         }
     }

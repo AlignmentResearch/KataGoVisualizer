@@ -72,11 +72,11 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
+        margin: 0.5vw;
     }
     p {
         font-size: 18px;
         align-self: flex-start;
-        margin: 0.5vw;
         max-width: min(90vw, 800px);
         text-align: left;
     }
