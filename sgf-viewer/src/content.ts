@@ -619,6 +619,19 @@ export const pages: object =
             {"title": "100% vs. Latest, 4096 visits", "dir_name": "training_sample_games10_cp505h-v4096", "server": "dqn.ist.berkeley.edu", "_path_comment": "Sampled using sample_training_games.py", "paths_with_line_num": [{"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/A3235D3F37F3549E.sgfs", "line": 8}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/2BE0EE6FA67CE3D0.sgfs", "line": 8}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/E5637DACDFC22C28.sgfs", "line": 3}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/4F74D51B2572A264.sgfs", "line": 6}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/0273BF36E295C5FE.sgfs", "line": 1}], "max_games": 5, "adversary": "545 million training steps, 600 visits", "victim": "<code>Latest</code><sub><code>def</code></sub>, 4096 visits", "description": []}
         ]
     },
+    "activation-plots": {
+        "title": "Activation Plots",
+        "content": [
+            {
+                "title": "Q: Defending",
+                "dir_name": "realgame2_cp505_vs_advtrained",
+                "description": [
+                    "Test example",
+                ],
+                "figure": "figures/cp505_realgame2_A_vs_b40_1286_realgame2_A.html"
+            }
+        ]
+    },
     "faq": {
         "title": "FAQ",
         "content": [
