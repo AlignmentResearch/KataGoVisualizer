@@ -621,14 +621,31 @@ export const pages: object =
     },
     "activation-plots": {
         "title": "Activation Plots",
+        "description": ["In this page we share interactive plots visualizing activations over the 41 layers of KataGo models in cyclic situations. These correspond to the discussion in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.K.1\">Appendix K</a> of the paper."],
         "content": [
             {
-                "title": "Q: Defending",
+                "title": "Effect of Adversarial Training",
                 "dir_name": "realgame2_cp505_vs_advtrained",
                 "description": [
-                    "Test example",
+                    "The figure below shows the difference in activations between <code>Latest</code> and cp580 in a realgame cyclic position the former misjudges but the latter judges correctly.",
                 ],
                 "figure": "figures/cp505_realgame2_A_vs_b40_1286_realgame2_A.html"
+            },
+            {
+                "title": "Effect of Breaking the Cycle",
+                "dir_name": "realgame2_cp505_vs_cp505",
+                "description": [
+                    "The figure below shows the difference in activations for <code>Latest</code> between a realgame cyclic position (as in the plot above) and a minimally perturbed version where the cycle is broken but the position is otherwise unchanged.",
+                ],
+                "figure": "figures/cp505_realgame2_A_vs_cp505_realgame2_B.html"
+            },
+            {
+                "title": "Effect of Breaking the Cycle 2",
+                "dir_name": "manual_cp505_vs_cp505",
+                "description": [
+                    "The figure below shows the difference in activations for <code>Latest</code> between a manually-constructed cyclic position and a minimally perturbed version of it where the cycle is broken.",
+                ],
+                "figure": "figures/cp505_position_A_vs_cp505_position_B.html"
             }
         ]
     },
