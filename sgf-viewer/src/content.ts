@@ -682,8 +682,7 @@ export const pages: object =
                 "description": [
                     "<b>Q: Now that this vulnerability and its severity is known, is it easy to fix? Can we just show the AI a few examples?</b>",
                     "<b>A</b>: It is not straightforward. KataGo is currently training with numerous positions from games our adversary algorithm played. There are clear improvements, but so far it is still vulnerable. The process is not complete, so it may just need more time (and computation), but already this shows it is not as easy as one might hope to fix an issue like this."
-                ],
-                "figure": "figures/layer_31_neuron_892_logit_diff.html"
+                ]
             },
             {
                 "title": "Q: AlphaZero",
@@ -691,6 +690,14 @@ export const pages: object =
                 "description": [
                     "<b>Q: Would this exploit work on AlphaZero?</b>",
                     "<b>A</b>: It's extremely likely the vulnerability exists in AlphaZero. It exists in KataGo, LeelaZero, and ELF (we've won games with it), all of which are based on AlphaZero, with the latter two self-describing as reimplementations of AlphaZero. It also likely exists in FineArt and Golaxy (we are still in the process of getting access to play them, but others have shown these networks also misevaluate positions involving cyclic groups). And it's also very likely that multiple of these systems are now substantially stronger than AlphaZero ever was. So in short, although AlphaZero is unfortunately closed source and not available to test directly, there's no evidence we are aware of that it would be immune, and quite a lot of evidence that it would be vulnerable."
+                ]
+            },
+            {
+                "title": "Q: Learning More",
+                "dir_name": "learn_more",
+                "description": [
+                    "<b>Q: Where can I learn more?</b>",
+                    "<b>A</b>: Aside from the rest of this website and <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf\">our paper</a>, there is a YouTube video of a talk and demo given by Tony and Kellin <a target=\"_blank\" href=\"https://www.youtube.com/watch?v=CNo3lOT1NYA&ab_channel=CrossLabsAI\">here</a>."
                 ]
             }
         ]
