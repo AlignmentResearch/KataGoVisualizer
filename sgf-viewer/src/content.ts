@@ -697,7 +697,7 @@ export const pages: object =
                 "dir_name": "learn_more",
                 "description": [
                     "<b>Q: Where can I learn more?</b>",
-                    "<b>A</b>: Aside from the rest of this website and <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf\">our paper</a>, there is a YouTube video of a talk and demo given by Tony and Kellin <a target=\"_blank\" href=\"https://www.youtube.com/watch?v=CNo3lOT1NYA&ab_channel=CrossLabsAI\">here</a>."
+                    "<b>A</b>: Aside from the rest of this website and <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf\">our paper</a>, there is a YouTube video of a talk and demo given by Tony and Kellin <a target=\"_blank\" href=\"https://www.youtube.com/watch?v=CNo3lOT1NYA&ab_channel=CrossLabsAI\">here</a>.\n\n"
                 ]
             }
         ]
