@@ -21,7 +21,7 @@ def get_style(style_name: str) -> str:
     style_sheets_dir = (
         pathlib.Path(os.path.realpath(__file__)).parent / "matplotlib-style-sheets"
     )
-    return str(style_sheets_dir / f"{style_name}.mlpstyle")
+    return str(style_sheets_dir / f"{style_name}.mplstyle")
 
 
 def parse_for_match(df: pd.DataFrame) -> None:

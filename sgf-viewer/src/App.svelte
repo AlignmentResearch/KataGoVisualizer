@@ -42,7 +42,7 @@
 
 <style>
     .subheading {
-        top: calc(var(--scroll-margin) + 1vh);
+        top: calc(var(--scroll-margin) + 2.5vh);
         position: sticky;
         background-color: var(--accent-color-2);
         color: white;
