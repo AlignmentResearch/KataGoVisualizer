@@ -707,7 +707,7 @@ export const pages: object =
                 "max_games": 8,
                 "adversary": "Cyclic-adversary, 168 million fine-tuning steps, 600 visits",
                 "victim": "b60-s7702m, 4096 visits",
-                "description": [ "After 168 million fine-tuning training steps, the cyclic-adversary beats b60-s7702m using 4096 victim visits with a win rate of 188/400 = 47%. The attack is still a cyclic attack, though the placement of the cyclic group has moved from the corner of the board to towards the center of one side of the board." ]
+                "description": [ "After 168 million fine-tuning training steps, the cyclic-adversary achieves a win rate of 188/400 = 47% against b60-s7702m with 4096 victim visits. The attack is still a cyclic attack, though the placement of the cyclic group has moved from the corner of the board to the center of one side of the board." ]
             },
             {
                 "title": "Fine-tuned cyclic-adversary vs. 100,000-visit b60-s7702m",
