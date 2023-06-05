@@ -43,12 +43,8 @@ if __name__ == "__main__":
 
     for page_path, page in pages.items():
         for section in page["content"]:
-            title = section["title"]
-            if all(key not in section for key in ["paths", "paths_with_line_num"]):
-                print(f"Skipping section {title}: no games")
-                continue
-
             server = section["server"]
+            title = section["title"]
             max_games = section["max_games"]
             games_count = 0
             # Maps destination path to the original index of the source path in
