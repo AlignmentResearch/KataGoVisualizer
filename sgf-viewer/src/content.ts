@@ -625,16 +625,16 @@ export const pages: object =
         "content": [
             {
                 "title": "No-search b60-s7702m beats cyclic-adversary",
-                "dir_name": "cyclic_orig_vs_b60_s7702m",
+                "dir_name": "cyclic_orig_vs_b60_s7702m_v1",
                 "server": "dqn.ist.berkeley.edu",
                 "paths_with_line_num": [
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/A7A447B921241B38.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/A9E8412E9BEE3604.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/B25E16A26A496ABA.sgfs",
-                        "line": 1
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/97EBB13B75DAAE33.sgfs",
+                        "line": 2
                     },
                     {
                         "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/A35E35276EBDE1A5.sgfs",
@@ -664,11 +664,11 @@ export const pages: object =
                 "max_games": 8,
                 "adversary": "Cyclic-adversary with 545 million training steps, 600 visits",
                 "victim": "b60-s7702m, no search",
-                "description": [ "The kata1-b60c320-s7701878528-d3323518127 (abbreviated to \"b60-s7702m\") network, released in May 2023, has had several months of adversarial training and defeats the original cyclic-adversary in 1882/2000 = 94.1% of games even when b60-s7702m plays without search. b60-s7702m does not allow the cyclic group to be captured." ]
+                "description": [ "The kata1-b60c320-s7701878528-d3323518127 (abbreviated to \"b60-s7702m\") network, released in May 2023, has had several months of adversarial training and defeats the original cyclic-adversary in 1882/2000 = 94.1% of games even when b60-s7702m plays without search. b60-s7702m is stronger at defending the cyclic group. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
             },
             {
                 "title": "Fine-tuned cyclic-adversary beats 4096-visit b60-s7702m",
-                "dir_name": "cyclic_fine_tune_vs_b60_s7702m",
+                "dir_name": "cyclic_fine_tune_vs_b60_s7702m_v4096",
                 "server": "dqn.ist.berkeley.edu",
                 "paths_with_line_num": [
                     {
@@ -708,6 +708,49 @@ export const pages: object =
                 "adversary": "Cyclic-adversary, 168 million fine-tuning steps, 600 visits",
                 "victim": "b60-s7702m, 4096 visits",
                 "description": [ "After 168 million fine-tuning training steps, the cyclic-adversary beats b60-s7702m using 4096 victim visits with a win rate of 188/400 = 47%. The attack is still a cyclic attack, though the placement of the cyclic group has moved from the corner of the board to towards the center of one side of the board." ]
+            },
+            {
+                "title": "Fine-tuned cyclic-adversary vs. 100,000-visit b60-s7702m",
+                "dir_name": "cyclic_fine_tune_vs_b60_s7702m_v100k",
+                "server": "dqn.ist.berkeley.edu",
+                "paths_with_line_num": [
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/8D5691519584D19F.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/407A3A2F3598178D.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/F41D8751F1D694BF.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/F9D24F51EB6BDFE5.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/64B7CCB3C9C16671.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/00F6232F265CA15F.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/782C2021657A8592.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/F20EF449EDD74809.sgfs",
+                        "line": 1
+                    }
+                ],
+                "max_games": 8,
+                "adversary": "Cyclic-adversary, 168 million fine-tuning steps, 600 visits",
+                "victim": "b60-s7702m, 100,000 visits, 10 search threads",
+                "description": [ "The fine-tuned cyclic-adversary also beats b60-s7702 using 100,000 victim visits with a win rate of 7/40 = 17.5%." ]
             }
         ]
     },
