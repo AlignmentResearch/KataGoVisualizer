@@ -44,7 +44,7 @@ export const pages: object =
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, no search",
                 "description": [
-                    "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.E.1\">strength of a top-100 European professional</a>. We trained an adversary that wins 100% of the time over 1000 games against this victim<sup>1</sup>. Our adversary gets the victim to form a large circular structure, and then tricks the victim into allowing the circular structure to be killed. See the <a href=\"/game-analysis#contents\">\"Game Analysis\"</a> tab for a more in depth analysis of this adversarial strategy.",
+                    "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.E.1\">strength of a top-100 European professional</a>. We trained an adversary that wins 100% of the time over 1000 games against this victim<sup>1</sup>. Our adversary (which we refer to as the \"cyclic-adversary\") gets the victim to form a large circular structure, and then tricks the victim into allowing the circular structure to be killed. See the <a href=\"/game-analysis#contents\">\"Game Analysis\"</a> tab for a more in depth analysis of this adversarial strategy.",
                     "<sup>[1]</sup> The games below are actually against a version of <code>Latest</code> that was patched to be immune to a simpler <a href=\"/pass-based-attack#contents\">pass-based attack</a>. We applied this patch to the victim to force our adversary to learn a more interesting attack. The patch is a hardcoded defense that forbids the victim from passing until it has no more legal moves outside its territory. We call the patched victim <code>Latest</code><sub><code>def</code></sub>. Because we limit the victim's passing, games are usually played out to the end, <a href=\"https://archive.ph/xmPrw#:~:text=(if%20SelfPlayOpts%20is%20Enabled)\">terminating automatically</a> once all points belong to a pass-alive-group or pass-alive-territory."
                 ],
                 "_comment": "Snapshot at archive.ph is from https://lightvector.github.io/KataGo/rules.html -- using in case rules change semantics in future versions of KataGo"
@@ -662,7 +662,7 @@ export const pages: object =
                     }
                 ],
                 "max_games": 8,
-                "adversary": "Cyclic-adversary with 545 million training steps, 600 visits",
+                "adversary": "Cyclic-adversary, 545 million training steps, 600 visits",
                 "victim": "b60-s7702m, no search",
                 "description": [ "The kata1-b60c320-s7701878528-d3323518127 (abbreviated to \"b60-s7702m\") network, released in May 2023, has had several months of adversarial training and defeats the original cyclic-adversary in 1882/2000 = 94.1% of games even when b60-s7702m plays without search. b60-s7702m is stronger at defending the cyclic group. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
             },
