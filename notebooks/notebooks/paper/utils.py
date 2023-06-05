@@ -3,10 +3,10 @@ import os
 import pathlib
 from typing import Dict, Iterable, List, Tuple, TypeVar
 
+import matplotlib.pyplot as plt
+import matplotlib.ticker
 import pandas as pd
-
 from sgf_parser import game_info
-
 
 T = TypeVar("T")
 
@@ -92,3 +92,19 @@ def get_victim_active_ranges(df: pd.DataFrame) -> Dict[str, Tuple[int, int]]:
 def get_victim_change_steps(df: pd.DataFrame) -> List[int]:
     """Get steps at which victim changes during training."""
     return [r[0] for r in get_victim_active_ranges(df).values()]
+
+
+def filter_x_minor_ticks(threshold: float = 1):
+    """Courtesy ChatGPT-4."""
+    ax = plt.gca()
+    minor_locator = ax.xaxis.get_minor_locator()
+    minor_ticks = minor_locator.tick_values(ax.get_xlim()[0], ax.get_xlim()[1])
+
+    # Filter out minor ticks below the threshold
+    filtered_minor_ticks = minor_ticks[minor_ticks >= threshold]
+
+    # Create a new minor locator with the filtered tick locations
+    new_minor_locator = matplotlib.ticker.FixedLocator(filtered_minor_ticks)
+
+    # Set the new minor locator
+    ax.xaxis.set_minor_locator(new_minor_locator)

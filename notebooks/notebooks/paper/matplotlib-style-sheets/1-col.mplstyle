@@ -1,1 +1,5 @@
 figure.figsize : 6.75133, 3
+
+# Show ticks on both sides since plot is so wide
+ytick.left: True
+ytick.right: True
