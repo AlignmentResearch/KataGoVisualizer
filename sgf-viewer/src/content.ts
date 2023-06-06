@@ -633,31 +633,31 @@ export const pages: object =
                         "line": 1
                     },
                     {
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/C036A8303267F1E9.sgfs",
+                        "line": 1
+                    },
+                    {
                         "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/97EBB13B75DAAE33.sgfs",
                         "line": 2
                     },
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/A35E35276EBDE1A5.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/11508EB8669E4E37.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/0C55543F4BE02BC6.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/9D142D0D3CB86046.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/E5B7A0372E525C98.sgfs",
-                        "line": 2
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/1EB8EF31AE30C5E7.sgfs",
-                        "line": 2
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/D61A9E84A2A31483.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/EFA8DF2610703829.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/C69687CEA5D7DA8B.sgfs",
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/067B361FD7189DB9.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/00CAD65CF575B46D.sgfs",
                         "line": 1
                     }
                 ],
