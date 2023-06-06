@@ -624,7 +624,7 @@ export const pages: object =
         "description": ["David Wu (lightvector), the creator and primary developer of KataGo, has incorporated adversarial training against the cyclic exploit into the official self-play training run of KataGo since mid-December 2022. The adversarial training consists of starting a small fraction (~0.1%) of self-play games in positions where the cyclic exploit is being executed, with the remainder of games being regular self-play games. This adversarial training has been partially successful in that the adversarially trained networks are able to beat our original cyclic-adversary. However, we are able to fine-tune our original adversary to defeat these updated networks. This suggests that it is non-trivial to defend against the cyclic exploit, unlike the pass exploit which we were able to manually patch. Developing techniques to train agents that are immune to this attack while maintaining high Go strength remains an interesting open problem."],
         "content": [
             {
-                "title": "No-search b60-s7702m beats cyclic-adversary",
+                "title": "Original cyclic-adversary loses to no-search b60-s7702m",
                 "dir_name": "cyclic_orig_vs_b60_s7702m_v1",
                 "server": "dqn.ist.berkeley.edu",
                 "paths_with_line_num": [
@@ -667,7 +667,7 @@ export const pages: object =
                 "description": [ "The kata1-b60c320-s7701878528-d3323518127 (abbreviated to \"b60-s7702m\") network, released in May 2023, has had several months of adversarial training and defeats the original cyclic-adversary in 1882/2000 = 94.1% of games even when b60-s7702m plays without search. b60-s7702m is stronger at defending the cyclic group. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
             },
             {
-                "title": "Fine-tuned cyclic-adversary beats 4096-visit b60-s7702m",
+                "title": "Fine-tuned cyclic-adversary vs. 4096-visit b60-s7702m",
                 "dir_name": "cyclic_fine_tune_vs_b60_s7702m_v4096",
                 "server": "dqn.ist.berkeley.edu",
                 "paths_with_line_num": [
