@@ -715,7 +715,19 @@ export const pages: object =
                 "server": "dqn.ist.berkeley.edu",
                 "paths_with_line_num": [
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/8D5691519584D19F.sgfs",
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/F41D8751F1D694BF.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/18B4EEE9EE860AA8.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/B3E03288FA1A7D6E.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/5629CE2276D63236.sgfs",
                         "line": 1
                     },
                     {
@@ -723,34 +735,22 @@ export const pages: object =
                         "line": 1
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/F41D8751F1D694BF.sgfs",
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/A3A73164DFEAD4EA.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/F9D24F51EB6BDFE5.sgfs",
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/669501844B765636.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/64B7CCB3C9C16671.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/00F6232F265CA15F.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/782C2021657A8592.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/F20EF449EDD74809.sgfs",
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/0D1446FE5B9035E7.sgfs",
                         "line": 1
                     }
                 ],
                 "max_games": 8,
                 "adversary": "Cyclic-adversary, 168 million fine-tuning steps, 600 visits",
                 "victim": "b60-s7702m, 100,000 visits, 10 search threads",
-                "description": [ "The fine-tuned cyclic-adversary also beats b60-s7702 using 100,000 victim visits with a win rate of 7/40 = 17.5%." ]
+                "description": [ "The fine-tuned cyclic-adversary also beats b60-s7702 using 100,000 victim visits with a win rate of 7/40 = 17.5%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
             }
         ]
     },
