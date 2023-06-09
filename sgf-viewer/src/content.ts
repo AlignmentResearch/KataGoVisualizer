@@ -630,6 +630,38 @@ export const pages: object =
                     "The figure below shows the difference in activations between <code>Latest</code> and cp580 in a realgame cyclic position the former misjudges but the latter judges correctly.",
                 ],
                 "figure": "figures/cp505_realgame2_A_vs_b40_1286_realgame2_A.html"
+            },
+            {
+                "title": "Effect of Breaking the Cycle",
+                "dir_name": "realgame2_cp505_vs_cp505",
+                "description": [
+                    "The figure below shows the difference in activations for <code>Latest</code> between a realgame cyclic position (as in the plot above) and a minimally perturbed version where the cycle is broken but the position is otherwise unchanged.",
+                ],
+                "figure": "figures/cp505_realgame2_A_vs_cp505_realgame2_B.html"
+            },
+            {
+                "title": "Effect of Breaking the Cycle 2",
+                "dir_name": "manual_cp505_vs_cp505",
+                "description": [
+                    "The figure below shows the difference in activations for <code>Latest</code> between a manually-constructed cyclic position and a minimally perturbed version of it where the cycle is broken.",
+                ],
+                "figure": "figures/cp505_position_A_vs_cp505_position_B.html"
+            },
+            {
+                "title": "Effect of Breaking the Cycle 2",
+                "dir_name": "realgame3_cp505_BvD",
+                "description": [
+                    "The figure below shows the difference in activations for <code>Latest</code> between a realgame cyclic position and a minimally perturbed version of it where the cycle is broken. Unlike previous cases where the group perturbed is dead, here it is currently alive and safe.",
+                ],
+                "figure": "figures/cp505_realgame3_B_vs_cp505_realgame3_D.html"
+            },
+            {
+                "title": "Effect of Breaking the Cycle 2",
+                "dir_name": "realgame3_cp505_EvF",
+                "description": [
+                    "The figure below shows the difference in activations for <code>Latest</code> between a position which has a broken near-cycle, and a minimally perturbed version of it which likewise has a broken near-cycle. I.e., it shows the effect of a minimal change to the board when there is no completed or completeable cycle involved.",
+                ],
+                "figure": "figures/cp505_realgame3_E_vs_cp505_realgame3_F.html"
             }
         ]
     },
