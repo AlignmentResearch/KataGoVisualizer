@@ -415,6 +415,26 @@ export const pages: object =
                 "description": ["The same Go expert (Kellin Pelrine) also exploited Leela Zero with 100K visits, which would likewise normally be superhuman."]
             },
             {
+                "title": "Human exploits Leela Zero 2",
+                "dir_name": "human_vs_lz4096",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/data/humanatk-lz4096/humanatk-LZ-4096visits-1.sgfs",
+                    "/data/humanatk-lz4096/humanatk-LZ-4096visits-2.sgfs",
+                    "/data/humanatk-lz4096/humanatk-LZ-4096visits-3.sgfs",
+                    "/data/humanatk-lz4096/humanatk-LZ-4096visits-4.sgfs",
+                    "/data/humanatk-lz4096/humanatk-LZ-4096visits-5.sgfs",
+                    "/data/humanatk-lz4096/humanatk-LZ-4096visits-6.sgfs",
+                    "/data/humanatk-lz4096/humanatk-LZ-4096visits-7.sgfs",
+                    "/data/humanatk-lz4096/humanatk-LZ-4096visits-8.sgfs",
+                    "/data/humanatk-lz4096/humanatk-LZ-4096visits-9.sgfs"
+                ],
+                "max_games": 10,
+                "adversary": "Kellin Pelrine (Author)",
+                "victim": "Leela Zero, 4096 visits",
+                "description": ["Kellin Pelrine also played 9 games against Leela Zero with 4096 visits, winning 6."]
+            },
+            {
                 "title": "Human exploits a top KGS bot",
                 "dir_name": "human_vs_jbxkata005",
                 "server": "dqn.ist.berkeley.edu",
@@ -621,13 +641,13 @@ export const pages: object =
     },
     "activation-plots": {
         "title": "Activation Plots",
-        "description": ["In this page we share interactive plots visualizing activations over the 41 layers of KataGo models in cyclic situations. These correspond to the discussion in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.K.1\">Appendix K</a> of the paper."],
+        "description": ["In this page we share interactive plots visualizing activations over the 41 layers of KataGo models in cyclic situations. These correspond to the discussion in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.K.1\">Appendix K</a> of the paper (coming soon)."],
         "content": [
             {
                 "title": "Effect of Adversarial Training",
                 "dir_name": "realgame2_cp505_vs_advtrained",
                 "description": [
-                    "The figure below shows the difference in activations between <code>Latest</code> and cp580 in a realgame cyclic position the former misjudges but the latter judges correctly.",
+                    "The figure below shows the difference in activations between <code>Latest</code> and cp580 in a realgame cyclic position (Figure K.2a) that the former misjudges but the latter judges correctly."
                 ],
                 "figure": "figures/cp505_realgame2_A_vs_b40_1286_realgame2_A.html"
             },
@@ -635,7 +655,7 @@ export const pages: object =
                 "title": "Effect of Breaking the Cycle",
                 "dir_name": "realgame2_cp505_vs_cp505",
                 "description": [
-                    "The figure below shows the difference in activations for <code>Latest</code> between a realgame cyclic position (as in the plot above) and a minimally perturbed version where the cycle is broken but the position is otherwise unchanged.",
+                    "The figure below shows the difference in activations for <code>Latest</code> between a realgame cyclic position (Figure K.2a, as in the plot above) and a minimally perturbed version where the cycle is broken but the position is otherwise unchanged (Figure K.2b)."
                 ],
                 "figure": "figures/cp505_realgame2_A_vs_cp505_realgame2_B.html"
             },
@@ -643,23 +663,23 @@ export const pages: object =
                 "title": "Effect of Breaking the Cycle 2",
                 "dir_name": "manual_cp505_vs_cp505",
                 "description": [
-                    "The figure below shows the difference in activations for <code>Latest</code> between a manually-constructed cyclic position and a minimally perturbed version of it where the cycle is broken.",
+                    "The figure below shows the difference in activations for <code>Latest</code> between a manually-constructed cyclic position (Figure K.1a) and a minimally perturbed version of it where the cycle is broken (Figure K.1b)."
                 ],
                 "figure": "figures/cp505_position_A_vs_cp505_position_B.html"
             },
             {
-                "title": "Effect of Breaking the Cycle 2",
+                "title": "Effect of Breaking the Cycle 3",
                 "dir_name": "realgame3_cp505_BvD",
                 "description": [
-                    "The figure below shows the difference in activations for <code>Latest</code> between a realgame cyclic position and a minimally perturbed version of it where the cycle is broken. Unlike previous cases where the group perturbed is dead, here it is currently alive and safe.",
+                    "The figure below shows the difference in activations for <code>Latest</code> between a realgame cyclic position (Figure K.3a) and a minimally perturbed version of it where the cycle is broken (Figure K.3b). Unlike previous cases where the group perturbed is dead, here it is currently alive and safe."
                 ],
                 "figure": "figures/cp505_realgame3_B_vs_cp505_realgame3_D.html"
             },
             {
-                "title": "Effect of Breaking the Cycle 2",
+                "title": "Effect of No-Cycle Perturbation",
                 "dir_name": "realgame3_cp505_EvF",
                 "description": [
-                    "The figure below shows the difference in activations for <code>Latest</code> between a position which has a broken near-cycle, and a minimally perturbed version of it which likewise has a broken near-cycle. I.e., it shows the effect of a minimal change to the board when there is no completed or completeable cycle involved.",
+                    "The figure below shows the difference in activations for <code>Latest</code> between a position which has a broken near-cycle (Figure K.4a), and a minimally perturbed version of it which likewise has a broken near-cycle (Figure K.4b). I.e., it shows the effect of a minimal change to the board when there is no completed or completeable cycle involved."
                 ],
                 "figure": "figures/cp505_realgame3_E_vs_cp505_realgame3_F.html"
             }
