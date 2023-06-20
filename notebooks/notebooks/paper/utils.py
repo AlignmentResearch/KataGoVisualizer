@@ -98,7 +98,7 @@ def get_victim_change_steps(df: pd.DataFrame) -> List[int]:
 def filter_x_minor_ticks(threshold: float = 1):
     """Filters out x-axis minor ticks below the threshold value."""
     # Courtesy ChatGPT-4 for the code.
-    
+
     ax = plt.gca()
     minor_locator = ax.xaxis.get_minor_locator()
     minor_ticks = minor_locator.tick_values(*ax.get_xlim())
