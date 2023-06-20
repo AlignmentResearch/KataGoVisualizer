@@ -47,13 +47,17 @@ def parse_for_match(df: pd.DataFrame) -> None:
     df.victim_visits = df.victim_name.str.extract(r"-v(\d+)").astype(int)
 
 
-def parse_sgfs(paths: Iterable[str]) -> pd.DataFrame:
+def parse_sgfs(
+    paths: Iterable[str],
+    no_victim_okay: bool = True,
+) -> pd.DataFrame:
     """Parses a list of paths into a dataframe of SGFs."""
     game_infos = flatten_2d_list(
         [
             game_info.read_and_parse_all_files(
                 game_info.find_sgf_files(pathlib.Path(path)),
                 fast_parse=True,
+                no_victim_okay=no_victim_okay,
             )
             for path in paths
         ]
