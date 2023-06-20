@@ -41,7 +41,9 @@ if __name__ == "__main__":
     for page_path, page in pages.items():
         for section in page["content"]:
             title = section["title"]
-            if "max_games" not in section: # this section doesn't display games, e.g. FAQ
+            if (
+                "max_games" not in section
+            ):  # this section doesn't display games, e.g. FAQ
                 continue
             max_games = section["max_games"]
             games_count = 0
@@ -53,9 +55,7 @@ if __name__ == "__main__":
             for i, path in enumerate(section.get("paths", [])):
                 if games_count < max_games:
                     if ".sgf" in path:
-                        run_cmd(
-                            ["cp", f"{path}", f"{section_path.resolve()}"]
-                        )
+                        run_cmd(["cp", f"{path}", f"{section_path.resolve()}"])
                         games_count += 1
                         path_to_original_index[Path(path).name] = i
                     else:
@@ -76,8 +76,7 @@ if __name__ == "__main__":
                     assert path.suffix == ".sgfs"
 
                     line = run_cmd(
-                        [f"sed '{line_num}q;d' {path.resolve()}"],
-                        shell=True
+                        [f"sed '{line_num}q;d' {path.resolve()}"], shell=True
                     )
                     new_path = section_path / (
                         path.stem + f"-L{line_num}" + path.suffix
