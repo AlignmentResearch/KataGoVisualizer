@@ -100,7 +100,7 @@ def filter_x_minor_ticks(threshold: float = 1):
     
     ax = plt.gca()
     minor_locator = ax.xaxis.get_minor_locator()
-    minor_ticks = minor_locator.tick_values(ax.get_xlim()[0], ax.get_xlim()[1])
+    minor_ticks = minor_locator.tick_values(*ax.get_xlim())
 
     # Filter out minor ticks below the threshold
     filtered_minor_ticks = minor_ticks[minor_ticks >= threshold]
