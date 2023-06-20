@@ -3,10 +3,11 @@ import os
 import pathlib
 from typing import Dict, Iterable, List, Tuple, TypeVar
 
+import matplotlib.pyplot as plt
+import matplotlib.ticker
 import pandas as pd
 
 from sgf_parser import game_info
-
 
 T = TypeVar("T")
 
@@ -21,7 +22,7 @@ def get_style(style_name: str) -> str:
     style_sheets_dir = (
         pathlib.Path(os.path.realpath(__file__)).parent / "matplotlib-style-sheets"
     )
-    return str(style_sheets_dir / f"{style_name}.mlpstyle")
+    return str(style_sheets_dir / f"{style_name}.mplstyle")
 
 
 def parse_for_match(df: pd.DataFrame) -> None:
@@ -47,13 +48,17 @@ def parse_for_match(df: pd.DataFrame) -> None:
     df.victim_visits = df.victim_name.str.extract(r"-v(\d+)").astype(int)
 
 
-def parse_sgfs(paths: Iterable[str]) -> pd.DataFrame:
+def parse_sgfs(
+    paths: Iterable[str],
+    no_victim_okay: bool = True,
+) -> pd.DataFrame:
     """Parses a list of paths into a dataframe of SGFs."""
     game_infos = flatten_2d_list(
         [
             game_info.read_and_parse_all_files(
                 game_info.find_sgf_files(pathlib.Path(path)),
                 fast_parse=True,
+                no_victim_okay=no_victim_okay,
             )
             for path in paths
         ]
@@ -88,3 +93,21 @@ def get_victim_active_ranges(df: pd.DataFrame) -> Dict[str, Tuple[int, int]]:
 def get_victim_change_steps(df: pd.DataFrame) -> List[int]:
     """Get steps at which victim changes during training."""
     return [r[0] for r in get_victim_active_ranges(df).values()]
+
+
+def filter_x_minor_ticks(threshold: float = 1):
+    """Filters out x-axis minor ticks below the threshold value."""
+    # Courtesy ChatGPT-4 for the code.
+
+    ax = plt.gca()
+    minor_locator = ax.xaxis.get_minor_locator()
+    minor_ticks = minor_locator.tick_values(*ax.get_xlim())
+
+    # Filter out minor ticks below the threshold
+    filtered_minor_ticks = minor_ticks[minor_ticks >= threshold]
+
+    # Create a new minor locator with the filtered tick locations
+    new_minor_locator = matplotlib.ticker.FixedLocator(filtered_minor_ticks)
+
+    # Set the new minor locator
+    ax.xaxis.set_minor_locator(new_minor_locator)
