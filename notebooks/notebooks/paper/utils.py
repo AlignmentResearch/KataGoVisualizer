@@ -6,6 +6,7 @@ from typing import Dict, Iterable, List, Tuple, TypeVar
 import matplotlib.pyplot as plt
 import matplotlib.ticker
 import pandas as pd
+
 from sgf_parser import game_info
 
 T = TypeVar("T")
