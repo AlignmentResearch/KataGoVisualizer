@@ -48,6 +48,7 @@
     }
     .annotation-item {
         align-self: flex-start;
+        margin: 0.5vw;
         margin-bottom: 1vh;
     }
     .subheading {

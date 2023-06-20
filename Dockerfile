@@ -13,7 +13,7 @@ FROM base AS pipenv
 
 # Install pipenv and compilation dependencies
 RUN pip3 install --user --no-cache-dir pipenv
-RUN apt-get update && apt-get install -y --no-install-recommends gcc python-dev git && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends gcc git && rm -rf /var/lib/apt/lists/*
 
 # Tell pipenv to create venv in the current directory
 ENV PIPENV_VENV_IN_PROJECT=1
@@ -30,8 +30,8 @@ RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 COPY go_attack_utils ./../go_attack_utils
 COPY streamlit_app/requirements.txt .
-RUN pip3 install -r requirements.txt
-RUN pip3 install tensorflow
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt tensorflow --use-pep517
 
 
 FROM base AS streamlit-app
