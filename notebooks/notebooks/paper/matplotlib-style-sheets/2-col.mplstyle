@@ -1,0 +1,10 @@
+# Width obtained by running the following command inside a 2-column *subfigure*
+# environment: \printlength\textwidth
+#
+# Our custom two column subfigures are use 48% of the textwidth:
+#   \begin{subfigure}{0.48\textwidth}
+#
+# To run this command, you need to add the following to the preamble:
+#   \usepackage{printlen}
+#   \uselengthunit{in}
+figure.figsize : 3.2406, 2

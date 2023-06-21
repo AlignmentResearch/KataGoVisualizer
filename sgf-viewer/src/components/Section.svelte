@@ -7,16 +7,16 @@
     let sgfPath: string;
 </script>
 
-<div class="centerflex" in:fade>
+<div class="centerflex" in:fade id={section["dir_name"]}>
+    <h3 class="subheading">
+        {section["title"]}
+    </h3>
     <div class="text-wrapper">
-        <h3 id={section["dir_name"]} class="subheading">
-            {section["title"]}
-        </h3>
         {#each section["description"] as description}
             <p>{@html description}</p>
         {/each}
     </div>
-    {#if (section["paths"] || section["paths_with_line_num"])}
+    {#if section["paths"] || section["paths_with_line_num"]}
         <div style="max-width: 100%;">
             <GameList dirName={section["dir_name"]} bind:sgfPath />
             <div class="board-wrapper">
@@ -51,6 +51,7 @@
     }
     .annotation-item {
         align-self: flex-start;
+        margin: 0.5vw;
         margin-bottom: 1vh;
     }
     iframe {
@@ -60,7 +61,7 @@
         margin-top: 1em;
     }
     .subheading {
-        top: calc(var(--scroll-margin) + 1vh);
+        top: calc(var(--scroll-margin) + 2.5vh);
         position: sticky;
         background-color: var(--accent-color-2);
         color: white;
@@ -81,11 +82,11 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
+        margin: 0.5vw;
     }
     p {
         font-size: 18px;
         align-self: flex-start;
-        margin: 0.5vw;
         max-width: min(90vw, 800px);
         text-align: left;
     }
