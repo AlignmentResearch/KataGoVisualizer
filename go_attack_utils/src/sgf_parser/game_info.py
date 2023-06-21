@@ -18,6 +18,24 @@ def get_game_str(path: pathlib.Path, line_num: int):
                 return line
 
 
+def minimize_game_str(game_str: str) -> str:
+    """Strips all substrings of the form 'C[...]' from `game_str`."""
+    return re.sub(r"C\[.*?\]", "", game_str)
+
+
+def get_viz_link(
+    path: pathlib.Path,
+    line_num: int,
+    minimize: bool = True,
+):
+    """Return a visualization link for a given path and line number."""
+    game_str = get_game_str(path, line_num)
+    assert game_str is not None, f"Could not find game at {path}:{line_num}"
+    if minimize:
+        game_str = minimize_game_str(game_str)
+    return f"https://humancompatibleai.github.io/sgf-viewer/#sgf={game_str}"
+
+
 def find_sgf_files(
     root: pathlib.Path, max_scan_length: int = 10000
 ) -> Sequence[pathlib.Path]:
@@ -49,7 +67,10 @@ def find_sgf_files(
 
 
 def read_and_parse_file(
-    path: pathlib.Path, fast_parse: bool = False, victim_color: Optional[str] = None
+    path: pathlib.Path,
+    fast_parse: bool = False,
+    victim_color: Optional[str] = None,
+    no_victim_okay: bool = False,
 ) -> Sequence[Dict[str, Any]]:
     """Parse all lines of an sgf file to a list of dictionaries with game info."""
     parsed_games = []
@@ -62,6 +83,7 @@ def read_and_parse_file(
                     line.strip(),
                     fast_parse=fast_parse,
                     victim_color=victim_color,
+                    no_victim_okay=no_victim_okay,
                 )
             )
     return parsed_games
@@ -71,12 +93,15 @@ def read_and_parse_all_files(
     paths: Sequence[pathlib.Path],
     fast_parse: bool = False,
     processes: Optional[int] = 128,
+    no_victim_okay: bool = False,
 ) -> Sequence[Dict[str, Any]]:
     """Returns concatenated contents of all files in `paths`."""
     if not processes:
         processes = min(128, len(paths) // 2)
     read_and_parse_file_partial = functools.partial(
-        read_and_parse_file, fast_parse=fast_parse
+        read_and_parse_file,
+        fast_parse=fast_parse,
+        no_victim_okay=no_victim_okay,
     )
     with multiprocessing.Pool(processes=max(processes, 1)) as pool:
         parsed_games = pool.map(read_and_parse_file_partial, paths)
@@ -113,6 +138,7 @@ def parse_game_str_to_dict(
     sgf_str: str,
     fast_parse: bool = False,
     victim_color: Optional[str] = None,
+    no_victim_okay: bool = False,
 ) -> Dict[str, Any]:
     """Parse an sgf string to a dictionary containing game_info.
 
@@ -125,6 +151,8 @@ def parse_game_str_to_dict(
             or generally less useful.
         victim_color: Which color is the victim (for SGFs whose PB and PW fields
             don't label the adversary or victim).
+        no_victim_okay: If True, don't raise an error if the game doesn't have
+            a victim.
 
     Returns:
         Dictionary containing game_info.
@@ -141,7 +169,7 @@ def parse_game_str_to_dict(
     komi = extract_prop("KM", sgf_str)
     komi = float(komi) if komi else komi
     win_color = result[0].lower() if result else None
-    assert (
+    assert no_victim_okay or (
         "victim" in b_name.lower()
         or "victim" in w_name.lower()
         or "adv" in b_name.lower()

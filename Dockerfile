@@ -30,8 +30,8 @@ RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 COPY go_attack_utils ./../go_attack_utils
 COPY streamlit_app/requirements.txt .
-RUN pip3 install -r requirements.txt
-RUN pip3 install tensorflow
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt tensorflow --use-pep517
 
 
 FROM base AS streamlit-app
