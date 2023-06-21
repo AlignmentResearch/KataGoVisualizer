@@ -1,0 +1,9 @@
+pgf.texsystem: pdflatex
+font.family: sans-serif
+font.sans-serif: Lato
+text.usetex: True
+pgf.rcfonts: False
+font.size: 12
+font.weight: medium
+
+figure.constrained_layout.use: True
