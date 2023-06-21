@@ -13,7 +13,7 @@ FROM base AS pipenv
 
 # Install pipenv and compilation dependencies
 RUN pip3 install --user --no-cache-dir pipenv
-RUN apt-get update && apt-get install -y --no-install-recommends gcc python-dev-is-python3 git && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends gcc git && rm -rf /var/lib/apt/lists/*
 
 # Tell pipenv to create venv in the current directory
 ENV PIPENV_VENV_IN_PROJECT=1
