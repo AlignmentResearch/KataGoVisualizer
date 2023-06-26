@@ -34,6 +34,9 @@
             </p>
         </div>
     {/if}
+    {#if section["figure"]}
+        <iframe src="{section["figure"]}" title={section["title"]}></iframe>
+    {/if}
     {#if section["discussion"]}
         <p>{section["discussion"]}</p>
     {/if}
@@ -50,6 +53,12 @@
         align-self: flex-start;
         margin: 0.5vw;
         margin-bottom: 1vh;
+    }
+    iframe {
+        width: min(90vw, 800px);
+        height: min(110vw, 800px);
+        border: none;
+        margin-top: 1em;
     }
     .subheading {
         top: calc(var(--scroll-margin) + 2.5vh);
