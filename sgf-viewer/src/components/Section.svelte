@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { fade } from "svelte/transition";
     export let section: Map<string, string>;
     import GameList from "./subcomponents/GameList.svelte";
     import GoBoard from "./subcomponents/GoBoard.svelte";
@@ -7,7 +6,7 @@
     let sgfPath: string;
 </script>
 
-<div class="centerflex" in:fade id={section["dir_name"]}>
+<div class="centerflex" id={section["dir_name"]}>
     <h3 class="subheading">
         {section["title"]}
     </h3>
@@ -61,11 +60,13 @@
         margin-top: 1em;
     }
     .subheading {
-        top: calc(var(--scroll-margin) + 2.5vh);
+        top: calc(var(--scroll-margin) + 1vh);
         position: sticky;
         background-color: var(--accent-color-2);
         color: white;
-        margin: 2vh;
+        text-align: center;
+        font-weight: normal;
+        box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.75);
         padding: 13px;
         border-radius: 105px;
         z-index: 998;

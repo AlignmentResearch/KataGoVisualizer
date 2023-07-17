@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { fade } from "svelte/transition";
     const authors: Map<string, string> = new Map([
         ["Tony Wang*", "https://terveisin.tw/"],
         ["Adam Gleave*", "https://www.gleave.me/"],
@@ -39,9 +38,7 @@
         />
     </a>
 </div>
-<!-- Empty anchor target. Named for link backwards compatibility. -->
-<div id="contents" />
-<h1 in:fade style="text-align: center;">
+<h1 style="text-align: center;">
     Adversarial Policies Beat Superhuman Go AIs
 </h1>
 <div>
@@ -53,9 +50,6 @@
 </div>
 
 <style>
-    #contents {
-        scroll-margin-top: 0px;
-    }
     h1 {
         font-size: 2em;
     }

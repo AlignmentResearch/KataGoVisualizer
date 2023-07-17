@@ -1,6 +1,5 @@
 <script lang="ts">
     import { onMount, onDestroy } from "svelte";
-    import { fade } from "svelte/transition";
 
     import { pages } from "../../content";
 
@@ -37,7 +36,7 @@
     onDestroy(() => window.removeEventListener("scroll", handleScroll));
 </script>
 
-<div class="contents-container" in:fade>
+<div class="contents-container">
     {#if pages[currentPath]["jump_to"]}
         <div class="jump-to-container">
             <h3 style="margin: 0;">Jump to</h3>
@@ -63,8 +62,8 @@
         </div>
     {:else}
         <div class="contents">
-            <h3 id="contents" style="text-align: center;">Contents</h3>
-            <ol in:fade>
+            <h3>Contents</h3>
+            <ol>
                 {#if pages[currentPath]["description"]}
                     <li
                         class={topHeadingIdx == 0
@@ -103,6 +102,11 @@
 </div>
 
 <style>
+    h3 {
+        font-weight: normal;
+        margin-bottom: 0vh;
+        text-align: center;
+    }
     ol {
         list-style: none;
         padding-left: 0;
@@ -119,7 +123,7 @@
         font-weight: normal;
     }
     .curr-section {
-        color: black;
+        color: var(--accent-color-2);
         transform: translateX(0.5em) scale(1.02);
     }
     .other-section {

@@ -1,11 +1,15 @@
 <script lang="ts">
+    import { fly } from "svelte/transition";
+    import LandingPage from "./components/LandingPage.svelte";
     import NavBar from "./components/NavBar.svelte";
     import Section from "./components/Section.svelte";
     import Title from "./components/Title.svelte";
     import { pages } from "./content";
 
+    let innerHeight, innerWidth;
     let pagesPaths = Object.keys(pages);
     let currentPath: string = window.location.pathname.split("/").slice(-1)[0];
+    let landingPage: boolean = currentPath === "";
     currentPath = pagesPaths.includes(currentPath)
         ? currentPath
         : pagesPaths[0];
@@ -13,7 +17,8 @@
         ? pages[currentPath]["content"]
         : [];
     let navBar: HTMLElement;
-    $: navBarMargin = navBar ? navBar.clientHeight : 100;
+    // The values * 0 are just to force Svelte to recompute when window size changes
+    $: navBarMargin = navBar ? navBar.clientHeight + (innerWidth + innerHeight) * 0 : 100;
     $: document.documentElement.style.cssText =
         "--scroll-margin: " + navBarMargin + "px;";
 </script>
@@ -22,31 +27,37 @@
     <link rel="stylesheet" href={`/themes/light-theme.css`} />
 </svelte:head>
 
+<svelte:window bind:innerHeight bind:innerWidth />
+
 <main>
     <Title />
-    <NavBar bind:currentPath bind:navBarElem={navBar} />
-    {#key currentPath}
-        {#if pages[currentPath]["description"]}
-            <div class="centerflex">
-                <h3 id="summary" class="subheading">Summary</h3>
-                {#each pages[currentPath]["description"] as description}
-                    <p>{@html description}</p>
+            <LandingPage />
+        <div transition:fly={{ y: 200, duration: 400 }}>
+            <NavBar bind:currentPath bind:navBarElem={navBar} />
+            {#key currentPath}
+                {#if pages[currentPath]["description"]}
+                    <div class="centerflex">
+                        <h3 id="summary" class="subheading">Summary</h3>
+                        {#each pages[currentPath]["description"] as description}
+                            <p>{@html description}</p>
+                        {/each}
+                    </div>
+                {/if}
+                {#each sections as section}
+                    <Section {section} />
                 {/each}
-            </div>
-        {/if}
-        {#each sections as section}
-            <Section {section} />
-        {/each}
-    {/key}
+            {/key}
+        </div>
 </main>
 
 <style>
     .subheading {
-        top: calc(var(--scroll-margin) + 2.5vh);
+        top: calc(var(--scroll-margin) + 1vh);
         position: sticky;
         background-color: var(--accent-color-2);
         color: white;
-        margin: 2vh;
+        font-weight: normal;
+        box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.75);
         padding: 13px;
         border-radius: 105px;
         z-index: 998;
