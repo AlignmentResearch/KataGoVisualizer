@@ -5,11 +5,13 @@
     import Section from "./components/Section.svelte";
     import Title from "./components/Title.svelte";
     import { pages } from "./content";
+    import Citation from "./components/Citation.svelte";
 
     let innerHeight, innerWidth;
     let pagesPaths = Object.keys(pages);
     let currentPath: string = window.location.pathname.split("/").slice(-1)[0];
-    let landingPage: boolean = currentPath === "";
+    // $: landingPage = currentPath === "";
+    // $: console.log("currentPath", currentPath, "landingPage", landingPage);
     currentPath = pagesPaths.includes(currentPath)
         ? currentPath
         : pagesPaths[0];
@@ -18,9 +20,12 @@
         : [];
     let navBar: HTMLElement;
     // The values * 0 are just to force Svelte to recompute when window size changes
-    $: navBarMargin = navBar ? navBar.clientHeight + (innerWidth + innerHeight) * 0 : 100;
+    $: navBarMargin = navBar
+        ? navBar.clientHeight + (innerWidth + innerHeight) * 0
+        : 100;
     $: document.documentElement.style.cssText =
         "--scroll-margin: " + navBarMargin + "px;";
+
 </script>
 
 <svelte:head>
@@ -31,23 +36,26 @@
 
 <main>
     <Title />
-            <LandingPage />
-        <div transition:fly={{ y: 200, duration: 400 }}>
-            <NavBar bind:currentPath bind:navBarElem={navBar} />
-            {#key currentPath}
-                {#if pages[currentPath]["description"]}
-                    <div class="centerflex">
-                        <h3 id="summary" class="subheading">Summary</h3>
-                        {#each pages[currentPath]["description"] as description}
-                            <p>{@html description}</p>
-                        {/each}
-                    </div>
-                {/if}
-                {#each sections as section}
-                    <Section {section} />
+    <!-- {#if landingPage} -->
+    <LandingPage />
+    <!-- {/if} -->
+    <!-- <div transition:fly={{ y: 200, duration: 400 }}> -->
+    <NavBar bind:currentPath bind:navBarElem={navBar} />
+    {#key currentPath}
+        {#if pages[currentPath]["description"]}
+            <div class="centerflex">
+                <h3 id="summary" class="subheading">Summary</h3>
+                {#each pages[currentPath]["description"] as description}
+                    <p>{@html description}</p>
                 {/each}
-            {/key}
-        </div>
+            </div>
+        {/if}
+        {#each sections as section}
+            <Section {section} />
+        {/each}
+    {/key}
+    <!-- </div> -->
+    <Citation />
 </main>
 
 <style>
@@ -74,4 +82,5 @@
         max-width: min(90vw, 800px);
         text-align: left;
     }
+
 </style>

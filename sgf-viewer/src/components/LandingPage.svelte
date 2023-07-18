@@ -1,29 +1,41 @@
-<script>
-    import Card from "./subcomponents/Card.svelte";
-    import { cards } from "../landing-page-content";
-    import IconLink from "./subcomponents/IconLink.svelte";
-    console.log(cards);
-
+<script lang="ts">
 </script>
-<div class="image-cards">
-    {#each cards as card, index (index)}
-        <!-- <Card imgPath={card.image} imgName={card.imageName} description={card.description} url={card.url} /> -->
-        <IconLink image={card.image} url={card.url} alt={card.imageName} />
-    {/each}
+
+<div>
+    <p>
+        We attack the state-of-the-art Go-playing AI system KataGo by training
+        adversarial policies against it, achieving a >97% win rate against
+        KataGo running at superhuman settings. Our adversaries do not win by
+        playing Go well. Instead, they trick KataGo into making serious
+        blunders. Our attack transfers zero-shot to other superhuman Go-playing
+        AIs, and is comprehensible to the extent that human experts can
+        implement it without algorithmic assistance to consistently beat
+        superhuman AIs. The core vulnerability uncovered by our attack persists
+        even in KataGo agents adversarially trained to defend against our
+        attack. Our results demonstrate that even superhuman AI systems may
+        harbor surprising failure modes.
+    </p>
+    <img
+        src="/images/cyclic-example.png"
+        alt="Attack"
+        style="max-width: 650px;"
+    />
+    
 </div>
 
-
 <style>
-    .image-cards {
+    img {
+        width: 350px;
+    }
+    div {
         display: flex;
-        flex-wrap: wrap;
-        /* minmax min matches width of the image cards */
-        /* grid-template-columns: repeat(auto-fill, minmax(min(150px, 19vw), 1fr)); */
-        /* grid-template-columns: repeat(auto-fit, minmax(min(150px, 19vw), 1fr)); */
-        /* grid-gap: 1.5vmin; */
-        margin: 2vmin;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 0;
+        gap: 1em;
+        margin-bottom: 5vmin;
+    }
+    p {
+        max-width: 650px;
     }
 </style>

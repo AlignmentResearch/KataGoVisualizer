@@ -2,30 +2,36 @@
     export let image: string;
     export let url: string;
     export let alt: string;
+    export let color: string;
+    export let small: boolean = false;
+
+    let img: HTMLImageElement;
 </script>
 
-<div>
 <a href={url} target="_blank">
-    <img src={image} class="logo" alt={alt} />
+    <img
+        src={image}
+        class="logo"
+        {alt}
+        style={small ? "height: 5vh;" : "height: 6vh;"}
+        bind:this={img}
+        on:mouseover={() =>
+            (img.style.filter = `drop-shadow(0 0 2em ${color})`)}
+        on:mouseout={() => (img.style.filter = "none")}
+        on:focus={() => null}
+        on:blur={() => null}
+    />
 </a>
-</div>
 
 <style>
     .logo {
         object-fit: contain;
-        height: 4vh;
-        margin: 1vmax;
+        /* height: 7vh; */
+        margin: 1.5vmax;
         will-change: filter;
         transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .logo:hover {
-        filter: drop-shadow(0 0 2em #77a22e9a);
         transform: scale(1.1);
-    }
-    .mit:hover {
-        filter: drop-shadow(0 0 2em #a3203497);
-    }
-    .far:hover {
-        filter: drop-shadow(0 0 1em #00e0d894);
     }
 </style>

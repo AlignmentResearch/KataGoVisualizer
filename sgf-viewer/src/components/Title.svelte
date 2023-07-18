@@ -1,4 +1,7 @@
 <script lang="ts">
+    import { cards } from "../landing-page-content";
+    import IconLink from "./subcomponents/IconLink.svelte";
+
     const authors: Map<string, string> = new Map([
         ["Tony Wang*", "https://terveisin.tw/"],
         ["Adam Gleave*", "https://www.gleave.me/"],
@@ -24,21 +27,13 @@
 </script>
 
 <div class="logos">
-    <a href="https://far.ai/" target="_blank">
-        <img src="/images/far-logo.png" class="logo far" alt="FAR Logo" />
-    </a>
-    <a href="https://www.mit.edu/" target="_blank">
-        <img src="/images/mit-logo.svg" class="logo mit" alt="MIT Logo" />
-    </a>
-    <a href="https://humancompatible.ai/" target="_blank">
-        <img
-            src="/images/chai-logo.png"
-            class="logo"
-            alt="Center for Human-Compatible Artificial Intelligence Logo"
-        />
-    </a>
+    <IconLink image="/images/far-logo.png" url="https://far.ai/" alt="FAR Logo" color="#00e0d894" small/>
+    <IconLink image="/images/mit-logo.svg" url="https://www.mit.edu/" alt="MIT Logo" color="#a3203497" small/>
+    <IconLink image="/images/chai-logo.png" url="https://humancompatible.ai/"
+        alt="Center for Human-Compatible AI Logo" color="#77a22e9a" small/>
 </div>
 <h1 style="text-align: center;">
+
     Adversarial Policies Beat Superhuman Go AIs
 </h1>
 <div>
@@ -47,6 +42,11 @@
             <a href={link} target="_blank">{name}</a>
         {/each}
     </div>
+</div>
+<div class="image-cards">
+    {#each cards as card, index (index)}
+        <IconLink image={card.image} url={card.url} alt={card.imageName} color={card.color} />
+    {/each}
 </div>
 
 <style>
@@ -64,24 +64,18 @@
         justify-content: center;
     }
     .logos {
-        margin-top: 1vh;
-        margin-bottom: -3vh;
+        display: flex;
+        justify-content: center;
+        gap: 0.9vmin;
+        margin-top: 1.2vmin;
+        margin-bottom: -2vh;
     }
-    .logo {
-        object-fit: contain;
-        height: 110px;
-        padding: 30px;
-        will-change: filter;
-        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .logo:hover {
-        filter: drop-shadow(0 0 2em #77a22e9a);
-        transform: scale(1.1);
-    }
-    .mit:hover {
-        filter: drop-shadow(0 0 2em #a3203497);
-    }
-    .far:hover {
-        filter: drop-shadow(0 0 1em #00e0d894);
+    .image-cards {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 1vmin;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
     }
 </style>

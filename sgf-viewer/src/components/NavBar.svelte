@@ -21,9 +21,21 @@
 <svelte:window bind:innerWidth />
 <!-- Empty anchor target. Named for link backwards compatibility. -->
 <div id="contents" />
-<div class="nav-bar-container" bind:this={navBarElem}>
+<div class="nav-bar-container">
     {#if innerWidth > menuNavigationWidth}
-        <div class="nav-bar">
+        <div class="nav-bar" bind:this={navBarElem}>
+            <!-- <div class="icons flex-grow-symmetric">
+                <a
+                    class="icon-link"
+                    on:click={() => {
+                        currentPath = "";
+                        history.pushState({}, "", currentPath);
+                    }}
+                    href="#"
+                >
+                    <TiHome />
+                </a>
+            </div> -->
             <div class="pages">
                 {#each pagesPaths as page}
                     <NavButtons
@@ -38,9 +50,10 @@
                     />
                 {/each}
             </div>
+            <!-- <div class="flex-grow-symmetric" /> -->
         </div>
     {:else}
-        <div class="menu-bar">
+        <div class="menu-bar" bind:this={navBarElem}>
             <!-- <div class="flex-grow-symmetric" /> -->
             <!-- <p class="menu-selected">{pages[currentPath]["title"]}</p> -->
             <!-- <div class="menu-burger flex-grow-symmetric">
@@ -51,17 +64,17 @@
                 </div>
             </div> -->
             <!-- {#if menuOpen} -->
-                <select
-                    bind:value={currentPath}
-                    on:change={() => {
-                        history.pushState({}, "", currentPath);
-                        location.replace("#contents");
-                    }}
-                >
-                    {#each pagesPaths as page}
-                        <option value={page}>{pages[page]["title"]}</option>
-                    {/each}
-                </select>
+            <select
+                bind:value={currentPath}
+                on:change={() => {
+                    history.pushState({}, "", currentPath);
+                    location.replace("#contents");
+                }}
+            >
+                {#each pagesPaths as page}
+                    <option value={page}>{pages[page]["title"]}</option>
+                {/each}
+            </select>
             <!-- {/if} -->
         </div>
     {/if}
@@ -79,12 +92,12 @@
     }
     select {
         appearance: none;
-        background: url('/images/menu-burger.svg') no-repeat 98%;
+        background: url("/images/menu-burger.svg") no-repeat 98%;
         background-size: 5vh;
         text-align: center;
         font-size: 1.2em;
         height: 7vh;
-        width: 100%; 
+        width: 100%;
     }
     select::after {
         appearance: none;
@@ -128,19 +141,19 @@
         z-index: 99999;
     }
     .icon-link {
+        cursor: pointer;
         display: flex;
         align-items: center;
-        max-width: 50px;
+        max-width: 40px;
         min-width: 30px;
         height: 50px;
-        color: white;
-        background-color: var(--accent-color-1);
+        color: var(--accent-color-1);
         transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .flex-grow-symmetric {
         flex: 1;
-        padding-left: 1vh;
-        padding-right: 1vh;
+        padding-left: 3vh;
+        padding-right: 4vh;
     }
     .icon-link:hover {
         scale: 1.1;
