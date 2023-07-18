@@ -4,6 +4,8 @@
     export let alt: string;
     export let color: string;
     export let small: boolean = false;
+    export let border: boolean = false;
+    export let description: string = "";
 
     let img: HTMLImageElement;
 </script>
@@ -13,7 +15,9 @@
         src={image}
         class="logo"
         {alt}
-        style={small ? "height: 5vh;" : "height: 6vh;"}
+        style={(small ? "height: 5vh;" : "height: 6vh;") + (border
+            ? "border: 0.5px solid black;"
+            : "")}
         bind:this={img}
         on:mouseover={() =>
             (img.style.filter = `drop-shadow(0 0 2em ${color})`)}
@@ -21,6 +25,7 @@
         on:focus={() => null}
         on:blur={() => null}
     />
+    <div class="logo-desc">{description}</div>
 </a>
 
 <style>
@@ -30,8 +35,15 @@
         margin: 1.5vmax;
         will-change: filter;
         transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        margin-bottom: 0.5em;
     }
     .logo:hover {
         transform: scale(1.1);
+    }
+    .logo-desc {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 1em;
     }
 </style>

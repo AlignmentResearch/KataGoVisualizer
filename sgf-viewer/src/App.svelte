@@ -21,8 +21,8 @@
     let innerHeight, innerWidth;
     let pagesPaths = Object.keys(pages);
     let currentPath: string = window.location.pathname.split("/").slice(-1)[0];
-    $: landingPage = currentPath === "";
-    $: console.log("currentPath", currentPath, "landingPage", landingPage);
+    $: landingPage = currentPath === "adversarial-policy-katago";
+    // $: console.log("currentPath", currentPath, "landingPage", landingPage);
     currentPath = pagesPaths.includes(currentPath)
         ? currentPath
         : pagesPaths[0];

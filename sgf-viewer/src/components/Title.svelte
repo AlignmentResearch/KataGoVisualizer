@@ -66,7 +66,14 @@
 </div> -->
 <div class="image-cards">
     {#each cards as card, index (index)}
-        <IconLink image={card.image} url={card.url} alt={card.imageName} color={card.color} />
+        <IconLink
+            image={card.image}
+            url={card.url}
+            alt={card.imageName}
+            color={card.color}
+            border={card.border}
+            description={card.description}
+        />
     {/each}
 </div>
 
@@ -123,7 +130,8 @@
     .image-cards {
         display: flex;
         flex-wrap: wrap;
-        margin-bottom: 1vmin;
+        margin-top: 0.2vmin;
+        margin-bottom: 0.4vmin;
         align-items: center;
         justify-content: center;
         padding: 0;

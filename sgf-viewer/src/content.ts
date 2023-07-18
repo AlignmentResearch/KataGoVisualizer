@@ -2,14 +2,6 @@
 // Line 4 onwards should be valid JSON.
 export const pages: object =
 {
-    "": {
-        "title": "Home",
-        "description": [
-            "asdf"
-        ],
-        "content": [
-        ]
-    },
     "adversarial-policy-katago": {
         "title": "Cyclic Attack",
         "description": [
