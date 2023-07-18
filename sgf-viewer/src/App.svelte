@@ -1,4 +1,15 @@
 <script lang="ts">
+    import "@fontsource/lato/100.css";
+    import "@fontsource/lato/300.css";
+    import "@fontsource/lato/400.css";
+    import "@fontsource/lato/700.css";
+    import "@fontsource/lato/900.css";
+    import '@fontsource/lato/100-italic.css';
+    import '@fontsource/lato/300-italic.css';
+    import '@fontsource/lato/400-italic.css';
+    import '@fontsource/lato/700-italic.css';
+    import '@fontsource/lato/900-italic.css';
+
     import { fly } from "svelte/transition";
     import LandingPage from "./components/LandingPage.svelte";
     import NavBar from "./components/NavBar.svelte";
@@ -10,8 +21,8 @@
     let innerHeight, innerWidth;
     let pagesPaths = Object.keys(pages);
     let currentPath: string = window.location.pathname.split("/").slice(-1)[0];
-    // $: landingPage = currentPath === "";
-    // $: console.log("currentPath", currentPath, "landingPage", landingPage);
+    $: landingPage = currentPath === "";
+    $: console.log("currentPath", currentPath, "landingPage", landingPage);
     currentPath = pagesPaths.includes(currentPath)
         ? currentPath
         : pagesPaths[0];
@@ -36,9 +47,9 @@
 
 <main>
     <Title />
-    <!-- {#if landingPage} -->
-    <LandingPage />
-    <!-- {/if} -->
+    {#if landingPage}
+        <LandingPage />
+    {/if}
     <!-- <div transition:fly={{ y: 200, duration: 400 }}> -->
     <NavBar bind:currentPath bind:navBarElem={navBar} />
     {#key currentPath}
