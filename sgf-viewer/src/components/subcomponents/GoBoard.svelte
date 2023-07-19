@@ -24,6 +24,7 @@
             layout: (<any>window).WGo.BasicPlayer.dynamicLayout,
             allowIllegalMoves: true,
             move: 9999,
+            enableWheel: false,
             board: {
                 // Options: NORMAL, PAINTED, REALISTIC, GLOW, SHELL, MONO, CR, LB, SQ, TR, MA, SL, SM, outline, mini
                 stoneHandler: (<any>window).WGo.Board.drawHandlers.MONO,
