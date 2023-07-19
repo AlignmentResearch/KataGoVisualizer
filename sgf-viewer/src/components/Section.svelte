@@ -45,13 +45,14 @@
     .annotation {
         display: flex;
         position: relative;
-        top: -3vh;
-        margin-top: 2vw;
+        margin-top: 0.5rem;
+        margin-bottom: 0.1rem;
     }
     .annotation-item {
         align-self: flex-start;
-        margin: 0.5vw;
-        margin-bottom: 1vh;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        margin-bottom: 2rem;
     }
     iframe {
         width: min(90vw, 800px);
