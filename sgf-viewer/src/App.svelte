@@ -94,14 +94,12 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        margin: 0.5vw;
+        margin: 0.5rem;
     }
     p {
         font-size: 18px;
         align-self: flex-start;
         max-width: min(90vw, 800px);
         text-align: justify;
-        margin-left: 1rem;
-        margin-right: 1rem;
     }
 </style>

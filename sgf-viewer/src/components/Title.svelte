@@ -36,12 +36,13 @@
         ["chai", ["5", "Center for Human-Compatible AI", "https://humancompatible.ai/"]],
     ]);
 </script>
-
-<p class="paper-title">
-    <!-- spans make title breaking nicer -->
-    <span class="paper-title-span">Adversarial Policies Beat</span>
-    <span class="paper-title-span">Superhuman Go AIs</span>
-</p>
+<div class="paper-title-wrapper">
+    <p class="paper-title">
+        <!-- spans make title breaking nicer -->
+        <span class="paper-title-span">Adversarial Policies Beat</span>
+        <span class="paper-title-span">Superhuman Go AIs</span>
+    </p>
+</div>
 <div>
     <div class="authors-list">
         {#each [...authors] as [name, link, institutions], i}
@@ -78,6 +79,10 @@
 </div>
 
 <style>
+    .paper-title-wrapper {
+        margin-left: 1.5em;
+        margin-right: 1.5em;
+    }
     .paper-title {
         font-size: 44px;
         font-weight: 700;
@@ -85,8 +90,6 @@
         margin-top: 0.5em;
         margin-bottom: 0.4em;
         text-align: center;
-        margin-left: 1.5em;
-        margin-right: 1.5em;
     }
     .paper-title-span {
         display: inline-block;

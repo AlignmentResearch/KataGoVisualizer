@@ -93,10 +93,10 @@
     select {
         appearance: none;
         background: url("/images/menu-burger.svg") no-repeat 98%;
-        background-size: 5vh;
+        background-size: 2.5rem;
         text-align: center;
-        font-size: 1.2em;
-        height: 7vh;
+        font-size: 1.5em;
+        height: 4rem;
         width: 100%;
     }
     select::after {

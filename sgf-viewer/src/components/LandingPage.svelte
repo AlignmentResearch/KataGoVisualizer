@@ -23,7 +23,7 @@
     <span>An example of our attack in action.</span>
 
     <p class="link-advert">
-        <!-- spans make title breaking nicer -->
+        <!-- spans make breaking nicer -->
         <span class="link-advert-span">&#x2193;&#x2193;&#x2193;</span>
         <span class="link-advert-span">Browse adversary games and analysis</span>
         <span class="link-advert-span">&#x2193;&#x2193;&#x2193;</span>
