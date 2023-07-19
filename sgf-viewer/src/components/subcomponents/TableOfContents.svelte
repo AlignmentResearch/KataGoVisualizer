@@ -16,7 +16,6 @@
 
     // Ternary is just to force Svelte to recompute when currentPath changes
     $: anchors = currentPath ? document.querySelectorAll(".subheading") : [];
-    $: summaryOffset = pages[currentPath]["description"] ? 1 : 0;
 
     // Base JumpTo string split by VAR
     $: jumpToBase = (pages[currentPath].jump_to?.base ?? "").split("VAR");
@@ -64,31 +63,16 @@
         <div class="contents">
             <h3>Contents</h3>
             <ol>
-                {#if pages[currentPath]["description"]}
-                    <li
-                        class={topHeadingIdx == 0
-                            ? "curr-section"
-                            : "other-section"}
-                    >
-                        <a
-                            href={"#summary"}
-                            on:click={rmvUrlParams}
-                            class={topHeadingIdx == 0
-                                ? "curr-section"
-                                : "other-section"}>• Summary</a
-                        >
-                    </li>
-                {/if}
                 {#each sections as section, i}
                     <li
-                        class={topHeadingIdx == i + summaryOffset
+                        class={topHeadingIdx == i
                             ? "curr-section"
                             : "other-section"}
                     >
                         <a
                             href={"#" + section["dir_name"]}
                             on:click={rmvUrlParams}
-                            class={topHeadingIdx == i + summaryOffset
+                            class={topHeadingIdx == i
                                 ? "curr-section"
                                 : "other-section"}
                         >

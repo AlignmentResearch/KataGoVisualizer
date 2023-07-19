@@ -90,7 +90,11 @@
         font-size: 18px;
         align-self: flex-start;
         max-width: min(90vw, 800px);
-        text-align: left;
+        text-align: justify;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 0.4rem;
+        margin-bottom: 0.4rem;
     }
     .board-wrapper {
         display: flex;

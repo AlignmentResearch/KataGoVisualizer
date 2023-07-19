@@ -169,6 +169,7 @@
         position: sticky;
         top: 0px;
         z-index: 999;
+        margin-bottom: 1.5em;
     }
     .nav-bar {
         overflow-x: auto;

@@ -4,11 +4,11 @@
     import "@fontsource/lato/400.css";
     import "@fontsource/lato/700.css";
     import "@fontsource/lato/900.css";
-    import '@fontsource/lato/100-italic.css';
-    import '@fontsource/lato/300-italic.css';
-    import '@fontsource/lato/400-italic.css';
-    import '@fontsource/lato/700-italic.css';
-    import '@fontsource/lato/900-italic.css';
+    import "@fontsource/lato/100-italic.css";
+    import "@fontsource/lato/300-italic.css";
+    import "@fontsource/lato/400-italic.css";
+    import "@fontsource/lato/700-italic.css";
+    import "@fontsource/lato/900-italic.css";
 
     import { fly } from "svelte/transition";
     import LandingPage from "./components/LandingPage.svelte";
@@ -36,7 +36,6 @@
         : 100;
     $: document.documentElement.style.cssText =
         "--scroll-margin: " + navBarMargin + "px;";
-
 </script>
 
 <svelte:head>
@@ -55,10 +54,11 @@
     {#key currentPath}
         {#if pages[currentPath]["description"]}
             <div class="centerflex">
-                <h3 id="summary" class="subheading">Summary</h3>
-                {#each pages[currentPath]["description"] as description}
-                    <p>{@html description}</p>
-                {/each}
+                <div class="text-wrapper">
+                    {#each pages[currentPath]["description"] as description}
+                        <p>{@html description}</p>
+                    {/each}
+                </div>
             </div>
         {/if}
         {#each sections as section}
@@ -85,13 +85,23 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+        margin-top: 0.1rem;
+    }
+    .text-wrapper {
+        width: min(90vw, 800px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 0.5vw;
     }
     p {
         font-size: 18px;
-        align-self: center;
-        margin: 0.5vw;
+        align-self: flex-start;
         max-width: min(90vw, 800px);
-        text-align: left;
+        text-align: justify;
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
-
 </style>
