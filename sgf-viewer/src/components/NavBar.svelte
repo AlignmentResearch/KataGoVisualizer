@@ -45,7 +45,7 @@
                         href="#contents"
                         onClick={() => {
                             currentPath = page;
-                            history.pushState({}, "", currentPath);
+                            history.pushState({}, "", currentPath + "#contents");
                         }}
                     />
                 {/each}

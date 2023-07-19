@@ -17,15 +17,22 @@
     import Title from "./components/Title.svelte";
     import { pages } from "./content";
     import Citation from "./components/Citation.svelte";
+    import { onMount } from "svelte";
 
     let innerHeight, innerWidth;
     let pagesPaths = Object.keys(pages);
-    let currentPath: string = window.location.pathname.split("/").slice(-1)[0];
-    $: landingPage = currentPath === "adversarial-policy-katago";
-    // $: console.log("currentPath", currentPath, "landingPage", landingPage);
-    currentPath = pagesPaths.includes(currentPath)
-        ? currentPath
+
+    let windowLocationPathname = window.location.pathname;
+    $: windowLoc = windowLocationPathname.split("/").slice(-1)[0];
+
+    onMount(() => {
+        window.addEventListener('popstate', () => windowLocationPathname = window.location.pathname);
+    });
+
+    $: currentPath = pagesPaths.includes(windowLoc)
+        ? windowLoc
         : pagesPaths[0];
+    $: landingPage = currentPath === "adversarial-policy-katago";
     $: sections = pagesPaths.includes(currentPath)
         ? pages[currentPath]["content"]
         : [];
