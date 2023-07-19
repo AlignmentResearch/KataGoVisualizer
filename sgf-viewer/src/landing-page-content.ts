@@ -46,7 +46,7 @@ export const cards: Array<any> =
     // {
     //     image: "/images/non-transitive-figure.png",
     //     imageName: "human evaluation",
-    //     description: "Read our evalation of games demonstrating the non-transitive nature of the attacks.",
+    //     description: "Read our evaluation of games demonstrating the non-transitive nature of the attacks.",
     //     url: "/human-evaluation",
     // },
     // {
