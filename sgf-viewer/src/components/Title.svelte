@@ -100,8 +100,8 @@
     .authors-list-item {
         font-weight: 300;
         font-size: 18px;
-        margin-left: 1.2vmin;
-        margin-right: 1.2vmin;
+        margin-left: 1rem;
+        margin-right: 1rem;
         color: #000000;
     }
     .authors-list-item sup {
@@ -110,8 +110,8 @@
     .institution-list-item {
         font-weight: 300;
         font-size: 14.5px;
-        margin-left: 1.2vmin;
-        margin-right: 1.2vmin;
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
     .institution-list-item sup {
         font-size: 9px;
@@ -130,8 +130,8 @@
     .image-cards {
         display: flex;
         flex-wrap: wrap;
-        margin-top: 0.2vmin;
-        margin-bottom: 0.4vmin;
+        margin-top: 0.2rem;
+        margin-bottom: 0.4rem;
         align-items: center;
         justify-content: center;
         padding: 0;

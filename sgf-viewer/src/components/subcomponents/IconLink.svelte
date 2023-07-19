@@ -15,7 +15,7 @@
         src={image}
         class="logo"
         {alt}
-        style={(small ? "height: 5vh;" : "height: 6vh;") + (border
+        style={(small ? "height: 3rem;" : "height: 4rem;") + (border
             ? "border: 0.5px solid black;"
             : "")}
         bind:this={img}
