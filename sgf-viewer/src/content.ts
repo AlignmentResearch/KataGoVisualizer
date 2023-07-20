@@ -44,7 +44,7 @@ export const pages: object =
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, no search",
                 "description": [
-                    "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.E.1\">strength of a top-100 European professional</a>. We trained an adversary that wins 100% of the time over 1000 games against this victim<sup>1</sup>. Our adversary gets the victim to form a large circular structure, and then tricks the victim into allowing the circular structure to be killed. See the <a href=\"/game-analysis#contents\">\"Game Analysis\"</a> tab for a more in depth analysis of this adversarial strategy.",
+                    "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.E.1\">strength of a top-100 European professional</a>. We trained an adversary that wins 100% of the time over 1000 games against this victim<sup>1</sup>. Our adversary (which we refer to as the \"cyclic-adversary\") gets the victim to form a large circular structure, and then tricks the victim into allowing the circular structure to be killed. See the <a href=\"/game-analysis#contents\">\"Game Analysis\"</a> tab for a more in depth analysis of this adversarial strategy.",
                     "<sup>[1]</sup> The games below are actually against a version of <code>Latest</code> that was patched to be immune to a simpler <a href=\"/pass-based-attack#contents\">pass-based attack</a>. We applied this patch to the victim to force our adversary to learn a more interesting attack. The patch is a hardcoded defense that forbids the victim from passing until it has no more legal moves outside its territory. We call the patched victim <code>Latest</code><sub><code>def</code></sub>. Because we limit the victim's passing, games are usually played out to the end, <a href=\"https://archive.ph/xmPrw#:~:text=(if%20SelfPlayOpts%20is%20Enabled)\">terminating automatically</a> once all points belong to a pass-alive-group or pass-alive-territory."
                 ],
                 "_comment": "Snapshot at archive.ph is from https://lightvector.github.io/KataGo/rules.html -- using in case rules change semantics in future versions of KataGo"
@@ -637,6 +637,141 @@ export const pages: object =
             {"title": "100% vs. cp127, no search", "dir_name": "training_sample_games10_cp127h-v1", "server": "dqn.ist.berkeley.edu", "_path_comment": "Sampled using sample_training_games.py", "paths_with_line_num": [{"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/063F3CC213A35519.sgfs", "line": 1}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/DEAD0B5C46928C75.sgfs", "line": 5}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/1D20AD4A72A24110.sgfs", "line": 2}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/CA3B08241E88ED64.sgfs", "line": 4}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/1529D9FAFB020AA6.sgfs", "line": 11}], "max_games": 5, "adversary": "545 million training steps, 600 visits", "victim": "<code>cp127</code><sub><code>def</code></sub>, no search", "description": []},
             {"title": "100% vs. Latest, no search", "dir_name": "training_sample_games10_cp505h-v1", "server": "dqn.ist.berkeley.edu", "_path_comment": "Sampled using sample_training_games.py", "paths_with_line_num": [{"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/6C799DC8B9CF47D5.sgfs", "line": 4}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/8472071DAD568C7D.sgfs", "line": 2}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/300D19B57CFA0D57.sgfs", "line": 5}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/B8F378B85EF63DB8.sgfs", "line": 5}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/1F87750F7DF8A39E.sgfs", "line": 4}], "max_games": 5, "adversary": "545 million training steps, 600 visits", "victim": "<code>Latest</code><sub><code>def</code></sub>, no search", "description": []},
             {"title": "100% vs. Latest, 4096 visits", "dir_name": "training_sample_games10_cp505h-v4096", "server": "dqn.ist.berkeley.edu", "_path_comment": "Sampled using sample_training_games.py", "paths_with_line_num": [{"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/A3235D3F37F3549E.sgfs", "line": 8}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/2BE0EE6FA67CE3D0.sgfs", "line": 8}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/E5637DACDFC22C28.sgfs", "line": 3}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/4F74D51B2572A264.sgfs", "line": 6}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-48-to-56-20230117-235652/sgfs/0273BF36E295C5FE.sgfs", "line": 1}], "max_games": 5, "adversary": "545 million training steps, 600 visits", "victim": "<code>Latest</code><sub><code>def</code></sub>, 4096 visits", "description": []}
+        ]
+    },
+    "adversarial-training": {
+        "title": "Adversarial training",
+        "description": ["David Wu (lightvector), the creator and primary developer of KataGo, has incorporated adversarial training against the cyclic exploit into the official self-play training run of KataGo since mid-December 2022. The adversarial training consists of starting a small fraction (~0.1%) of self-play games in positions where the cyclic exploit is being executed, with the remainder of games being regular self-play games. This adversarial training has been partially successful in that the adversarially trained networks are able to beat our original cyclic-adversary. However, we are able to fine-tune our original adversary to defeat these updated networks. This suggests that it is non-trivial to defend against the cyclic exploit, unlike the pass exploit which we were able to manually patch. Developing techniques to train agents that are immune to this attack while maintaining high Go strength remains an interesting open problem."],
+        "content": [
+            {
+                "title": "Original cyclic-adversary loses to no-search b60-s7702m",
+                "dir_name": "cyclic_orig_vs_b60_s7702m_v1",
+                "server": "dqn.ist.berkeley.edu",
+                "paths_with_line_num": [
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/A9E8412E9BEE3604.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/C036A8303267F1E9.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/97EBB13B75DAAE33.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/11508EB8669E4E37.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/9D142D0D3CB86046.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/EFA8DF2610703829.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/067B361FD7189DB9.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/tony-adv-v-kata-v2.3.2/tony-victims-0-to-0-2-20230517-152837/sgfs/00CAD65CF575B46D.sgfs",
+                        "line": 1
+                    }
+                ],
+                "max_games": 8,
+                "adversary": "Cyclic-adversary, 545 million training steps, 600 visits",
+                "victim": "b60-s7702m, no search",
+                "description": [ "The kata1-b60c320-s7701878528-d3323518127 (abbreviated to \"b60-s7702m\") network, released in May 2023, has had several months of adversarial training and defeats the original cyclic-adversary in 1882/2000 = 94.1% of games even when b60-s7702m plays without search. b60-s7702m is stronger at defending the cyclic group. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
+            },
+            {
+                "title": "Fine-tuned cyclic-adversary vs. 4096-visit b60-s7702m",
+                "dir_name": "cyclic_fine_tune_vs_b60_s7702m_v4096",
+                "server": "dqn.ist.berkeley.edu",
+                "paths_with_line_num": [
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-20230529-190938/sgfs/424E64C3B6BCE08A.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-20230529-190938/sgfs/54C163115050FACB.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-20230529-190938/sgfs/FC58ED569039897A.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-20230529-190938/sgfs/A73717E4B13981F5.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-20230529-190938/sgfs/0AD004CD5AB00448.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-20230529-190938/sgfs/DF333976A76E07CD.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-20230529-190938/sgfs/9EF24D68CD91CF01.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-20230529-190938/sgfs/2F41D81801BBE779.sgfs",
+                        "line": 2
+                    }
+                ],
+                "max_games": 8,
+                "adversary": "Cyclic-adversary, 168 million fine-tuning steps, 600 visits",
+                "victim": "b60-s7702m, 4096 visits",
+                "description": [ "After 168 million fine-tuning training steps, the cyclic-adversary achieves a win rate of 188/400 = 47% against b60-s7702m with 4096 victim visits. The attack is still a cyclic attack, though the placement of the cyclic group has moved from the corner of the board to the center of one side of the board." ]
+            },
+            {
+                "title": "Fine-tuned cyclic-adversary vs. 100,000-visit b60-s7702m",
+                "dir_name": "cyclic_fine_tune_vs_b60_s7702m_v100k",
+                "server": "dqn.ist.berkeley.edu",
+                "paths_with_line_num": [
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/F41D8751F1D694BF.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/18B4EEE9EE860AA8.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/B3E03288FA1A7D6E.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/5629CE2276D63236.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/407A3A2F3598178D.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/A3A73164DFEAD4EA.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/669501844B765636.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/ttseng/go_attack/backup/tony-ft-vs-b60-v1e5-20230529-192608/sgfs/0D1446FE5B9035E7.sgfs",
+                        "line": 1
+                    }
+                ],
+                "max_games": 8,
+                "adversary": "Cyclic-adversary, 168 million fine-tuning steps, 600 visits",
+                "victim": "b60-s7702m, 100,000 visits, 10 search threads",
+                "description": [ "The fine-tuned cyclic-adversary also beats b60-s7702 using 100,000 victim visits with a win rate of 7/40 = 17.5%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
+            }
         ]
     },
     "activation-plots": {
