@@ -3,8 +3,8 @@
     import IconLink from "./subcomponents/IconLink.svelte";
 
     const authors: [string, string, string[]][] = [
-        ["Tony Wang*", "https://terveisin.tw/", ["mit"]],
-        ["Adam Gleave*", "https://www.gleave.me/", ["far"]],
+        ["Tony Wang", "https://terveisin.tw/", ["mit"]],
+        ["Adam Gleave", "https://www.gleave.me/", ["far"]],
         ["Tom Tseng", "https://www.tomhmtseng.com/", ["far"]],
         [
             "Kellin Pelrine",
@@ -47,7 +47,7 @@
     <div class="authors-list">
         {#each [...authors] as [name, link, institutions], i}
             <a class="authors-list-item" href={link} target="_blank">
-                {name}<sup>{#if i > 1}{@html '&#x20;'}{:else}&thinsp;{/if}{#each institutions as instKey}{instMap.get(instKey)[0]}{@html '&#x20;'}{/each}</sup>
+                <span class="author-name">{name}</span>{#if i <= 1}*{/if}<sup>{#if i > 1}{@html '&#x20;'}{:else}&thinsp;{/if}{#each institutions as instKey}{instMap.get(instKey)[0]}{@html '&#x20;'}{/each}</sup>
             </a>
         {/each}
     </div>
@@ -106,6 +106,9 @@
         margin-left: 1rem;
         margin-right: 1rem;
         color: #000000;
+    }
+    .author-name:hover {
+        text-decoration: underline;
     }
     .authors-list-item sup {
         font-size: 9px;
