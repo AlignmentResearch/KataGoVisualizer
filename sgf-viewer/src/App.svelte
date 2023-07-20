@@ -12,7 +12,6 @@
 
     import { onMount } from "svelte";
     import Citation from "./components/Citation.svelte";
-    import LandingPage from "./components/LandingPage.svelte";
     import NavBar from "./components/NavBar.svelte";
     import Section from "./components/Section.svelte";
     import Title from "./components/Title.svelte";
@@ -56,10 +55,7 @@
 <svelte:window bind:innerHeight bind:innerWidth />
 
 <main>
-    <Title />
-    {#if landingPage}
-        <LandingPage />
-    {/if}
+    <Title showAuthors={landingPage}/>
     <!-- <div transition:fly={{ y: 200, duration: 400 }}> -->
     <NavBar
         contentsFloatWidth={contentsFloatWidth}
@@ -72,7 +68,7 @@
             <div class="centerflex">
                 <div class="text-wrapper">
                     {#each pages[currentPath]["description"] as description}
-                        <p>{@html description}</p>
+                        <p class="description-p">{@html description}</p>
                     {/each}
                 </div>
             </div>
@@ -120,5 +116,9 @@
         align-self: flex-start;
         max-width: min(90vw, 800px);
         text-align: justify;
+        margin: 0.5rem 0;
+    }
+    .description-p {
+        width: 100%;
     }
 </style>

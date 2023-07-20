@@ -2,6 +2,8 @@
     import { cards } from "../landing-page-content";
     import IconLink from "./subcomponents/IconLink.svelte";
 
+    export let showAuthors: boolean = true;
+
     const authors: [string, string, string[]][] = [
         ["Tony Wang", "https://terveisin.tw/", ["mit"]],
         ["Adam Gleave", "https://www.gleave.me/", ["far"]],
@@ -43,28 +45,24 @@
         <span class="paper-title-span">Superhuman Go AIs</span>
     </p>
 </div>
-<div>
-    <div class="authors-list">
-        {#each [...authors] as [name, link, institutions], i}
-            <a class="authors-list-item" href={link} target="_blank">
-                <span class="author-name">{name}</span>{#if i <= 1}*{/if}<sup>{#if i > 1}{@html '&#x20;'}{:else}&thinsp;{/if}{#each institutions as instKey}{instMap.get(instKey)[0]}{@html '&#x20;'}{/each}</sup>
-            </a>
-        {/each}
+{#if showAuthors}
+    <div>
+        <div class="authors-list">
+            {#each [...authors] as [name, link, institutions], i}
+                <a class="authors-list-item" href={link} target="_blank">
+                    <span class="author-name">{name}</span>{#if i <= 1}*{/if}<sup>{#if i > 1}{@html '&#x20;'}{:else}&thinsp;{/if}{#each institutions as instKey}{instMap.get(instKey)[0]}{@html '&#x20;'}{/each}</sup>
+                </a>
+            {/each}
+        </div>
     </div>
-</div>
-<div>
-    <div class="authors-list">
-        {#each [...instMap] as [abbrev, [index, name, link]]}
-            <a class="institution-list-item" href={link} target="_blank"><sup>{index}</sup> {name}</a>
-        {/each}
+    <div>
+        <div class="authors-list">
+            {#each [...instMap] as [abbrev, [index, name, link]]}
+                <a class="institution-list-item" href={link} target="_blank"><sup>{index}</sup> {name}</a>
+            {/each}
+        </div>
     </div>
-</div>
-<!-- <div class="logos">
-    <IconLink image="/images/far-logo.png" url="https://far.ai/" alt="FAR Logo" color="#00e0d894" small/>
-    <IconLink image="/images/mit-logo.svg" url="https://www.mit.edu/" alt="MIT Logo" color="#a3203497" small/>
-    <IconLink image="/images/chai-logo.png" url="https://humancompatible.ai/"
-        alt="Center for Human-Compatible AI Logo" color="#77a22e9a" small/>
-</div> -->
+{/if}
 <div class="image-cards">
     {#each cards as card, index (index)}
         <IconLink
