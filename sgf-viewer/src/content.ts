@@ -2,6 +2,29 @@
 // Line 4 onwards should be valid JSON.
 export const pages: object =
 {
+    "home": {
+        "title": "Home",
+        "content": [
+            {
+                "title": "Frequently asked questions",
+                "dir_name": "faq",
+                "description": [
+                    "<b>Q: Would this exploit work on AlphaZero?</b>",
+                    "It's extremely likely the cyclic-vulnerability exists in AlphaZero. It exists in KataGo, LeelaZero, and ELF (we've won games with it), all of which are based on AlphaZero, with the latter two self-describing as reimplementations of AlphaZero. It also likely exists in FineArt and Golaxy (we are still in the process of getting access to play them, but others have shown these networks also misevaluate positions involving cyclic groups). And it's also very likely that multiple of these systems are now substantially stronger than AlphaZero ever was. So in short, although AlphaZero is unfortunately closed source and not available to test directly, there's no evidence we are aware of that it would be immune, and quite a lot of evidence that it would be vulnerable.",
+                    "<b>Q: Did the adversary algorithm include any initial knowledge or human guidance to find a weakness?</b>",
+                    "No, the adversary was trained from scratch (random initialization) and learned only through playing games. To construct the cyclic adversary, we actually help the victim by patching the pass-based attack, which forces the adversary to find a different attack. But we do not give the adversary any information or hints towards what it should find. More details can be found in Section 4 of our paper.",
+                    "<b>Q: I saw some games you mark as wins, but I play Go and they don’t look like wins to me. What’s going on?</b>",
+                    "You are probably referring to our <a target=\"_blank\" href=\"https://goattack.far.ai/pass-based-attack#contents\">pass-based attack</a>, which is the first attack we found. This attack works in a specific ruleset, based on the Tromp-Taylor rules which are widely used for computer Go. KataGo is trained with this ruleset (among others), and therefore should know how to play them correctly &mdash; though this work showed otherwise. After we patched this vulnerability, we then found other attacks which work in all standard rulesets and agree with standard human evaluation of game results.",
+                    "<b>Q: I’ve played Go AIs myself and seen them make mistakes. How is the vulnerability you found different?</b>",
+                    "While Go AIs do already have known weaknesses, for instance the common “ladder” tactic, there are 3 key factors here whose confluence makes this vulnerability different. First, this affects top AIs, including when they have a very large amount of search. Second, the attack works consistently to produce a game-winning advantage. Third, this consistency does not require repeating exact sequences or board positions.",
+                    "<b>Q: Now that this vulnerability and its severity is known, is it easy to fix? Can we just show the AI a few examples?</b>",
+                    "It is not straightforward. KataGo is currently training with numerous positions from games our adversary algorithm played. There are clear improvements, but so far it is still vulnerable. The process is not complete, so it may just need more time (and computation), but already this shows it is not as easy as one might hope to fix an issue like this.",
+                    "<b>Q: Where can I learn more?</b>",
+                    "Aside from the rest of this website and the links at the top of the page, there is a YouTube video of a talk and demo given by Tony and Kellin <a target=\"_blank\" href=\"https://www.youtube.com/watch?v=CNo3lOT1NYA&ab_channel=CrossLabsAI\">here</a>."
+                ]
+            },
+        ]
+    },
     "adversarial-policy-katago": {
         "title": "Cyclic Attack",
         "description": [
@@ -210,153 +233,8 @@ export const pages: object =
             }
         ]
     },
-    "transfer": {
-      "title": "Transfer to ELF/Leela",
-      "description": [
-          "Our adversary apparently exploits a weakness common across several Go AI systems. We find that the attack transfers zero-shot against ELF OpenGo and Leela Zero, two other open-source Go AI systems that can play at a superhuman level."
-      ],
-      "content": [
-          {
-              "title": "ELF OpenGo",
-              "dir_name": "elf",
-              "server": "dqn.ist.berkeley.edu",
-              "paths": [
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-8.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread3/sgfs/game-6.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-0.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-1.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-2.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-3.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-4.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-5.sgf"
-              ],
-              "max_games": 8,
-              "adversary": "545 million training steps, 600 visits",
-              "victim": "ELF OpenGo, final network, 80,000 rollouts per move",
-              "description": ["We pit our adversary against ELF OpenGo playing with its <a href=\"https://github.com/pytorch/ELF/releases/tag/pretrained-go-19x19-v2\">final network</a> and 80,000 rollouts per move. The <a href=\"https://arxiv.org/pdf/1902.04522.pdf#subsection.4.1\">authors of ELF found</a> that this number of rollouts was sufficient with to consistently beat several top-30 Go players even using a weaker network. Our adversary achieves a win rate of 3.5% against ELF. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
-          },
-          {
-              "title": "Leela Zero",
-              "dir_name": "leela",
-              "server": "dqn.ist.berkeley.edu",
-              "paths": [
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-16.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-23.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-0.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-1.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-2.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-3.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-4.sgf",
-                  "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-5.sgf"
-              ],
-              "max_games": 8,
-              "adversary": "545 million training steps, 600 visits",
-              "victim": "Leela Zero, final network, max 40,000 visits per move",
-              "description": ["We pit our adversary against Leela Zero OpenGo playing with its final network (hash 0e9ea880 on the <a href=\"https://zero.sjeng.org/\">Leela training website</a>), no time limit, and a maximum of 40,000 visits per move. Our adversary achieves a win rate of 6.1%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
-          }
-      ]
-    },
-    "pass-based-attack": {
-        "title": "Pass Attack",
-        "description": [
-            "Our initial attempts at attacking KataGo resulted in adversaries that exploited KataGo's passing behavior. These pass-based adversaries trick KataGo into passing when it shouldn't. While this attack is effective against victims which do not use tree-search, it stops working once victims are able to use even a small amount of tree-search. We developed the pass-hardening defense so that our adversaries would not get stuck learning this pass-exploit. This worked surprisingly well &mdash; training against pass-hardened victims resulted in our adversaries learning <a href=\"/adversarial-policy-katago#contents\">an alternate strategy that works even in the high search regime.</a>"
-        ],
-        "content": [
-            {
-                "title": "KataGo without search (top-100 European player level)",
-                "dir_name": "no_search",
-                "server": "dqn.ist.berkeley.edu",
-                "_path_comment": "Computed by `grep -n cp505-v1 /nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/* | shuf | head -n 6 | cut -f1,2 -d:`",
-                "paths_with_line_num": [
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/68970420A37B288E.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/9900E1AA3223E803.sgfs",
-                        "line": 2
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/F73C301340CB2C94.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/8A89BB10D44F759F.sgfs",
-                        "line": 7
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/04541438A78DF265.sgfs",
-                        "line": 2
-                    },
-                    {
-                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/7E2F2D69066744F8.sgfs",
-                        "line": 5
-                    }
-                ],
-                "max_games": 10,
-                "adversary": "34.1 million training steps, 600 visits",
-                "victim": "<code>Latest</code>, no search",
-                "description": [
-                    "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.E.1\">strength of a top-100 European professional</a>. Our pass-based adversary achieves a 99% win rate against this victim by playing a counterintuitive strategy. The adversary stakes out a minority territory in the corner, allowing KataGo to stake the complement, and placing weak stones in KataGo’s stake.",
-                    "KataGo predicts a high win probability for itself and, in a way, it’s right—it would be simple to capture most of the adversary’s stones in KataGo’s stake, achieving a decisive victory. However, KataGo plays a pass move before it has finished securing its territory, allowing the adversary to pass in turn and end the game. This results in a win for the adversary under the standard <a href=\"https://tromp.github.io/go.html\">Tromp-Taylor</a> ruleset for computer Go, as the adversary gets points for its corner territory (devoid of victim stones) whereas the victim does not receive points for its unsecured territory because of the presence of the adversary’s stones."
-                ]
-            },
-            {
-                "title": "KataGo with 8 visits",
-                "dir_name": "8_visits",
-                "server": "dqn.ist.berkeley.edu",
-                "_path_comment": "Computed by `grep -n cp505-v8] /nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/* | shuf | head -n 10 | cut -f1,2 -d:`",
-                "paths_with_line_num": [
-                  {
-                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/5157F816018CB4D4.sgfs",
-                    "line": 1
-                  },
-                  {
-                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/F6DBA08D32F3161D.sgfs",
-                    "line": 2
-                  },
-                  {
-                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/2D7B37D38A30BFF5.sgfs",
-                    "line": 2
-                  },
-                  {
-                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/8EEBABA9C5B3A7FC.sgfs",
-                    "line": 2
-                  },
-                  {
-                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/4876135715F8EF63.sgfs",
-                    "line": 1
-                  },
-                  {
-                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/DC2248371CC26E2A.sgfs",
-                    "line": 1
-                  },
-                  {
-                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/81BFB902057EAD6B.sgfs",
-                    "line": 4
-                  },
-                  {
-                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/255D65B54C80B63C.sgfs",
-                    "line": 2
-                  },
-                  {
-                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/9472DACCBBF272FB.sgfs",
-                    "line": 4
-                  },
-                  {
-                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/A262DF8E9F1DB313.sgfs",
-                    "line": 1
-                  }
-                ],
-                "max_games": 10,
-                "adversary": "34.1 million training steps, 200 visits, recursive modeling",
-                "victim": "<code>Latest</code>, 8 visits",
-                "description": ["A search budget of 8 visits / move is around the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.F.3\">limit of what our pass-based adversary can exploit</a>. We achieve a win rate of 87.8% against this victim by modeling the victim perfectly during the adversary's search. The adversary wins by the same strategy of staking out a corner. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
-            }
-        ]
-    },
     "human-evaluation": {
-        "title": "Human Evaluation",
+        "title": "Human Games",
         "content": [
             {
                 "title": "Human amateur beats cyclic-adversary",
@@ -470,6 +348,151 @@ export const pages: object =
                 "adversary": "Kellin Pelrine (Author)",
                 "victim": "JBXKata005, 9 dan on KGS, with 9 stone handicap",
                 "description": ["In this last example, the same Go expert (Kellin Pelrine) exploited JBXKata005 while giving it a huge initial advantage through a 9 stone handicap. A top level human player with this much advantage would have a virtually 100% win rate against any opponent, human or algorithmic."]
+            }
+        ]
+    },
+    "transfer": {
+        "title": "Transfer",
+        "description": [
+            "Our adversary apparently exploits a weakness common across several Go AI systems. We find that the attack transfers zero-shot against ELF OpenGo and Leela Zero, two other open-source Go AI systems that can play at a superhuman level."
+        ],
+        "content": [
+            {
+                "title": "ELF OpenGo",
+                "dir_name": "elf",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-8.sgf",
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread3/sgfs/game-6.sgf",
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-0.sgf",
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-1.sgf",
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-2.sgf",
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-3.sgf",
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-4.sgf",
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-elf/20230119-194538/thread0/sgfs/game-5.sgf"
+                ],
+                "max_games": 8,
+                "adversary": "545 million training steps, 600 visits",
+                "victim": "ELF OpenGo, final network, 80,000 rollouts per move",
+                "description": ["We pit our adversary against ELF OpenGo playing with its <a href=\"https://github.com/pytorch/ELF/releases/tag/pretrained-go-19x19-v2\">final network</a> and 80,000 rollouts per move. The <a href=\"https://arxiv.org/pdf/1902.04522.pdf#subsection.4.1\">authors of ELF found</a> that this number of rollouts was sufficient with to consistently beat several top-30 Go players even using a weaker network. Our adversary achieves a win rate of 3.5% against ELF. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
+            },
+            {
+                "title": "Leela Zero",
+                "dir_name": "leela",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-16.sgf",
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-23.sgf",
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-0.sgf",
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-1.sgf",
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-2.sgf",
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-3.sgf",
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-4.sgf",
+                    "/nas/ucb/ttseng/go_attack/transfer/s545mil-vs-elf-leela-20230119/cleaned/katago-vs-leela/20230119-194553/thread1/sgfs/game-5.sgf"
+                ],
+                "max_games": 8,
+                "adversary": "545 million training steps, 600 visits",
+                "victim": "Leela Zero, final network, max 40,000 visits per move",
+                "description": ["We pit our adversary against Leela Zero OpenGo playing with its final network (hash 0e9ea880 on the <a href=\"https://zero.sjeng.org/\">Leela training website</a>), no time limit, and a maximum of 40,000 visits per move. Our adversary achieves a win rate of 6.1%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)"]
+            }
+        ]
+    },
+    "pass-based-attack": {
+        "title": "Pass Attack",
+        "description": [
+            "Our initial attempts at attacking KataGo resulted in adversaries that exploited KataGo's passing behavior. These pass-based adversaries trick KataGo into passing when it shouldn't. While this attack is effective against victims which do not use tree-search, it stops working once victims are able to use even a small amount of tree-search. We developed the pass-hardening defense so that our adversaries would not get stuck learning this pass-exploit. This worked surprisingly well &mdash; training against pass-hardened victims resulted in our adversaries learning <a href=\"/adversarial-policy-katago#contents\">an alternate strategy that works even in the high search regime.</a>"
+        ],
+        "content": [
+            {
+                "title": "KataGo without search (top-100 European player level)",
+                "dir_name": "no_search",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Computed by `grep -n cp505-v1 /nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/* | shuf | head -n 6 | cut -f1,2 -d:`",
+                "paths_with_line_num": [
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/68970420A37B288E.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/9900E1AA3223E803.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/F73C301340CB2C94.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/8A89BB10D44F759F.sgfs",
+                        "line": 7
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/04541438A78DF265.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/7E2F2D69066744F8.sgfs",
+                        "line": 5
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "34.1 million training steps, 600 visits",
+                "victim": "<code>Latest</code>, no search",
+                "description": [
+                    "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.E.1\">strength of a top-100 European professional</a>. Our pass-based adversary achieves a 99% win rate against this victim by playing a counterintuitive strategy. The adversary stakes out a minority territory in the corner, allowing KataGo to stake the complement, and placing weak stones in KataGo’s stake.",
+                    "KataGo predicts a high win probability for itself and, in a way, it’s right—it would be simple to capture most of the adversary’s stones in KataGo’s stake, achieving a decisive victory. However, KataGo plays a pass move before it has finished securing its territory, allowing the adversary to pass in turn and end the game. This results in a win for the adversary under the standard <a href=\"https://tromp.github.io/go.html\">Tromp-Taylor</a> ruleset for computer Go, as the adversary gets points for its corner territory (devoid of victim stones) whereas the victim does not receive points for its unsecured territory because of the presence of the adversary’s stones."
+                ]
+            },
+            {
+                "title": "KataGo with 8 visits",
+                "dir_name": "8_visits",
+                "server": "dqn.ist.berkeley.edu",
+                "_path_comment": "Computed by `grep -n cp505-v8] /nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/* | shuf | head -n 10 | cut -f1,2 -d:`",
+                "paths_with_line_num": [
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/5157F816018CB4D4.sgfs",
+                    "line": 1
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/F6DBA08D32F3161D.sgfs",
+                    "line": 2
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/2D7B37D38A30BFF5.sgfs",
+                    "line": 2
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/8EEBABA9C5B3A7FC.sgfs",
+                    "line": 2
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/4876135715F8EF63.sgfs",
+                    "line": 1
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/DC2248371CC26E2A.sgfs",
+                    "line": 1
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/81BFB902057EAD6B.sgfs",
+                    "line": 4
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/255D65B54C80B63C.sgfs",
+                    "line": 2
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/9472DACCBBF272FB.sgfs",
+                    "line": 4
+                  },
+                  {
+                    "path": "/nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/A262DF8E9F1DB313.sgfs",
+                    "line": 1
+                  }
+                ],
+                "max_games": 10,
+                "adversary": "34.1 million training steps, 200 visits, recursive modeling",
+                "victim": "<code>Latest</code>, 8 visits",
+                "description": ["A search budget of 8 visits / move is around the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.F.3\">limit of what our pass-based adversary can exploit</a>. We achieve a win rate of 87.8% against this victim by modeling the victim perfectly during the adversary's search. The adversary wins by the same strategy of staking out a corner. The adversary loses when the victim plays the game out to the end, resulting in a very full board."]
             }
         ]
     },
@@ -639,7 +662,7 @@ export const pages: object =
         ]
     },
     "adversarial-training": {
-        "title": "Adversarial training",
+        "title": "Adversarial Training",
         "description": ["David Wu (lightvector), the creator and primary developer of KataGo, has incorporated adversarial training against the cyclic exploit into the official self-play training run of KataGo since mid-December 2022. The adversarial training consists of starting a small fraction (~0.1%) of self-play games in positions where the cyclic exploit is being executed, with the remainder of games being regular self-play games. This adversarial training has been partially successful in that the adversarially trained networks are able to beat our original cyclic-adversary. However, we are able to fine-tune our original adversary to defeat these updated networks. This suggests that it is non-trivial to defend against the cyclic exploit, unlike the pass exploit which we were able to manually patch. Developing techniques to train agents that are immune to this attack while maintaining high Go strength remains an interesting open problem."],
         "content": [
             {
@@ -816,59 +839,6 @@ export const pages: object =
                     "The figure below shows the difference in activations for <code>Latest</code> between a position which has a broken near-cycle (Figure K.4a), and a minimally perturbed version of it which likewise has a broken near-cycle (Figure K.4b). I.e., it shows the effect of a minimal change to the board when there is no completed or completeable cycle involved."
                 ],
                 "figure": "figures/cp505_realgame3_E_vs_cp505_realgame3_F.html"
-            }
-        ]
-    },
-    "faq": {
-        "title": "FAQ",
-        "content": [
-            {
-                "title": "Q: Initialization",
-                "dir_name": "initialization",
-                "description": [
-                    "<b>Q: Did the adversary algorithm include any initial knowledge or human guidance to find a weakness?</b>",
-                    "<b>A</b>: No, the adversary was trained from scratch (random initialization) and learned only through playing games. To construct the cyclic adversary, we actually help the victim by patching the pass-based attack, which forces the adversary to find a different attack. But we do not give the adversary any information or hints towards what it should find. More details can be found in Section 4 of our paper."
-                ]
-            },
-            {
-                "title": "Q: Game rules",
-                "dir_name": "game_rules",
-                "description": [
-                    "<b>Q: I saw some games you mark as wins, but I play Go and they don’t look like wins to me. What’s going on?</b>",
-                    "<b>A</b>: You are probably referring to our <a target=\"_blank\" href=\"https://goattack.far.ai/pass-based-attack#contents\">pass-based attack</a>, which is the first attack we found. This attack works in a specific ruleset, based on the Tromp-Taylor rules which are widely used for computer Go. KataGo is trained with this ruleset (among others), and therefore should know how to play them correctly &mdash; though this work showed otherwise. After we patched this vulnerability, we then found other attacks which work in all standard rulesets and agree with standard human evaluation of game results."
-                ]
-            },
-            {
-                "title": "Q: Known weaknesses",
-                "dir_name": "known_weaknesses",
-                "description": [
-                    "<b>Q: I’ve played Go AIs myself and seen them make mistakes. How is the vulnerability you found different?</b>",
-                    "<b>A</b>: While Go AIs do already have known weaknesses, for instance the common “ladder” tactic, there are 3 key factors here whose confluence makes this vulnerability different. First, this affects top AIs, including when they have a very large amount of search. Second, the attack works consistently to produce a game-winning advantage. Third, this consistency does not require repeating exact sequences or board positions."
-                ]
-            },
-            {
-                "title": "Q: Defending",
-                "dir_name": "adversarial_training",
-                "description": [
-                    "<b>Q: Now that this vulnerability and its severity is known, is it easy to fix? Can we just show the AI a few examples?</b>",
-                    "<b>A</b>: It is not straightforward. KataGo is currently training with numerous positions from games our adversary algorithm played. There are clear improvements, but so far it is still vulnerable. The process is not complete, so it may just need more time (and computation), but already this shows it is not as easy as one might hope to fix an issue like this."
-                ]
-            },
-            {
-                "title": "Q: AlphaZero",
-                "dir_name": "alpha_zero",
-                "description": [
-                    "<b>Q: Would this exploit work on AlphaZero?</b>",
-                    "<b>A</b>: It's extremely likely the vulnerability exists in AlphaZero. It exists in KataGo, LeelaZero, and ELF (we've won games with it), all of which are based on AlphaZero, with the latter two self-describing as reimplementations of AlphaZero. It also likely exists in FineArt and Golaxy (we are still in the process of getting access to play them, but others have shown these networks also misevaluate positions involving cyclic groups). And it's also very likely that multiple of these systems are now substantially stronger than AlphaZero ever was. So in short, although AlphaZero is unfortunately closed source and not available to test directly, there's no evidence we are aware of that it would be immune, and quite a lot of evidence that it would be vulnerable."
-                ]
-            },
-            {
-                "title": "Q: Learning More",
-                "dir_name": "learn_more",
-                "description": [
-                    "<b>Q: Where can I learn more?</b>",
-                    "<b>A</b>: Aside from the rest of this website and <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf\">our paper</a>, there is a YouTube video of a talk and demo given by Tony and Kellin <a target=\"_blank\" href=\"https://www.youtube.com/watch?v=CNo3lOT1NYA&ab_channel=CrossLabsAI\">here</a>.\n\n"
-                ]
             }
         ]
     }

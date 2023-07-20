@@ -1,23 +1,23 @@
 <script lang="ts">
-    import "@fontsource/lato/100.css";
-    import "@fontsource/lato/300.css";
-    import "@fontsource/lato/400.css";
-    import "@fontsource/lato/700.css";
-    import "@fontsource/lato/900.css";
     import "@fontsource/lato/100-italic.css";
+    import "@fontsource/lato/100.css";
     import "@fontsource/lato/300-italic.css";
+    import "@fontsource/lato/300.css";
     import "@fontsource/lato/400-italic.css";
+    import "@fontsource/lato/400.css";
     import "@fontsource/lato/700-italic.css";
+    import "@fontsource/lato/700.css";
     import "@fontsource/lato/900-italic.css";
+    import "@fontsource/lato/900.css";
 
-    import { fly } from "svelte/transition";
+    import { onMount } from "svelte";
+    import Citation from "./components/Citation.svelte";
     import LandingPage from "./components/LandingPage.svelte";
     import NavBar from "./components/NavBar.svelte";
     import Section from "./components/Section.svelte";
     import Title from "./components/Title.svelte";
+    import TableOfContents from "./components/subcomponents/TableOfContents.svelte";
     import { pages } from "./content";
-    import Citation from "./components/Citation.svelte";
-    import { onMount } from "svelte";
 
     let innerHeight, innerWidth;
     let pagesPaths = Object.keys(pages);
@@ -26,13 +26,14 @@
     $: windowLoc = windowLocationPathname.split("/").slice(-1)[0];
 
     onMount(() => {
-        window.addEventListener('popstate', () => windowLocationPathname = window.location.pathname);
+        window.addEventListener(
+            "popstate",
+            () => (windowLocationPathname = window.location.pathname)
+        );
     });
 
-    $: currentPath = pagesPaths.includes(windowLoc)
-        ? windowLoc
-        : pagesPaths[0];
-    $: landingPage = currentPath === "adversarial-policy-katago";
+    $: currentPath = pagesPaths.includes(windowLoc) ? windowLoc : pagesPaths[0];
+    $: landingPage = currentPath === "home";
     $: sections = pagesPaths.includes(currentPath)
         ? pages[currentPath]["content"]
         : [];
@@ -43,6 +44,9 @@
         : 100;
     $: document.documentElement.style.cssText =
         "--scroll-margin: " + navBarMargin + "px;";
+
+    const menuNavigationWidth = 915;
+    const contentsFloatWidth = 1500;
 </script>
 
 <svelte:head>
@@ -57,7 +61,12 @@
         <LandingPage />
     {/if}
     <!-- <div transition:fly={{ y: 200, duration: 400 }}> -->
-    <NavBar bind:currentPath bind:navBarElem={navBar} />
+    <NavBar
+        contentsFloatWidth={contentsFloatWidth}
+        menuNavigationWidth={menuNavigationWidth}
+        bind:currentPath
+        bind:navBarElem={navBar}
+    />
     {#key currentPath}
         {#if pages[currentPath]["description"]}
             <div class="centerflex">
@@ -67,6 +76,9 @@
                     {/each}
                 </div>
             </div>
+        {/if}
+        {#if innerWidth <= contentsFloatWidth}
+            <TableOfContents {currentPath} />
         {/if}
         {#each sections as section}
             <Section {section} />

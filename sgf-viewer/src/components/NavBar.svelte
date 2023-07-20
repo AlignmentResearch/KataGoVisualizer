@@ -7,11 +7,10 @@
     import TiHome from "svelte-icons/ti/TiHome.svelte";
     import IoIosMenu from "svelte-icons/io/IoIosMenu.svelte";
 
+    export let contentsFloatWidth: number;
+    export let menuNavigationWidth: number;
     export let currentPath: string;
     export let navBarElem: HTMLElement;
-
-    const menuNavigationWidth = 800;
-    const contentsFloatWidth = 1500;
 
     let pagesPaths = Object.keys(pages);
     let innerWidth;
@@ -82,9 +81,6 @@
         <TableOfContents {currentPath} />
     {/if}
 </div>
-{#if innerWidth <= contentsFloatWidth}
-    <TableOfContents {currentPath} />
-{/if}
 
 <style>
     #contents {

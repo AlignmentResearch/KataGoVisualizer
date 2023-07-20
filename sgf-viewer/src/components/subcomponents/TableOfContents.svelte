@@ -149,7 +149,7 @@
     }
     .contents {
         background-color: white;
-        margin-top: 4vh;
+        margin: 0 0.5rem 1rem;
         color: black;
         width: 300px;
         display: flex;
@@ -157,7 +157,6 @@
         border-radius: 10px;
         flex-direction: column;
         justify-content: center;
-        padding: 1vh;
     }
     select {
         border: 0px;

@@ -61,7 +61,7 @@
         background-color: transparent;
         text-align: center;
         color: var(--accent-color-1);
-        padding: 1vw;
+        padding: 0.6rem;
         transition-duration: 200ms;
         transform: scale(1.01); /* prevents pixel shift during animation */
     }
