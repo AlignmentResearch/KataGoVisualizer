@@ -8,11 +8,8 @@ from pathlib import Path
 from sgf_parser import game_info
 
 """
-Prerequisites:
-- Configure `~/.ssh/config` such that `ssh dqn.ist.berkeley.edu` run from a terminal connects without any user input.
-
 Run:
-- `python prepare_data.py` to run the script.
+- `python prepare_data/prepare_data.py`, from KataGoVisualizer/sgf-viewer directory, to run the script.
 """
 
 
@@ -48,7 +45,6 @@ if __name__ == "__main__":
                 print(f"Skipping section {title}: no games")
                 continue
 
-            server = section["server"]
             max_games = section["max_games"]
             games_count = 0
             # Maps destination path to the original index of the source path in
@@ -59,17 +55,15 @@ if __name__ == "__main__":
             for i, path in enumerate(section.get("paths", [])):
                 if games_count < max_games:
                     if ".sgf" in path:
-                        run_cmd(
-                            ["scp", f"{server}:{path}", f"{section_path.resolve()}"]
-                        )
+                        run_cmd(["cp", f"{path}", f"{section_path.resolve()}"])
                         games_count += 1
                         path_to_original_index[Path(path).name] = i
                     else:
                         limit = max_games - games_count
-                        command = ["ssh", server, "ls", path, "|", "head", f"-{limit}"]
+                        command = ["ls", path, "|", "head", f"-{limit}"]
                         files = run_cmd(command).strip().split("\n")
                         shell_cmd = [
-                            f"scp -r {server}:{path}/\{{{','.join(files)}\}} {section_path.resolve()}"
+                            f"cp -r {path}/\{{{','.join(files)}\}} {section_path.resolve()}"
                         ]
                         run_cmd(shell_cmd, shell=True, dry_run=False)
                         games_count += len(files)
@@ -82,7 +76,7 @@ if __name__ == "__main__":
                     assert path.suffix == ".sgfs"
 
                     line = run_cmd(
-                        ["ssh", f"{server}", f"sed '{line_num}q;d' {path.resolve()}"]
+                        [f"sed '{line_num}q;d' {path.resolve()}"], shell=True
                     )
                     new_path = section_path / (
                         path.stem + f"-L{line_num}" + path.suffix

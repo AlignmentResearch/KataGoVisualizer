@@ -415,6 +415,26 @@ export const pages: object =
                 "description": ["The same Go expert (Kellin Pelrine) also exploited Leela Zero with 100K visits, which would likewise normally be superhuman."]
             },
             {
+                "title": "Human exploits Leela Zero 2",
+                "dir_name": "human_vs_lz4096",
+                "server": "dqn.ist.berkeley.edu",
+                "paths": [
+                    "/nas/ucb/k8/go-attack/humanatk-lz4096/humanatk-LZ-4096visits-1.sgfs",
+                    "/nas/ucb/k8/go-attack/humanatk-lz4096/humanatk-LZ-4096visits-2.sgfs",
+                    "/nas/ucb/k8/go-attack/humanatk-lz4096/humanatk-LZ-4096visits-3.sgfs",
+                    "/nas/ucb/k8/go-attack/humanatk-lz4096/humanatk-LZ-4096visits-4.sgfs",
+                    "/nas/ucb/k8/go-attack/humanatk-lz4096/humanatk-LZ-4096visits-5.sgfs",
+                    "/nas/ucb/k8/go-attack/humanatk-lz4096/humanatk-LZ-4096visits-6.sgfs",
+                    "/nas/ucb/k8/go-attack/humanatk-lz4096/humanatk-LZ-4096visits-7.sgfs",
+                    "/nas/ucb/k8/go-attack/humanatk-lz4096/humanatk-LZ-4096visits-8.sgfs",
+                    "/nas/ucb/k8/go-attack/humanatk-lz4096/humanatk-LZ-4096visits-9.sgfs"
+                ],
+                "max_games": 10,
+                "adversary": "Kellin Pelrine (Author)",
+                "victim": "Leela Zero, 4096 visits",
+                "description": ["Kellin Pelrine also played 9 games against Leela Zero with 4096 visits, winning 6."]
+            },
+            {
                 "title": "Human exploits a top KGS bot",
                 "dir_name": "human_vs_jbxkata005",
                 "server": "dqn.ist.berkeley.edu",
@@ -754,6 +774,52 @@ export const pages: object =
             }
         ]
     },
+    "activation-plots": {
+        "title": "Activation Plots",
+        "description": ["In this page we share interactive plots visualizing activations over the 41 layers of KataGo models in cyclic situations. These correspond to the discussion in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.K.1\">Appendix K</a> of the paper (coming soon)."],
+        "content": [
+            {
+                "title": "Effect of Adversarial Training",
+                "dir_name": "realgame2_cp505_vs_advtrained",
+                "description": [
+                    "The figure below shows the difference in activations between <code>Latest</code> and cp580 in a realgame cyclic position (Figure K.2a) that the former misjudges but the latter judges correctly."
+                ],
+                "figure": "figures/cp505_realgame2_A_vs_b40_1286_realgame2_A.html"
+            },
+            {
+                "title": "Effect of Breaking the Cycle",
+                "dir_name": "realgame2_cp505_vs_cp505",
+                "description": [
+                    "The figure below shows the difference in activations for <code>Latest</code> between a realgame cyclic position (Figure K.2a, as in the plot above) and a minimally perturbed version where the cycle is broken but the position is otherwise unchanged (Figure K.2b)."
+                ],
+                "figure": "figures/cp505_realgame2_A_vs_cp505_realgame2_B.html"
+            },
+            {
+                "title": "Effect of Breaking the Cycle 2",
+                "dir_name": "manual_cp505_vs_cp505",
+                "description": [
+                    "The figure below shows the difference in activations for <code>Latest</code> between a manually-constructed cyclic position (Figure K.1a) and a minimally perturbed version of it where the cycle is broken (Figure K.1b)."
+                ],
+                "figure": "figures/cp505_position_A_vs_cp505_position_B.html"
+            },
+            {
+                "title": "Effect of Breaking the Cycle 3",
+                "dir_name": "realgame3_cp505_BvD",
+                "description": [
+                    "The figure below shows the difference in activations for <code>Latest</code> between a realgame cyclic position (Figure K.3a) and a minimally perturbed version of it where the cycle is broken (Figure K.3b). Unlike previous cases where the group perturbed is dead, here it is currently alive and safe."
+                ],
+                "figure": "figures/cp505_realgame3_B_vs_cp505_realgame3_D.html"
+            },
+            {
+                "title": "Effect of No-Cycle Perturbation",
+                "dir_name": "realgame3_cp505_EvF",
+                "description": [
+                    "The figure below shows the difference in activations for <code>Latest</code> between a position which has a broken near-cycle (Figure K.4a), and a minimally perturbed version of it which likewise has a broken near-cycle (Figure K.4b). I.e., it shows the effect of a minimal change to the board when there is no completed or completeable cycle involved."
+                ],
+                "figure": "figures/cp505_realgame3_E_vs_cp505_realgame3_F.html"
+            }
+        ]
+    },
     "faq": {
         "title": "FAQ",
         "content": [
@@ -795,6 +861,14 @@ export const pages: object =
                 "description": [
                     "<b>Q: Would this exploit work on AlphaZero?</b>",
                     "<b>A</b>: It's extremely likely the vulnerability exists in AlphaZero. It exists in KataGo, LeelaZero, and ELF (we've won games with it), all of which are based on AlphaZero, with the latter two self-describing as reimplementations of AlphaZero. It also likely exists in FineArt and Golaxy (we are still in the process of getting access to play them, but others have shown these networks also misevaluate positions involving cyclic groups). And it's also very likely that multiple of these systems are now substantially stronger than AlphaZero ever was. So in short, although AlphaZero is unfortunately closed source and not available to test directly, there's no evidence we are aware of that it would be immune, and quite a lot of evidence that it would be vulnerable."
+                ]
+            },
+            {
+                "title": "Q: Learning More",
+                "dir_name": "learn_more",
+                "description": [
+                    "<b>Q: Where can I learn more?</b>",
+                    "<b>A</b>: Aside from the rest of this website and <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf\">our paper</a>, there is a YouTube video of a talk and demo given by Tony and Kellin <a target=\"_blank\" href=\"https://www.youtube.com/watch?v=CNo3lOT1NYA&ab_channel=CrossLabsAI\">here</a>.\n\n"
                 ]
             }
         ]
