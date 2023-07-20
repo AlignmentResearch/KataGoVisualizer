@@ -45,22 +45,22 @@
         flex-direction: column;
     }
     .selected {
-        color: var(--accent-color-4);
+        color: var(--accent-color-2);
     }
     .current-tab-indicator {
         width: 100%;
         height: 100%;
-        background-color: var(--accent-color-4);
+        background-color: var(--accent-color-2);
         border-radius: 10px;
     }
     a {
-        margin: auto;
-        font-weight: bolder;
-        font-size: 1.1em;
+        /* font-weight: bolder; */
+        font-weight: normal;
+        /* font-size: 1.1em; */
         background-color: transparent;
         text-align: center;
-        color: var(--accent-color-3);
-        padding: 1vw;
+        color: var(--accent-color-1);
+        padding: 1.2rem 0.6rem;
         transition-duration: 200ms;
         transform: scale(1.01); /* prevents pixel shift during animation */
     }

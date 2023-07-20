@@ -1,6 +1,5 @@
 <script lang="ts">
     import { onMount, onDestroy } from "svelte";
-    import { fade } from "svelte/transition";
 
     import { pages } from "../../content";
 
@@ -17,7 +16,6 @@
 
     // Ternary is just to force Svelte to recompute when currentPath changes
     $: anchors = currentPath ? document.querySelectorAll(".subheading") : [];
-    $: summaryOffset = pages[currentPath]["description"] ? 1 : 0;
 
     // Base JumpTo string split by VAR
     $: jumpToBase = (pages[currentPath].jump_to?.base ?? "").split("VAR");
@@ -37,7 +35,7 @@
     onDestroy(() => window.removeEventListener("scroll", handleScroll));
 </script>
 
-<div class="contents-container" in:fade>
+<div class="contents-container">
     {#if pages[currentPath]["jump_to"]}
         <div class="jump-to-container">
             <h3 style="margin: 0;">Jump to</h3>
@@ -63,33 +61,18 @@
         </div>
     {:else}
         <div class="contents">
-            <h3 id="contents" style="text-align: center;">Contents</h3>
-            <ol in:fade>
-                {#if pages[currentPath]["description"]}
-                    <li
-                        class={topHeadingIdx == 0
-                            ? "curr-section"
-                            : "other-section"}
-                    >
-                        <a
-                            href={"#summary"}
-                            on:click={rmvUrlParams}
-                            class={topHeadingIdx == 0
-                                ? "curr-section"
-                                : "other-section"}>• Summary</a
-                        >
-                    </li>
-                {/if}
+            <h3>Contents</h3>
+            <ol>
                 {#each sections as section, i}
                     <li
-                        class={topHeadingIdx == i + summaryOffset
+                        class={topHeadingIdx == i
                             ? "curr-section"
                             : "other-section"}
                     >
                         <a
                             href={"#" + section["dir_name"]}
                             on:click={rmvUrlParams}
-                            class={topHeadingIdx == i + summaryOffset
+                            class={topHeadingIdx == i
                                 ? "curr-section"
                                 : "other-section"}
                         >
@@ -103,6 +86,11 @@
 </div>
 
 <style>
+    h3 {
+        font-weight: normal;
+        margin-bottom: 0vh;
+        text-align: center;
+    }
     ol {
         list-style: none;
         padding-left: 0;
@@ -119,7 +107,7 @@
         font-weight: normal;
     }
     .curr-section {
-        color: black;
+        color: var(--accent-color-2);
         transform: translateX(0.5em) scale(1.02);
     }
     .other-section {
@@ -161,7 +149,7 @@
     }
     .contents {
         background-color: white;
-        margin-top: 4vh;
+        margin: 0 0.5rem 1rem;
         color: black;
         width: 300px;
         display: flex;
@@ -169,7 +157,6 @@
         border-radius: 10px;
         flex-direction: column;
         justify-content: center;
-        padding: 1vh;
     }
     select {
         border: 0px;

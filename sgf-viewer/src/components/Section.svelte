@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { fade } from "svelte/transition";
     export let section: Map<string, string>;
     import GameList from "./subcomponents/GameList.svelte";
     import GoBoard from "./subcomponents/GoBoard.svelte";
@@ -7,7 +6,7 @@
     let sgfPath: string;
 </script>
 
-<div class="centerflex" in:fade id={section["dir_name"]}>
+<div class="centerflex" id={section["dir_name"]}>
     <h3 class="subheading">
         {section["title"]}
     </h3>
@@ -46,13 +45,14 @@
     .annotation {
         display: flex;
         position: relative;
-        top: -3vh;
-        margin-top: 2vw;
+        margin-top: 0.5rem;
+        margin-bottom: 0.1rem;
     }
     .annotation-item {
         align-self: flex-start;
-        margin: 0.5vw;
-        margin-bottom: 1vh;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        margin-bottom: 2rem;
     }
     iframe {
         width: min(90vw, 800px);
@@ -61,11 +61,13 @@
         margin-top: 1em;
     }
     .subheading {
-        top: calc(var(--scroll-margin) + 2.5vh);
+        top: calc(var(--scroll-margin) + 1vh);
         position: sticky;
         background-color: var(--accent-color-2);
         color: white;
-        margin: 2vh;
+        text-align: center;
+        font-weight: normal;
+        box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.75);
         padding: 13px;
         border-radius: 105px;
         z-index: 998;
@@ -82,13 +84,15 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        margin: 0.5vw;
+        margin: 0.5rem;
     }
     p {
         font-size: 18px;
         align-self: flex-start;
         max-width: min(90vw, 800px);
-        text-align: left;
+        text-align: justify;
+        margin-top: 0.4rem;
+        margin-bottom: 0.4rem;
     }
     .board-wrapper {
         display: flex;

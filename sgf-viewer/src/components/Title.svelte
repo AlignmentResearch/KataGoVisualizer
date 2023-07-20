@@ -1,93 +1,143 @@
 <script lang="ts">
-    import { fade } from "svelte/transition";
-    const authors: Map<string, string> = new Map([
-        ["Tony Wang*", "https://terveisin.tw/"],
-        ["Adam Gleave*", "https://www.gleave.me/"],
-        ["Tom Tseng", "https://www.tomhmtseng.com/"],
-        ["Nora Belrose", "https://twitter.com/norabelrose"],
+    import { cards } from "../landing-page-content";
+    import IconLink from "./subcomponents/IconLink.svelte";
+
+    export let showAuthors: boolean = true;
+
+    const authors: [string, string, string[]][] = [
+        ["Tony Wang", "https://terveisin.tw/", ["mit"]],
+        ["Adam Gleave", "https://www.gleave.me/", ["far"]],
+        ["Tom Tseng", "https://www.tomhmtseng.com/", ["far"]],
         [
             "Kellin Pelrine",
             "https://scholar.google.com/citations?user=_s2HT_0AAAAJ&hl=en",
+            ["far", "mila"]
         ],
-        ["Joseph Miller", "https://far.ai/author/joseph-miller/"],
+        ["Nora Belrose", "https://twitter.com/norabelrose", ["far"]],
+        ["Joseph Miller", "https://far.ai/author/joseph-miller/", ["far"]],
         [
-            "Michael D Dennis",
+            "Michael Dennis",
             "https://scholar.google.com/citations?user=WXXu26AAAAAJ&hl=en&authuser=1",
+            ["berk", "chai"],
         ],
         [
             "Yawen Duan",
             "https://scholar.google.com/citations?user=IJQlPvYAAAAJ&hl=en",
+            ["berk", "chai"],
         ],
-        ["Viktor Pogrebniak", "https://www.linkedin.com/in/avtomaton/"],
-        ["Sergey Levine", "https://people.eecs.berkeley.edu/~svlevine/"],
-        ["Stuart Russell", "https://people.eecs.berkeley.edu/~russell/"],
+        ["Viktor Pogrebniak", "https://www.linkedin.com/in/avtomaton/", []],
+        ["Sergey Levine", "https://people.eecs.berkeley.edu/~svlevine/", ["berk"]],
+        ["Stuart Russell", "https://people.eecs.berkeley.edu/~russell/", ["berk", "chai"]],
+    ];
+
+    const instMap: Map<string, [string, string, string]> = new Map([
+        ["mit", ["1", "MIT CSAIL", "https://www.csail.mit.edu/"]],
+        ["far", ["2", "FAR AI", "https://far.ai/"]],
+        ["mila", ["3", "McGill University; Mila", "https://mila.quebec/en/"]],
+        ["berk", ["4", "UC Berkeley", "https://www.berkeley.edu/"]],
+        ["chai", ["5", "Center for Human-Compatible AI", "https://humancompatible.ai/"]],
     ]);
 </script>
-
-<div class="logos">
-    <a href="https://far.ai/" target="_blank">
-        <img src="/images/far-logo.png" class="logo far" alt="FAR Logo" />
-    </a>
-    <a href="https://www.mit.edu/" target="_blank">
-        <img src="/images/mit-logo.svg" class="logo mit" alt="MIT Logo" />
-    </a>
-    <a href="https://humancompatible.ai/" target="_blank">
-        <img
-            src="/images/chai-logo.png"
-            class="logo"
-            alt="Center for Human-Compatible Artificial Intelligence Logo"
-        />
-    </a>
+<div class="paper-title-wrapper">
+    <p class="paper-title">
+        <!-- spans make title breaking nicer -->
+        <span class="paper-title-span">Adversarial Policies Beat</span>
+        <span class="paper-title-span">Superhuman Go AIs</span>
+    </p>
 </div>
-<!-- Empty anchor target. Named for link backwards compatibility. -->
-<div id="contents" />
-<h1 in:fade style="text-align: center;">
-    Adversarial Policies Beat Superhuman Go AIs
-</h1>
-<div>
-    <div class="authors-list">
-        {#each [...authors] as [name, link]}
-            <a href={link} target="_blank">{name}</a>
-        {/each}
+{#if showAuthors}
+    <div>
+        <div class="authors-list">
+            {#each [...authors] as [name, link, institutions], i}
+                <a class="authors-list-item" href={link} target="_blank">
+                    <span class="author-name">{name}</span>{#if i <= 1}*{/if}<sup>{#if i > 1}{@html '&#x20;'}{:else}&thinsp;{/if}{#each institutions as instKey}{instMap.get(instKey)[0]}{@html '&#x20;'}{/each}</sup>
+                </a>
+            {/each}
+        </div>
     </div>
+    <div>
+        <div class="authors-list">
+            {#each [...instMap] as [abbrev, [index, name, link]]}
+                <a class="institution-list-item" href={link} target="_blank"><sup>{index}</sup> {name}</a>
+            {/each}
+        </div>
+    </div>
+{/if}
+<div class="image-cards">
+    {#each cards as card, index (index)}
+        <IconLink
+            image={card.image}
+            url={card.url}
+            alt={card.imageName}
+            color={card.color}
+            border={card.border}
+            description={card.description}
+        />
+    {/each}
 </div>
 
 <style>
-    #contents {
-        scroll-margin-top: 0px;
+    .paper-title-wrapper {
+        margin-left: 1.5em;
+        margin-right: 1.5em;
     }
-    h1 {
-        font-size: 2em;
+    .paper-title {
+        font-size: 44px;
+        font-weight: 700;
+        line-height: 1.3em;
+        margin-top: 0.5em;
+        margin-bottom: 0.4em;
+        text-align: center;
+    }
+    .paper-title-span {
+        display: inline-block;
     }
     .authors-list {
-        max-width: 700px;
+        max-width: 900px;
         flex-wrap: wrap;
-        gap: 1em;
-        margin-bottom: 3vh;
+        gap: 0.5em;
+        margin-bottom: 0.5em;
+    }
+    .authors-list-item {
+        font-weight: 300;
+        font-size: 18px;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        color: #000000;
+    }
+    .author-name:hover {
+        text-decoration: underline;
+    }
+    .authors-list-item sup {
+        font-size: 9px;
+    }
+    .institution-list-item {
+        font-weight: 300;
+        font-size: 14.5px;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    .institution-list-item sup {
+        font-size: 9px;
     }
     div {
         display: flex;
         justify-content: center;
     }
     .logos {
-        margin-top: 1vh;
-        margin-bottom: -3vh;
+        display: flex;
+        justify-content: center;
+        gap: 0.9vmin;
+        margin-top: 1.2vmin;
+        margin-bottom: -2vh;
     }
-    .logo {
-        object-fit: contain;
-        height: 110px;
-        padding: 30px;
-        will-change: filter;
-        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .logo:hover {
-        filter: drop-shadow(0 0 2em #77a22e9a);
-        transform: scale(1.1);
-    }
-    .mit:hover {
-        filter: drop-shadow(0 0 2em #a3203497);
-    }
-    .far:hover {
-        filter: drop-shadow(0 0 1em #00e0d894);
+    .image-cards {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 0.2rem;
+        margin-bottom: 0.4rem;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
     }
 </style>

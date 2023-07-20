@@ -1,52 +1,103 @@
 <script lang="ts">
+    import "@fontsource/lato/100-italic.css";
+    import "@fontsource/lato/100.css";
+    import "@fontsource/lato/300-italic.css";
+    import "@fontsource/lato/300.css";
+    import "@fontsource/lato/400-italic.css";
+    import "@fontsource/lato/400.css";
+    import "@fontsource/lato/700-italic.css";
+    import "@fontsource/lato/700.css";
+    import "@fontsource/lato/900-italic.css";
+    import "@fontsource/lato/900.css";
+
+    import { onMount } from "svelte";
+    import Citation from "./components/Citation.svelte";
     import NavBar from "./components/NavBar.svelte";
     import Section from "./components/Section.svelte";
     import Title from "./components/Title.svelte";
+    import TableOfContents from "./components/subcomponents/TableOfContents.svelte";
     import { pages } from "./content";
 
+    let innerHeight, innerWidth;
     let pagesPaths = Object.keys(pages);
-    let currentPath: string = window.location.pathname.split("/").slice(-1)[0];
-    currentPath = pagesPaths.includes(currentPath)
-        ? currentPath
-        : pagesPaths[0];
+
+    let windowLocationPathname = window.location.pathname;
+    $: windowLoc = windowLocationPathname.split("/").slice(-1)[0];
+
+    onMount(() => {
+        window.addEventListener(
+            "popstate",
+            () => (windowLocationPathname = window.location.pathname)
+        );
+    });
+
+    $: currentPath = pagesPaths.includes(windowLoc) ? windowLoc : pagesPaths[0];
+    $: landingPage = currentPath === "home";
     $: sections = pagesPaths.includes(currentPath)
         ? pages[currentPath]["content"]
         : [];
     let navBar: HTMLElement;
-    $: navBarMargin = navBar ? navBar.clientHeight : 100;
+    // The values * 0 are just to force Svelte to recompute when window size changes
+    $: navBarMargin = navBar
+        ? navBar.clientHeight + (innerWidth + innerHeight) * 0
+        : 100;
     $: document.documentElement.style.cssText =
         "--scroll-margin: " + navBarMargin + "px;";
+
+    const menuNavigationWidth = 915;
+    const contentsFloatWidth = 1500;
 </script>
 
 <svelte:head>
     <link rel="stylesheet" href={`/themes/light-theme.css`} />
 </svelte:head>
 
+<svelte:window bind:innerHeight bind:innerWidth />
+
 <main>
-    <Title />
-    <NavBar bind:currentPath bind:navBarElem={navBar} />
+    <Title showAuthors={landingPage} />
+    <div class="icml-ad">
+        Come find us at <a
+            href="https://icml.cc/virtual/2023/papers.html?filter=titles&search=Go+AIs"
+            target="_blank"
+            >ICML 2023</a
+        >!
+    </div>
+    <NavBar
+        {contentsFloatWidth}
+        {menuNavigationWidth}
+        bind:currentPath
+        bind:navBarElem={navBar}
+    />
     {#key currentPath}
         {#if pages[currentPath]["description"]}
             <div class="centerflex">
-                <h3 id="summary" class="subheading">Summary</h3>
-                {#each pages[currentPath]["description"] as description}
-                    <p>{@html description}</p>
-                {/each}
+                <div class="text-wrapper">
+                    {#each pages[currentPath]["description"] as description}
+                        <p class="description-p">{@html description}</p>
+                    {/each}
+                </div>
             </div>
+        {/if}
+        {#if innerWidth <= contentsFloatWidth}
+            <TableOfContents {currentPath} />
         {/if}
         {#each sections as section}
             <Section {section} />
         {/each}
     {/key}
+    <!-- </div> -->
+    <Citation />
 </main>
 
 <style>
     .subheading {
-        top: calc(var(--scroll-margin) + 2.5vh);
+        top: calc(var(--scroll-margin) + 1vh);
         position: sticky;
         background-color: var(--accent-color-2);
         color: white;
-        margin: 2vh;
+        font-weight: normal;
+        box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.75);
         padding: 13px;
         border-radius: 105px;
         z-index: 998;
@@ -55,12 +106,33 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+        margin-top: 0.1rem;
+    }
+    .text-wrapper {
+        width: min(90vw, 800px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 0.5rem;
     }
     p {
         font-size: 18px;
-        align-self: center;
-        margin: 0.5vw;
+        align-self: flex-start;
         max-width: min(90vw, 800px);
-        text-align: left;
+        text-align: justify;
+        margin: 0.5rem 0;
+    }
+    .description-p {
+        width: 100%;
+    }
+    .icml-ad {
+        text-align: center;
+        font-size: 1.5em;
+        margin: 0 0 0.5em;
+    }
+    .icml-ad>a {
+        font-size: 1em;
     }
 </style>
