@@ -55,11 +55,17 @@
 <svelte:window bind:innerHeight bind:innerWidth />
 
 <main>
-    <Title showAuthors={landingPage}/>
-    <!-- <div transition:fly={{ y: 200, duration: 400 }}> -->
+    <Title showAuthors={landingPage} />
+    <div class="icml-ad">
+        Come find us at <a
+            href="https://icml.cc/virtual/2023/papers.html?filter=titles&search=Go+AIs"
+            target="_blank"
+            >ICML 2023</a
+        >!
+    </div>
     <NavBar
-        contentsFloatWidth={contentsFloatWidth}
-        menuNavigationWidth={menuNavigationWidth}
+        {contentsFloatWidth}
+        {menuNavigationWidth}
         bind:currentPath
         bind:navBarElem={navBar}
     />
@@ -120,5 +126,13 @@
     }
     .description-p {
         width: 100%;
+    }
+    .icml-ad {
+        text-align: center;
+        font-size: 1.5em;
+        margin: 0 0 0.5em;
+    }
+    .icml-ad>a {
+        font-size: 1em;
     }
 </style>
