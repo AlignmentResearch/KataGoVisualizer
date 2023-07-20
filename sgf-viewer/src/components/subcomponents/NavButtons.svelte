@@ -54,14 +54,13 @@
         border-radius: 10px;
     }
     a {
-        margin: auto;
         /* font-weight: bolder; */
         font-weight: normal;
         /* font-size: 1.1em; */
         background-color: transparent;
         text-align: center;
         color: var(--accent-color-1);
-        padding: 0.6rem;
+        padding: 1.2rem 0.6rem;
         transition-duration: 200ms;
         transform: scale(1.01); /* prevents pixel shift during animation */
     }
