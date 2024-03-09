@@ -33,7 +33,6 @@ seaborn
 statsmodels
 
 natsort
-tqdm
 
 # Utilities
 beautifulsoup4
