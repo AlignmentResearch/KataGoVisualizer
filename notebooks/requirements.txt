@@ -1,12 +1,10 @@
--e ./../go_attack_utils
+je ./../go_attack_utils
 
 # For Jupyter notebooks
 ipykernel
 
 # Libs needed by submodules/KataGo-pytorch-rewrite
 torch==1.13.1
-torchaudio==0.13.1
-torchvision==0.14.1
 packaging==22.0
 
 # For measuring FLOPs of models
@@ -34,13 +32,14 @@ matplotlib
 seaborn
 statsmodels
 
+natsort
+
 # Utilities
 beautifulsoup4
 black
 flake8
 GitPython
 isort
-ipywidgets
-jupyterlab
+# ipywidget
+jupyter
 mypy
-tqdm
