@@ -25,10 +25,10 @@ def get_style(style_name: str) -> str:
     return str(style_sheets_dir / f"{style_name}.mplstyle")
 
 
-def parse_for_match(df: pd.DataFrame) -> None:
+def parse_for_match(df: pd.DataFrame, adv_name_regex: str = "adv") -> None:
     """Adds additional useful info to a dataframe of match SGFs."""
-    adv_is_black = df.b_name.str.contains("adv")
-    adv_is_white = df.w_name.str.contains("adv")
+    adv_is_black = df.b_name.str.contains(adv_name_regex, regex=True)
+    adv_is_white = df.w_name.str.contains(adv_name_regex, regex=True)
     victim_is_black = ~adv_is_black
     victim_is_white = ~adv_is_white
     assert (~adv_is_black == adv_is_white).all()
