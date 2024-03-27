@@ -90,6 +90,57 @@ def get_victim_active_ranges(df: pd.DataFrame) -> Dict[str, Tuple[int, int]]:
     return victim_ranges
 
 
+def get_victim_active_ranges_allow_repeats(df: pd.DataFrame) -> List[Tuple[str, Tuple[int, int]]]:
+    """Get victims' active ranges during training, allowing victim to appear multiple times.
+
+    E.g., say victim A was active during steps 0 to 1mil and also 5mil to 10mil.
+    get_victim_active_ranges() would return that victim A was active from 0 to 10mil,
+    whereas get_victim_active_ranges_allow_repeats() would return that victim A was active
+    from 0 to 1mil and 5mil to 10mil.
+    """
+    df = df[df.gtype == "normal"]
+    df = df[df.board_size == 19]
+    df["victim_name_v2"] = (
+        df.victim_name.str.strip("kata1-").str.strip(".bin.gz").str.strip(".txt.gz")
+        + "-v"
+        + df.victim_visits.astype("str")
+    )
+
+    grouped_df = df[["victim_name_v2", "adv_steps"]].groupby("victim_name_v2")
+    
+    all_steps = sorted(df["adv_steps"].unique())
+    step_to_index = { step: i for i, step in enumerate(all_steps) }
+    # Get all steps a victim appears in.
+    victim_active_steps = grouped_df.apply(lambda x: sorted(x['adv_steps'].unique()))
+
+    def list_to_ranges(l):
+        """Converts int list l into a list of ranges of ints.
+        e.g., input [1,2,3,5,7,8,9,14,15] -> output [(1,3),(5,5),(7,9),(14,15)]
+        """
+        ranges = []
+        start = l[0]
+        end = l[0]
+        for i in range(1, len(l)):
+            if l[i] == end + 1:
+                end = l[i]
+            else:
+                ranges.append((start, end))
+                start = l[i]
+                end = l[i]
+        ranges.append((start, end))
+        return ranges
+    
+    # Convert victims' steps into contiguous ranges.
+    active_ranges = []
+    for victim, steps in victim_active_steps.items():
+        steps_indices = [ step_to_index[step] for step in steps ]
+        victim_ranges_indices = list_to_ranges(steps_indices)
+        for start, end in victim_ranges_indices:
+            active_ranges.append((victim, (all_steps[start], all_steps[end])))
+    active_ranges = sorted(active_ranges, key=lambda x: x[1])
+    return active_ranges
+
+
 def get_victim_change_steps(df: pd.DataFrame) -> List[int]:
     """Get steps at which victim changes during training."""
     return [r[0] for r in get_victim_active_ranges(df).values()]
