@@ -1,6 +1,7 @@
 """Utility functions for plot notebooks."""
 import os
 import pathlib
+import re
 from typing import Dict, Iterable, List, Tuple, TypeVar
 
 import matplotlib.pyplot as plt
@@ -144,6 +145,18 @@ def get_victim_active_ranges_allow_repeats(df: pd.DataFrame) -> List[Tuple[str, 
 def get_victim_change_steps(df: pd.DataFrame) -> List[int]:
     """Get steps at which victim changes during training."""
     return [r[0] for r in get_victim_active_ranges(df).values()]
+
+
+def get_all_adversary_steps(training_path: pathlib.Path) -> list[int]:
+    """Returns all adversary step values for the training run in ascending order."""
+    adversary_dirs = training_path.glob("models/t0-s*-d*")
+    STEP_REGEX = re.compile(r"t0-s([0-9]+)-d[0-9]+")
+    steps = []
+    for adversary_dir in adversary_dirs:
+        steps_match = STEP_REGEX.match(adversary_dir.name)
+        assert steps_match is not None
+        steps.append(int(steps_match.group(1)))
+    return sorted(steps)
 
 
 def filter_x_minor_ticks(threshold: float = 1):
