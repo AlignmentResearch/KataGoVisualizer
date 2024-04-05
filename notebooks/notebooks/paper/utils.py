@@ -26,6 +26,19 @@ def get_style(style_name: str) -> str:
     return str(style_sheets_dir / f"{style_name}.mplstyle")
 
 
+def import_plt_sty(sty_file: str) -> None:
+    """Imports a LaTeX .sty file into plt, but wipes out any existing LaTeX preamble."""
+    sty_file = pathlib.Path(sty_file)
+    assert sty_file.exists()
+    assert sty_file.suffix == ".sty"
+    absolute_path_without_extension = sty_file.parent.resolve() / sty_file.stem
+    preamble = rf"\usepackage{{{absolute_path_without_extension}}}"
+    plt.rcParams.update({
+        "pgf.preamble": preamble,
+        "text.latex.preamble": preamble,
+    })
+
+
 def parse_for_match(df: pd.DataFrame, adv_name_regex: str = "adv") -> None:
     """Adds additional useful info to a dataframe of match SGFs."""
     adv_is_black = df.b_name.str.contains(adv_name_regex, regex=True)
