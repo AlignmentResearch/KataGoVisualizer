@@ -4,7 +4,11 @@
 # To run this command, you need to add the following to the preamble:
 #   \usepackage{printlen}
 #   \uselengthunit{in}
-figure.figsize : 5.50107, 3
+#
+# textwidth = 5.50107
+# textheight = 9.00177
+# Let's set the height so that 3 vertically stacked figures can fit on a page.
+figure.figsize : 5.50107, 2.5
 
 # Show ticks on both sides since plot is so wide
 ytick.left: True
