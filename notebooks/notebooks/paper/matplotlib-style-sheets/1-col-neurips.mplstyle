@@ -8,7 +8,7 @@
 # textwidth = 5.50107
 # textheight = 9.00177
 # Let's set the height so that 3 vertically stacked figures can fit on a page.
-figure.figsize : 5.50107, 2.5
+figure.figsize : 5.50107, 2.4
 
 # Show ticks on both sides since plot is so wide
 ytick.left: True
