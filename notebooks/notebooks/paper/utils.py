@@ -172,11 +172,12 @@ def get_all_adversary_steps(training_path: pathlib.Path) -> list[int]:
     return sorted(steps)
 
 
-def filter_x_minor_ticks(threshold: float = 1):
+def filter_x_minor_ticks(ax = None, threshold: float = 1):
     """Filters out x-axis minor ticks below the threshold value."""
-    # Courtesy ChatGPT-4 for the code.
+    if ax is None:
+        ax = plt.gca()
 
-    ax = plt.gca()
+    # Courtesy ChatGPT-4 for the code.
     minor_locator = ax.xaxis.get_minor_locator()
     minor_ticks = minor_locator.tick_values(*ax.get_xlim())
 
