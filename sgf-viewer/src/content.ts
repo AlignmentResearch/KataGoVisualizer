@@ -20,7 +20,7 @@ export const pages: object =
             {
                 "title": "Cyclic attack",
                 "dir_name": "dec23-vs-continuous",
-                "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v8192/sgfs/sample-sgfs.sh",
+                "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v8192/sample-sgfs.sh",
                 "paths_with_line_num": [
                     {
                         "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v8192/sgfs/5A01DD4E71A5BBBF.sgfs",
@@ -119,6 +119,102 @@ export const pages: object =
                 "adversary": "<code>gift-adversary</code>",
                 "victim": "<code>dec23-victim</code>, 512 visits",
                 "description": ["We also find a new non-cyclic attack, which we call the \"gift attack\", that defeats <code>dec23-victim</code> at 512 visits of search in 91% of games. In this attack, for no valid reason, the victim gifts the adversray two stones and needs to capture one back. However, the victims recapture is blocked by positional superko rules. The adversary sets this up to have the resurrection of one of its dead groups at stake, leading to a disaster for the victim. Although this attack does not scale up to high visits, it demonstrates that there are other unforeseen vulnerabilities in KataGo besides cyclic attacks."]
+            }
+        ]
+    },
+    "iterated-adversarial-training": {
+        "title": "Iterated adversarial training",
+        "description": [
+            "Perhaps we can create a fully robust agent by repeatedly defending against new attacks until the space of possible attacks is exhausted. We designed an iterated adversarial training procedure that alternately trains a victim and an adversary. After nine iterations, we still find that our final victim <code>v</code><sub><code>9</code></sub> is vulnerable to attack."
+        ],
+        "content": [
+            {
+                "title": "Validation attack",
+                "dir_name": "v9-vs-validation",
+                "paths_with_line_num": [
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-h9/vary-victim-visits/1/sgfs/147E190062D1616F.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-h9/vary-victim-visits/1/sgfs/DFEEA2847479F135.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-h9/vary-victim-visits/1/sgfs/3E4580A2FB63FB7C.sgfs",
+                        "line": 5
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-h9/vary-victim-visits/1/sgfs/E832B6F3E9EB4AB8.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-h9/vary-victim-visits/1/sgfs/E072045FBED6E55D.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-h9/vary-victim-visits/1/sgfs/A9B48ACB4695A1F0.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-h9/vary-victim-visits/1/sgfs/986D7E8D77E6C64D.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-h9/vary-victim-visits/1/sgfs/ECC2FC288F065439.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-h9/vary-victim-visits/1/sgfs/815D7DF9DF8D8A72.sgfs",
+                        "line": 6
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-h9/vary-victim-visits/1/sgfs/911BA3AD2AC30F34.sgfs",
+                        "line": 8
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "<code>validation-adversary</code>",
+                "victim": "<code>v</code><sub><code>9</code></sub>, 512 visits",
+                "description": [
+                    "We train an new adversary from scratch and find that it is able to defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search in 81% of games. The win rate drops to 4% at 4096 visits, but the result still demonstrates that our victim is easily attacked until it uses high amounts of search."
+                ]
+            },
+            {
+                "title": "Iterated attack",
+                "dir_name": "v9-vs-a9",
+                "paths_with_line_num": [
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/r9-vs-vary-h9-visits/3/sgfs/579BF8792818056E.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/r9-vs-vary-h9-visits/3/sgfs/DD2ECD945135CA35.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/r9-vs-vary-h9-visits/3/sgfs/BA01EDA98AFB0930.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/r9-vs-vary-h9-visits/3/sgfs/C706948B262E828F.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/r9-vs-vary-h9-visits/3/sgfs/AF1CFB5E642DB760.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/r9-vs-vary-h9-visits/3/sgfs/26154FB6B69D3C67.sgfs",
+                        "line": 1
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "<code>a</code><code>9</code>",
+                "victim": "<code>v</code><sub><code>9</code></sub>, 65536 visits",
+                "description": [
+                  "We fine-tune the final adversary <code>v</code><sub><code>8</code></sub> that <code>v</code><sub><code>9</code></sub> was trained against and produce an adversary <code>v</code><sub><code>9</code></sub>. We find that this adversary is able to defeat <code>v</code><sub><code>9</code></sub> even at 65536 visits in XXX% of games, show that there is still surface area to attack <code>v</code><sub><code>9</code></sub> at high visits."
+                ]
             }
         ]
     }

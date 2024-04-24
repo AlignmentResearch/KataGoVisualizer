@@ -88,7 +88,7 @@ if __name__ == "__main__":
 
             sgf_paths = game_info.find_sgf_files(section_path)
             parsed_games = game_info.read_and_parse_all_files(
-                sgf_paths, fast_parse=True, adversary_substrings=["adv"], victim_substrings=["victim", "bot", "b18-s8527m"]
+                sgf_paths, fast_parse=True, adversary_substrings=["adv"], victim_substrings=["victim", "bot", "b18-s8527m", "h9-v"]
             )
             if len(parsed_games) != games_count:
                 print(

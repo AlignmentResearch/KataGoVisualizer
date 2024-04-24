@@ -30,7 +30,7 @@
         <div class="authors-list">
             {#each [...authors] as [name, link, institutions], i}
                 <a class="authors-list-item" href={link} target="_blank">
-                    <span class="author-name">{name}</span>{#if i <= 1}*{/if}<sup>{#if i > 1}{@html '&#x20;'}{:else}&thinsp;{/if}{#each institutions as instKey}{instMap.get(instKey)[0]}{@html '&#x20;'}{/each}</sup>
+                    <span class="author-name">{name}</span><sup>{@html '&#x20;'}{#each institutions as instKey}{instMap.get(instKey)[0]}{@html '&#x20;'}{/each}</sup>
                 </a>
             {/each}
         </div>
