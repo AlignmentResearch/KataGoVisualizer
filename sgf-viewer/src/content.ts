@@ -5,31 +5,14 @@ export const pages: object =
     "home": {
         "title": "Home",
         "description": [
-            `We attack the state-of-the-art Go-playing AI system KataGo by training adversarial policies against it, achieving a >97% win rate against KataGo running at superhuman settings. Our adversaries do not win by playing Go well. Instead, they trick KataGo into making serious blunders. Our attack transfers zero-shot to other superhuman Go-playing AIs, and is comprehensible to the extent that human experts can implement it without algorithmic assistance to consistently beat superhuman AIs. The core vulnerability uncovered by our attack persists even in KataGo agents adversarially trained to defend against our attack. Our results demonstrate that even superhuman AI systems may harbor surprising failure modes.`,
-            `Click on the different sections above to view different examples of our adversaries in action. Some recommended places to start: the <a href="adversarial-policy-katago#contents">Cyclic Attack</a> shows off our strongest adversary, the <a href="human-evaluation#contents">Human Games</a> tab contains examples of humans beating both superhuman AIs and our adversaries, and the <a href="adversarial-training#contents">Adversarial Training</a> tab details attempts to defend against our attack. All games on this website randomly selected unless otherwise specified.`,
-            `<img class="paper-image" src="/images/cyclic-example.svg" alt="Cyclic Attack" style="width: 250px; display: block; margin: 0.75rem auto;"/>`,
-            `<div style="text-align: center; margin-top: -0.75rem;">An example of our attack in action.</div>`
+            `<a href="goattack.far.ai">In previous work</a>, we found that superhuman Go AIs such as KataGo are vulnerable to opponents playing simple adversarial strategies. This shows that superhuman average-case capabilities may not lead to satisfactory worst-case robustness.`,
+            `Go AIs were never designed with security in mind, however, raising the question: can simple defenses make KataGo robust?`,
+            `In this paper, we test three natural defenses: adversarial training on hand-constructed positions, iterated adversarial training, and changing the network architecture.`,
+            `We find these methods provide a partial defense, but discover several qualitatively distinct adversarial strategies that continue to beat our defended agents.`,
+            `Our results suggest that achieving robustness is challenging even in narrow domains such as Go.`,
+            `Click on the different sections above to view attacks against each of the defenses.`,
         ],
-        "content": [
-            {
-                "title": "Frequently asked questions",
-                "dir_name": "faq",
-                "description": [
-                    "<b>Q: Would this exploit work on AlphaZero?</b>",
-                    "It's extremely likely the cyclic-vulnerability exists in AlphaZero. It exists in KataGo, LeelaZero, and ELF (we've won games with it), all of which are based on AlphaZero, with the latter two self-describing as reimplementations of AlphaZero. It also likely exists in FineArt and Golaxy (we are still in the process of getting access to play them, but others have shown these networks also misevaluate positions involving cyclic groups). And it's also very likely that multiple of these systems are now substantially stronger than AlphaZero ever was. So in short, although AlphaZero is unfortunately closed source and not available to test directly, there's no evidence we are aware of that it would be immune, and quite a lot of evidence that it would be vulnerable.",
-                    "<b>Q: Did the adversary algorithm include any initial knowledge or human guidance to find a weakness?</b>",
-                    "No, the adversary was trained from scratch (random initialization) and learned only through playing games. To construct the cyclic adversary, we actually help the victim by patching the pass-based attack, which forces the adversary to find a different attack. But we do not give the adversary any information or hints towards what it should find. More details can be found in Section 4 of our paper.",
-                    "<b>Q: I saw some games you mark as wins, but I play Go and they don’t look like wins to me. What’s going on?</b>",
-                    "You are probably referring to our <a target=\"_blank\" href=\"https://goattack.far.ai/pass-based-attack#contents\">pass-based attack</a>, which is the first attack we found. This attack works in a specific ruleset, based on the Tromp-Taylor rules which are widely used for computer Go. KataGo is trained with this ruleset (among others), and therefore should know how to play them correctly &mdash; though this work showed otherwise. After we patched this vulnerability, we then found other attacks which work in all standard rulesets and agree with standard human evaluation of game results.",
-                    "<b>Q: I’ve played Go AIs myself and seen them make mistakes. How is the vulnerability you found different?</b>",
-                    "While Go AIs do already have known weaknesses, for instance the common “ladder” tactic, there are 3 key factors here whose confluence makes this vulnerability different. First, this affects top AIs, including when they have a very large amount of search. Second, the attack works consistently to produce a game-winning advantage. Third, this consistency does not require repeating exact sequences or board positions.",
-                    "<b>Q: Now that this vulnerability and its severity is known, is it easy to fix? Can we just show the AI a few examples?</b>",
-                    "It is not straightforward. KataGo is currently training with numerous positions from games our adversary algorithm played. There are clear improvements, but so far it is still vulnerable. The process is not complete, so it may just need more time (and computation), but already this shows it is not as easy as one might hope to fix an issue like this.",
-                    "<b>Q: Where can I learn more?</b>",
-                    "Aside from the rest of this website and the links at the top of the page, there is a YouTube video of a talk and demo given by Tony and Kellin <a target=\"_blank\" href=\"https://www.youtube.com/watch?v=CNo3lOT1NYA&ab_channel=CrossLabsAI\">here</a>."
-                ]
-            },
-        ]
+        "content": []
     },
     "adversarial-policy-katago": {
         "title": "Cyclic Attack",
