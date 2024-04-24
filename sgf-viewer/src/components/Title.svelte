@@ -5,44 +5,24 @@
     export let showAuthors: boolean = true;
 
     const authors: [string, string, string[]][] = [
+        ["Tom Tseng", "https://www.tomhmtseng.com/", ["far"]],
+        ["Kellin Pelrine", "https://kellinpelrine.github.io/", ["mila", "far"]],
+        ["Euan McLean", "https://www.linkedin.com/in/euan-mclean-12a51358", ["far"]],
         ["Tony Wang", "https://terveisin.tw/", ["mit"]],
         ["Adam Gleave", "https://www.gleave.me/", ["far"]],
-        ["Tom Tseng", "https://www.tomhmtseng.com/", ["far"]],
-        [
-            "Kellin Pelrine",
-            "https://scholar.google.com/citations?user=_s2HT_0AAAAJ&hl=en",
-            ["far", "mila"]
-        ],
-        ["Nora Belrose", "https://twitter.com/norabelrose", ["far"]],
-        ["Joseph Miller", "https://far.ai/author/joseph-miller/", ["far"]],
-        [
-            "Michael Dennis",
-            "https://scholar.google.com/citations?user=WXXu26AAAAAJ&hl=en&authuser=1",
-            ["berk", "chai"],
-        ],
-        [
-            "Yawen Duan",
-            "https://scholar.google.com/citations?user=IJQlPvYAAAAJ&hl=en",
-            ["berk", "chai"],
-        ],
-        ["Viktor Pogrebniak", "https://www.linkedin.com/in/avtomaton/", []],
-        ["Sergey Levine", "https://people.eecs.berkeley.edu/~svlevine/", ["berk"]],
-        ["Stuart Russell", "https://people.eecs.berkeley.edu/~russell/", ["berk", "chai"]],
     ];
 
     const instMap: Map<string, [string, string, string]> = new Map([
-        ["mit", ["1", "MIT CSAIL", "https://www.csail.mit.edu/"]],
-        ["far", ["2", "FAR AI", "https://far.ai/"]],
-        ["mila", ["3", "McGill University; Mila", "https://mila.quebec/en/"]],
-        ["berk", ["4", "UC Berkeley", "https://www.berkeley.edu/"]],
-        ["chai", ["5", "Center for Human-Compatible AI", "https://humancompatible.ai/"]],
+        ["far", ["1", "FAR AI", "https://far.ai/"]],
+        ["mila", ["2", "McGill University; Mila", "https://mila.quebec/en/"]],
+        ["mit", ["3", "MIT CSAIL", "https://www.csail.mit.edu/"]],
     ]);
 </script>
 <div class="paper-title-wrapper">
     <p class="paper-title">
         <!-- spans make title breaking nicer -->
-        <span class="paper-title-span">Adversarial Policies Beat</span>
-        <span class="paper-title-span">Superhuman Go AIs</span>
+        <span class="paper-title-span">The challenges of training</span>
+        <span class="paper-title-span">adversarially robust Go AIs</span>
     </p>
 </div>
 {#if showAuthors}

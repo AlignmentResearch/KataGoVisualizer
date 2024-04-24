@@ -56,13 +56,6 @@
 
 <main>
     <Title showAuthors={landingPage} />
-    <div class="icml-ad">
-        Come find us at <a
-            href="https://icml.cc/virtual/2023/papers.html?filter=titles&search=Go+AIs"
-            target="_blank"
-            >ICML 2023</a
-        >!
-    </div>
     <NavBar
         {contentsFloatWidth}
         {menuNavigationWidth}

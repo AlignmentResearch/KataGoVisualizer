@@ -14,11 +14,11 @@
     <div class="citation">Citation Info</div>
     <code on:click={tdFocus}>
         <pre>
-{`@inproceedings{wang2023adversarial,
-    title={Adversarial Policies Beat Superhuman Go AIs},
-    author={Wang, Tony T and Gleave, Adam and Tseng, Tom and Pelrine, Kellin and Belrose, Nora and Miller, Joseph and Dennis, Michael D and Duan, Yawen and Pogrebniak, Viktor and Levine, Sergey and Russell, Stuart},
-    booktitle={International Conference on Machine Learning},
-    year={2023}
+{`@unpublished{tseng2024challenges,
+  title={The challenges of training adversarially robust Go AIs},
+  author={Tseng, Tom and Pelrine, Kellin and McLean, Euan and Wang, Tony T. and Gleave, Adam},
+  note={arXiv preprint arXiv:NNNN.NNNN},
+  year={2024}
 }`}</pre>
     </code>
 </div>
