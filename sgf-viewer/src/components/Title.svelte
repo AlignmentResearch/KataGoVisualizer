@@ -6,7 +6,7 @@
 
     const authors: [string, string, string[]][] = [
         ["Tom Tseng", "https://www.tomhmtseng.com/", ["far"]],
-        ["Kellin Pelrine", "https://kellinpelrine.github.io/", ["mila", "far"]],
+        ["Kellin Pelrine", "https://kellinpelrine.github.io/", ["far", "mila"]],
         ["Euan McLean", "https://www.linkedin.com/in/euan-mclean-12a51358", ["far"]],
         ["Tony Wang", "https://terveisin.tw/", ["mit"]],
         ["Adam Gleave", "https://www.gleave.me/", ["far"]],
