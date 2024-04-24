@@ -213,7 +213,112 @@ export const pages: object =
                 "adversary": "<code>a</code><code>9</code>",
                 "victim": "<code>v</code><sub><code>9</code></sub>, 65536 visits",
                 "description": [
-                  "We fine-tune the final adversary <code>v</code><sub><code>8</code></sub> that <code>v</code><sub><code>9</code></sub> was trained against and produce an adversary <code>v</code><sub><code>9</code></sub>. We find that this adversary is able to defeat <code>v</code><sub><code>9</code></sub> even at 65536 visits in XXX% of games, show that there is still surface area to attack <code>v</code><sub><code>9</code></sub> at high visits."
+                    "We fine-tune the final adversary <code>v</code><sub><code>8</code></sub> that <code>v</code><sub><code>9</code></sub> was trained against and produce an adversary <code>v</code><sub><code>9</code></sub>. We find that this adversary is able to defeat <code>v</code><sub><code>9</code></sub> even at 65536 visits in XXX% of games, show that there is still surface area to attack <code>v</code><sub><code>9</code></sub> at high visits."
+                ]
+            }
+        ]
+    },
+    "vit": {
+        "title": "Vision transformer",
+        "description": [
+            "Cyclic attacks work not only against KataGo but also against range of other superhuman Go AIs, including <a target=\"_blank\" href=\"https://online-go.com/game/51321265\">ELF OpenGo</a>, <a target=\"_blank\" href=\"https://online-go.com/game/51356405\">Leela Zero</a>, <a target=\"_blank\" href=\"https://online-go.com/game/51375020\">Sai</a>, <a target=\"_blank\" href=\"https://www.bilibili.com/video/BV1Ls4y147Es/?share_source=copy_web&t=97\">Golaxy</a>, and <a target=\"_blank\" href=\"https://h5.foxwq.com/txwqshare/index.html?chessid=1676910620010001365&boardsize=19\">FineArt</a>. While it is possible that each of these systems is vulnerable to the cyclic attack for a different reason, it seems more likely that shared properties cause their shared vulnerability. We think two shared properties are the most relevant: AlphaZero-style self-play training and the convolutional neural network (CNN) backbone.",
+            "In our work, we rule out the CNN backbone as the root cause of the cyclic vulnerability. We show that superhuman AlphaZero-style Go AIs with vision transformer (ViT) backbones are still vulnerable to cyclic attacks."
+        ],
+        "content": [
+            {
+                "title": "Original cyclic attack",
+                "dir_name": "vit-vs-base-adversary",
+                "paths_with_line_num": [
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/original-cyclic/3/sgfs/79A74F8CF1BBDAEC.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/original-cyclic/3/sgfs/381B76457CE87AD6.sgfs",
+                        "line": 5
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/original-cyclic/3/sgfs/9CE5565A69FE9645.sgfs",
+                        "line": 8
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/original-cyclic/3/sgfs/DE5762193920444D.sgfs",
+                        "line": 5
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/original-cyclic/3/sgfs/717E91CA11E80106.sgfs",
+                        "line": 5
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/original-cyclic/3/sgfs/9F4A7F8CFF8174CF.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/original-cyclic/3/sgfs/9C1FD8B63B8691DD.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/original-cyclic/3/sgfs/CBA1F16B36498E8A.sgfs",
+                        "line": 3
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "<code>base-adversary</code>",
+                "victim": "<code>ViT-victim</code>, 512 visits",
+                "description": [
+                    "Our original cyclic adversary <code>base-adversary</code> with no additional training beats our ViT Go model in 2.5% of games at 512 visits of search."
+                ]
+            },
+            {
+                "title": "Fine-tuned cyclic attack",
+                "dir_name": "vit-vs-vit-adversary",
+                "paths_with_line_num": [
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/attack-vit/sgfs/37D86C6B695F63C8.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/attack-vit/sgfs/8BCE190982338B60.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/attack-vit/sgfs/CAD4C0DAED91A51E.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/attack-vit/sgfs/074849101B44B932.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/attack-vit/sgfs/46C2879DA94D0D10.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/attack-vit/sgfs/A53F05A7B6C17A09.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/attack-vit/sgfs/DA3295A310114B0D.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/attack-vit/sgfs/700DE5C22124458D.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/attack-vit/sgfs/5B3F5521E58C2E3D.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/vit/attack-vit/vary-victim-visits/vit/attack-vit/sgfs/B482D8F109C2FA65.sgfs",
+                        "line": 1
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "<code>ViT-adversary</code>",
+                "victim": "<code>ViT-victim</code>, 65536 visits",
+                "description": [
+                    "We fine-tune the cyclic adversary to get an adversary <code>ViT-adversary</code> that defeats our ViT Go model in 78% of games at 65536 visits of search. We estimate that at this amount of search, the ViT model plays at a superhuman level, yet it is still clearly vulnerable to cyclic attacks."
                 ]
             }
         ]

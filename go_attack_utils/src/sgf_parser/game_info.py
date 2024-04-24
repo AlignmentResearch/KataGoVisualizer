@@ -182,7 +182,13 @@ def parse_game_str_to_dict(
     komi = extract_prop("KM", sgf_str)
     komi = float(komi) if komi else komi
     win_color = result[0].lower() if result else None
-    assert no_victim_okay or any(x in name for name in [b_name, w_name] for x in victim_substrings), f"Game doesn't have victim: path={path}, line_number={line_number}"
+
+    if victim_color is None:
+        victim_is_black = any(x in b_name.lower() for x in victim_substrings) or any(x in w_name.lower() for x in adversary_substrings)
+        victim_is_white = any(x in w_name.lower() for x in victim_substrings) or any(x in b_name.lower() for x in adversary_substrings)
+        if victim_is_black != victim_is_white:
+            victim_color = "b" if victim_is_black else "w"
+    assert no_victim_okay or victim_color is not None, f"Game doesn't have victim: path={path}, line_number={line_number}"
 
     parts = pathlib.Path(path).parts
     training = None
@@ -193,16 +199,6 @@ def parse_game_str_to_dict(
     elif "gatekeepersgf" in parts:
         training = "gating"
 
-    if victim_color is None:
-        victim_color = {b_name: "b", w_name: "w"}.get(
-            "victim",
-            "b"
-            if (
-                any(x in b_name.lower() for x in victim_substrings)
-                or any(x in w_name.lower() for x in adversary_substrings)
-            )
-            else "w",
-        )
     victim_name = {"b": b_name, "w": w_name}[victim_color]
     adv_color = {"b": "w", "w": "b"}[victim_color]
     adv_name = b_name if adv_color == "b" else w_name
