@@ -59,7 +59,7 @@
                 Go
             </a>
         </div>
-    {:else}
+    {:else if sections.length > 0}
         <div class="contents">
             <h3>Contents</h3>
             <ol>
