@@ -184,11 +184,17 @@ def parse_game_str_to_dict(
     win_color = result[0].lower() if result else None
 
     if victim_color is None:
-        victim_is_black = any(x in b_name.lower() for x in victim_substrings) or any(x in w_name.lower() for x in adversary_substrings)
-        victim_is_white = any(x in w_name.lower() for x in victim_substrings) or any(x in b_name.lower() for x in adversary_substrings)
+        victim_is_black = any(x in b_name.lower() for x in victim_substrings) or any(
+            x in w_name.lower() for x in adversary_substrings
+        )
+        victim_is_white = any(x in w_name.lower() for x in victim_substrings) or any(
+            x in b_name.lower() for x in adversary_substrings
+        )
         if victim_is_black != victim_is_white:
             victim_color = "b" if victim_is_black else "w"
-    assert no_victim_okay or victim_color is not None, f"Game doesn't have victim: path={path}, line_number={line_number}"
+    assert (
+        no_victim_okay or victim_color is not None
+    ), f"Game doesn't have victim: path={path}, line_number={line_number}"
 
     parts = pathlib.Path(path).parts
     training = None
@@ -269,11 +275,11 @@ def parse_game_str_to_dict(
         # Victim info
         "victim_color": victim_color,
         "victim_name": victim_name,
-        "victim_visits": victim_visits
-        if victim_visits
-        else int(str(victim_rank).lstrip("v"))
-        if victim_rank
-        else 1,
+        "victim_visits": (
+            victim_visits
+            if victim_visits
+            else int(str(victim_rank).lstrip("v")) if victim_rank else 1
+        ),
         "victim_steps": victim_steps,
         "victim_rsym": extract_param("rsym", victim_rank),
         "victim_algo": extract_param("algo", victim_rank),
