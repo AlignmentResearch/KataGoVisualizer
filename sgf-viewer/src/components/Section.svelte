@@ -8,7 +8,7 @@
 
 <div class="centerflex" id={section["dir_name"]}>
     <h3 class="subheading">
-        {section["title"]}
+        {@html section["title"]}
     </h3>
     <div class="text-wrapper">
         {#each section["description"] as description}

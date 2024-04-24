@@ -76,7 +76,7 @@
                                 ? "curr-section"
                                 : "other-section"}
                         >
-                            • {section["title"]}
+                            • {@html section["title"]}
                         </a>
                     </li>
                 {/each}
