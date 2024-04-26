@@ -1,9 +1,9 @@
 b_name,w_name,victim_color,victim_name,victim_visits,victim_steps,victim_rsym,victim_algo,adv_color,adv_name,adv_visits,adv_steps,adv_samples,adv_rsym,adv_algo,win_color,win_name,lose_name,adv_win,komi,adv_komi,adv_minus_victim_score,adv_minus_victim_score_wo_komi,train_status,board_size,start_turn_idx,handicap,num_moves,ko_rule,score_rule,tax_rule,sui_legal,has_button,whb,fpok,init_turn_num,used_initial_position,gtype,is_continuation,is_resignation,sgf_path,sgf_line
-victim DF2,KataGo,b,victim DF2,1,0,,,w,KataGo,,0,0,,,w,KataGo,victim DF2,True,7.5,7.5,72.5,65.0,,,,,531,,,,False,False,0,False,,False,,False,False,public/sgfs/elf/game-6.sgf,1
-victim DF2,KataGo,b,victim DF2,1,0,,,w,KataGo,,0,0,,,w,KataGo,victim DF2,True,7.5,7.5,368.5,361.0,,,,,658,,,,False,False,0,False,,False,,False,False,public/sgfs/elf/game-8.sgf,1
-KataGo,victim DF2,w,victim DF2,1,0,,,b,KataGo,,0,0,,,w,victim DF2,KataGo,False,7.5,-7.5,-38.5,-31.0,,,,,258,,,,False,False,0,False,,False,,False,False,public/sgfs/elf/game-3.sgf,1
-KataGo,victim DF2,w,victim DF2,1,0,,,b,KataGo,,0,0,,,w,victim DF2,KataGo,False,7.5,-7.5,-36.5,-29.0,,,,,305,,,,False,False,0,False,,False,,False,False,public/sgfs/elf/game-5.sgf,1
-KataGo,victim DF2,w,victim DF2,1,0,,,b,KataGo,,0,0,,,w,victim DF2,KataGo,False,7.5,-7.5,-21.5,-14.0,,,,,292,,,,False,False,0,False,,False,,False,False,public/sgfs/elf/game-1.sgf,1
-victim DF2,KataGo,b,victim DF2,1,0,,,w,KataGo,,0,0,,,b,victim DF2,KataGo,False,7.5,7.5,-78.5,-86.0,,,,,411,,,,False,False,0,False,,False,,False,False,public/sgfs/elf/game-2.sgf,1
-victim DF2,KataGo,b,victim DF2,1,0,,,w,KataGo,,0,0,,,b,victim DF2,KataGo,False,7.5,7.5,-65.5,-73.0,,,,,323,,,,False,False,0,False,,False,,False,False,public/sgfs/elf/game-4.sgf,1
-victim DF2,KataGo,b,victim DF2,1,0,,,w,KataGo,,0,0,,,b,victim DF2,KataGo,False,7.5,7.5,-63.5,-71.0,,,,,307,,,,False,False,0,False,,False,,False,False,public/sgfs/elf/game-0.sgf,1
+victim DF2,KataGo,b,victim DF2,1,0,,,w,KataGo,,0,0,,,w,KataGo,victim DF2,True,7.5,7.5,72.5,65.0,,,,,531,,,,False,False,0,False,,False,,False,False,public/sgfs/attack/elf/game-6.sgf,1
+victim DF2,KataGo,b,victim DF2,1,0,,,w,KataGo,,0,0,,,w,KataGo,victim DF2,True,7.5,7.5,368.5,361.0,,,,,658,,,,False,False,0,False,,False,,False,False,public/sgfs/attack/elf/game-8.sgf,1
+KataGo,victim DF2,w,victim DF2,1,0,,,b,KataGo,,0,0,,,w,victim DF2,KataGo,False,7.5,-7.5,-38.5,-31.0,,,,,258,,,,False,False,0,False,,False,,False,False,public/sgfs/attack/elf/game-3.sgf,1
+KataGo,victim DF2,w,victim DF2,1,0,,,b,KataGo,,0,0,,,w,victim DF2,KataGo,False,7.5,-7.5,-36.5,-29.0,,,,,305,,,,False,False,0,False,,False,,False,False,public/sgfs/attack/elf/game-5.sgf,1
+KataGo,victim DF2,w,victim DF2,1,0,,,b,KataGo,,0,0,,,w,victim DF2,KataGo,False,7.5,-7.5,-21.5,-14.0,,,,,292,,,,False,False,0,False,,False,,False,False,public/sgfs/attack/elf/game-1.sgf,1
+victim DF2,KataGo,b,victim DF2,1,0,,,w,KataGo,,0,0,,,b,victim DF2,KataGo,False,7.5,7.5,-78.5,-86.0,,,,,411,,,,False,False,0,False,,False,,False,False,public/sgfs/attack/elf/game-2.sgf,1
+victim DF2,KataGo,b,victim DF2,1,0,,,w,KataGo,,0,0,,,b,victim DF2,KataGo,False,7.5,7.5,-65.5,-73.0,,,,,323,,,,False,False,0,False,,False,,False,False,public/sgfs/attack/elf/game-4.sgf,1
+victim DF2,KataGo,b,victim DF2,1,0,,,w,KataGo,,0,0,,,b,victim DF2,KataGo,False,7.5,7.5,-63.5,-71.0,,,,,307,,,,False,False,0,False,,False,,False,False,public/sgfs/attack/elf/game-0.sgf,1
