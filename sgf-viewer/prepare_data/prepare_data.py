@@ -56,14 +56,15 @@ if __name__ == "__main__":
     used_sgf_dirs = set()
     for content in src_path.rglob("content.ts"):
         pages = read_content(content)
-        used_sgf_dirs.extend(
+        used_sgf_dirs.update(
             parent
-            for parent in Path(page["content"]["dir_name"]).parents
             for page in pages.values()
+            for section in page["content"]
+            for parent in Path(public_sgfs_path / section["dir_name"]).parents
         )
     for path in public_sgfs_path.iterdir():
         if path.is_dir() and path not in used_sgf_dirs:
-            run_cmd(["rm", "-rf", str(path.resolve())])
+            run_cmd(["rm", "-rf", str(path.resolve())], dry_run=True)
 
     pages = read_content(src_path / args.paper / "content.ts")
     for page_path, page in pages.items():
@@ -134,9 +135,8 @@ if __name__ == "__main__":
 
             # Make paths not depend on where repo is cloned
             for parsed_game in parsed_games:
-                # Take last 4 parts of path
-                parsed_game["sgf_path"] = "/".join(
-                    Path(parsed_game["sgf_path"]).parts[-4:]
+                parsed_game["sgf_path"] = Path(parsed_game["sgf_path"]).relative_to(
+                    root_path
                 )
 
             if section.get("sort_games", True):
