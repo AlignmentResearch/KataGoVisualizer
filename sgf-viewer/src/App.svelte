@@ -10,7 +10,7 @@
     import "@fontsource/lato/900-italic.css";
     import "@fontsource/lato/900.css";
 
-    import { onMount } from "svelte";
+    import { onDestroy, onMount } from "svelte";
     import Citation from "./components/Citation.svelte";
     import NavBar from "./components/NavBar.svelte";
     import Section from "./components/Section.svelte";
@@ -21,31 +21,15 @@
     let innerHeight, innerWidth;
     let pagesPaths = Object.keys(pages);
 
-    function getCurrentPath(pagesPaths) {
+    let currentPath;
+    function updateCurrentPath() {
         let windowLocationPathname = window.location.pathname;
         let windowLoc = windowLocationPathname.split("/").slice(-1)[0];
-        return pagesPaths.includes(windowLoc) ? windowLoc : pagesPaths[0];
+        currentPath = pagesPaths.includes(windowLoc) ? windowLoc : pagesPaths[0];
     }
-
-    // Ok, here's my mental model of the bug going on.
-    // windowLocationPathname -> windowLoc -> currentPath
-    // Navbar binds and modifies currentPath. That works fine.
-    // But then when popstate happens, windowLocationPathname was never updated
-    // despite changes to currentPath. Then it doesn't propagate changes to
-    // windowLoc or currentPath.
-    //
-    // Fix: get rid of windowlocationpathname, have popstate directly update
-    // current path?
-    //
-    // Hmm. This works better but hash links are still messed up
-
-    let currentPath = getCurrentPath(pagesPaths);
-    onMount(() => {
-        window.addEventListener(
-            "popstate",
-            () => (currentPath = getCurrentPath(pagesPaths)),
-        );
-    });
+    updateCurrentPath();
+    onMount(() => window.addEventListener("popstate", updateCurrentPath));
+    onDestroy(() => window.removeEventListener("popstate", updateCurrentPath));
 
     $: landingPage = currentPath === "home";
     $: sections = pagesPaths.includes(currentPath)
