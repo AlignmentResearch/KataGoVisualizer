@@ -1,44 +1,67 @@
 <script lang="ts">
-    import { cards } from "../defense/landing-page-content";
     import IconLink from "./subcomponents/IconLink.svelte";
 
+    // Page title separated into phrases where line breaks are preferred.
+    export let title: string[];
+    // Array of [(Author, their institutions, and an asterisk for equal contribution)
+    export let authors: [string, string[], string][];
+    export let cards: Array<any>;
     export let showAuthors: boolean = true;
 
-    const authors: [string, string, string[]][] = [
-        ["Tom Tseng", "https://www.tomhmtseng.com/", ["far"]],
-        ["Kellin Pelrine", "https://kellinpelrine.github.io/", ["far", "mila"]],
-        ["Euan McLean", "https://www.linkedin.com/in/euan-mclean-12a51358", ["far"]],
-        ["Tony Wang", "https://terveisin.tw/", ["mit"]],
-        ["Adam Gleave", "https://www.gleave.me/", ["far"]],
-    ];
-
-    const instMap: Map<string, [string, string, string]> = new Map([
-        ["far", ["1", "FAR AI", "https://far.ai/"]],
-        ["mila", ["2", "McGill University; Mila", "https://mila.quebec/en/"]],
-        ["mit", ["3", "MIT CSAIL", "https://www.csail.mit.edu/"]],
+    const authorToWebsite: Map<string, string> = new Map([
+        ["Tom Tseng", "https://www.tomhmtseng.com/"],
+        ["Kellin Pelrine", "https://kellinpelrine.github.io/"],
+        ["Euan McLean", "https://www.linkedin.com/in/euan-mclean-12a51358"],
+        ["Tony Wang", "https://terveisin.tw/"],
+        ["Adam Gleave", "https://www.gleave.me/"],
     ]);
+
+    const instMap: Map<string, [string, string]> = new Map([
+        ["far", ["FAR AI", "https://far.ai/"]],
+        ["mila", ["McGill University; Mila", "https://mila.quebec/en/"]],
+        ["mit", ["MIT CSAIL", "https://www.csail.mit.edu/"]],
+    ]);
+    function getInstitutionToIndex(authors) {
+        // Numbers the institutions in the order they appear in the authors
+        // list.
+        const institutionToIndex = new Map();
+        let index = 1;
+        for (const author of authors) {
+            for (const institution of author[1]) {
+                if (!institutionToIndex.has(institution)) {
+                    institutionToIndex.set(institution, index);
+                    index++;
+                }
+            }
+        }
+        return institutionToIndex;
+    }
+    $: institutionToIndex = getInstitutionToIndex(authors);
 </script>
 <div class="paper-title-wrapper">
     <p class="paper-title">
-        <!-- spans make title breaking nicer -->
-        <span class="paper-title-span">The challenges of training</span>
-        <span class="paper-title-span">adversarially robust Go AIs</span>
+        {#each title as line}
+            <!-- spans make title breaking nicer -->
+            <span class="paper-title-span">{line}</span>
+            {@html '&#x20;'}
+        {/each}
     </p>
 </div>
 {#if showAuthors}
     <div>
         <div class="authors-list">
-            {#each [...authors] as [name, link, institutions], i}
-                <a class="authors-list-item" href={link} target="_blank">
-                    <span class="author-name">{name}</span><sup>{@html '&#x20;'}{#each institutions as instKey}{instMap.get(instKey)[0]}{@html '&#x20;'}{/each}</sup>
+            {#each [...authors] as [name, institutions, asterisk], i}
+                <a class="authors-list-item" href={authorToWebsite.get(name)} target="_blank">
+                    <span class="author-name">{name}</span>{#if asterisk.length > 0}{asterisk}{/if}
+                    <sup>{#each institutions as instKey}{institutionToIndex.get(instKey)}{@html '&#x20;'}{/each}</sup>
                 </a>
             {/each}
         </div>
     </div>
     <div>
         <div class="authors-list">
-            {#each [...instMap] as [abbrev, [index, name, link]]}
-                <a class="institution-list-item" href={link} target="_blank"><sup>{index}</sup> {name}</a>
+            {#each [...instMap] as [abbrev, [name, link]]}
+                <a class="institution-list-item" href={link} target="_blank"><sup>{institutionToIndex.get(abbrev)}</sup> {name}</a>
             {/each}
         </div>
     </div>

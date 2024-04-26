@@ -7,19 +7,14 @@
         sel.removeAllRanges();
         sel.addRange(range);
     }
+    export let citation: string
 </script>
 
 <hr />
 <div>
     <div class="citation">Citation Info</div>
     <code on:click={tdFocus}>
-        <pre>
-{`@unpublished{tseng2024challenges,
-  title={The challenges of training adversarially robust Go AIs},
-  author={Tseng, Tom and Pelrine, Kellin and McLean, Euan and Wang, Tony T. and Gleave, Adam},
-  note={arXiv preprint arXiv:NNNN.NNNN},
-  year={2024}
-}`}</pre>
+        <pre>{citation}</pre>
     </code>
 </div>
 

@@ -16,7 +16,10 @@
     import Section from "./components/Section.svelte";
     import Title from "./components/Title.svelte";
     import TableOfContents from "./components/subcomponents/TableOfContents.svelte";
+
+    // TODO refactor these out
     import { pages } from "./defense/content";
+    import { authors, cards, citation, title } from "./defense/landing-page-content";
 
     let innerHeight, innerWidth;
     let pagesPaths = Object.keys(pages);
@@ -55,7 +58,7 @@
 <svelte:window bind:innerHeight bind:innerWidth />
 
 <main>
-    <Title showAuthors={landingPage} />
+  <Title {title} {authors} {cards} showAuthors={landingPage} />
     <NavBar
         {pages}
         {contentsFloatWidth}
@@ -81,7 +84,7 @@
         {/each}
     {/key}
     <!-- </div> -->
-    <Citation />
+    <Citation {citation} />
 </main>
 
 <style>

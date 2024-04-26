@@ -1,7 +1,17 @@
+export const title: string[] = ["The challenges of training", "adversarially robust Go AIs"];
+
+export const authors: [string, string[], string][] = [
+    ["Tom Tseng", ["far"], ""],
+    ["Kellin Pelrine", ["far", "mila"], ""],
+    ["Euan McLean", ["far"], ""],
+    ["Tony Wang", ["mit"], "*"],
+    ["Adam Gleave", ["far"], "*"],
+];
+
 export const cards: Array<any> =
 [
     {
-        image: "/images/go-attack-paper.svg",
+        image: "/images/go-defense-paper.svg",
         imageName: "arxiv",
         description: "Paper",
         url: "https://www.overleaf.com/project/654eac3d52dffeb1a092ab18",
@@ -16,21 +26,6 @@ export const cards: Array<any> =
         color: "rgb(70,205,206,0.5)",
         border: false,
     },
-    // {
-    //     image: "/images/ICML-logo.svg",
-    //     imageName: "ICML",
-    //     description: "Poster",
-    //     url: "https://icml.cc/virtual/2023/poster/24524",
-    //     color: "rgb(35,31,32,0.5)",
-    // },
-    // {
-    //     image: "/images/video-screenshot.png",
-    //     imageName: "video screenshot",
-    //     description: "Video",
-    //     url: "https://recorder-v3.slideslive.com/#/share?share=83403&s=1a8b2506-2198-4d30-a487-fdb05a497f5f",
-    //     color: "rgb(31,24,42,0.5)",
-    //     border: false,
-    // },
     {
         image: "/images/github-mark.svg",
         imageName: "github",
@@ -40,3 +35,10 @@ export const cards: Array<any> =
         border: false,
     }
 ];
+
+export const citation: string = `@unpublished{tseng2024challenges,
+  title={The challenges of training adversarially robust Go AIs},
+  author={Tseng, Tom and Pelrine, Kellin and McLean, Euan and Wang, Tony T. and Gleave, Adam},
+  note={arXiv preprint arXiv:NNNN.NNNN},
+  year={2024}
+}`;
