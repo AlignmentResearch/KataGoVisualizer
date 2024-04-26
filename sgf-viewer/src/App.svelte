@@ -21,17 +21,32 @@
     let innerHeight, innerWidth;
     let pagesPaths = Object.keys(pages);
 
-    let windowLocationPathname = window.location.pathname;
-    $: windowLoc = windowLocationPathname.split("/").slice(-1)[0];
+    function getCurrentPath(pagesPaths) {
+        let windowLocationPathname = window.location.pathname;
+        let windowLoc = windowLocationPathname.split("/").slice(-1)[0];
+        return pagesPaths.includes(windowLoc) ? windowLoc : pagesPaths[0];
+    }
 
+    // Ok, here's my mental model of the bug going on.
+    // windowLocationPathname -> windowLoc -> currentPath
+    // Navbar binds and modifies currentPath. That works fine.
+    // But then when popstate happens, windowLocationPathname was never updated
+    // despite changes to currentPath. Then it doesn't propagate changes to
+    // windowLoc or currentPath.
+    //
+    // Fix: get rid of windowlocationpathname, have popstate directly update
+    // current path?
+    //
+    // Hmm. This works better but hash links are still messed up
+
+    let currentPath = getCurrentPath(pagesPaths);
     onMount(() => {
         window.addEventListener(
             "popstate",
-            () => (windowLocationPathname = window.location.pathname)
+            () => (currentPath = getCurrentPath(pagesPaths)),
         );
     });
 
-    $: currentPath = pagesPaths.includes(windowLoc) ? windowLoc : pagesPaths[0];
     $: landingPage = currentPath === "home";
     $: sections = pagesPaths.includes(currentPath)
         ? pages[currentPath]["content"]
