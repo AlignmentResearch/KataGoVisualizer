@@ -16,7 +16,7 @@
     import Section from "./components/Section.svelte";
     import Title from "./components/Title.svelte";
     import TableOfContents from "./components/subcomponents/TableOfContents.svelte";
-    import { pages } from "./content";
+    import { pages } from "./defense/content";
 
     let innerHeight, innerWidth;
     let pagesPaths = Object.keys(pages);
@@ -57,6 +57,7 @@
 <main>
     <Title showAuthors={landingPage} />
     <NavBar
+        {pages}
         {contentsFloatWidth}
         {menuNavigationWidth}
         bind:currentPath
@@ -73,7 +74,7 @@
             </div>
         {/if}
         {#if innerWidth <= contentsFloatWidth}
-            <TableOfContents {currentPath} />
+            <TableOfContents page={pages[currentPath]} />
         {/if}
         {#each sections as section}
             <Section {section} />

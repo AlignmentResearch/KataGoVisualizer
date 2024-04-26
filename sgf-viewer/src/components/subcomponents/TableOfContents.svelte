@@ -1,26 +1,21 @@
 <script lang="ts">
     import { onMount, onDestroy } from "svelte";
 
-    import { pages } from "../../content";
-
-    export let currentPath: string;
+    export let page: Record<string, any>;
 
     let topHeadingIdx = 0;
-    let pagesPaths = Object.keys(pages);
 
-    $: sections = pagesPaths.includes(currentPath)
-        ? pages[currentPath]["content"]
-        : [];
+    $: sections = page ? page["content"] : [];
     const rmvUrlParams = () =>
         window.history.pushState({}, "", window.location.pathname);
 
-    // Ternary is just to force Svelte to recompute when currentPath changes
-    $: anchors = currentPath ? document.querySelectorAll(".subheading") : [];
+    // Ternary is just to force Svelte to recompute when page changes
+    $: anchors = page ? document.querySelectorAll(".subheading") : [];
 
     // Base JumpTo string split by VAR
-    $: jumpToBase = (pages[currentPath].jump_to?.base ?? "").split("VAR");
+    $: jumpToBase = (page.jump_to?.base ?? "").split("VAR");
     // Current values of VARs, these are bound to the dropdowns in the jump_to UI
-    $: jumpSelect = (pages[currentPath].jump_to?.vars ?? []).map((v) => v[0]);
+    $: jumpSelect = (page.jump_to?.vars ?? []).map((v) => v[0]);
     // Construct the title to jump to. jumpSelect[i] is undefined for final index.
     // undefined is converted to the empty string by `join()`
     $: jumpTitle = jumpToBase.flatMap((x, i) => [x, jumpSelect[i]]).join("");
@@ -36,14 +31,14 @@
 </script>
 
 <div class="contents-container">
-    {#if pages[currentPath]["jump_to"]}
+    {#if page["jump_to"]}
         <div class="jump-to-container">
             <h3 style="margin: 0;">Jump to</h3>
             <div class="jump-to">
                 {#each jumpToBase.slice(0, -1) as jumpToSegment, i}
                     <h3>{jumpToSegment}</h3>
                     <select bind:value={jumpSelect[i]}>
-                        {#each pages[currentPath].jump_to.vars[i] as val}
+                        {#each page.jump_to.vars[i] as val}
                             <option value={val}>{val}</option>
                         {/each}
                     </select>

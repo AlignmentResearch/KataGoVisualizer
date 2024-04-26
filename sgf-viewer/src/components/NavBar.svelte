@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { pages } from "../content";
     import NavButtons from "./subcomponents/NavButtons.svelte";
     import TableOfContents from "./subcomponents/TableOfContents.svelte";
     import FaGithub from "svelte-icons/fa/FaGithub.svelte";
@@ -11,6 +10,7 @@
     export let menuNavigationWidth: number;
     export let currentPath: string;
     export let navBarElem: HTMLElement;
+    export let pages: Record<string, any>;
 
     let pagesPaths = Object.keys(pages);
     let innerWidth;
@@ -78,7 +78,7 @@
         </div>
     {/if}
     {#if innerWidth > contentsFloatWidth}
-        <TableOfContents {currentPath} />
+        <TableOfContents page={pages[currentPath]} />
     {/if}
 </div>
 

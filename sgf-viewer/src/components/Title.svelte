@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { cards } from "../landing-page-content";
+    import { cards } from "../defense/landing-page-content";
     import IconLink from "./subcomponents/IconLink.svelte";
 
     export let showAuthors: boolean = true;
