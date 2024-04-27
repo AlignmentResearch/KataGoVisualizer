@@ -275,11 +275,11 @@ def parse_game_str_to_dict(
         # Victim info
         "victim_color": victim_color,
         "victim_name": victim_name,
-        "victim_visits": (
-            victim_visits
-            if victim_visits
-            else int(str(victim_rank).lstrip("v")) if victim_rank else 1
-        ),
+        "victim_visits": victim_visits
+        if victim_visits
+        else int(str(victim_rank).lstrip("v"))
+        if victim_rank
+        else 1,
         "victim_steps": victim_steps,
         "victim_rsym": extract_param("rsym", victim_rank),
         "victim_algo": extract_param("algo", victim_rank),
