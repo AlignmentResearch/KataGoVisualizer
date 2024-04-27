@@ -18,8 +18,8 @@
     import TableOfContents from "./components/subcomponents/TableOfContents.svelte";
 
     // TODO refactor these out
-    import { pages } from "./defense/content";
-    import { authors, cards, citation, title } from "./defense/landing-page-content";
+    import { pages } from "./attack/content";
+    import { authors, cards, citation, title } from "./attack/landing-page-content";
 
     let innerHeight, innerWidth;
     let pagesPaths = Object.keys(pages);
@@ -83,7 +83,6 @@
             <Section {section} />
         {/each}
     {/key}
-    <!-- </div> -->
     <Citation {citation} />
 </main>
 

@@ -1,9 +1,9 @@
 export const title: string[] = ["The challenges of training", "adversarially robust Go AIs"];
 
-export const authors: [string, string[], string][] = [
-    ["Tom Tseng", ["far"], ""],
-    ["Kellin Pelrine", ["far", "mila"], ""],
-    ["Euan McLean", ["far"], ""],
+export const authors: [string, string[], string | undefined][] = [
+    ["Tom Tseng", ["far"]],
+    ["Kellin Pelrine", ["far", "mila"]],
+    ["Euan McLean", ["far"]],
     ["Tony Wang", ["mit"], "*"],
     ["Adam Gleave", ["far"], "*"],
 ];

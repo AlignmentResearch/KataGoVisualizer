@@ -1,11 +1,21 @@
+export const title: string[] = ["Adversarial Policies Beat", "Superhuman Go AIs"]
+
+export const authors: [string, string[], string | undefined][] = [
+        ["Tony Wang", ["mit"], "*"],
+        ["Adam Gleave", ["far"], "*"],
+        ["Tom Tseng", ["far"]],
+        ["Kellin Pelrine", ["far", "mila"]],
+        ["Nora Belrose", ["far"]],
+        ["Joseph Miller", ["far"]],
+        ["Michael Dennis", ["berk", "chai"]],
+        ["Yawen Duan", ["berk", "chai"]],
+        ["Viktor Pogrebniak", []],
+        ["Sergey Levine", ["berk"]],
+        ["Stuart Russell", ["berk", "chai"]],
+    ];
+
 export const cards: Array<any> =
 [
-    // {
-    //     image: "/images/cyclic-example.png",
-    //     imageName: "katago",
-    //     description: "View example games showcasing our cyclic attack.",
-    //     url: "/adversarial-policy-katago",
-    // },
     {
         image: "/images/go-attack-paper.svg",
         imageName: "arxiv",
@@ -22,13 +32,6 @@ export const cards: Array<any> =
         color: "rgb(70,205,206,0.5)",
         border: false,
     },
-    // {
-    //     image: "/images/ICML-logo.svg",
-    //     imageName: "ICML",
-    //     description: "Poster",
-    //     url: "https://icml.cc/virtual/2023/poster/24524",
-    //     color: "rgb(35,31,32,0.5)",
-    // },
     {
         image: "/images/video-screenshot.png",
         imageName: "video screenshot",
@@ -37,31 +40,6 @@ export const cards: Array<any> =
         color: "rgb(31,24,42,0.5)",
         border: false,
     },
-    // {
-    //     image: "/images/pass-example.png",
-    //     imageName: "pass attack",
-    //     description: "View example games showcasing our pass attack.",
-    //     url: "/pass-based-attack"
-    // },
-    // {
-    //     image: "/images/non-transitive-figure.png",
-    //     imageName: "human evaluation",
-    //     description: "Read our evaluation of games demonstrating the non-transitive nature of the attacks.",
-    //     url: "/human-evaluation",
-    // },
-    // {
-    //     image: "/images/activation-analysis.png",
-    //     imageName: "activation analysis",
-    //     description: "Read our analysis of KataGo internal activations under the cyclic attack.",
-    //     url: "/activation-plots",
-    // },
-    // {
-    //     image: "/images/openreview_logo.png",
-    //     imageName: "open review",
-    //     description: "OpenReview",
-    //     url: "https://openreview.net/forum?id=Kyz1SaAcnd",
-    //     color: "rgb(140,27,18,0.5)",
-    // },
     {
         image: "/images/financial-times-logo.png",
         imageName: "financial times",
@@ -79,3 +57,10 @@ export const cards: Array<any> =
         border: false,
     }
 ];
+
+export const citation: string = `@inproceedings{wang2023adversarial,
+    title={Adversarial Policies Beat Superhuman Go AIs},
+    author={Wang, Tony T and Gleave, Adam and Tseng, Tom and Pelrine, Kellin and Belrose, Nora and Miller, Joseph and Dennis, Michael D and Duan, Yawen and Pogrebniak, Viktor and Levine, Sergey and Russell, Stuart},
+    booktitle={International Conference on Machine Learning},
+    year={2023}
+}`
