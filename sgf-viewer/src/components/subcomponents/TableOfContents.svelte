@@ -28,6 +28,10 @@
     }
     onMount(() => window.addEventListener("scroll", handleScroll));
     onDestroy(() => window.removeEventListener("scroll", handleScroll));
+
+    function stripHTMLTags(str) {
+        return str.replace(/<[^>]*>?/gm, "");
+    }
 </script>
 
 <div class="contents-container">
@@ -39,7 +43,7 @@
                     <h3>{jumpToSegment}</h3>
                     <select bind:value={jumpSelect[i]}>
                         {#each page.jump_to.vars[i] as val}
-                            <option value={val}>{val}</option>
+                            <option value={val}>{stripHTMLTags(val)}</option>
                         {/each}
                     </select>
                 {/each}
