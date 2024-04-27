@@ -18,7 +18,6 @@
     $: jumpSelect = (page.jump_to?.vars ?? []).map((v) => v[0]);
     // Construct the title to jump to. jumpSelect[i] is undefined for final index.
     // undefined is converted to the empty string by `join()`
-    // TODO this just doesn't work if there are >2 VARs.
     $: jumpTitle = jumpToBase.flatMap((x, i) => [x, jumpSelect[i]]).join("");
 
     function handleScroll() {
@@ -55,7 +54,6 @@
                         {/each}
                     </select>
                 {/each}
-                <h3>{jumpToBase[jumpToBase.length - 1]}</h3>
             </div>
             <a
                 href={"#" +
