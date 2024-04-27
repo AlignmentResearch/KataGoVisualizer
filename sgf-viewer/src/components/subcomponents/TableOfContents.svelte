@@ -18,6 +18,7 @@
     $: jumpSelect = (page.jump_to?.vars ?? []).map((v) => v[0]);
     // Construct the title to jump to. jumpSelect[i] is undefined for final index.
     // undefined is converted to the empty string by `join()`
+    // TODO this just doesn't work if there are >2 VARs.
     $: jumpTitle = jumpToBase.flatMap((x, i) => [x, jumpSelect[i]]).join("");
 
     function handleScroll() {
@@ -41,7 +42,14 @@
             <div class="jump-to">
                 {#each jumpToBase.slice(0, -1) as jumpToSegment, i}
                     <h3>{jumpToSegment}</h3>
-                    <select bind:value={jumpSelect[i]}>
+                    <!-- Naively this should be
+                          `<select bind:value={jumpSelect[i]}>`,
+                      but that breaks things because
+                      Svelte aggressively invalidates parent elements when
+                      binding to array/object elements.
+                      https://farinc.slack.com/archives/C06FN9EAN7K/p1714219478257259
+                    --->
+                    <select on:change={(event) => (jumpSelect[i] = event.target.value)}>
                         {#each page.jump_to.vars[i] as val}
                             <option value={val}>{stripHTMLTags(val)}</option>
                         {/each}
