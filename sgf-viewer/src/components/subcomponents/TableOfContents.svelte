@@ -11,8 +11,6 @@
     $: sections = pagesPaths.includes(currentPath)
         ? pages[currentPath]["content"]
         : [];
-    const rmvUrlParams = () =>
-        window.history.pushState({}, "", window.location.pathname);
 
     // Ternary is just to force Svelte to recompute when currentPath changes
     $: anchors = currentPath ? document.querySelectorAll(".subheading") : [];
@@ -53,7 +51,6 @@
             <a
                 href={"#" +
                     sections.find((sec) => sec.title == jumpTitle).dir_name}
-                on:click={rmvUrlParams}
                 style="flex: 1"
             >
                 Go
@@ -71,7 +68,6 @@
                     >
                         <a
                             href={"#" + section["dir_name"]}
-                            on:click={rmvUrlParams}
                             class={topHeadingIdx == i
                                 ? "curr-section"
                                 : "other-section"}
