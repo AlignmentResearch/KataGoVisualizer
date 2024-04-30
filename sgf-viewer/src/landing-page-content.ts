@@ -33,7 +33,7 @@ export const cards: Array<any> =
         image: "/images/video-screenshot.jpg",
         imageName: "video screenshot",
         description: "Video",
-        url: "https://recorder-v3.slideslive.com/#/share?share=83403&s=1a8b2506-2198-4d30-a487-fdb05a497f5f",
+        url: "https://slideslive.com/39006680/adversarial-policies-beat-superhuman-go-ais",
         color: "rgb(31,24,42,0.5)",
         border: false,
     },
