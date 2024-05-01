@@ -25,7 +25,7 @@ export const cards: Array<any> =
         border: true,
     },
     {
-        image: "/images/far-logo.png",
+        image: "/images/far-logo.svg",
         imageName: "blog",
         description: "Blog",
         url: "https://far.ai/post/2023-07-superhuman-go-ais/",
@@ -33,10 +33,10 @@ export const cards: Array<any> =
         border: false,
     },
     {
-        image: "/images/video-screenshot.png",
+        image: "/images/video-screenshot.jpg",
         imageName: "video screenshot",
         description: "Video",
-        url: "https://recorder-v3.slideslive.com/#/share?share=83403&s=1a8b2506-2198-4d30-a487-fdb05a497f5f",
+        url: "https://slideslive.com/39006680/adversarial-policies-beat-superhuman-go-ais",
         color: "rgb(31,24,42,0.5)",
         border: false,
     },

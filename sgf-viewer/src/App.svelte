@@ -10,7 +10,7 @@
     import "@fontsource/lato/900-italic.css";
     import "@fontsource/lato/900.css";
 
-    import { onMount } from "svelte";
+    import { onDestroy, onMount } from "svelte";
     import Citation from "./components/Citation.svelte";
     import NavBar from "./components/NavBar.svelte";
     import Section from "./components/Section.svelte";
@@ -24,17 +24,16 @@
     let innerHeight, innerWidth;
     let pagesPaths = Object.keys(pages);
 
-    let windowLocationPathname = window.location.pathname;
-    $: windowLoc = windowLocationPathname.split("/").slice(-1)[0];
+    let currentPath;
+    function updateCurrentPath() {
+        let windowLocationPathname = window.location.pathname;
+        let windowLoc = windowLocationPathname.split("/").slice(-1)[0];
+        currentPath = pagesPaths.includes(windowLoc) ? windowLoc : pagesPaths[0];
+    }
+    updateCurrentPath();
+    onMount(() => window.addEventListener("popstate", updateCurrentPath));
+    onDestroy(() => window.removeEventListener("popstate", updateCurrentPath));
 
-    onMount(() => {
-        window.addEventListener(
-            "popstate",
-            () => (windowLocationPathname = window.location.pathname)
-        );
-    });
-
-    $: currentPath = pagesPaths.includes(windowLoc) ? windowLoc : pagesPaths[0];
     $: landingPage = currentPath === "home";
     $: sections = pagesPaths.includes(currentPath)
         ? pages[currentPath]["content"]
@@ -58,7 +57,7 @@
 <svelte:window bind:innerHeight bind:innerWidth />
 
 <main>
-  <Title {title} {authors} {cards} showAuthors={landingPage} />
+    <Title {title} {authors} {cards} showAuthors={landingPage} />
     <NavBar
         {pages}
         {contentsFloatWidth}
