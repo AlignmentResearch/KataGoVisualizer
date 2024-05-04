@@ -36,17 +36,17 @@
 <div class="contents-container">
     {#if pages[currentPath]["jump_to"]}
         <div class="jump-to-container">
-            <h3 style="margin: 0;">Jump to</h3>
+            <h5 style="margin: 0;">Jump to</h5>
             <div class="jump-to">
                 {#each jumpToBase.slice(0, -1) as jumpToSegment, i}
-                    <h3>{jumpToSegment}</h3>
+                    <h5>{jumpToSegment}</h5>
                     <select bind:value={jumpSelect[i]}>
                         {#each pages[currentPath].jump_to.vars[i] as val}
                             <option value={val}>{val}</option>
                         {/each}
                     </select>
                 {/each}
-                <h3>{jumpToBase[jumpToBase.length - 1]}</h3>
+                <h5>{jumpToBase[jumpToBase.length - 1]}</h5>
             </div>
             <a
                 href={"#" +
@@ -58,7 +58,7 @@
         </div>
     {:else}
         <div class="contents">
-            <h3>Contents</h3>
+            <h5>Contents</h5>
             <ol>
                 {#each sections as section, i}
                     <li
@@ -82,7 +82,7 @@
 </div>
 
 <style>
-    h3 {
+    h5 {
         font-weight: normal;
         margin-bottom: 0vh;
         text-align: center;
@@ -146,6 +146,7 @@
     .contents {
         background-color: white;
         margin: 0 0.5rem 1rem;
+        padding: 0.75em 0.75em 0 0.75em;
         color: black;
         width: 300px;
         display: flex;

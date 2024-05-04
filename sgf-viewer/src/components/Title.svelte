@@ -38,13 +38,11 @@
         ["chai", ["5", "Center for Human-Compatible AI", "https://humancompatible.ai/"]],
     ]);
 </script>
-<div class="paper-title-wrapper">
-    <p class="paper-title">
-        <!-- spans make title breaking nicer -->
-        <span class="paper-title-span">Adversarial Policies Beat</span>
-        <span class="paper-title-span">Superhuman Go AIs</span>
-    </p>
-</div>
+<p class="paper-title">
+    <!-- spans make title breaking nicer -->
+    <span class="paper-title-span">Adversarial Policies Beat</span>
+    <span class="paper-title-span">Superhuman Go AIs</span>
+</p>
 {#if showAuthors}
     <div>
         <div class="authors-list">
@@ -77,12 +75,8 @@
 </div>
 
 <style>
-    .paper-title-wrapper {
-        margin-left: 1.5em;
-        margin-right: 1.5em;
-    }
     .paper-title {
-        font-size: 44px;
+        font-size: 2em;
         font-weight: 700;
         line-height: 1.3em;
         margin-top: 0.5em;

@@ -1,3 +1,4 @@
+import './css/bootstrap.scss'
 import './css/app.css'
 import './css/sanitize/assets.css'
 import './css/sanitize/forms.css'

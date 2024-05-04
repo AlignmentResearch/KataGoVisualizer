@@ -11,6 +11,9 @@
     import "@fontsource/lato/900.css";
 
     import { onDestroy, onMount } from "svelte";
+    import MdFormatListBulleted from 'svelte-icons/md/MdFormatListBulleted.svelte'
+    import Toc from 'svelte-toc'
+
     import Citation from "./components/Citation.svelte";
     import NavBar from "./components/NavBar.svelte";
     import Section from "./components/Section.svelte";
@@ -18,7 +21,7 @@
     import TableOfContents from "./components/subcomponents/TableOfContents.svelte";
     import { pages } from "./content";
 
-    let innerHeight, innerWidth;
+    let innerWidth;
     let pagesPaths = Object.keys(pages);
 
     let currentPath;
@@ -35,13 +38,6 @@
     $: sections = pagesPaths.includes(currentPath)
         ? pages[currentPath]["content"]
         : [];
-    let navBar: HTMLElement;
-    // The values * 0 are just to force Svelte to recompute when window size changes
-    $: navBarMargin = navBar
-        ? navBar.clientHeight + (innerWidth + innerHeight) * 0
-        : 100;
-    $: document.documentElement.style.cssText =
-        "--scroll-margin: " + navBarMargin + "px;";
 
     const menuNavigationWidth = 915;
     const contentsFloatWidth = 1500;
@@ -51,80 +47,52 @@
     <link rel="stylesheet" href={`/themes/light-theme.css`} />
 </svelte:head>
 
-<svelte:window bind:innerHeight bind:innerWidth />
+<svelte:window bind:innerWidth />
 
-<main>
-    <Title showAuthors={landingPage} />
-    <NavBar
-        {contentsFloatWidth}
-        {menuNavigationWidth}
-        bind:currentPath
-        bind:navBarElem={navBar}
-    />
-    {#key currentPath}
-        {#if pages[currentPath]["description"]}
-            <div class="centerflex">
-                <div class="text-wrapper">
-                    {#each pages[currentPath]["description"] as description}
-                        <p class="description-p">{@html description}</p>
-                    {/each}
+<NavBar bind:currentPath />
+<div class="page">
+    <main>
+        <Title showAuthors={landingPage} />
+        <!-- Empty anchor target. Named for link backwards compatibility. -->
+        <div id="contents" />
+        {#key currentPath}
+            <h2>{pages[currentPath]["title"]}</h2>
+            {#if pages[currentPath]["description"]}
+                <div class="centerflex">
+                    <div class="text-wrapper">
+                        {#each pages[currentPath]["description"] as description}
+                            <p class="description-p">{@html description}</p>
+                        {/each}
+                    </div>
                 </div>
-            </div>
-        {/if}
-        {#if innerWidth <= contentsFloatWidth}
-            <TableOfContents {currentPath} />
-        {/if}
-        {#each sections as section}
-            <Section {section} />
-        {/each}
-    {/key}
-    <!-- </div> -->
-    <Citation />
-</main>
+            {/if}
+            {#each sections as section}
+                <Section {section} />
+            {/each}
+        {/key}
+        <Citation />
+    </main>
+    <Toc
+        titleTag="h5"
+        --toc-desktop-max-width="12em"
+    >
+        <div class="toc-icon" slot="open-toc-icon">
+            <MdFormatListBulleted />
+        </div>
+    </Toc>
+</div>
 
 <style>
-    .subheading {
-        top: calc(var(--scroll-margin) + 1vh);
-        position: sticky;
-        background-color: var(--accent-color-2);
-        color: white;
-        font-weight: normal;
-        box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.75);
-        padding: 13px;
-        border-radius: 105px;
-        z-index: 998;
+    main {
+        max-width: 50em;
     }
-    .centerflex {
+    .page {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-top: 0.1rem;
+        place-content: center;
+        padding: 0 min(3em, 5vw);
     }
-    .text-wrapper {
-        width: min(90vw, 800px);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        margin: 0.5rem;
-    }
-    p {
-        font-size: 18px;
-        align-self: flex-start;
-        max-width: min(90vw, 800px);
-        text-align: justify;
-        margin: 0.5rem 0;
-    }
-    .description-p {
-        width: 100%;
-    }
-    .icml-ad {
-        text-align: center;
-        font-size: 1.5em;
-        margin: 0 0 0.5em;
-    }
-    .icml-ad>a {
-        font-size: 1em;
+    .toc-icon {
+        height: 1em;
+        width: 1em;
     }
 </style>

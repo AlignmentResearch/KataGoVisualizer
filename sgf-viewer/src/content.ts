@@ -32,7 +32,7 @@ export const pages: object =
         ]
     },
     "adversarial-policy-katago": {
-        "title": "Cyclic Attack",
+        "title": "Cyclic attack",
         "description": [
             "This section showcases games our cyclic-adversary played against <a target=\"_blank\" href=\"https://github.com/lightvector/KataGo\">KataGo</a>. We primarily attack KataGo network checkpoint <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a>, which we dub <code>Latest</code> since it is the latest confidently rated KataGo network at the time of conducting our experiments."
         ],
@@ -151,7 +151,7 @@ export const pages: object =
         ]
     },
     "game-analysis": {
-        "title": "Game Analysis",
+        "title": "Game analysis",
         "content": [
             {
                 "title": "Qualitative analysis of adversary behavior",
@@ -240,7 +240,7 @@ export const pages: object =
         ]
     },
     "human-evaluation": {
-        "title": "Human Games",
+        "title": "Human games",
         "content": [
             {
                 "title": "Human amateur beats cyclic-adversary",
@@ -503,7 +503,7 @@ export const pages: object =
         ]
     },
     "baseline-attack": {
-        "title": "Baseline Attacks",
+        "title": "Baseline attacks",
         "description": ["In this section we examine simple, no-learning attacks. These test the robustness of KataGo to some types of unsophisticated but likely out-of-distribution play. We find these attacks are generally ineffective against KataGo playing with search and against the hardened version of KataGo, although the mirror Go attack still gets some wins at low visits. Overall, to find consistent weaknesses, a learning-based approach like ours seems necessary."],
         "content": [
             {
@@ -615,7 +615,7 @@ export const pages: object =
         ]
     },
     "training-sample": {
-        "title": "Training Sample Games",
+        "title": "Training sample games",
         "description": ["In this section we present samples of games showing the training process of our adversary. In particular, we sample 5 games against each of 4 victims approximately every 10% of training steps up to 545 million steps. All victims are defended against the <a href=\"/pass-based-attack#contents\">pass-based attack</a>. We see the adversary implementing other attacks before discovering and ultimately consistently using the cyclic attack. This progression is analyzed in more detail in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.I.3\">the paper appendix</a>."],
         "jump_to": {
             "base": "VAR vs. VAR",
@@ -668,7 +668,7 @@ export const pages: object =
         ]
     },
     "adversarial-training": {
-        "title": "Adversarial Training",
+        "title": "Adversarial training",
         "description": ["David Wu (lightvector), the creator and primary developer of KataGo, has incorporated adversarial training against the cyclic exploit into the official self-play training run of KataGo since mid-December 2022. The adversarial training consists of starting a small fraction (~0.1%) of self-play games in positions where the cyclic exploit is being executed, with the remainder of games being regular self-play games. This adversarial training has been partially successful in that the adversarially trained networks are able to beat our original cyclic-adversary. However, we are able to fine-tune our original adversary to defeat these updated networks. This suggests that it is non-trivial to defend against the cyclic exploit, unlike the pass exploit which we were able to manually patch. Developing techniques to train agents that are immune to this attack while maintaining high Go strength remains an interesting open problem."],
         "content": [
             {
@@ -803,7 +803,7 @@ export const pages: object =
         ]
     },
     "activation-plots": {
-        "title": "Activation Plots",
+        "title": "Activation plots",
         "description": ["In this page we share interactive plots visualizing activations over the 41 layers of KataGo models in cyclic situations. These correspond to the discussion in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.K.1\">Appendix K</a> of the paper (coming soon)."],
         "content": [
             {
