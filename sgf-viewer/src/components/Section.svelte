@@ -77,6 +77,6 @@
         margin-top: 1em;
         margin-bottom: 0px;
         height: calc(min(450px, 95vw) + 9.5em);
-        max-width: 98%;
+        max-width: 90%;
     }
 </style>

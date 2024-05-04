@@ -118,13 +118,6 @@
         display: flex;
         justify-content: center;
     }
-    .logos {
-        display: flex;
-        justify-content: center;
-        gap: 0.9vmin;
-        margin-top: 1.2vmin;
-        margin-bottom: -2vh;
-    }
     .image-cards {
         display: flex;
         flex-wrap: wrap;
