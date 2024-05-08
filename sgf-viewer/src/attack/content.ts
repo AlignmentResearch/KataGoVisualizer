@@ -807,7 +807,7 @@ export const pages: object =
     },
     "activation-plots": {
         "title": "Activation plots",
-        "description": ["In this page we share interactive plots visualizing activations over the 41 layers of KataGo models in cyclic situations. These correspond to the discussion in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.K.1\">Appendix K</a> of the paper (coming soon)."],
+        "description": ["In this page we share interactive plots visualizing activations over the 41 layers of KataGo models in cyclic situations. These correspond to the discussion in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#appendix.K\">Appendix K</a> of the paper."],
         "content": [
             {
                 "title": "Effect of adversarial training",
