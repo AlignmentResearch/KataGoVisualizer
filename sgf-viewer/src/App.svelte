@@ -18,7 +18,6 @@
     import NavBar from "./components/NavBar.svelte";
     import Section from "./components/Section.svelte";
     import Title from "./components/Title.svelte";
-    import TableOfContents from "./components/subcomponents/TableOfContents.svelte";
     import { pages } from "./content";
 
     let innerWidth;
