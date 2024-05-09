@@ -24,9 +24,12 @@
 @import "../node_modules/bootstrap/scss/nav";
 @import "../node_modules/bootstrap/scss/navbar";
 @import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/tables";
 @import "../node_modules/bootstrap/scss/transitions";
 @import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/utilities";
 
 // 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "../node_modules/bootstrap/scss/utilities/api";
 
 // 8. Add additional custom code here

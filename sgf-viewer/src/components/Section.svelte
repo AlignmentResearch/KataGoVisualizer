@@ -22,13 +22,12 @@
                 <GoBoard dirName={section["dir_name"]} {sgfPath} />
             </div>
         </div>
-        <div class="annotation">
-            <p class="annotation-item">
+        <div class="d-flex m-2">
+            <p class="me-auto m-2">
                 <b>Victim:</b>
                 {@html section["victim"]}
             </p>
-            <!-- <p class="annotation-item" style="text-align: right;"> -->
-            <p class="annotation-item" style="margin-left: auto;">
+            <p class="m-2 text-end">
                 <b>Adversary:</b>
                 {@html section["adversary"]}
             </p>
@@ -45,18 +44,6 @@
 </div>
 
 <style>
-    .annotation {
-        display: flex;
-        position: relative;
-        margin-top: 0.5rem;
-        margin-bottom: 0.1rem;
-    }
-    .annotation-item {
-        align-self: flex-start;
-        margin-left: 2rem;
-        margin-right: 2rem;
-        margin-bottom: 2rem;
-    }
     .iframe-container {
         text-align: center;
     }
@@ -77,6 +64,6 @@
         margin-top: 1em;
         margin-bottom: 0px;
         height: calc(min(450px, 95vw) + 9.5em);
-        max-width: 90%;
+        max-width: 98%;
     }
 </style>

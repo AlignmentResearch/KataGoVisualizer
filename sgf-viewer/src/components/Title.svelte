@@ -87,7 +87,6 @@
         display: inline-block;
     }
     .authors-list {
-        max-width: 900px;
         flex-wrap: wrap;
         gap: 0.5em;
         margin-bottom: 0.5em;

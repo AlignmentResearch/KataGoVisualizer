@@ -11,7 +11,7 @@
     // Make the navbar collapse when a link is clicked (when viewport is narrow
     // enough that the navbar becomes collapsible).
     // Based on https://stackoverflow.com/a/42401686/4865149 but with
-    // modifications to make it work with Svelte rendering elements.
+    // modifications to make it work with Svelte's element rendering.
     // (The other solution using HTML attributes given in the SO answer, though
     // it's simpler, breaks the links' actual href functionality.)
     $: navLinks = navbarSupportedContent?.querySelectorAll('.nav-item')

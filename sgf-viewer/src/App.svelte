@@ -84,9 +84,12 @@
 
 <style>
     main {
-        max-width: 50em;
+        /* Set width to scale with viewport, otherwise flex elements
+           from .page can overflow the viewport width. */
+        max-width: min(50em, 90vw);
     }
     .page {
+        /* flex is the easiest way to use svelte-toc */
         display: flex;
         place-content: center;
         padding: 0 min(3em, 5vw);

@@ -57,47 +57,44 @@
     }
 </script>
 
-<div class="table-wrapper">
-    <table style="overflow: hidden;">
-        <tr>
-            <!-- slice(0, 1) drops the sgf_path column -->
-            {#each Object.values(tableColumns).slice(0, -1) as header}
-                <th>{header}</th>
-            {/each}
-            <th>Download</th>
-        </tr>
-        {#each games as game, index (index)}
-            <tr
-                class:selected-row={index === selectedRow}
-                on:click={() => clickCell(index)}
-            >
-                {#each game.slice(0, -1) as cell}
-                    <td>{cell}</td>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <!-- slice(0, 1) drops the sgf_path column -->
+                {#each Object.values(tableColumns).slice(0, -1) as header}
+                    <th scope="col">{header}</th>
                 {/each}
-                <td>
-                    <a
-                        href={indexToSgfPath(index)}
-                        download={"go_game.sgf"}
-                        class="icon"
-                    >
-                        <MdFileDownload />
-                    </a>
-                </td>
+                <th scope="col">Download</th>
             </tr>
-        {/each}
+        </thead>
+        <tbody>
+            {#each games as game, index (index)}
+                <tr
+                    class:selected-row={index === selectedRow}
+                    on:click={() => clickCell(index)}
+                >
+                    {#each game.slice(0, -1) as cell}
+                        <td>{cell}</td>
+                    {/each}
+                    <td>
+                        <a
+                            href={indexToSgfPath(index)}
+                            download={"go_game.sgf"}
+                            class="icon"
+                        >
+                            <MdFileDownload />
+                        </a>
+                    </td>
+                </tr>
+            {/each}
+        </tbody>
     </table>
 </div>
 
 <style>
-    div {
-        max-width: 100%;
-    }
     .icon :global(svg) {
         max-height: 1.5em;
-    }
-    .table-wrapper {
-        margin: 2vw;
-        overflow-x: auto;
     }
     table {
         border-collapse: collapse;
