@@ -58,7 +58,7 @@
 </script>
 
 <div class="table-responsive">
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <!-- slice(0, 1) drops the sgf_path column -->
@@ -71,7 +71,7 @@
         <tbody>
             {#each games as game, index (index)}
                 <tr
-                    class:selected-row={index === selectedRow}
+                    class:table-active={index === selectedRow}
                     on:click={() => clickCell(index)}
                 >
                     {#each game.slice(0, -1) as cell}
@@ -81,9 +81,10 @@
                         <a
                             href={indexToSgfPath(index)}
                             download={"go_game.sgf"}
-                            class="icon"
                         >
-                            <MdFileDownload />
+                            <div class="icon">
+                                <MdFileDownload />
+                            </div>
                         </a>
                     </td>
                 </tr>
@@ -93,13 +94,10 @@
 </div>
 
 <style>
-    .icon :global(svg) {
-        max-height: 1.5em;
-    }
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        border-radius: 10px;
+    .icon {
+        height: 1.5em;
+        width: 1.5em;
+        margin: auto;
     }
     th,
     td {
@@ -110,25 +108,12 @@
     }
     td {
         border: 1px solid rgb(172, 172, 172);
-        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    td:hover {
-        transform: scale(1.1);
-        background-color: var(--accent-color-2);
-    }
-    td:hover,
-    td:hover a {
-        color: var(--accent-color-3);
-    }
-    tr {
-        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .selected-row {
-        background-color: var(--accent-color-2);
-    }
-    .selected-row,
-    .selected-row a {
-        color: var(--accent-color-3);
+    .table-active {
+        --bs-table-bg-state: var(--accent-color-2);
+        --bs-table-active-color: var(--accent-color-3);
+        --bs-table-hover-bg: var(--accent-color-2);
+        --bs-table-hover-color: var(--accent-color-3);
     }
     th:first-of-type {
         border-top-left-radius: 10px;
