@@ -68,6 +68,8 @@
         </main>
         <Citation />
     </div>
+    <!-- Give the table of contents the same breakpoint as the navbar and give
+      it a fixed width. -->
     <Toc
         titleTag="h5"
         breakpoint={bootstrapLargeBreakpoint}
@@ -75,6 +77,10 @@
         --toc-desktop-max-width="12em"
     >
         <div class="toc-icon" slot="open-toc-icon">
+            <!-- The default mobile icon looks too much like the navbar icon.
+              We copy Wikipedia in using the standard hamburger icon for the
+              navbar and a bullet list icon for the table of contents
+            -->
             <MdFormatListBulleted />
         </div>
     </Toc>
