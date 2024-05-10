@@ -20,7 +20,6 @@
     import Title from "./components/Title.svelte";
     import { pages } from "./content";
 
-    let innerWidth;
     let pagesPaths = Object.keys(pages);
 
     let currentPath;
@@ -37,16 +36,11 @@
     $: sections = pagesPaths.includes(currentPath)
         ? pages[currentPath]["content"]
         : [];
-
-    const menuNavigationWidth = 915;
-    const contentsFloatWidth = 1500;
 </script>
 
 <svelte:head>
     <link rel="stylesheet" href={`/themes/light-theme.css`} />
 </svelte:head>
-
-<svelte:window bind:innerWidth />
 
 <NavBar bind:currentPath />
 <div class="page">
