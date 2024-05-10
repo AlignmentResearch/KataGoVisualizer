@@ -11,7 +11,7 @@
 
 <hr />
 <div>
-    <div class="citation">Citation Info</div>
+    <h4 class="toc-exclude">Citation Info</h4>
     <code on:click={tdFocus}>
         <pre>
 {`@inproceedings{wang2023adversarial,
@@ -36,19 +36,15 @@
             transparent 12px
         );
     }
-    .citation {
-        font-size: 22px;
+    h4 {
+        text-align: center;
         font-weight: 300;
         margin-top: 0.5em;
         margin-bottom: 0em;
     }
-    div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
     pre {
-        width: min(80vw, 800px);
+        margin: auto;
+        max-width: 80%;
         font-size: 13px;
     }
 </style>

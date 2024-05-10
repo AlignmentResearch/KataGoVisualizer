@@ -85,11 +85,19 @@
         /* flex is the easiest way to use svelte-toc */
         display: flex;
         justify-content: center;
-        /* TODO debug why padding isn't working as expected */
         padding: 0 min(1.5em, 4vw);
+        width: 100vw;
     }
     .content {
-        max-width: min(50em, 100vw);
+        max-width: 50em;
+        /* By default, flex items have a minimum width determined by their
+         * content.  This can cause the `.content` div to be wider than the
+         * viewport width when its content is wide. In particular, the
+         * `GameList` and `Citation` components can push out the minimum width,
+         * despite them having horizontal scrollbars. Explicitly setting
+         * `min-width` prevents this kind of overflow.
+         */
+        min-width: 0;
     }
     .toc-icon {
         height: 1em;
