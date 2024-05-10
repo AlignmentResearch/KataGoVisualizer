@@ -20,7 +20,8 @@
     import Title from "./components/Title.svelte";
     import { pages } from "./content";
 
-    let pagesPaths = Object.keys(pages);
+    const pagesPaths = Object.keys(pages);
+    const bootstrapLargeBreakpoint = parseInt(getComputedStyle(document.body).getPropertyValue("--bs-breakpoint-lg"));
 
     let currentPath;
     function updateCurrentPath() {
@@ -44,29 +45,32 @@
 
 <NavBar bind:currentPath />
 <div class="page">
-    <main>
+    <div class="content">
         <Title showAuthors={landingPage} />
-        <!-- Empty anchor target. Named for link backwards compatibility. -->
-        <div id="contents" />
-        {#key currentPath}
-            <h2>{pages[currentPath]["title"]}</h2>
-            {#if pages[currentPath]["description"]}
-                <div class="centerflex">
-                    <div class="text-wrapper">
-                        {#each pages[currentPath]["description"] as description}
-                            <p class="description-p">{@html description}</p>
-                        {/each}
-                    </div>
-                </div>
-            {/if}
-            {#each sections as section}
-                <Section {section} />
-            {/each}
-        {/key}
+            <main>
+                <!-- Empty anchor target. Named for link backwards compatibility. -->
+                <div id="contents" />
+                {#key currentPath}
+                    <h2>{pages[currentPath]["title"]}</h2>
+                    {#if pages[currentPath]["description"]}
+                        <div class="centerflex">
+                            <div class="text-wrapper">
+                                {#each pages[currentPath]["description"] as description}
+                                    <p class="description-p">{@html description}</p>
+                                {/each}
+                            </div>
+                        </div>
+                    {/if}
+                    {#each sections as section}
+                        <Section {section} />
+                    {/each}
+                {/key}
+            </main>
         <Citation />
-    </main>
+    </div>
     <Toc
         titleTag="h5"
+        breakpoint={bootstrapLargeBreakpoint}
         --toc-min-width="12em"
         --toc-desktop-max-width="12em"
     >
@@ -77,10 +81,8 @@
 </div>
 
 <style>
-    main {
-        /* Set width to scale with viewport, otherwise flex elements
-           from .page can overflow the viewport width. */
-        max-width: min(50em, 90vw);
+    .content {
+        max-width: min(50em, 100vw);
     }
     #contents {
         /* Extra scroll margin when navigating to the #contents anchor. */
@@ -90,6 +92,7 @@
         /* flex is the easiest way to use svelte-toc */
         display: flex;
         justify-content: center;
+        padding: 0 min(1.5em, 4vw);
     }
     .toc-icon {
         height: 1em;

@@ -56,6 +56,7 @@
 <style>
 /* Make dropdown menus open on hover.
    https://stackoverflow.com/questions/70739334/bootstrap-5-dropdown-open-on-hover-and-click-to-go-to-new-url
+   992px is the breakpoint for Bootstrap's `lg` size.
  */
 @media (min-width: 992px) {
     .dropdown:hover > .dropdown-menu {
