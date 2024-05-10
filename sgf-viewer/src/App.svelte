@@ -47,25 +47,25 @@
 <div class="app">
     <div class="content">
         <Title showAuthors={landingPage} />
-            <main>
-                <!-- Empty anchor target. Named for link backwards compatibility. -->
-                <div id="contents" />
-                {#key currentPath}
-                    <h2>{pages[currentPath]["title"]}</h2>
-                    {#if pages[currentPath]["description"]}
-                        <div class="centerflex">
-                            <div class="text-wrapper">
-                                {#each pages[currentPath]["description"] as description}
-                                    <p class="description-p">{@html description}</p>
-                                {/each}
-                            </div>
+        <main>
+            <!-- Empty anchor target. Named for link backwards compatibility. -->
+            <div id="contents" />
+            {#key currentPath}
+                <h2>{pages[currentPath]["title"]}</h2>
+                {#if pages[currentPath]["description"]}
+                    <div class="centerflex">
+                        <div class="text-wrapper">
+                            {#each pages[currentPath]["description"] as description}
+                                <p class="description-p">{@html description}</p>
+                            {/each}
                         </div>
-                    {/if}
-                    {#each sections as section}
-                        <Section {section} />
-                    {/each}
-                {/key}
-            </main>
+                    </div>
+                {/if}
+                {#each sections as section}
+                    <Section {section} />
+                {/each}
+            {/key}
+        </main>
         <Citation />
     </div>
     <Toc
