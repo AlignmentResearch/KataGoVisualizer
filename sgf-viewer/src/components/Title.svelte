@@ -117,8 +117,8 @@
     .image-cards {
         display: flex;
         flex-wrap: wrap;
-        margin-top: 0.2rem;
-        margin-bottom: 0.4rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
         align-items: center;
         justify-content: center;
         padding: 0;
