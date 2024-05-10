@@ -8,22 +8,21 @@
     let pagesPaths = Object.keys(pages);
     let navbarSupportedContent;
 
-    // Make the navbar collapse when a non-dropdown link is clicked (when
-    // viewport is narrow enough that the navbar becomes collapsible).
+    // Make the navbar collapse when a non-dropdown link is clicked on mobile.
     // Based on https://stackoverflow.com/a/42401686/4865149 but with
-    // modifications to make it work with Svelte's element rendering.
+    // modifications to make it work with Svelte's dynamic element rendering.
     // (The other solution using HTML attributes given in the SO answer, though
     // it's simpler, breaks the links' actual href functionality.)
     $: navLinks = navbarSupportedContent?.querySelectorAll('.nav-item:not(.dropdown)')
     $: bootstrapCollapse = navbarSupportedContent ? Collapse.getOrCreateInstance(navbarSupportedContent, {toggle: false}) : undefined
     $: if (navLinks) {
-        navLinks.forEach((l) => {
-            l.addEventListener('click', () => { bootstrapCollapse.toggle() })
+        navLinks.forEach((link) => {
+            link.addEventListener('click', () => { bootstrapCollapse.toggle() })
         })
     }
 </script>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="https://far.ai">
             <img src="/images/far-logo.svg" alt="FAR logo" width="24" height="24" class="d-inline-block align-text-top">
@@ -56,7 +55,11 @@
 <style>
 /* Make dropdown menus open on hover.
    https://stackoverflow.com/questions/70739334/bootstrap-5-dropdown-open-on-hover-and-click-to-go-to-new-url
-   992px is the breakpoint for Bootstrap's `lg` size.
+   `--bs-breakpoint-lg: 992px` is the breakpoint for Bootstrap's `lg` size, but
+   we can't use CSS variables in media queries.
+
+   Bootstrap made a conscious design decision to not have hover dropdowns:
+   https://getbootstrap.com/docs/5.0/components/dropdowns/#overview
  */
 @media (min-width: 992px) {
     .dropdown:hover > .dropdown-menu {
