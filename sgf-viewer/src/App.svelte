@@ -44,7 +44,7 @@
 </svelte:head>
 
 <NavBar bind:currentPath />
-<div class="page">
+<div class="app">
     <div class="content">
         <Title showAuthors={landingPage} />
             <main>
@@ -88,7 +88,7 @@
         /* Extra scroll margin when navigating to the #contents anchor. */
         scroll-margin-top: 1em;
     }
-    .page {
+    .app {
         /* flex is the easiest way to use svelte-toc */
         display: flex;
         justify-content: center;
