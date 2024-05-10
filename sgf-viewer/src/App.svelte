@@ -75,7 +75,6 @@
         titleTag="h5"
         --toc-min-width="12em"
         --toc-desktop-max-width="12em"
-        --toc-z-index="1000"
     >
         <div class="toc-icon" slot="open-toc-icon">
             <MdFormatListBulleted />

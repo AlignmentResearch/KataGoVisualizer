@@ -8,13 +8,13 @@
     let pagesPaths = Object.keys(pages);
     let navbarSupportedContent;
 
-    // Make the navbar collapse when a link is clicked (when viewport is narrow
-    // enough that the navbar becomes collapsible).
+    // Make the navbar collapse when a non-dropdown link is clicked (when
+    // viewport is narrow enough that the navbar becomes collapsible).
     // Based on https://stackoverflow.com/a/42401686/4865149 but with
     // modifications to make it work with Svelte's element rendering.
     // (The other solution using HTML attributes given in the SO answer, though
     // it's simpler, breaks the links' actual href functionality.)
-    $: navLinks = navbarSupportedContent?.querySelectorAll('.nav-item')
+    $: navLinks = navbarSupportedContent?.querySelectorAll('.nav-item:not(.dropdown)')
     $: bootstrapCollapse = navbarSupportedContent ? Collapse.getOrCreateInstance(navbarSupportedContent, {toggle: false}) : undefined
     $: if (navLinks) {
         navLinks.forEach((l) => {
@@ -52,3 +52,17 @@
         </div>
     </div>
 </nav>
+
+<style>
+/* Make dropdown menus open on hover.
+   https://stackoverflow.com/questions/70739334/bootstrap-5-dropdown-open-on-hover-and-click-to-go-to-new-url
+ */
+@media (min-width: 992px) {
+    .dropdown:hover > .dropdown-menu {
+        display: block;
+    }
+    .dropdown > .dropdown-toggle:active {
+        pointer-events: none;
+    }
+}
+</style>
