@@ -89,6 +89,10 @@
            from .page can overflow the viewport width. */
         max-width: min(50em, 90vw);
     }
+    #contents {
+        /* Extra scroll margin when navigating to the #contents anchor. */
+        scroll-margin-top: 1em;
+    }
     .page {
         /* flex is the easiest way to use svelte-toc */
         display: flex;
