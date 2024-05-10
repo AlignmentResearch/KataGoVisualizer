@@ -53,13 +53,9 @@
             {#key currentPath}
                 <h2>{pages[currentPath]["title"]}</h2>
                 {#if pages[currentPath]["description"]}
-                    <div class="centerflex">
-                        <div class="text-wrapper">
-                            {#each pages[currentPath]["description"] as description}
-                                <p class="description-p">{@html description}</p>
-                            {/each}
-                        </div>
-                    </div>
+                    {#each pages[currentPath]["description"] as description}
+                        <p class="description-p">{@html description}</p>
+                    {/each}
                 {/if}
                 {#each sections as section}
                     <Section {section} />
