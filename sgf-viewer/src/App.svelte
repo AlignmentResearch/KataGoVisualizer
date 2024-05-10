@@ -93,7 +93,7 @@
     .content {
         max-width: 50em;
         /* By default, flex items have a minimum width determined by their
-         * content.  This can cause the `.content` div to be wider than the
+         * content. This can cause the `.content` div to be wider than the
          * viewport width when its content is wide. In particular, the
          * `GameList` and `Citation` components can push out the minimum width,
          * despite them having horizontal scrollbars. Explicitly setting
