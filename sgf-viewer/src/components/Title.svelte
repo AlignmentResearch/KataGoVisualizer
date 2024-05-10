@@ -38,11 +38,11 @@
         ["chai", ["5", "Center for Human-Compatible AI", "https://humancompatible.ai/"]],
     ]);
 </script>
-<p class="paper-title">
+<h1 class="toc-exclude">
     <!-- spans make title breaking nicer -->
     <span class="paper-title-span">Adversarial Policies Beat</span>
     <span class="paper-title-span">Superhuman Go AIs</span>
-</p>
+</h1>
 {#if showAuthors}
     <div>
         <div class="authors-list">
@@ -75,13 +75,10 @@
 </div>
 
 <style>
-    .paper-title {
-        font-size: 2em;
-        font-weight: 700;
-        line-height: 1.3em;
-        margin-top: 0.5em;
-        margin-bottom: 0.4em;
-        text-align: center;
+    h1 {
+      font-weight: 700;
+      margin-top: 0.5em;
+      text-align: center;
     }
     .paper-title-span {
         display: inline-block;
