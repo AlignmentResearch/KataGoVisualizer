@@ -89,8 +89,7 @@
     .page {
         /* flex is the easiest way to use svelte-toc */
         display: flex;
-        place-content: center;
-        padding: 0 min(3em, 5vw);
+        justify-content: center;
     }
     .toc-icon {
         height: 1em;
