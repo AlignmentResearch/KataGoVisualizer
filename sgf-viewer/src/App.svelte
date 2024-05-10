@@ -81,21 +81,22 @@
 </div>
 
 <style>
-    .content {
-        max-width: min(50em, 100vw);
-    }
-    #contents {
-        /* Extra scroll margin when navigating to the #contents anchor. */
-        scroll-margin-top: 1em;
-    }
     .app {
         /* flex is the easiest way to use svelte-toc */
         display: flex;
         justify-content: center;
+        /* TODO debug why padding isn't working as expected */
         padding: 0 min(1.5em, 4vw);
+    }
+    .content {
+        max-width: min(50em, 100vw);
     }
     .toc-icon {
         height: 1em;
         width: 1em;
+    }
+    #contents {
+        /* Extra scroll margin when navigating to the #contents anchor. */
+        scroll-margin-top: 1em;
     }
 </style>
