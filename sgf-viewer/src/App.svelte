@@ -44,7 +44,7 @@
 </svelte:head>
 
 <NavBar bind:currentPath />
-<div class="app">
+<div class="flex-container">
     <div class="content">
         <Title showAuthors={landingPage} />
         <main>
@@ -81,7 +81,7 @@
 </div>
 
 <style>
-    .app {
+    .flex-container {
         /* flex is the easiest way to use svelte-toc */
         display: flex;
         justify-content: center;
