@@ -38,7 +38,7 @@
         ["chai", ["5", "Center for Human-Compatible AI", "https://humancompatible.ai/"]],
     ]);
 </script>
-<h1 class="toc-exclude">
+<h1>
     <!-- spans make title breaking nicer -->
     <span class="paper-title-span">Adversarial Policies Beat</span>
     <span class="paper-title-span">Superhuman Go AIs</span>
