@@ -9,6 +9,8 @@
 
     let goBoardDiv: HTMLElement;
     let wgoPlayer: WGo.BasicPlayer;
+    // Arbitrary large number, needs to be larger than the move count in any of
+    // our SGFs.
     const LAST_MOVE_NUM = 10000;
 
     function releaseCanvas(canvas) {
