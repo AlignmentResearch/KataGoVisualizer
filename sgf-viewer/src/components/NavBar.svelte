@@ -52,18 +52,31 @@
 
 <style>
 /* Make dropdown menus open on hover.
-   https://stackoverflow.com/questions/70739334/bootstrap-5-dropdown-open-on-hover-and-click-to-go-to-new-url
-   `--bs-breakpoint-lg: 992px` is the breakpoint for Bootstrap's `lg` size, but
-   we can't use CSS variables in media queries.
 
-   Bootstrap made a conscious design decision to not have hover dropdowns:
-   https://getbootstrap.com/docs/5.0/components/dropdowns/#overview
+   Source for the CSS attributes: https://stackoverflow.com/a/74985391/4865149
+
+   The `min-width` media query disables hover dropdowns when the navbar is
+   collapsed. `--bs-breakpoint-lg: 992px` is the breakpoint for Bootstrap's
+   `lg` size. We can't use CSS variables in media queries, so we hard code
+   "992px".
+
+   The `hover` media query ensures we only apply hover dropdowns when the user's
+   device actually supports hovering. E.g., on tablet, the navbar may be
+   non-collapsed, but since tablets cannot hover, they should be able to click
+   the navbar.
+
+   Bootstrap made a conscious design decision to not have hover dropdowns
+   (https://getbootstrap.com/docs/5.0/components/dropdowns/#overview) but for
+   this website where we have a bunch of similar content spread throughout
+   dropdowns, it's nice to save the user a click via hovering.
  */
-@media (min-width: 992px) {
+@media (min-width: 992px) and (hover: hover) {
     .dropdown:hover > .dropdown-menu {
         display: block;
     }
     .dropdown > .dropdown-toggle:active {
+        /* Clicking a hovered dropdown toggles some extra Bootstrap logic that
+         * looks weird, so we make it non-clickable. */
         pointer-events: none;
     }
 }
