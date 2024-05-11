@@ -35,6 +35,6 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  /* Controls where we scroll to when we click a table-of-contents link. */
+  /* Add additional margin to the scroll location of a table-of-contents link. */
   scroll-margin-top: 1em;
 }
