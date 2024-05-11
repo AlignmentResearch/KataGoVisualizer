@@ -52,6 +52,9 @@
 </nav>
 
 <style>
+.navbar {
+  --bs-navbar-active-color: var(--dark-accent-color);
+}
 /* Make dropdown menus open on hover.
 
    Source for the CSS attributes: https://stackoverflow.com/a/74985391/4865149

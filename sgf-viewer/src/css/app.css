@@ -1,7 +1,18 @@
 :root {
-  --accent-color-1: #0086da;
-  --accent-color-2: #F29900;
-  --accent-color-3: white;
+  /* FAR branding colors */
+  --near-white: #f7f7f7;
+  --medium-accent-color: #009999;
+  --light-accent-color: #d9d9d9;
+  --dark-accent-color: #226666;
+  --logo-color: #46cdcf;
+
+  --accent-color-1: var(--dark-accent-color);
+  --accent-color-2: var(--medium-accent-color);
+  --accent-color-3: var(--near-white);
+
+  --bs-body-bg: var(--near-white);
+  --bs-body-bg-rgb: 247, 247, 247;
+
 }
 
 html {
@@ -26,12 +37,12 @@ body {
 a {
   font-weight: bold;
   font-size: 18px;
-  color: var(--accent-color-1);
+  color: var(--medium-accent-color);
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
+  color: var(--logo-color);
 }
 
 /* Bootstrap removes some CSS for <a> tags no href and no class. Add this

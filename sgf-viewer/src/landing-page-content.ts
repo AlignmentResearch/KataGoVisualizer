@@ -15,7 +15,7 @@ export const cards: Array<any> =
         border: true,
     },
     {
-        image: "/images/far-logo.svg",
+        image: "/images/far-logo-textless.svg",
         imageName: "blog",
         description: "Blog",
         url: "https://far.ai/post/2023-07-superhuman-go-ais/",
