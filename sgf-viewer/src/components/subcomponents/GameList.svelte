@@ -112,6 +112,10 @@
     .table-active {
         --bs-table-bg-state: var(--accent-color-2);
         --bs-table-active-color: var(--accent-color-3);
+        /* We set --bs-table-hover-* because otherwise when the user clicks a
+         * row while hovering, they still just see the hover color instead of
+         * the active color.
+         */
         --bs-table-hover-bg: var(--accent-color-2);
         --bs-table-hover-color: var(--accent-color-3);
     }
