@@ -1,12 +1,14 @@
 :root {
+  --accent-color-1: #0086da;
+  --accent-color-2: #F29900;
+  --accent-color-3: white;
+}
+
+html {
   color-scheme: light dark;
 
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-
-  --accent-color-1: #0086da;
-  --accent-color-2: #F29900;
-  --accent-color-3: white;
 }
 
 body {
