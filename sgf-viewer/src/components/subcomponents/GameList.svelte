@@ -61,7 +61,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <!-- slice(0, 1) drops the sgf_path column -->
+                <!-- slice(0, -1) drops the sgf_path column -->
                 {#each Object.values(tableColumns).slice(0, -1) as header}
                     <th scope="col">{header}</th>
                 {/each}
