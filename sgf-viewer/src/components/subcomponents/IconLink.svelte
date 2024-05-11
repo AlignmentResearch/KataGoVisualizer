@@ -48,6 +48,7 @@
         text-align: center;
         font-size: 16px;
         font-weight: 600;
+        margin-top: 0.5em;
         margin-bottom: 1em;
     }
 </style>
