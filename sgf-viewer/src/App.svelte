@@ -39,10 +39,6 @@
         : [];
 </script>
 
-<svelte:head>
-    <link rel="stylesheet" href={`/themes/light-theme.css`} />
-</svelte:head>
-
 <NavBar bind:currentPath />
 <div class="flex-container">
     <div class="content">
