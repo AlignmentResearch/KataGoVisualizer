@@ -9,6 +9,8 @@
     let navbarSupportedContent;
 
     // Make the navbar collapse when a non-dropdown link is clicked on mobile.
+    // This is needed because we have a single-page app, and our links don't
+    // actually open a new page.
     // Based on https://stackoverflow.com/a/42401686/4865149 but with
     // modifications to make it work with Svelte's dynamic element rendering.
     // (The other solution using HTML attributes given in the SO answer, though
