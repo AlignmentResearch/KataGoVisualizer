@@ -35,7 +35,7 @@
     {/if}
     {#if section["figure"]}
         <div class="iframe-container">
-        <iframe src="{section["figure"]}" title={section["title"]}></iframe>
+            <iframe src="{section["figure"]}" title={section["title"]}></iframe>
         </div>
     {/if}
     {#if section["discussion"]}
