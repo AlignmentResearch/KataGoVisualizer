@@ -38,13 +38,11 @@
         ["chai", ["5", "Center for Human-Compatible AI", "https://humancompatible.ai/"]],
     ]);
 </script>
-<div class="paper-title-wrapper">
-    <p class="paper-title">
-        <!-- spans make title breaking nicer -->
-        <span class="paper-title-span">Adversarial Policies Beat</span>
-        <span class="paper-title-span">Superhuman Go AIs</span>
-    </p>
-</div>
+<h1>
+    <!-- spans make title breaking nicer -->
+    <span class="paper-title-span">Adversarial Policies Beat</span>
+    <span class="paper-title-span">Superhuman Go AIs</span>
+</h1>
 {#if showAuthors}
     <div>
         <div class="authors-list">
@@ -77,23 +75,15 @@
 </div>
 
 <style>
-    .paper-title-wrapper {
-        margin-left: 1.5em;
-        margin-right: 1.5em;
-    }
-    .paper-title {
-        font-size: 44px;
-        font-weight: 700;
-        line-height: 1.3em;
-        margin-top: 0.5em;
-        margin-bottom: 0.4em;
-        text-align: center;
+    h1 {
+      font-weight: 700;
+      margin-top: 0.5em;
+      text-align: center;
     }
     .paper-title-span {
         display: inline-block;
     }
     .authors-list {
-        max-width: 900px;
         flex-wrap: wrap;
         gap: 0.5em;
         margin-bottom: 0.5em;
@@ -124,18 +114,11 @@
         display: flex;
         justify-content: center;
     }
-    .logos {
-        display: flex;
-        justify-content: center;
-        gap: 0.9vmin;
-        margin-top: 1.2vmin;
-        margin-bottom: -2vh;
-    }
     .image-cards {
         display: flex;
         flex-wrap: wrap;
-        margin-top: 0.2rem;
-        margin-bottom: 0.4rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
         align-items: center;
         justify-content: center;
         padding: 0;

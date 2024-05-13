@@ -10,18 +10,16 @@
 </script>
 
 <hr />
-<div>
-    <div class="citation">Citation Info</div>
-    <code on:click={tdFocus}>
-        <pre>
+<h4 class="toc-exclude">Citation Info</h4>
+<code on:click={tdFocus}>
+    <pre>
 {`@inproceedings{wang2023adversarial,
     title={Adversarial Policies Beat Superhuman Go AIs},
     author={Wang, Tony T and Gleave, Adam and Tseng, Tom and Pelrine, Kellin and Belrose, Nora and Miller, Joseph and Dennis, Michael D and Duan, Yawen and Pogrebniak, Viktor and Levine, Sergey and Russell, Stuart},
     booktitle={International Conference on Machine Learning},
     year={2023}
 }`}</pre>
-    </code>
-</div>
+</code>
 
 <style>
     hr {
@@ -36,19 +34,15 @@
             transparent 12px
         );
     }
-    .citation {
-        font-size: 22px;
+    h4 {
+        text-align: center;
         font-weight: 300;
         margin-top: 0.5em;
         margin-bottom: 0em;
     }
-    div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
     pre {
-        width: min(80vw, 800px);
+        margin: auto;
+        max-width: 80%;
         font-size: 13px;
     }
 </style>

@@ -7,7 +7,7 @@
 </script>
 
 <div class="centerflex" id={section["dir_name"]}>
-    <h3 class="subheading">
+    <h3>
         {section["title"]}
     </h3>
     <div class="text-wrapper">
@@ -22,19 +22,21 @@
                 <GoBoard dirName={section["dir_name"]} {sgfPath} />
             </div>
         </div>
-        <div class="annotation">
-            <p class="annotation-item" style="text-align: left;">
+        <div class="d-flex m-2">
+            <p class="me-auto m-2">
                 <b>Victim:</b>
                 {@html section["victim"]}
             </p>
-            <p class="annotation-item" style="text-align: right;">
+            <p class="m-2 text-end">
                 <b>Adversary:</b>
                 {@html section["adversary"]}
             </p>
         </div>
     {/if}
     {#if section["figure"]}
-        <iframe src="{section["figure"]}" title={section["title"]}></iframe>
+        <div class="iframe-container">
+            <iframe src="{section["figure"]}" title={section["title"]}></iframe>
+        </div>
     {/if}
     {#if section["discussion"]}
         <p>{section["discussion"]}</p>
@@ -42,17 +44,8 @@
 </div>
 
 <style>
-    .annotation {
-        display: flex;
-        position: relative;
-        margin-top: 0.5rem;
-        margin-bottom: 0.1rem;
-    }
-    .annotation-item {
-        align-self: flex-start;
-        margin-left: 2rem;
-        margin-right: 2rem;
-        margin-bottom: 2rem;
+    .iframe-container {
+        text-align: center;
     }
     iframe {
         width: min(90vw, 800px);
@@ -60,39 +53,9 @@
         border: none;
         margin-top: 1em;
     }
-    .subheading {
-        top: calc(var(--scroll-margin) + 1vh);
-        position: sticky;
-        background-color: var(--accent-color-2);
-        color: white;
-        text-align: center;
-        font-weight: normal;
-        box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.75);
-        padding: 13px;
-        border-radius: 105px;
-        z-index: 998;
-    }
-    .centerflex {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .text-wrapper {
-        width: min(90vw, 800px);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        margin: 0.5rem;
-    }
-    p {
-        font-size: 18px;
-        align-self: flex-start;
-        max-width: min(90vw, 800px);
-        text-align: justify;
-        margin-top: 0.4rem;
-        margin-bottom: 0.4rem;
+    h3 {
+      margin-top: 1em;
+      margin-bottom: 0.5em;
     }
     .board-wrapper {
         display: flex;
