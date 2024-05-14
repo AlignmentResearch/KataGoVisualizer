@@ -5,10 +5,10 @@ export const pages: object =
     "home": {
         "title": "Home",
         "description": [
-            `We attack the state-of-the-art Go-playing AI system KataGo by training adversarial policies against it, achieving a >97% win rate against KataGo running at superhuman settings. Our adversaries do not win by playing Go well. Instead, they trick KataGo into making serious blunders. Our attack transfers zero-shot to other superhuman Go-playing AIs, and is comprehensible to the extent that human experts can implement it without algorithmic assistance to consistently beat superhuman AIs. The core vulnerability uncovered by our attack persists even in KataGo agents adversarially trained to defend against our attack. Our results demonstrate that even superhuman AI systems may harbor surprising failure modes.`,
-            `Click on the different sections above to view different examples of our adversaries in action. Some recommended places to start: the <a href="adversarial-policy-katago#contents">Cyclic Attack</a> shows off our strongest adversary, the <a href="human-evaluation#contents">Human Games</a> tab contains examples of humans beating both superhuman AIs and our adversaries, and the <a href="adversarial-training#contents">Adversarial Training</a> tab details attempts to defend against our attack. All games on this website randomly selected unless otherwise specified.`,
-            `<img class="paper-image" src="/images/cyclic-example.svg" alt="Cyclic Attack" style="width: 250px; display: block; margin: 0.75rem auto;"/>`,
-            `<div style="text-align: center; margin-top: -0.75rem;">An example of our attack in action.</div>`
+            "We attack the state-of-the-art Go-playing AI system KataGo by training adversarial policies against it, achieving a >97% win rate against KataGo running at superhuman settings. Our adversaries do not win by playing Go well. Instead, they trick KataGo into making serious blunders. Our attack transfers zero-shot to other superhuman Go-playing AIs, and is comprehensible to the extent that human experts can implement it without algorithmic assistance to consistently beat superhuman AIs. The core vulnerability uncovered by our attack persists even in KataGo agents adversarially trained to defend against our attack. Our results demonstrate that even superhuman AI systems may harbor surprising failure modes.",
+            "Click on the different sections above to view different examples of our adversaries in action. Some recommended places to start: the <a href=\"adversarial-policy-katago#contents\">Cyclic Attack</a> shows off our strongest adversary, the <a href=\"human-evaluation#contents\">Human Games</a> tab contains examples of humans beating both superhuman AIs and our adversaries, and the <a href=\"adversarial-training#contents\">Adversarial Training</a> tab details attempts to defend against our attack. All games on this website randomly selected unless otherwise specified.",
+            "<img class=\"paper-image\" src=\"/images/cyclic-example.svg\" alt=\"Cyclic Attack\" style=\"width: 250px; display: block; margin: 0.75rem auto;\"/>",
+            "<div style=\"text-align: center; margin-top: -0.75rem;\">An example of our attack in action.</div>"
         ],
         "content": [
             {
@@ -28,7 +28,7 @@ export const pages: object =
                     "<b>Q: Where can I learn more?</b>",
                     "Aside from the rest of this website and the links at the top of the page, there is a YouTube video of a talk and demo given by Tony and Kellin <a target=\"_blank\" href=\"https://www.youtube.com/watch?v=CNo3lOT1NYA&ab_channel=CrossLabsAI\">here</a>."
                 ]
-            },
+            }
         ]
     },
     "adversarial-policy-katago": {
