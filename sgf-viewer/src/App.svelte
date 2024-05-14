@@ -18,7 +18,10 @@
     import NavBar from "./components/NavBar.svelte";
     import Section from "./components/Section.svelte";
     import Title from "./components/Title.svelte";
-    import { pages } from "./content";
+
+    // TODO refactor these out
+    import { pages } from "./defense/content";
+    import { authors, cards, citation, title } from "./defense/landing-page-content";
 
     const pagesPaths = Object.keys(pages);
     const bootstrapLargeBreakpoint = parseInt(getComputedStyle(document.body).getPropertyValue("--bs-breakpoint-lg"));
@@ -39,10 +42,10 @@
         : [];
 </script>
 
-<NavBar bind:currentPath />
+<NavBar {pages} bind:currentPath />
 <div class="flex-container">
     <div class="content">
-        <Title showAuthors={landingPage} />
+        <Title {title} {authors} {cards} showAuthors={landingPage} />
         <main>
             <!-- Empty anchor target. Named for link backwards compatibility. -->
             <div id="contents" />
@@ -58,7 +61,7 @@
                 {/each}
             {/key}
         </main>
-        <Citation />
+        <Citation {citation} />
     </div>
     <!-- Give the table of contents the same breakpoint as the navbar and give
       it a fixed width. -->

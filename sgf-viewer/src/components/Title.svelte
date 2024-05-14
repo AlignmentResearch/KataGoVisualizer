@@ -1,62 +1,76 @@
 <script lang="ts">
-    import { cards } from "../landing-page-content";
     import IconLink from "./subcomponents/IconLink.svelte";
 
+    // Page title separated into phrases where line breaks are preferred.
+    export let title: string[];
+    // Array of [(Author, their institutions, and an asterisk for equal contribution)
+    export let authors: [string, string[], string | undefined][];
+    export let cards: Array<any>;
     export let showAuthors: boolean = true;
 
-    const authors: [string, string, string[]][] = [
-        ["Tony Wang", "https://terveisin.tw/", ["mit"]],
-        ["Adam Gleave", "https://www.gleave.me/", ["far"]],
-        ["Tom Tseng", "https://www.tomhmtseng.com/", ["far"]],
-        [
-            "Kellin Pelrine",
-            "https://scholar.google.com/citations?user=_s2HT_0AAAAJ&hl=en",
-            ["far", "mila"]
-        ],
-        ["Nora Belrose", "https://twitter.com/norabelrose", ["far"]],
-        ["Joseph Miller", "https://far.ai/author/joseph-miller/", ["far"]],
-        [
-            "Michael Dennis",
-            "https://scholar.google.com/citations?user=WXXu26AAAAAJ&hl=en&authuser=1",
-            ["berk", "chai"],
-        ],
-        [
-            "Yawen Duan",
-            "https://scholar.google.com/citations?user=IJQlPvYAAAAJ&hl=en",
-            ["berk", "chai"],
-        ],
-        ["Viktor Pogrebniak", "https://www.linkedin.com/in/avtomaton/", []],
-        ["Sergey Levine", "https://people.eecs.berkeley.edu/~svlevine/", ["berk"]],
-        ["Stuart Russell", "https://people.eecs.berkeley.edu/~russell/", ["berk", "chai"]],
-    ];
-
-    const instMap: Map<string, [string, string, string]> = new Map([
-        ["mit", ["1", "MIT CSAIL", "https://www.csail.mit.edu/"]],
-        ["far", ["2", "FAR AI", "https://far.ai/"]],
-        ["mila", ["3", "McGill University; Mila", "https://mila.quebec/en/"]],
-        ["berk", ["4", "UC Berkeley", "https://www.berkeley.edu/"]],
-        ["chai", ["5", "Center for Human-Compatible AI", "https://humancompatible.ai/"]],
+    const authorToWebsite: Map<string, string> = new Map([
+        ["Nora Belrose", "https://twitter.com/norabelrose"],
+        ["Michael Dennis", "https://www.michaeldennis.ai/"],
+        ["Yawen Duan", "https://scholar.google.com/citations?user=IJQlPvYAAAAJ"],
+        ["Adam Gleave", "https://www.gleave.me/"],
+        ["Sergey Levine", "https://people.eecs.berkeley.edu/~svlevine/"],
+        ["Euan McLean", "https://scholar.google.com/citations?user=ljA17W8AAAAJ"],
+        ["Joseph Miller", "https://www.linkedin.com/in/joseph-miller-991479161"],
+        ["Kellin Pelrine", "https://kellinpelrine.github.io/"],
+        ["Viktor Pogrebniak", "https://www.linkedin.com/in/avtomaton/"],
+        ["Stuart Russell", "https://people.eecs.berkeley.edu/~russell/"],
+        ["Tom Tseng", "https://www.tomhmtseng.com/"],
+        ["Tony Wang", "https://terveisin.tw/"],
     ]);
+
+    const instMap: Map<string, [string, string]> = new Map([
+        ["berk", ["UC Berkeley", "https://www.berkeley.edu/"]],
+        ["chai", ["Center for Human-Compatible AI", "https://humancompatible.ai/"]],
+        ["far", ["FAR AI", "https://far.ai/"]],
+        ["mila", ["McGill University; Mila", "https://mila.quebec/en/"]],
+        ["mit", ["MIT CSAIL", "https://www.csail.mit.edu/"]],
+    ]);
+    function getInstitutionToIndex(authors) {
+        // Numbers the institutions in the order they appear in the authors
+        // list.
+        const institutionToIndex = new Map();
+        let index = 1;
+        for (const author of authors) {
+            for (const institution of author[1]) {
+                if (!institutionToIndex.has(institution)) {
+                    institutionToIndex.set(institution, index);
+                    index++;
+                }
+            }
+        }
+        return institutionToIndex;
+    }
+    $: institutionToIndex = getInstitutionToIndex(authors);
 </script>
 <h1>
-    <!-- spans make title breaking nicer -->
-    <span class="paper-title-span">Adversarial Policies Beat</span>
-    <span class="paper-title-span">Superhuman Go AIs</span>
+    {#each title as line}
+        <!-- spans make title breaking nicer -->
+        <span class="paper-title-span">{line}</span>
+        {@html '&#x20;'}
+    {/each}
 </h1>
 {#if showAuthors}
     <div>
         <div class="authors-list">
-            {#each [...authors] as [name, link, institutions], i}
-                <a class="authors-list-item" href={link} target="_blank">
-                    <span class="author-name">{name}</span>{#if i <= 1}*{/if}<sup>{#if i > 1}{@html '&#x20;'}{:else}&thinsp;{/if}{#each institutions as instKey}{instMap.get(instKey)[0]}{@html '&#x20;'}{/each}</sup>
+            {#each [...authors] as [name, institutions, asterisk], i}
+                <a class="authors-list-item" href={authorToWebsite.get(name)} target="_blank">
+                    <span class="author-name">{name}</span>{#if asterisk}{asterisk}{/if}
+                    <sup>{#each institutions as instKey}{institutionToIndex.get(instKey)}{@html '&#x20;'}{/each}</sup>
                 </a>
             {/each}
         </div>
     </div>
     <div>
         <div class="authors-list">
-            {#each [...instMap] as [abbrev, [index, name, link]]}
-                <a class="institution-list-item" href={link} target="_blank"><sup>{index}</sup> {name}</a>
+            {#each [...institutionToIndex] as [inst, index]}
+                <a class="institution-list-item" href={instMap.get(inst)[1]} target="_blank">
+                    <sup>{index}</sup> {instMap.get(inst)[0]}
+                </a>
             {/each}
         </div>
     </div>

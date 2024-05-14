@@ -1,9 +1,9 @@
 <script lang="ts">
-    import { pages } from "../content";
 
     import { Collapse } from "bootstrap";
 
     export let currentPath: string;
+    export let pages: Record<string, any>;
 
     let pagesPaths = Object.keys(pages);
     let navbarSupportedContent;
