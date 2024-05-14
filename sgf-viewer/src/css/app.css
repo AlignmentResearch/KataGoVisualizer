@@ -9,6 +9,7 @@
   --accent-color-1: var(--dark-accent-color);
   --accent-color-2: var(--medium-accent-color);
   --accent-color-3: var(--near-white);
+  --link-hover-color: var(--logo-color);
 
   --bs-body-bg: var(--near-white);
   --bs-body-bg-rgb: 247, 247, 247;
@@ -42,7 +43,7 @@ a {
 }
 
 a:hover {
-  color: var(--logo-color);
+  color: var(--link-hover-color);
 }
 
 /* Bootstrap removes some CSS for <a> tags no href and no class. Add this
