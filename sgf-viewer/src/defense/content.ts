@@ -20,54 +20,54 @@ export const pages: object =
             {
                 "title": "Cyclic attack",
                 "dir_name": "defense/dec23-vs-continuous",
-                "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v8192/sample-sgfs.sh",
+                "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/sample-sgfs.sh",
                 "paths_with_line_num": [
                     {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v8192/sgfs/5A01DD4E71A5BBBF.sgfs",
-                        "line": 8
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v8192/sgfs/A45BDE3B9D8964E7.sgfs",
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/2AA99D7D5D195D86.sgfs",
                         "line": 2
                     },
                     {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v8192/sgfs/A85188F8DEC98C13.sgfs",
-                        "line": 2
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v8192/sgfs/0FA7A93030D755E0.sgfs",
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/E61F14B35A2F4C18.sgfs",
                         "line": 3
                     },
                     {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v8192/sgfs/A64B2F59F89A63A3.sgfs",
-                        "line": 5
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v8192/sgfs/A45BDE3B9D8964E7.sgfs",
-                        "line": 5
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v8192/sgfs/4A392658A2002C3C.sgfs",
-                        "line": 7
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v8192/sgfs/C555DF5A8DFDD757.sgfs",
-                        "line": 8
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v8192/sgfs/5E84E6C038439BA5.sgfs",
-                        "line": 3
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v8192/sgfs/9689E59C2BE93D63.sgfs",
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/32234108DFCBA27B.sgfs",
                         "line": 4
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/0BD4B0BBA4122227.sgfs",
+                        "line": 6
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/C3224EDB24EE96AB.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/75E9879182E9E4D4.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/EE4765DDC4C3CEC8.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/E4594730BD4B463B.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/6FF122FC255F5F85.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/2CA4C0F541303AFC.sgfs",
+                        "line": 3
                     }
                 ],
                 "max_games": 10,
                 "adversary": "<code>continuous-adversary</code>",
-                "victim": "<code>dec23-victim</code>, 8192 visits",
+                "victim": "<code>dec23-victim</code>, 65536 visits",
                 "description": [
-                    "We are able to fine-tune a cyclic adversary to defeat <code>dec23-victim</code> at 8192 visits of search with a 62% win rate, showing that KataGo's adversarial training is not sufficient to defend against cyclic attacks."
+                    "We are able to fine-tune a cyclic adversary to defeat <code>dec23-victim</code> at 8192 visits of search with a 62% win rate and at 65536 visits with a 27% win rate, showing that KataGo's adversarial training is not sufficient to defend against cyclic attacks."
                 ]
             },
             {
