@@ -132,7 +132,6 @@
         display: flex;
         flex-wrap: wrap;
         margin-top: 1.5rem;
-        margin-bottom: 1rem;
         align-items: center;
         justify-content: center;
         padding: 0;

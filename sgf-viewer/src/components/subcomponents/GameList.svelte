@@ -94,11 +94,6 @@
 </div>
 
 <style>
-    .icon {
-        height: 1.5em;
-        width: 1.5em;
-        margin: auto;
-    }
     th,
     td {
         text-align: center;
@@ -140,5 +135,18 @@
     }
     tr:last-child td {
         border-bottom: none;
+    }
+    .icon {
+        height: 1.5em;
+        width: 1.5em;
+        margin: auto;
+    }
+    .table-active a {
+        /* Change link color since otherwise it's the same as the table-active
+         * background color. */
+        color: var(--bs-table-active-color);
+    }
+    .table-active a:hover {
+        color: var(--link-hover-color);
     }
 </style>
