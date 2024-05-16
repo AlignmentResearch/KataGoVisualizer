@@ -4,13 +4,22 @@
 
   export let currentPath: string;
   export let item: Record<string, any>;
+  export let isActive: boolean;
+
+  // The navbar item is active if it or any of its descendants are the current
+  // page.
+  let childrenActive: boolean[] = [];
+  $: if (!childrenActive && "items" in item) {
+      childrenActive = item["items"].map(_ => false) ?? [];
+  }
+  $: isActive = item["destination"] === currentPath || childrenActive.some(x => x);
 </script>
 
 {#if item["type"] === NavbarItemEnum.Link}
     {@const page = item["destination"]}
     <li class="nav-item">
         <a class="nav-link"
-           class:active={page == currentPath}
+           class:active={isActive}
            href="#contents"
            on:click={() => {
               currentPath = page;
@@ -21,16 +30,13 @@
         </a>
     </li>
 {:else if item["type"] === NavbarItemEnum.Dropdown}
-    <!-- navLinkIsActive doesn't handle nested dropdowns. Nested dropdowns are
-         untested and may not work as expected. -->
-    {@const navLinkIsActive = item["items"].some((dropdownItem) => dropdownItem["destination"] == currentPath)}
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" class:active={navLinkIsActive} href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" class:active={isActive} href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {item["title"]}
         </a>
         <ul class="dropdown-menu">
-            {#each item["items"] as dropdownItem}
-                <svelte:self bind:currentPath item={dropdownItem} />
+            {#each item["items"] as dropdownItem, i}
+                <svelte:self bind:currentPath item={dropdownItem} bind:isActive={childrenActive[i]} />
             {/each}
         </ul>
     </li>
