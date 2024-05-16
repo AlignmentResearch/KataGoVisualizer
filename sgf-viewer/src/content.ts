@@ -825,7 +825,7 @@ export const pages: object =
     "positional-adversarial-training": {
         "title": "Positional adversarial training",
         "description": [
-            "In December 2022, KataGo's main training run began incorporating adversarial training against hand-written adversarial positions based on cyclic attacks. We attack the strongest KataGo network checkpoint from December 2023, <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>kata1-b18c384nbt-s8526915840-d3929217702</code></a>, which we dub <code>dec23-victim</code>."
+            "In December 2022, KataGo's main training run began to incorporate adversarial training using hand-written positions derived from cyclic attacks. We target the strongest KataGo network checkpoint from December 2023, <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>kata1-b18c384nbt-s8526915840-d3929217702</code></a>, which we dub <code>dec23-victim</code>. Our analysis identified two styles of attack: a <a href=\"#dec23-vs-continuous\">fine-tuned variant</a> of our original cyclic attack, and a qualitatively distinct <a href=\"#dec23-vs-gift\">\"gift\" attack</a> that inexplicably leads the victim to gift the adversary two stones."
         ],
         "content": [
             {
