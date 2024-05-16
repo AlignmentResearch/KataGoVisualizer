@@ -108,8 +108,4 @@
         height: 1em;
         width: 1em;
     }
-    #contents {
-        /* Extra scroll margin when navigating to the #contents anchor. */
-        scroll-margin-top: 1em;
-    }
 </style>
