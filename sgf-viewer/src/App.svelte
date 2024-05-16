@@ -15,7 +15,7 @@
     import Toc from 'svelte-toc'
 
     import Citation from "./components/Citation.svelte";
-    import NavBar from "./components/NavBar.svelte";
+    import Navbar from "./components/Navbar.svelte";
     import Section from "./components/Section.svelte";
     import Title from "./components/Title.svelte";
 
@@ -23,6 +23,7 @@
     import { authors, cards, citation, title } from "./landing-page-content";
 
     const pagesPaths = Object.keys(pages);
+    $: console.log(pagesPaths);
     const bootstrapLargeBreakpoint = parseInt(getComputedStyle(document.body).getPropertyValue("--bs-breakpoint-lg"));
 
     let currentPath;
@@ -41,7 +42,7 @@
         : [];
 </script>
 
-<NavBar {pages} bind:currentPath />
+<Navbar bind:currentPath />
 <div class="flex-container">
     <div class="content">
         <Title {title} {authors} {cards} showAuthors={landingPage} />
