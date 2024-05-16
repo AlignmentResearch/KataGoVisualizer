@@ -19,9 +19,8 @@
     import Section from "./components/Section.svelte";
     import Title from "./components/Title.svelte";
 
-    // TODO refactor these out
-    import { pages } from "./defense/content";
-    import { authors, cards, citation, title } from "./defense/landing-page-content";
+    import { pages } from "./content";
+    import { authors, cards, citation, title } from "./landing-page-content";
 
     const pagesPaths = Object.keys(pages);
     const bootstrapLargeBreakpoint = parseInt(getComputedStyle(document.body).getPropertyValue("--bs-breakpoint-lg"));

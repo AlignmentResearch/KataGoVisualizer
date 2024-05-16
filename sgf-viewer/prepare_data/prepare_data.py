@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""To run the script, go to the KataGoVisualizer/sgf-viewer directory and run
-`python prepare_data/prepare_data.py PAPER` where `PAPER` is `attack` or
-`defense`.
-"""
-import argparse
-import csv
+
+import subprocess
 import json
 import re
-import subprocess
+import csv
 from pathlib import Path
-
 from sgf_parser import game_info
+
+"""
+Run:
+- `python prepare_data/prepare_data.py`, from KataGoVisualizer/sgf-viewer directory, to run the script.
+"""
 
 
 def run_cmd(cmd, shell=False, dry_run=False):
@@ -25,48 +25,20 @@ def run_cmd(cmd, shell=False, dry_run=False):
             return res.stdout
 
 
-def read_content(path: Path):
-    with open(path) as f:
+if __name__ == "__main__":
+    path_str = (Path(__file__).parent.parent / "src" / "content.ts").resolve()
+    with open(path_str) as f:
         # Skip the first 3 lines
         next(f)
         next(f)
         next(f)
         pages = json.load(f)
-    return pages
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Prepares SGFs for the website")
-    # We have an argument specifying which paper to prepare SGFs for since the
-    # SGFs for the papers are stored in different servers. This script assumes
-    # the SGFs are local, i.e., you SSH into a server and therefore can only run
-    # this script for one paper at a time.
-    parser.add_argument(
-        "paper",
-        choices=["attack", "defense"],
-        help="Which paper to prepare SGFs for",
-    )
-    args = parser.parse_args()
 
     root_path = Path(__file__).parent.parent
-    src_path = root_path / "src"
     public_sgfs_path = root_path / "public" / "sgfs"
+    command = ["rm", "-rf", f"{public_sgfs_path.resolve()}"]
+    run_cmd(command, shell=False)
 
-    # Delete all directories in public_sgfs_path that are not used.
-    used_sgf_dirs = set()
-    for content in src_path.rglob("content.ts"):
-        pages = read_content(content)
-        used_sgf_dirs.update(
-            parent
-            for page in pages.values()
-            for section in page["content"]
-            for parent in Path(public_sgfs_path / section["dir_name"]).parents
-        )
-    for path in public_sgfs_path.iterdir():
-        if path.is_dir() and path not in used_sgf_dirs:
-            run_cmd(["rm", "-rf", str(path.resolve())], dry_run=True)
-
-    pages = read_content(src_path / args.paper / "content.ts")
     for page_path, page in pages.items():
         for section in page["content"]:
             title = section["title"]
@@ -80,7 +52,6 @@ if __name__ == "__main__":
             # section["paths"] or section["paths_with_line_num"].
             path_to_original_index = {}
             section_path = public_sgfs_path / section["dir_name"]
-            run_cmd(["rm", "-rf", str(section_path.resolve())])
             run_cmd(["mkdir", "-p", str(section_path.resolve())])
             for i, path in enumerate(section.get("paths", [])):
                 if games_count < max_games:
