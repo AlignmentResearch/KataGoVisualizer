@@ -22,7 +22,7 @@ export const pages: object =
         "title": "FAQ",
         "description": [
             "<b>Q: Would this exploit work on AlphaZero?</b>",
-            "It's extremely likely the cyclic-vulnerability exists in AlphaZero. It exists in KataGo, LeelaZero, and ELF (we've won games with it), all of which are based on AlphaZero, with the latter two self-describing as reimplementations of AlphaZero. It also likely exists in FineArt and Golaxy (we are still in the process of getting access to play them, but others have shown these networks also misevaluate positions involving cyclic groups). And it's also very likely that multiple of these systems are now substantially stronger than AlphaZero ever was. So in short, although AlphaZero is unfortunately closed source and not available to test directly, there's no evidence we are aware of that it would be immune, and quite a lot of evidence that it would be vulnerable.",
+            "It's extremely likely the cyclic vulnerability exists in AlphaZero. It exists in KataGo, LeelaZero, and ELF (we've won games with it), all of which are based on AlphaZero, with the latter two self-describing as reimplementations of AlphaZero. It also likely exists in FineArt and Golaxy (we are still in the process of getting access to play them, but others have shown these networks also misevaluate positions involving cyclic groups). And it's also very likely that multiple of these systems are now substantially stronger than AlphaZero ever was. So in short, although AlphaZero is unfortunately closed source and not available to test directly, there's no evidence we are aware of that it would be immune, and quite a lot of evidence that it would be vulnerable.",
             "<b>Q: Did the adversary algorithm include any initial knowledge or human guidance to find a weakness?</b>",
             "No, the adversary was trained from scratch (random initialization) and learned only through playing games. To construct the cyclic adversary, we actually help the victim by patching the pass-based attack, which forces the adversary to find a different attack. But we do not give the adversary any information or hints towards what it should find. More details can be found in Section 4 of our paper.",
             "<b>Q: I saw some games you mark as wins, but I play Go and they don’t look like wins to me. What’s going on?</b>",
@@ -39,7 +39,7 @@ export const pages: object =
     "adversarial-policy-katago": {
         "title": "Cyclic attack",
         "description": [
-            "This section showcases games our cyclic-adversary played against <a target=\"_blank\" href=\"https://github.com/lightvector/KataGo\">KataGo</a>. We primarily attack KataGo network checkpoint <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a>, which we dub <code>Latest</code> since it is the latest confidently rated KataGo network at the time of conducting our experiments."
+            "This section showcases games our cyclic adversary played against <a target=\"_blank\" href=\"https://github.com/lightvector/KataGo\">KataGo</a>. We primarily attack KataGo network checkpoint <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a>, which we dub <code>Latest</code> since it is the latest confidently rated KataGo network at the time of conducting our experiments."
         ],
         "content": [
             {
@@ -76,7 +76,7 @@ export const pages: object =
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, no search",
                 "description": [
-                    "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.E.1\">strength of a top-100 European professional</a>. We trained an adversary that wins 100% of the time over 1000 games against this victim<sup>1</sup>. Our adversary (which we refer to as the \"cyclic-adversary\") gets the victim to form a large circular structure, and then tricks the victim into allowing the circular structure to be killed. See the <a href=\"/game-analysis#contents\">\"Game Analysis\"</a> tab for a more in depth analysis of this adversarial strategy.",
+                    "Without tree search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.E.1\">strength of a top-100 European professional</a>. We trained an adversary that wins 100% of the time over 1000 games against this victim<sup>1</sup>. Our adversary (which we refer to as the \"cyclic adversary\") gets the victim to form a large circular structure, and then tricks the victim into allowing the circular structure to be killed. See the <a href=\"/game-analysis#contents\">\"Game Analysis\"</a> tab for a more in depth analysis of this adversarial strategy.",
                     "<sup>[1]</sup> The games below are actually against a version of <code>Latest</code> that was patched to be immune to a simpler <a href=\"/pass-based-attack#contents\">pass-based attack</a>. We applied this patch to the victim to force our adversary to learn a more interesting attack. The patch is a hardcoded defense that forbids the victim from passing until it has no more legal moves outside its territory. We call the patched victim <code>Latest</code><sub><code>def</code></sub>. Because we limit the victim's passing, games are usually played out to the end, <a href=\"https://archive.ph/xmPrw#:~:text=(if%20SelfPlayOpts%20is%20Enabled)\">terminating automatically</a> once all points belong to a pass-alive-group or pass-alive-territory."
                 ],
                 "_comment": "Snapshot at archive.ph is from https://lightvector.github.io/KataGo/rules.html -- using in case rules change semantics in future versions of KataGo"
@@ -241,14 +241,14 @@ export const pages: object =
         "title": "Human games",
         "content": [
             {
-                "title": "Human amateur beats cyclic-adversary",
+                "title": "Human amateur beats cyclic adversary",
                 "dir_name": "amateur_vs_advh_545mil",
                 "paths": [
                     "/shared/nas-data/sgf-viewer-games/amateur_vs_advh_545mil/tony-b-def-adv505h-s545m-w-anon.sgf",
                     "/shared/nas-data/sgf-viewer-games/amateur_vs_advh_545mil/tony-w-def-adv505h-s545m-b-anon.sgf"
                 ],
                 "max_games": 10,
-                "adversary": "Cyclic-adversary, 545 million training steps, 600 visits",
+                "adversary": "Cyclic adversary, 545 million training steps, 600 visits",
                 "victim": "Tony Wang (Author)",
                 "description": [
                     "Our <a target=\"_blank\" href=\"/adversarial-policy-katago#contents\">strongest adversarial policy</a> (trained against <code>Latest</code><sub><code>def</code></sub>) is able to reliably beat KataGo at superhuman strength settings. However, a member of our team (Tony Wang) who is a novice Go player managed to convincingly beat this same adversary. This confirms that our adversarial policy is not generally capable, despite it beating victim policies that can themselves beat top human professionals. Instead, our victim policy harbors a subtle vulnerability.",
@@ -256,17 +256,17 @@ export const pages: object =
                 ]
             },
             {
-                "title": "Human amateur beats pass-adversary",
+                "title": "Human amateur beats pass adversary",
                 "dir_name": "amateur_vs_adv",
                 "paths": [
                     "/shared/nas-data/ttseng/go_attack/backup/sgf-viewer-sgfs/tony-black.sgfs",
                     "/shared/nas-data/ttseng/go_attack/backup/sgf-viewer-sgfs/tony-white.sgfs"
                 ],
                 "max_games": 10,
-                "adversary": "Pass-adversary, 34.1 million training steps, 600 visits",
+                "adversary": "Pass adversary, 34.1 million training steps, 600 visits",
                 "victim": "Tony Wang (Author)",
                 "description": [
-                    "The same Go novice (Tony Wang) also managed to beat our pass-adversary by a large margin of over 250 points. This demonstrates our pass-adversary is also not generally capable."
+                    "The same Go novice (Tony Wang) also managed to beat our pass adversary by a large margin of over 250 points. This demonstrates our pass adversary is also not generally capable."
                 ]
             },
             {
@@ -278,7 +278,7 @@ export const pages: object =
                 "max_games": 10,
                 "adversary": "Kellin Pelrine (Author)",
                 "victim": "KataGo, 100K visits",
-                "description": ["A Go expert (Kellin Pelrine) was able to learn and apply the cyclic-adversary's strategy to attack multiple types and configurations of AI Go systems. In this example they exploited KataGo with 100K visits, which would normally be strongly superhuman. Besides previously studying our adversary's game records, no algorithmic assistance was used in this or any of the following examples. The KataGo network and weights used here were b18c384nbt-uec, which is a newly released version the author of KataGo (David Wu) trained for a tournament. This network should be as strong or stronger than <code>Latest</code>."]
+                "description": ["A Go expert (Kellin Pelrine) was able to learn and apply the cyclic adversary's strategy to attack multiple types and configurations of AI Go systems. In this example they exploited KataGo with 100K visits, which would normally be strongly superhuman. Besides previously studying our adversary's game records, no algorithmic assistance was used in this or any of the following examples. The KataGo network and weights used here were b18c384nbt-uec, which is a newly released version the author of KataGo (David Wu) trained for a tournament. This network should be as strong or stronger than <code>Latest</code>."]
             },
             {
                 "title": "Human exploits Leela Zero",
@@ -395,7 +395,7 @@ export const pages: object =
     "pass-based-attack": {
         "title": "Pass attack",
         "description": [
-            "Our initial attempts at attacking KataGo resulted in adversaries that exploited KataGo's passing behavior. These pass-based adversaries trick KataGo into passing when it shouldn't. While this attack is effective against victims which do not use tree-search, it stops working once victims are able to use even a small amount of tree-search. We developed the pass-hardening defense so that our adversaries would not get stuck learning this pass-exploit. This worked surprisingly well &mdash; training against pass-hardened victims resulted in our adversaries learning <a href=\"/adversarial-policy-katago#contents\">an alternate strategy that works even in the high search regime.</a>"
+            "Our initial attempts at attacking KataGo resulted in adversaries that exploited KataGo's passing behavior. These pass-based adversaries trick KataGo into passing when it shouldn't. While this attack is effective against victims which do not use tree search, it stops working once victims are able to use even a small amount of tree search. We developed the pass-hardening defense so that our adversaries would not get stuck learning this pass-exploit. This worked surprisingly well &mdash; training against pass-hardened victims resulted in our adversaries learning <a href=\"/adversarial-policy-katago#contents\">an alternate strategy that works even in the high search regime.</a>"
         ],
         "content": [
             {
@@ -432,7 +432,7 @@ export const pages: object =
                 "adversary": "34.1 million training steps, 600 visits",
                 "victim": "<code>Latest</code>, no search",
                 "description": [
-                    "Without tree-search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.E.1\">strength of a top-100 European professional</a>. Our pass-based adversary achieves a 99% win rate against this victim by playing a counterintuitive strategy. The adversary stakes out a minority territory in the corner, allowing KataGo to stake the complement, and placing weak stones in KataGo’s stake.",
+                    "Without tree search, Katago's <code>Latest</code> network plays at the <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.E.1\">strength of a top-100 European professional</a>. Our pass-based adversary achieves a 99% win rate against this victim by playing a counterintuitive strategy. The adversary stakes out a minority territory in the corner, allowing KataGo to stake the complement, and placing weak stones in KataGo’s stake.",
                     "KataGo predicts a high win probability for itself and, in a way, it’s right—it would be simple to capture most of the adversary’s stones in KataGo’s stake, achieving a decisive victory. However, KataGo plays a pass move before it has finished securing its territory, allowing the adversary to pass in turn and end the game. This results in a win for the adversary under the standard <a href=\"https://tromp.github.io/go.html\">Tromp-Taylor</a> ruleset for computer Go, as the adversary gets points for its corner territory (devoid of victim stones) whereas the victim does not receive points for its unsecured territory because of the presence of the adversary’s stones."
                 ]
             },
@@ -646,10 +646,10 @@ export const pages: object =
     },
     "adversarial-training": {
         "title": "Adversarial training",
-        "description": ["David Wu (lightvector), the creator and primary developer of KataGo, has incorporated adversarial training against the cyclic exploit into the official self-play training run of KataGo since mid-December 2022. The adversarial training consists of starting a small fraction (~0.1%) of self-play games in positions where the cyclic exploit is being executed, with the remainder of games being regular self-play games. This adversarial training has been partially successful in that the adversarially trained networks are able to beat our original cyclic-adversary. However, we are able to fine-tune our original adversary to defeat these updated networks. This suggests that it is non-trivial to defend against the cyclic exploit, unlike the pass exploit which we were able to manually patch. Developing techniques to train agents that are immune to this attack while maintaining high Go strength remains an interesting open problem."],
+        "description": ["David Wu (lightvector), the creator and primary developer of KataGo, has incorporated adversarial training against the cyclic exploit into the official self-play training run of KataGo since mid-December 2022. The adversarial training consists of starting a small fraction (~0.1%) of self-play games in positions where the cyclic exploit is being executed, with the remainder of games being regular self-play games. This adversarial training has been partially successful in that the adversarially trained networks are able to beat our original cyclic adversary. However, we are able to fine-tune our original adversary to defeat these updated networks. This suggests that it is non-trivial to defend against the cyclic exploit, unlike the pass exploit which we were able to manually patch. Developing techniques to train agents that are immune to this attack while maintaining high Go strength remains an interesting open problem."],
         "content": [
             {
-                "title": "Original cyclic-adversary loses to no-search <code>b60-s7702m</code>",
+                "title": "Original cyclic adversary loses to no-search <code>b60-s7702m</code>",
                 "dir_name": "cyclic_orig_vs_b60_s7702m_v1",
                 "paths_with_line_num": [
                     {
@@ -686,12 +686,12 @@ export const pages: object =
                     }
                 ],
                 "max_games": 8,
-                "adversary": "Cyclic-adversary, 545 million training steps, 600 visits",
+                "adversary": "Cyclic adversary, 545 million training steps, 600 visits",
                 "victim": "<code>b60-s7702m</code>, no search",
-                "description": [ "The kata1-b60c320-s7701878528-d3323518127 (abbreviated to <code>b60-s7702m</code>) network, released in May 2023, has had several months of adversarial training and defeats the original cyclic-adversary in 1882/2000 = 94.1% of games even when <code>b60-s7702m</code> plays without search. <code>b60-s7702m</code> is stronger at defending the cyclic group. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
+                "description": [ "The kata1-b60c320-s7701878528-d3323518127 (abbreviated to <code>b60-s7702m</code>) network, released in May 2023, has had several months of adversarial training and defeats the original cyclic adversary in 1882/2000 = 94.1% of games even when <code>b60-s7702m</code> plays without search. <code>b60-s7702m</code> is stronger at defending the cyclic group. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
             },
             {
-                "title": "Fine-tuned cyclic-adversary vs. 4096-visit <code>b60-s7702m</code>",
+                "title": "Fine-tuned cyclic adversary vs. 4096-visit <code>b60-s7702m</code>",
                 "dir_name": "cyclic_fine_tune_vs_b60_s7702m_v4096",
                 "paths_with_line_num": [
                     {
@@ -728,12 +728,12 @@ export const pages: object =
                     }
                 ],
                 "max_games": 8,
-                "adversary": "Cyclic-adversary, 168 million fine-tuning steps, 600 visits",
+                "adversary": "Cyclic adversary, 168 million fine-tuning steps, 600 visits",
                 "victim": "<code>b60-s7702m</code>, 4096 visits",
-                "description": [ "After 168 million fine-tuning training steps, the cyclic-adversary achieves a win rate of 188/400 = 47% against <code>b60-s7702m</code> with 4096 victim visits. The attack is still a cyclic attack, though the placement of the cyclic group has moved from the corner of the board to the center of one side of the board." ]
+                "description": [ "After 168 million fine-tuning training steps, the cyclic adversary achieves a win rate of 188/400 = 47% against <code>b60-s7702m</code> with 4096 victim visits. The attack is still a cyclic attack, though the placement of the cyclic group has moved from the corner of the board to the center of one side of the board." ]
             },
             {
-                "title": "Fine-tuned cyclic-adversary vs. 100,000-visit <code>b60-s7702m</code>",
+                "title": "Fine-tuned cyclic adversary vs. 100,000-visit <code>b60-s7702m</code>",
                 "dir_name": "cyclic_fine_tune_vs_b60_s7702m_v100k",
                 "paths_with_line_num": [
                     {
@@ -770,9 +770,9 @@ export const pages: object =
                     }
                 ],
                 "max_games": 8,
-                "adversary": "Cyclic-adversary, 168 million fine-tuning steps, 600 visits",
+                "adversary": "Cyclic adversary, 168 million fine-tuning steps, 600 visits",
                 "victim": "<code>b60-s7702m</code>, 100,000 visits, 10 search threads",
-                "description": [ "The fine-tuned cyclic-adversary also beats b60-s7702 using 100,000 victim visits with a win rate of 7/40 = 17.5%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
+                "description": [ "The fine-tuned cyclic adversary also beats b60-s7702 using 100,000 victim visits with a win rate of 7/40 = 17.5%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
             }
         ]
     },
