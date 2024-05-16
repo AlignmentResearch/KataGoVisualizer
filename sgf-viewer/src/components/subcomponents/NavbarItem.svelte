@@ -15,7 +15,22 @@
   $: isActive = item["destination"] === currentPath || childrenActive.some(x => x);
 </script>
 
-{#if item["type"] === NavbarItemEnum.Link}
+{#if item["type"] === NavbarItemEnum.Dropdown}
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" class:active={isActive} href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {item["title"]}
+        </a>
+        <ul class="dropdown-menu">
+            {#each item["items"] as dropdownItem, i}
+                <svelte:self bind:currentPath item={dropdownItem} bind:isActive={childrenActive[i]} />
+            {/each}
+        </ul>
+    </li>
+{:else if item["type"] === NavbarItemEnum.DropdownDivider}
+    <li><hr class="dropdown-divider"></li>
+{:else if item["type"] === NavbarItemEnum.DropdownText}
+    <p class="px-2 text-center">{@html item["text"]}</p>
+{:else if item["type"] === NavbarItemEnum.Link}
     {@const page = item["destination"]}
     <li class="nav-item">
         <a class="nav-link"
@@ -26,19 +41,8 @@
               history.pushState({}, "", currentPath + "#contents");
            }}
         >
-            {pages[page]["title"]}
+            {item["title"] ?? pages[page]["title"]}
         </a>
-    </li>
-{:else if item["type"] === NavbarItemEnum.Dropdown}
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" class:active={isActive} href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {item["title"]}
-        </a>
-        <ul class="dropdown-menu">
-            {#each item["items"] as dropdownItem, i}
-                <svelte:self bind:currentPath item={dropdownItem} bind:isActive={childrenActive[i]} />
-            {/each}
-        </ul>
     </li>
 {/if}
 

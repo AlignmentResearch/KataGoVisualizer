@@ -10,26 +10,25 @@ export const pages: object =
             "<img class=\"paper-image\" src=\"/images/cyclic-example.svg\" alt=\"Cyclic Attack\" style=\"width: 250px; display: block; margin: 0.75rem auto;\"/>",
             "<div style=\"text-align: center; margin-top: -0.75rem;\">An example of our attack in action.</div>"
         ],
-        "content": [
-            {
-                "title": "Frequently asked questions",
-                "dir_name": "faq",
-                "description": [
-                    "<b>Q: Would this exploit work on AlphaZero?</b>",
-                    "It's extremely likely the cyclic-vulnerability exists in AlphaZero. It exists in KataGo, LeelaZero, and ELF (we've won games with it), all of which are based on AlphaZero, with the latter two self-describing as reimplementations of AlphaZero. It also likely exists in FineArt and Golaxy (we are still in the process of getting access to play them, but others have shown these networks also misevaluate positions involving cyclic groups). And it's also very likely that multiple of these systems are now substantially stronger than AlphaZero ever was. So in short, although AlphaZero is unfortunately closed source and not available to test directly, there's no evidence we are aware of that it would be immune, and quite a lot of evidence that it would be vulnerable.",
-                    "<b>Q: Did the adversary algorithm include any initial knowledge or human guidance to find a weakness?</b>",
-                    "No, the adversary was trained from scratch (random initialization) and learned only through playing games. To construct the cyclic adversary, we actually help the victim by patching the pass-based attack, which forces the adversary to find a different attack. But we do not give the adversary any information or hints towards what it should find. More details can be found in Section 4 of our paper.",
-                    "<b>Q: I saw some games you mark as wins, but I play Go and they don’t look like wins to me. What’s going on?</b>",
-                    "You are probably referring to our <a target=\"_blank\" href=\"https://goattack.far.ai/pass-based-attack#contents\">pass-based attack</a>, which is the first attack we found. This attack works in a specific ruleset, based on the Tromp-Taylor rules which are widely used for computer Go. KataGo is trained with this ruleset (among others), and therefore should know how to play them correctly &mdash; though this work showed otherwise. After we patched this vulnerability, we then found other attacks which work in all standard rulesets and agree with standard human evaluation of game results.",
-                    "<b>Q: I’ve played Go AIs myself and seen them make mistakes. How is the vulnerability you found different?</b>",
-                    "While Go AIs do already have known weaknesses, for instance the common “ladder” tactic, there are 3 key factors here whose confluence makes this vulnerability different. First, this affects top AIs, including when they have a very large amount of search. Second, the attack works consistently to produce a game-winning advantage. Third, this consistency does not require repeating exact sequences or board positions.",
-                    "<b>Q: Now that this vulnerability and its severity is known, is it easy to fix? Can we just show the AI a few examples?</b>",
-                    "It is not straightforward. KataGo is currently training with numerous positions from games our adversary algorithm played. There are clear improvements, but so far it is still vulnerable. The process is not complete, so it may just need more time (and computation), but already this shows it is not as easy as one might hope to fix an issue like this.",
-                    "<b>Q: Where can I learn more?</b>",
-                    "Aside from the rest of this website and the links at the top of the page, there is a YouTube video of a talk and demo given by Tony and Kellin <a target=\"_blank\" href=\"https://www.youtube.com/watch?v=CNo3lOT1NYA&ab_channel=CrossLabsAI\">here</a>."
-                ]
-            }
-        ]
+        "content": []
+    },
+    "undefended-agent-faq": {
+        "title": "FAQ",
+        "description": [
+            "<b>Q: Would this exploit work on AlphaZero?</b>",
+            "It's extremely likely the cyclic-vulnerability exists in AlphaZero. It exists in KataGo, LeelaZero, and ELF (we've won games with it), all of which are based on AlphaZero, with the latter two self-describing as reimplementations of AlphaZero. It also likely exists in FineArt and Golaxy (we are still in the process of getting access to play them, but others have shown these networks also misevaluate positions involving cyclic groups). And it's also very likely that multiple of these systems are now substantially stronger than AlphaZero ever was. So in short, although AlphaZero is unfortunately closed source and not available to test directly, there's no evidence we are aware of that it would be immune, and quite a lot of evidence that it would be vulnerable.",
+            "<b>Q: Did the adversary algorithm include any initial knowledge or human guidance to find a weakness?</b>",
+            "No, the adversary was trained from scratch (random initialization) and learned only through playing games. To construct the cyclic adversary, we actually help the victim by patching the pass-based attack, which forces the adversary to find a different attack. But we do not give the adversary any information or hints towards what it should find. More details can be found in Section 4 of our paper.",
+            "<b>Q: I saw some games you mark as wins, but I play Go and they don’t look like wins to me. What’s going on?</b>",
+            "You are probably referring to our <a target=\"_blank\" href=\"https://goattack.far.ai/pass-based-attack#contents\">pass-based attack</a>, which is the first attack we found. This attack works in a specific ruleset, based on the Tromp-Taylor rules which are widely used for computer Go. KataGo is trained with this ruleset (among others), and therefore should know how to play them correctly &mdash; though this work showed otherwise. After we patched this vulnerability, we then found other attacks which work in all standard rulesets and agree with standard human evaluation of game results.",
+            "<b>Q: I’ve played Go AIs myself and seen them make mistakes. How is the vulnerability you found different?</b>",
+            "While Go AIs do already have known weaknesses, for instance the common “ladder” tactic, there are 3 key factors here whose confluence makes this vulnerability different. First, this affects top AIs, including when they have a very large amount of search. Second, the attack works consistently to produce a game-winning advantage. Third, this consistency does not require repeating exact sequences or board positions.",
+            "<b>Q: Now that this vulnerability and its severity is known, is it easy to fix? Can we just show the AI a few examples?</b>",
+            "It is not straightforward. KataGo is currently training with numerous positions from games our adversary algorithm played. There are clear improvements, but so far it is still vulnerable. The process is not complete, so it may just need more time (and computation), but already this shows it is not as easy as one might hope to fix an issue like this.",
+            "<b>Q: Where can I learn more?</b>",
+            "Aside from the rest of this website and the links at the top of the page, there is a YouTube video of a talk and demo given by Tony and Kellin <a target=\"_blank\" href=\"https://www.youtube.com/watch?v=CNo3lOT1NYA&ab_channel=CrossLabsAI\">here</a>."
+        ],
+        "content": []
     },
     "adversarial-policy-katago": {
         "title": "Cyclic attack",
@@ -817,15 +816,6 @@ export const pages: object =
             }
         ]
     },
-    "defense-home": {
-        "title": "Defense home",
-        "description": [
-            "We found <a target=\"_blank\" href=\"https://goattack.far.ai\">in previous work</a> that superhuman Go AIs such as <a target=\"_blank\" href=\"https://github.com/lightvector/KataGo\">KataGo</a> are vulnerable to opponents playing simple adversarial strategies. In particular, we trained an adversary <code>base-adversary</code> that defeats KataGo with a <a target=\"_blank\" href=\"https://goattack.far.ai/adversarial-policy-katago\">\"cyclic\" attack</a>. This showed that superhuman average-case capabilities may not lead to satisfactory worst-case robustness. Go AIs were never designed with security in mind, however, raising the question: can simple defenses make KataGo robust?",
-            "We test three natural defenses: <a href=\"positional-adversarial-training#contents\">adversarial training on hand-constructed positions</a>, <a href=\"iterated-adversarial-training#contents\">iterated adversarial training</a>, and <a href=\"vit#contents\">changing the network architecture</a>. We find these methods provide a partial defense, but discover several qualitatively distinct adversarial strategies that continue to beat our defended agents. Our results suggest that achieving robustness is challenging even in narrow domains such as Go.",
-          "Click on the different sections above to view attacks against each of the defenses."
-        ],
-        "content": []
-    },
     "positional-adversarial-training": {
         "title": "Positional adversarial training",
         "description": [
@@ -953,6 +943,38 @@ export const pages: object =
         ],
         "content": [
             {
+                "title": "Iterated attack",
+                "dir_name": "v9-vs-a9",
+                "paths_with_line_num": [
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/03F28E342701AE52.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/CD5DBA4F76D28FBF.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/E5953CE2249E9081.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/E6340579256B3120.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/EEEA3A054135D352.sgfs",
+                        "line": 1
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "<code>a</code><code>9</code>",
+                "victim": "<code>v</code><sub><code>9</code></sub>, 65536 visits",
+                "description": [
+                    "We fine-tune the final adversary <code>a</code><sub><code>8</code></sub> that <code>v</code><sub><code>9</code></sub> was trained against and produce an adversary <code>a</code><sub><code>9</code></sub>. We find that this adversary is able to defeat <code>v</code><sub><code>9</code></sub> even at 65536 visits in XXX% of games, showing that there is still surface area to attack <code>v</code><sub><code>9</code></sub> at high visits."
+                ]
+            },
+            {
                 "title": "Validation attack",
                 "dir_name": "v9-vs-validation",
                 "paths_with_line_num": [
@@ -1004,38 +1026,6 @@ export const pages: object =
                     "We train an new adversary from scratch and find that it is able to defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search in 81% of games. The win rate drops to 4% at 4096 visits, but the result still demonstrates that our victim is easily attacked until it uses high amounts of search."
                 ]
             },
-            {
-                "title": "Iterated attack",
-                "dir_name": "v9-vs-a9",
-                "paths_with_line_num": [
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/03F28E342701AE52.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/CD5DBA4F76D28FBF.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/E5953CE2249E9081.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/E6340579256B3120.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/EEEA3A054135D352.sgfs",
-                        "line": 1
-                    }
-                ],
-                "max_games": 10,
-                "adversary": "<code>a</code><code>9</code>",
-                "victim": "<code>v</code><sub><code>9</code></sub>, 65536 visits",
-                "description": [
-                    "We fine-tune the final adversary <code>a</code><sub><code>8</code></sub> that <code>v</code><sub><code>9</code></sub> was trained against and produce an adversary <code>a</code><sub><code>9</code></sub>. We find that this adversary is able to defeat <code>v</code><sub><code>9</code></sub> even at 65536 visits in XXX% of games, showing that there is still surface area to attack <code>v</code><sub><code>9</code></sub> at high visits."
-                ]
-            }
         ]
     },
     "vit": {

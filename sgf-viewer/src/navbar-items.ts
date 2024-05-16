@@ -1,10 +1,4 @@
 export enum NavbarItemEnum {
-  // Regular navbar link. Format:
-  //   {
-  //     "type": NavbarItemEnum.Link,
-  //     "destination": <page identifier>
-  //   }
-  Link = "LINK",
   // Dropdown menu. Format:
   //   {
   //     "type": NavbarItemEnum.Dropdown,
@@ -13,6 +7,17 @@ export enum NavbarItemEnum {
   //   }
   // Currently does not support nested dropdowns.
   Dropdown = "DROPDOWN",
+  // Divider within a dropdown menu.
+  DropdownDivider = "DROPDOWN_DIVIDER",
+  // Non-link text in a dropdown.
+  DropdownText = "DROPDOWN_TEXT",
+  // Regular link. Format:
+  //   {
+  //     "type": NavbarItemEnum.Link,
+  //     "destination": <page identifier>
+  //     "title": <link title> (optional, otherwise uses page title)
+  //   }
+  Link = "LINK",
 };
 
 // Describes navbar item layout, where each item is a page in content.ts.
@@ -41,11 +46,11 @@ export const navbarItems: Array<Record<any>> = [
         "type": NavbarItemEnum.Link,
         "destination": "transfer",
       },
+      {
+        "type": NavbarItemEnum.Link,
+        "destination": "undefended-agent-faq",
+      },
     ],
-  },
-  {
-    "type": NavbarItemEnum.Link,
-    "destination": "defense-home",
   },
   {
     "type": NavbarItemEnum.Link,
@@ -64,6 +69,10 @@ export const navbarItems: Array<Record<any>> = [
     "title": "Extra content",
     "items": [
       {
+        "type": NavbarItemEnum.DropdownText,
+        "text": "Undefended agent",
+      },
+      {
         "type": NavbarItemEnum.Link,
         "destination": "activation-plots",
       },
@@ -80,12 +89,28 @@ export const navbarItems: Array<Record<any>> = [
         "destination": "training-sample",
       },
       {
+        "type": NavbarItemEnum.DropdownDivider,
+      },
+      {
+        "type": NavbarItemEnum.DropdownText,
+        "text": "Positional adversarial training",
+        "title": "Early results",
+      },
+      {
         "type": NavbarItemEnum.Link,
         "destination": "adversarial-training",
       },
       {
+        "type": NavbarItemEnum.DropdownDivider,
+      },
+      {
+        "type": NavbarItemEnum.DropdownText,
+        "text": "Iterated adversarial training",
+      },
+      {
         "type": NavbarItemEnum.Link,
         "destination": "iterated-adversarial-training-per-iteration",
+        "title": "Per-iteration progress",
       },
     ],
   },
