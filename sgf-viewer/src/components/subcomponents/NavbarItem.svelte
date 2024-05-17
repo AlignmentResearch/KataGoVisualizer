@@ -65,7 +65,7 @@
     .nav-link.active {
         font-weight: bolder;
     }
-    .dropdown-item {
+    a.dropdown-item {
         --bs-dropdown-link-color: var(--bs-nav-link-color);
     }
     /* Make dropdown menus open on hover.

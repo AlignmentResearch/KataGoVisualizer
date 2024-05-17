@@ -44,8 +44,9 @@
         --bs-navbar-active-color: var(--dark-accent-color);
     }
     .bg-light {
-        /* Make navbar background color more visibly distinct from page
-         * background color. */
+        /* Make navbar background color visibly distinct from page background
+         * color.
+         */
         background-color: #fff !important;
     }
 </style>

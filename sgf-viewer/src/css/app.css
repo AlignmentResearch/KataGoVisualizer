@@ -36,7 +36,6 @@ body {
 
 a {
   font-weight: bold;
-  font-size: 18px;
   color: var(--medium-accent-color);
   text-decoration: inherit;
 }
