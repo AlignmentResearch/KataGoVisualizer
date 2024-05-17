@@ -955,61 +955,9 @@ export const pages: object =
     "iterated-adversarial-training": {
         "title": "Iterated adversarial training",
         "description": [
-            "Perhaps we can create a fully robust agent by repeatedly defending against new attacks until the space of possible attacks is exhausted. We designed an iterated adversarial training procedure that alternately trains a victim and an adversary. After nine iterations, we still find that our final victim <code>v</code><sub><code>9</code></sub> is vulnerable to attack."
+            "We performed an iterated adversarial training procedure that alternately trains a victim <code>v</code><sub><code>n</code></sub> and an adversary <code>a</code><sub><code>n</code></sub>. After nine iterations, our final victim <code>v</code><sub><code>9</code></sub> remains vulnerable both to a freshly trained <a href=\"#v9-vs-validation\">\"validation\" attack</a> and the <a href=\"#v9-vs-a9\">\"iterated\" attack</a> <code>a</code><sub><code>9</code></sub>. These attacks are described in the following sections. You can also explore games from <a href=\"/iterated-adversarial-training-per-iteration#contents\">intermediate steps of the iterated adversarial training</a>."
         ],
         "content": [
-            {
-                "title": "Iterated attack",
-                "dir_name": "v9-vs-a9",
-                "paths_with_line_num": [
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/5F0FB9568DF13CAA.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/B46DD51C896CE39D.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/01FB5C1253F99911.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/850F2140D1C926B0.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/BB2CD137247229E5.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/1F3299D4306DC34B.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/F510C5280CC8EA58.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/D9E9B46DE08A8D32.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/F439EE099962C102.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/E6340579256B3120.sgfs",
-                        "line": 1
-                    }
-                ],
-                "max_games": 10,
-                "adversary": "<code>a</code><code>9</code>",
-                "victim": "<code>v</code><sub><code>9</code></sub>, 65536 visits",
-                "description": [
-                    "We fine-tune the final adversary <code>a</code><sub><code>8</code></sub> that <code>v</code><sub><code>9</code></sub> was trained against and produce an adversary <code>a</code><sub><code>9</code></sub>. We find that this adversary is able to defeat <code>v</code><sub><code>9</code></sub> even at 65536 visits in TODO% of games, showing that there is still surface area to attack <code>v</code><sub><code>9</code></sub> at high visits."
-                ]
-            },
             {
                 "title": "Validation attack",
                 "dir_name": "v9-vs-validation",
@@ -1060,6 +1008,58 @@ export const pages: object =
                 "victim": "<code>v</code><sub><code>9</code></sub>, 512 visits",
                 "description": [
                     "We train an new adversary from scratch and find that it is able to defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search in 81% of games. The win rate drops to 4% at 4096 visits, but the result still demonstrates that our victim is easily attacked until it uses high amounts of search."
+                ]
+            },
+            {
+                "title": "Iterated attack",
+                "dir_name": "v9-vs-a9",
+                "paths_with_line_num": [
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/5F0FB9568DF13CAA.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/B46DD51C896CE39D.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/01FB5C1253F99911.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/850F2140D1C926B0.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/BB2CD137247229E5.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/1F3299D4306DC34B.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/F510C5280CC8EA58.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/D9E9B46DE08A8D32.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/F439EE099962C102.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/E6340579256B3120.sgfs",
+                        "line": 1
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "<code>a</code><code>9</code>",
+                "victim": "<code>v</code><sub><code>9</code></sub>, 65536 visits",
+                "description": [
+                    "We fine-tune the final adversary <code>a</code><sub><code>8</code></sub> that <code>v</code><sub><code>9</code></sub> was trained against and produce an adversary <code>a</code><sub><code>9</code></sub>. We find that this adversary is able to defeat <code>v</code><sub><code>9</code></sub> even at 65536 visits in TODO% of games, showing that there is still surface area to attack <code>v</code><sub><code>9</code></sub> at high visits."
                 ]
             }
         ]
