@@ -35,12 +35,3 @@ export const cards: Array<any> =
         border: false,
     }
 ];
-
-export const citation: string = `@misc{tseng2024challenges,
-  title={The challenges of training adversarially robust Go AIs},
-  author={Tseng, Tom and Pelrine, Kellin and McLean, Euan and Wang, Tony T. and Gleave, Adam},
-  year={2024},
-  eprint={2405.NNNNN},
-  archivePrefix={arXiv},
-  primaryClass={cs.LG}
-}`;

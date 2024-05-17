@@ -7,13 +7,27 @@
         sel.removeAllRanges();
         sel.addRange(range);
     }
-    export let citation: string
 </script>
 
 <hr />
 <h4 class="toc-exclude">Citation Info</h4>
 <code on:click={tdFocus}>
-    <pre>{citation}</pre>
+    <pre>{`@inproceedings{wang2023adversarial,
+  title={Adversarial Policies Beat Superhuman Go AIs},
+  author={Wang, Tony T and Gleave, Adam and Tseng, Tom and Pelrine, Kellin and Belrose, Nora and Miller, Joseph and Dennis, Michael D and Duan, Yawen and Pogrebniak, Viktor and Levine, Sergey and Russell, Stuart},
+  booktitle={International Conference on Machine Learning},
+  year={2023}
+}`}</pre>
+</code>
+<code on:click={tdFocus}>
+    <pre>{`@misc{tseng2024challenges,
+  title={The challenges of training adversarially robust Go AIs},
+  author={Tseng, Tom and Pelrine, Kellin and McLean, Euan and Wang, Tony T. and Gleave, Adam},
+  year={2024},
+  eprint={2405.NNNNN},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG}
+}`}</pre>
 </code>
 
 <style>

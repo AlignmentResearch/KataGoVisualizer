@@ -20,7 +20,7 @@
     import Title from "./components/Title.svelte";
 
     import { pages } from "./content";
-    import { authors, cards, citation, title } from "./landing-page-content";
+    import { authors, cards, title } from "./landing-page-content";
 
     const pagesPaths = Object.keys(pages);
     $: console.log(pagesPaths);
@@ -61,7 +61,7 @@
                 {/each}
             {/key}
         </main>
-        <Citation {citation} />
+        <Citation />
     </div>
     <!-- Give the table of contents the same breakpoint as the navbar and give
       it a fixed width. -->
