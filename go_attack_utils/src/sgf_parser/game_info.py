@@ -9,6 +9,9 @@ import multiprocessing
 import warnings
 import functools
 
+DEFAULT_ADVERSARY_SUBSTRINGS = ["adv"]
+DEFAULT_VICTIM_SUBSTRINGS = ["victim", "bot"]
+
 
 def get_game_str(path: pathlib.Path, line_num: int):
     """Return the string at a given path and line number."""
@@ -71,8 +74,8 @@ def read_and_parse_file(
     fast_parse: bool = False,
     victim_color: Optional[str] = None,
     no_victim_okay: bool = False,
-    adversary_substrings: Sequence[str] = ["adv"],
-    victim_substrings: Sequence[str] = ["victim", "bot"],
+    adversary_substrings: Sequence[str] = DEFAULT_ADVERSARY_SUBSTRINGS,
+    victim_substrings: Sequence[str] = DEFAULT_VICTIM_SUBSTRINGS,
 ) -> Sequence[Dict[str, Any]]:
     """Parse all lines of an sgf file to a list of dictionaries with game info."""
     parsed_games = []
@@ -98,8 +101,8 @@ def read_and_parse_all_files(
     fast_parse: bool = False,
     processes: Optional[int] = 128,
     no_victim_okay: bool = False,
-    adversary_substrings: Sequence[str] = ["adv"],
-    victim_substrings: Sequence[str] = ["victim", "bot"],
+    adversary_substrings: Sequence[str] = DEFAULT_ADVERSARY_SUBSTRINGS,
+    victim_substrings: Sequence[str] = DEFAULT_VICTIM_SUBSTRINGS,
 ) -> Sequence[Dict[str, Any]]:
     """Returns concatenated contents of all files in `paths`."""
     if not processes:
@@ -147,8 +150,8 @@ def parse_game_str_to_dict(
     fast_parse: bool = False,
     victim_color: Optional[str] = None,
     no_victim_okay: bool = False,
-    adversary_substrings: Sequence[str] = ["adv"],
-    victim_substrings: Sequence[str] = ["victim", "bot"],
+    adversary_substrings: Sequence[str] = DEFAULT_ADVERSARY_SUBSTRINGS,
+    victim_substrings: Sequence[str] = DEFAULT_VICTIM_SUBSTRINGS,
 ) -> Dict[str, Any]:
     """Parse an sgf string to a dictionary containing game_info.
 
