@@ -59,3 +59,15 @@ h1, h2, h3, h4, h5, h6, :target {
 .dropdown-menu {
   --bs-dropdown-link-active-bg: var(--medium-accent-color);
 }
+
+/* sanitize has a CSS rule adding a ::before pseudo-element to nav list items:
+ * https://github.com/csstools/sanitize.css/blob/092d0d85922bfa72d28e9e8d25d80a5437c8df44/sanitize.css#L98-L105
+ * This is to fix a macOS VoiceOver issue. The pseudo-element is visible,
+ * however, in dropdown menus, adding unwanted height.
+ * Here we remove the pseudo-element. It should no longer be necessary due to
+ * fixes in how VoiceOver handles nav lists---see the Jan 2023 note on
+ * https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html.
+*/
+nav .dropdown-menu li::before {
+  content: none;
+}
