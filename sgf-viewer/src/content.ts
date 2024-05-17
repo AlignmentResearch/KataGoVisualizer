@@ -1072,7 +1072,7 @@ export const pages: object =
         ],
         "content": [
             {
-                "title": "Network strength",
+                "title": "Strength evaluation",
                 "dir_name": "vit-strength",
                 "description": [
                     "TODO"
