@@ -23,7 +23,6 @@
     import { authors, cards, title } from "./landing-page-content";
 
     const pagesPaths = Object.keys(pages);
-    $: console.log(pagesPaths);
     const bootstrapLargeBreakpoint = parseInt(getComputedStyle(document.body).getPropertyValue("--bs-breakpoint-lg"));
 
     let currentPath;
