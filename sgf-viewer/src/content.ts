@@ -954,23 +954,43 @@ export const pages: object =
                 "dir_name": "v9-vs-a9",
                 "paths_with_line_num": [
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/03F28E342701AE52.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/5F0FB9568DF13CAA.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/CD5DBA4F76D28FBF.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/B46DD51C896CE39D.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/E5953CE2249E9081.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/01FB5C1253F99911.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/850F2140D1C926B0.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/BB2CD137247229E5.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/1F3299D4306DC34B.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/F510C5280CC8EA58.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/D9E9B46DE08A8D32.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/F439EE099962C102.sgfs",
                         "line": 1
                     },
                     {
                         "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/E6340579256B3120.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/EEEA3A054135D352.sgfs",
                         "line": 1
                     }
                 ],
@@ -1032,7 +1052,7 @@ export const pages: object =
                 "description": [
                     "We train an new adversary from scratch and find that it is able to defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search in 81% of games. The win rate drops to 4% at 4096 visits, but the result still demonstrates that our victim is easily attacked until it uses high amounts of search."
                 ]
-            },
+            }
         ]
     },
     "vit": {
