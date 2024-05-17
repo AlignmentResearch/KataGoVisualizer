@@ -20,7 +20,6 @@
     import Title from "./components/Title.svelte";
 
     import { pages } from "./content";
-    import { authors, cards, title } from "./landing-page-content";
 
     const pagesPaths = Object.keys(pages);
     const bootstrapLargeBreakpoint = parseInt(getComputedStyle(document.body).getPropertyValue("--bs-breakpoint-lg"));
@@ -44,7 +43,7 @@
 <Navbar bind:currentPath />
 <div class="flex-container">
     <div class="content">
-        <Title {title} {authors} {cards} showAuthors={landingPage} />
+        <Title />
         <main>
             <!-- Empty anchor target. Named for link backwards compatibility. -->
             <div id="contents" />

@@ -46,9 +46,12 @@
     }
     .logo-desc {
         text-align: center;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 600;
+        margin: auto;
         margin-top: 0.5em;
         margin-bottom: 1em;
+        max-width: 4em;
+        line-height: 1.25;
     }
 </style>
