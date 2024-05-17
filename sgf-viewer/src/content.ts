@@ -1016,43 +1016,43 @@ export const pages: object =
                 "dir_name": "v9-vs-a9",
                 "paths_with_line_num": [
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/5F0FB9568DF13CAA.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/53AF1F092374B024.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/B46DD51C896CE39D.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/A94F7F5D055B966F.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/01FB5C1253F99911.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/9086CD55B4C2AB55.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/850F2140D1C926B0.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/09369F890E8F571A.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/BB2CD137247229E5.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/919474FB7AAC68E1.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/1F3299D4306DC34B.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/C693F03DDB590297.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/F510C5280CC8EA58.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/CA5D94924BCB7614.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/D9E9B46DE08A8D32.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/835C6CBEB7B8A0D8.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/F439EE099962C102.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/D3CA84C12B1833EE.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/E6340579256B3120.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/r9-vs-h9/v65k/sgfs/B9EA07EF14A6252F.sgfs",
                         "line": 1
                     }
                 ],
@@ -1069,10 +1069,17 @@ export const pages: object =
     "vit": {
         "title": "Vision transformer",
         "description": [
-            "Cyclic attacks work not only against KataGo but also against a range of other superhuman Go AIs, including <a target=\"_blank\" href=\"https://online-go.com/game/51321265\">ELF OpenGo</a>, <a target=\"_blank\" href=\"https://online-go.com/game/51356405\">Leela Zero</a>, <a target=\"_blank\" href=\"https://online-go.com/game/51375020\">Sai</a>, <a target=\"_blank\" href=\"https://www.bilibili.com/video/BV1Ls4y147Es/?share_source=copy_web&t=97\">Golaxy</a>, and <a target=\"_blank\" href=\"https://h5.foxwq.com/txwqshare/index.html?chessid=1676910620010001365&boardsize=19\">FineArt</a>. While it is possible that each of these systems is vulnerable to the cyclic attack for a different reason, it seems more likely that shared properties cause their shared vulnerability. We think two shared properties are the most relevant: AlphaZero-style self-play training and the convolutional neural network (CNN) backbone.",
-            "We trained an AlphaZero-style Go AI with a vision transformer (ViT) backbone. We estimate our ViT Go AI <code>ViT-victim</code> to be superhuman at 32768 visits, yet it is still vulnerable to cyclic attacks. This rules out CNN backbones as the root cause of the cyclic vulnerability."
+            "Cyclic attacks work not only against KataGo but also against a range of other superhuman Go AIs, including <a target=\"_blank\" href=\"https://online-go.com/game/51321265\">ELF OpenGo</a>, <a target=\"_blank\" href=\"https://online-go.com/game/51356405\">Leela Zero</a>, <a target=\"_blank\" href=\"https://online-go.com/game/51375020\">Sai</a>, <a target=\"_blank\" href=\"https://www.bilibili.com/video/BV1Ls4y147Es/?share_source=copy_web&t=97\">Golaxy</a>, and <a target=\"_blank\" href=\"https://h5.foxwq.com/txwqshare/index.html?chessid=1676910620010001365&boardsize=19\">FineArt</a>. While it is possible that each system has unique vulnerabilities to the cyclic attack, it seems more likely that shared properties cause their common vulnerability. One key shared property is that all systems use a convolutional neural network (CNN) backbone.",
+            "To investigate whether CNNs are responsible for the vulnerability, we trained an AlphaZero-style Go AI with a vision transformer (ViT) backbone instead of a CNN. We estimate our ViT Go AI <code>ViT-victim</code> is just shy of superhuman performance at 32768 visits. Despite this, it remains vulnerable to the <a href=\"#vit-vs-base-adversary\">original cyclic attack</a> and consistently loses to a <a href=\"#vit-vs-vit-adversary\">fine-tuned variant</a> of the cyclic attack. This rules out CNN backbones as the root cause of the cyclic vulnerability."
         ],
         "content": [
+            {
+                "title": "Network strength",
+                "dir_name": "vit-strength",
+                "description": [
+                    "TODO"
+                ]
+            },
             {
                 "title": "Original cyclic attack",
                 "dir_name": "vit-vs-base-adversary",
@@ -1114,7 +1121,7 @@ export const pages: object =
                 "adversary": "<code>base-adversary</code>",
                 "victim": "<code>ViT-victim</code>, 512 visits",
                 "description": [
-                    "Our original cyclic adversary <code>base-adversary</code> with no additional training already beats our ViT Go model in 2.5% of games at 512 visits of search."
+                    "Our original cyclic adversary <code>base-adversary</code>, with no additional training, already beats our ViT Go model in 2.5% of games at 512 visits of search. Explore games below, sampled to be equally balanced between wins and losses. For a more detailed description of how this attack works, please see our <a href=\"/game-analysis#contents\">original results</a>."
                 ]
             },
             {
@@ -1166,7 +1173,8 @@ export const pages: object =
                 "adversary": "<code>ViT-adversary</code>",
                 "victim": "<code>ViT-victim</code>, 65536 visits",
                 "description": [
-                    "We fine-tune the cyclic adversary to get an adversary that defeats our ViT model in 78% of games at 65536 visits of search, so the ViT model still fails defend against cyclic attacks when using superhuman settings."
+                    "We fine-tuned the cyclic adversary, resulting in an adversary that defeats our ViT model in 78% of games at 65536 visits of search. This confirms the ViT model fails to defend against cyclic attacks even at superhuman settings. Explore randomly sampled games below.",
+                    "In the first game, the adversary stakes out the center on <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 17)'>move 17</a>, for constructing its group inside the cyclic group, which is fully formed by <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 49)'>move 49</a>. After that, the victim surrounds that central group, completing the cyclic group on <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 248)'>move 248</a>, while the adversary surrounds it from the outside. This leads to a very dense board, with adversary stones positioned low around the edges, and the victim controlling a huge center, mostly filled by the cyclic group and its encirclement. This pattern is typical for this adversary. On <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 255)'>move 255</a>, the victim captures the inside group, but after that the adversary reenters the space and establishes a new inside group. Although not universal, this behavior mirrors tactics also observed with the original cyclic adversary. Finally, at <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 283)'>move 283</a>, the victim is doomed, and the cyclic group is taken off the board at <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 335)'>move 335</a>."
                 ]
             }
         ]
