@@ -13,7 +13,6 @@
 
   --bs-body-bg: var(--near-white);
   --bs-body-bg-rgb: 247, 247, 247;
-
 }
 
 html {
@@ -56,4 +55,8 @@ a:hover {
 /* Add additional margin to the scroll location of an anchor or table-of-contents link. */
 h1, h2, h3, h4, h5, h6, :target {
   scroll-margin-top: 1em;
+}
+
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: var(--medium-accent-color);
 }

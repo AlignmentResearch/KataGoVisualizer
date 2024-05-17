@@ -40,7 +40,12 @@
 </nav>
 
 <style>
-.navbar {
-    --bs-navbar-active-color: var(--dark-accent-color);
-}
+    .navbar {
+        --bs-navbar-active-color: var(--dark-accent-color);
+    }
+    .bg-light {
+        /* Make navbar background color more visibly distinct from page
+         * background color. */
+        background-color: #fff !important;
+    }
 </style>
