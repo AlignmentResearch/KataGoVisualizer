@@ -1060,7 +1060,7 @@ export const pages: object =
                 "adversary": "<code>a</code><code>9</code>",
                 "victim": "<code>v</code><sub><code>9</code></sub>, 65536 visits",
                 "description": [
-                    "We fine-tune the final adversary <code>a</code><sub><code>8</code></sub> that <code>v</code><sub><code>9</code></sub> was trained against and produce an adversary <code>a</code><sub><code>9</code></sub>. This adversary defeats <code>v</code><sub><code>9</code></sub> even at 65536 visits in TODO% of games, indicating a substantial attack surface area remains for <code>v</code><sub><code>9</code></sub> at high visit counts. Explore randomly sampled games below.",
+                    "We fine-tune the final adversary <code>a</code><sub><code>8</code></sub> that <code>v</code><sub><code>9</code></sub> was trained against and produce an adversary <code>a</code><sub><code>9</code></sub>. This adversary defeats <code>v</code><sub><code>9</code></sub> even at 65536 visits in 42% of games, indicating a substantial attack surface area remains for <code>v</code><sub><code>9</code></sub> at high visit counts. Explore randomly sampled games below.",
                     "TODO kellin analysis",
                 ]
             }
