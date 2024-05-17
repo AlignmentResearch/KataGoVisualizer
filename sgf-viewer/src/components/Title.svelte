@@ -24,33 +24,6 @@
       margin-top: 0.5em;
       text-align: center;
     }
-    .authors-list {
-        flex-wrap: wrap;
-        gap: 0.5em;
-        margin-bottom: 0.5em;
-    }
-    .authors-list-item {
-        font-weight: 300;
-        font-size: 18px;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        color: #000000;
-    }
-    .author-name:hover {
-        text-decoration: underline;
-    }
-    .authors-list-item sup {
-        font-size: 9px;
-    }
-    .institution-list-item {
-        font-weight: 300;
-        font-size: 14.5px;
-        margin-left: 1rem;
-        margin-right: 1rem;
-    }
-    .institution-list-item sup {
-        font-size: 9px;
-    }
     div {
         display: flex;
         justify-content: center;
