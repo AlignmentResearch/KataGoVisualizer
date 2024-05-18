@@ -20,7 +20,7 @@ export enum NavbarItemEnum {
   Link = "LINK",
 };
 
-// Describes navbar item layout, where each item is a page in content.ts.
+// Describes navbar layout, where each item is a page in content.ts.
 export const navbarItems: Array<Record<any>> = [
   {
     "type": NavbarItemEnum.Link,
