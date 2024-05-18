@@ -94,11 +94,11 @@ export const navbarItems: Array<Record<any>> = [
       {
         "type": NavbarItemEnum.DropdownText,
         "text": "Positional adversarial training",
-        "title": "Early results",
       },
       {
         "type": NavbarItemEnum.Link,
         "destination": "adversarial-training",
+        "title": "Early results",
       },
       {
         "type": NavbarItemEnum.DropdownDivider,

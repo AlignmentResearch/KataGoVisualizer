@@ -644,8 +644,11 @@ export const pages: object =
         ]
     },
     "adversarial-training": {
-        "title": "Adversarial training",
-        "description": ["David Wu (lightvector), the creator and primary developer of KataGo, has incorporated adversarial training against the cyclic exploit into the official self-play training run of KataGo since mid-December 2022. The adversarial training consists of starting a small fraction (~0.1%) of self-play games in positions where the cyclic exploit is being executed, with the remainder of games being regular self-play games. This adversarial training has been partially successful in that the adversarially trained networks are able to beat our original cyclic adversary. However, we are able to fine-tune our original adversary to defeat these updated networks. This suggests that it is non-trivial to defend against the cyclic exploit, unlike the pass exploit which we were able to manually patch. Developing techniques to train agents that are immune to this attack while maintaining high Go strength remains an interesting open problem."],
+        "title": "Early adversarial training",
+        "description": [
+            "David Wu (lightvector), the creator and primary developer of KataGo, has incorporated adversarial training against the cyclic exploit into the official self-play training run of KataGo since December 2022. The adversarial training consists of starting a small fraction (~0.1%) of self-play games in positions where the cyclic exploit is being executed, with the remainder of games being regular self-play games. This adversarial training has been partially successful in that the adversarially trained networks are able to beat our original cyclic adversary. However, we are able to fine-tune our original adversary to defeat these updated networks. This suggests that it is non-trivial to defend against the cyclic exploit, unlike the pass exploit which we were able to manually patch. Developing techniques to train agents that are immune to this attack while maintaining high Go strength remains an interesting open problem.",
+            "This page shows our results against the KataGo network <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>kata1-b60c320-s7701878528-d3323518127</code></a>, abbreviated to <code>b60-s7702m</code> and released in May 2023. These results are superseded by <a href=\"/positional-adversarial-training#contents\">our results against a December 2023 network</a>, but we preserve them here since they are linked in <a target=\"_blank\" href=\"https://arxiv.org/abs/2211.00241\">our first paper</a>."
+        ],
         "content": [
             {
                 "title": "Original cyclic adversary loses to no-search <code>b60-s7702m</code>",
@@ -687,7 +690,7 @@ export const pages: object =
                 "max_games": 8,
                 "adversary": "Cyclic adversary, 545 million training steps, 600 visits",
                 "victim": "<code>b60-s7702m</code>, no search",
-                "description": [ "The kata1-b60c320-s7701878528-d3323518127 (abbreviated to <code>b60-s7702m</code>) network, released in May 2023, has had several months of adversarial training and defeats the original cyclic adversary in 1882/2000 = 94.1% of games even when <code>b60-s7702m</code> plays without search. <code>b60-s7702m</code> is stronger at defending the cyclic group. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
+                "description": [ "<code>b60-s7702m</code> has had several months of adversarial training and defeats the original cyclic adversary in 1882/2000 = 94.1% of games even when <code>b60-s7702m</code> plays without search. <code>b60-s7702m</code> is stronger at defending the cyclic group. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
             },
             {
                 "title": "Fine-tuned cyclic adversary vs. 4096-visit <code>b60-s7702m</code>",
