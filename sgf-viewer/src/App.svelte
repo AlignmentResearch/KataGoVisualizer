@@ -44,10 +44,8 @@
     <div class="content">
         <Title showAuthors={landingPage} />
         <main>
-            <!-- Empty anchor target. Named for link backwards compatibility. -->
-            <div id="contents" />
             {#key currentPath}
-                <h2>{pages[currentPath]["title"]}</h2>
+                <h2 id="contents">{pages[currentPath]["title"]}</h2>
                 {#if pages[currentPath]["description"]}
                     {#each pages[currentPath]["description"] as description}
                         <p class="description-p">{@html description}</p>
