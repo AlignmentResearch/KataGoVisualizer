@@ -44,7 +44,7 @@ export const cards: Array<any> =
         image: "/images/defense-blog.svg",
         imageName: "Defense blog icon",
         description: "Defense blog",
-        url: "https://docs.google.com/document/d/1wcLUZLXejtuCHNCSPFfDVM0peLmV85046dmYsPeYhw4/edit",
+        url: "https://far.ai/post/2024-05-go-defense/",
         color: "rgb(70,205,206,0.5)",
         border: false,
     },
