@@ -43,7 +43,7 @@ export const pages: object =
             {
                 "title": "KataGo without search (top-100 European player level)",
                 "dir_name": "no_search_hardened",
-                "_path_comment": "Computed by `grep -n cp505h-v1 /shared/nas-data/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/* | shuf | head -n 6 | cut -f1,2 -d:`",
+                "_path_comment": "Computed by `grep -n cp505h-v1 /nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/* | shuf | head -n 6 | cut -f1,2 -d:`",
                 "paths_with_line_num": [
                     {
                         "path": "/shared/nas-data/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/C240D2DE4B3BBBE6.sgfs",
@@ -82,7 +82,7 @@ export const pages: object =
             {
                 "title": "KataGo with 4096 visits (superhuman)",
                 "dir_name": "4096_visits_hardened",
-                "_path_comment": "Computed by `grep -n cp505h-v4096 /shared/nas-data/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/* | shuf | head -n 10 | cut -f1,2 -d:`",
+                "_path_comment": "Computed by `grep -n cp505h-v4096 /nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/* | shuf | head -n 10 | cut -f1,2 -d:`",
                 "paths_with_line_num": [
                     {
                         "path": "/shared/nas-data/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-eval-main-adv-20230117-235520/sgfs/732A09F13C043EC6.sgfs",
@@ -399,7 +399,7 @@ export const pages: object =
             {
                 "title": "KataGo without search (top-100 European player level)",
                 "dir_name": "no_search",
-                "_path_comment": "Computed by `grep -n cp505-v1 /shared/nas-data/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/* | shuf | head -n 6 | cut -f1,2 -d:`",
+                "_path_comment": "Computed by `grep -n cp505-v1 /nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/* | shuf | head -n 6 | cut -f1,2 -d:`",
                 "paths_with_line_num": [
                     {
                         "path": "/shared/nas-data/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/training-checkpoint-sweep/ttseng-eval-20221130-210105/sgfs/68970420A37B288E.sgfs",
@@ -437,7 +437,7 @@ export const pages: object =
             {
                 "title": "KataGo with 8 visits",
                 "dir_name": "8_visits",
-                "_path_comment": "Computed by `grep -n cp505-v8] /shared/nas-data/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/* | shuf | head -n 10 | cut -f1,2 -d:`",
+                "_path_comment": "Computed by `grep -n cp505-v8] /nas/ucb/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/* | shuf | head -n 10 | cut -f1,2 -d:`",
                 "paths_with_line_num": [
                   {
                     "path": "/shared/nas-data/k8/go-attack/match/ttseng-unhardened-paper-eval-221130/ttseng-victim-v-sweep-amcts-r-20221130-210359/sgfs/5157F816018CB4D4.sgfs",
