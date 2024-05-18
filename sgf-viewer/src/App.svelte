@@ -14,7 +14,6 @@
     import MdFormatListBulleted from 'svelte-icons/md/MdFormatListBulleted.svelte'
     import Toc from 'svelte-toc'
 
-    import Citation from "./components/Citation.svelte";
     import Navbar from "./components/Navbar.svelte";
     import Section from "./components/Section.svelte";
     import Title from "./components/Title.svelte";
@@ -57,7 +56,6 @@
                 {/each}
             {/key}
         </main>
-        <Citation />
     </div>
     <!-- Give the table of contents the same breakpoint as the navbar and give
       it a fixed width. -->
