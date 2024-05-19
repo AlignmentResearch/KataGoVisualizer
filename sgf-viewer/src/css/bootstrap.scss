@@ -39,4 +39,14 @@
     // Make the table of contents show up behind navbar dropdown menus,
     // but in front of other content.
     --toc-z-index: #{$zindex-dropdown - 1};
+
+    img.medium-width {
+      max-width: 600px;
+    }
+
+    @include media-breakpoint-down(md) {
+      img.medium-width {
+        max-width: 100%;
+      }
+    }
 }
