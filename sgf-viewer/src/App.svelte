@@ -37,7 +37,12 @@
     $: sections = pagesPaths.includes(currentPath)
         ? pages[currentPath]["content"]
         : [];
+    $: summary = pages[currentPath]["summary"]
 </script>
+
+<svelte:head>
+  <meta name="description" content={summary}>
+</svelte:head>
 
 <NavBar bind:currentPath />
 <div class="flex-container">
