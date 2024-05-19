@@ -13,6 +13,7 @@
     "@sveltejs/vite-plugin-svelte": "^1.0.2",
     "@tsconfig/svelte": "^3.0.0",
     "autoprefixer": "^10.4.13",
+    "sass": "^1.76.0",
     "svelte": "^3.49.0",
     "svelte-check": "^2.8.1",
     "svelte-preprocess": "^4.10.7",
@@ -22,7 +23,9 @@
   },
   "dependencies": {
     "@fontsource/lato": "^5.0.5",
-    "svelte-icons": "^2.1.0"
+    "bootstrap": "^5.3.3",
+    "svelte-icons": "^2.1.0",
+    "svelte-toc": "^0.5.8"
   },
   "browserslist": [
     "> 0.5%",

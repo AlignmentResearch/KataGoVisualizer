@@ -32,7 +32,7 @@ export const pages: object =
         ]
     },
     "adversarial-policy-katago": {
-        "title": "Cyclic Attack",
+        "title": "Cyclic attack",
         "description": [
             "This section showcases games our cyclic-adversary played against <a target=\"_blank\" href=\"https://github.com/lightvector/KataGo\">KataGo</a>. We primarily attack KataGo network checkpoint <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a>, which we dub <code>Latest</code> since it is the latest confidently rated KataGo network at the time of conducting our experiments."
         ],
@@ -151,7 +151,7 @@ export const pages: object =
         ]
     },
     "game-analysis": {
-        "title": "Game Analysis",
+        "title": "Game analysis",
         "content": [
             {
                 "title": "Qualitative analysis of adversary behavior",
@@ -165,10 +165,10 @@ export const pages: object =
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, 1600 visits",
                 "description": [
                     "An expert-level (6 dan) human player on our team (Kellin Pelrine) analyzed the following game. It shows typical behavior and outcomes with an adversary trained on and playing a pass-hardened KataGo victim: the victim gains an early and soon seemingly insurmountable lead. The adversary sets a trap that would be easy for a human to see and avoid. But the victim is oblivious and collapses.",
-                    "The adversary plays non-standard, subpar moves right from the beginning. The victim's estimate of its winrate is over 90% by <a onclick='setMove(`qualitative`, 9)'>move 9</a>, and a human in a high-level match would likewise hold a large advantage from this position.",
-                    "On <a onclick='setMove(`qualitative`, 20)'>move 20</a>, the adversary initiates a tactic we see consistently, to produce a 'dead' (at least, according to normal judgment) square 4 group in one quadrant of the board. Elsewhere, the adversary plays low, mostly second and third line moves. This is also common in its games, and leads to the victim turning the rest of the center into its sphere of influence. We suspect this helps the adversary later play moves in that area without the victim responding directly, because the victim is already strong in that area and feels confident ignoring a number of moves.",
-                    "On <a onclick='setMove(`qualitative`, 74)'>move 74</a>, the adversary begins mobilizing its 'dead' stones to set up an encirclement. Over the next 100+ moves, it gradually surrounds the victim in the top left. A key pattern here is that it leads the victim into forming an isolated group that loops around and connects to itself (a group with a cycle instead of tree structure). David Wu, creator of KataGo, suggested Go-playing agents like the victim struggle to accurately judge the status of such groups, but they are normally very rare. This adversary seems to produce them consistently.",
-                    "Until the adversary plays <a onclick='setMove(`qualitative`, 189)'>move 189</a>, the victim could still save that cycle group, and in turn still win by a huge margin. There are straightforward moves to do so that would be trivial to find for any human playing at the victim's normal level. Even a human who has only played for a few months or less might find them. For instance, on 189 it could have instead played at the place marked 'A.' But after 189, it is impossible to escape, and the game is reversed. The victim seems to have been unable to detect the danger. Play continues for another 109 moves but there is no chance for the victim (nor would there be for a human player) to get out of the massive deficit it was tricked into."
+                    "The adversary plays non-standard, subpar moves right from the beginning. The victim's estimate of its winrate is over 90% by <a class='clickable' onclick='setMove(`qualitative`, 9)'>move 9</a>, and a human in a high-level match would likewise hold a large advantage from this position.",
+                    "On <a class='clickable' onclick='setMove(`qualitative`, 20)'>move 20</a>, the adversary initiates a tactic we see consistently, to produce a 'dead' (at least, according to normal judgment) square 4 group in one quadrant of the board. Elsewhere, the adversary plays low, mostly second and third line moves. This is also common in its games, and leads to the victim turning the rest of the center into its sphere of influence. We suspect this helps the adversary later play moves in that area without the victim responding directly, because the victim is already strong in that area and feels confident ignoring a number of moves.",
+                    "On <a class='clickable' onclick='setMove(`qualitative`, 74)'>move 74</a>, the adversary begins mobilizing its 'dead' stones to set up an encirclement. Over the next 100+ moves, it gradually surrounds the victim in the top left. A key pattern here is that it leads the victim into forming an isolated group that loops around and connects to itself (a group with a cycle instead of tree structure). David Wu, creator of KataGo, suggested Go-playing agents like the victim struggle to accurately judge the status of such groups, but they are normally very rare. This adversary seems to produce them consistently.",
+                    "Until the adversary plays <a class='clickable' onclick='setMove(`qualitative`, 189)'>move 189</a>, the victim could still save that cycle group, and in turn still win by a huge margin. There are straightforward moves to do so that would be trivial to find for any human playing at the victim's normal level. Even a human who has only played for a few months or less might find them. For instance, on 189 it could have instead played at the place marked 'A.' But after 189, it is impossible to escape, and the game is reversed. The victim seems to have been unable to detect the danger. Play continues for another 109 moves but there is no chance for the victim (nor would there be for a human player) to get out of the massive deficit it was tricked into."
                 ]
             },
             {
@@ -185,7 +185,7 @@ export const pages: object =
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code>, 4096 visits",
                 "description": [
-                    "In this game, we find the victim's predicted win rate oscillates several times before the victim's group is captured at <a onclick='setMove(`win-rate`, 273)'>move 273</a>. At <a onClick='setMove(`win-rate`, 248)'>move 248</a>, the victim predicted it would win with 91% confidence, yet at its next turn at <a onClick='setMove(`win-rate`, 250)'>move 250</a> it has gone down to a <1% win rate prediction. At <a onClick='setMove(`win-rate`, 254)'>move 254</a>, it jumps back to a >99% win rate prediction. A few moves later, the victim's win rate prediction again fluctuates dramatically, hitting <1% at <a onClick='setMove(`win-rate`, 266)'>move 266</a>, 99% at <a onClick='setMove(`win-rate`, 268)'>move 268</a>, and <1% at <a onClick='setMove(`win-rate`, 272)'>move 272</a>.  After the capture on the following turn, the victim (correctly) predicts a <1% win rate until the end of the game."
+                    "In this game, we find the victim's predicted win rate oscillates several times before the victim's group is captured at <a class='clickable' onclick='setMove(`win-rate`, 273)'>move 273</a>. At <a class='clickable' onclick='setMove(`win-rate`, 248)'>move 248</a>, the victim predicted it would win with 91% confidence, yet at its next turn at <a class='clickable' onclick='setMove(`win-rate`, 250)'>move 250</a> it has gone down to a <1% win rate prediction. At <a class='clickable' onclick='setMove(`win-rate`, 254)'>move 254</a>, it jumps back to a >99% win rate prediction. A few moves later, the victim's win rate prediction again fluctuates dramatically, hitting <1% at <a class='clickable' onclick='setMove(`win-rate`, 266)'>move 266</a>, 99% at <a class='clickable' onclick='setMove(`win-rate`, 268)'>move 268</a>, and <1% at <a class='clickable' onclick='setMove(`win-rate`, 272)'>move 272</a>.  After the capture on the following turn, the victim (correctly) predicts a <1% win rate until the end of the game."
                 ]
             },
             {
@@ -240,7 +240,7 @@ export const pages: object =
         ]
     },
     "human-evaluation": {
-        "title": "Human Games",
+        "title": "Human games",
         "content": [
             {
                 "title": "Human amateur beats cyclic-adversary",
@@ -404,7 +404,7 @@ export const pages: object =
         ]
     },
     "pass-based-attack": {
-        "title": "Pass Attack",
+        "title": "Pass attack",
         "description": [
             "Our initial attempts at attacking KataGo resulted in adversaries that exploited KataGo's passing behavior. These pass-based adversaries trick KataGo into passing when it shouldn't. While this attack is effective against victims which do not use tree-search, it stops working once victims are able to use even a small amount of tree-search. We developed the pass-hardening defense so that our adversaries would not get stuck learning this pass-exploit. This worked surprisingly well &mdash; training against pass-hardened victims resulted in our adversaries learning <a href=\"/adversarial-policy-katago#contents\">an alternate strategy that works even in the high search regime.</a>"
         ],
@@ -503,7 +503,7 @@ export const pages: object =
         ]
     },
     "baseline-attack": {
-        "title": "Baseline Attacks",
+        "title": "Baseline attacks",
         "description": ["In this section we examine simple, no-learning attacks. These test the robustness of KataGo to some types of unsophisticated but likely out-of-distribution play. We find these attacks are generally ineffective against KataGo playing with search and against the hardened version of KataGo, although the mirror Go attack still gets some wins at low visits. Overall, to find consistent weaknesses, a learning-based approach like ours seems necessary."],
         "content": [
             {
@@ -615,15 +615,8 @@ export const pages: object =
         ]
     },
     "training-sample": {
-        "title": "Training Sample Games",
+        "title": "Training sample games",
         "description": ["In this section we present samples of games showing the training process of our adversary. In particular, we sample 5 games against each of 4 victims approximately every 10% of training steps up to 545 million steps. All victims are defended against the <a href=\"/pass-based-attack#contents\">pass-based attack</a>. We see the adversary implementing other attacks before discovering and ultimately consistently using the cyclic attack. This progression is analyzed in more detail in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.I.3\">the paper appendix</a>."],
-        "jump_to": {
-            "base": "VAR vs. VAR",
-            "vars": [
-                ["10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"],
-                ["cp39, no search", "cp127, no search", "Latest, no search", "Latest, 4096 visits"]
-            ]
-        },
         "content": [
             {"title": "10% vs. cp39, no search", "dir_name": "training_sample_games1_cp39h-v1", "server": "dqn.ist.berkeley.edu", "_path_comment": "Sampled using sample_training_games.py", "paths_with_line_num": [{"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-0-to-8-20230117-235636/sgfs/E344356A040B00BF.sgfs", "line": 5}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-0-to-8-20230117-235636/sgfs/4EF9D42E887F0EE3.sgfs", "line": 1}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-0-to-8-20230117-235636/sgfs/E9D2C9D4666A7124.sgfs", "line": 1}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-0-to-8-20230117-235636/sgfs/B002FCEF7FE1BE79.sgfs", "line": 1}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-0-to-8-20230117-235636/sgfs/675C1FD94D5025EC.sgfs", "line": 2}], "max_games": 5, "adversary": "50 million training steps, 600 visits", "victim": "<code>cp39</code><sub><code>def</code></sub>, no search", "description": []},
             {"title": "10% vs. cp127, no search", "dir_name": "training_sample_games1_cp127h-v1", "server": "dqn.ist.berkeley.edu", "_path_comment": "Sampled using sample_training_games.py", "paths_with_line_num": [{"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-0-to-8-20230117-235636/sgfs/5F48E0B1B978265B.sgfs", "line": 1}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-0-to-8-20230117-235636/sgfs/A224A8A85D233AA5.sgfs", "line": 1}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-0-to-8-20230117-235636/sgfs/CF0D50AB892070A3.sgfs", "line": 1}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-0-to-8-20230117-235636/sgfs/472FE601A19EDE32.sgfs", "line": 8}, {"path": "/nas/ucb/k8/go-attack/match/ttseng-hard-adv-checkpoint-sweep-s545mil-20230117/ttseng-checkpoints-0-to-8-20230117-235636/sgfs/D0D45ED2B4B00C6B.sgfs", "line": 7}], "max_games": 5, "adversary": "50 million training steps, 600 visits", "victim": "<code>cp127</code><sub><code>def</code></sub>, no search", "description": []},
@@ -668,7 +661,7 @@ export const pages: object =
         ]
     },
     "adversarial-training": {
-        "title": "Adversarial Training",
+        "title": "Adversarial training",
         "description": ["David Wu (lightvector), the creator and primary developer of KataGo, has incorporated adversarial training against the cyclic exploit into the official self-play training run of KataGo since mid-December 2022. The adversarial training consists of starting a small fraction (~0.1%) of self-play games in positions where the cyclic exploit is being executed, with the remainder of games being regular self-play games. This adversarial training has been partially successful in that the adversarially trained networks are able to beat our original cyclic-adversary. However, we are able to fine-tune our original adversary to defeat these updated networks. This suggests that it is non-trivial to defend against the cyclic exploit, unlike the pass exploit which we were able to manually patch. Developing techniques to train agents that are immune to this attack while maintaining high Go strength remains an interesting open problem."],
         "content": [
             {
@@ -803,7 +796,7 @@ export const pages: object =
         ]
     },
     "activation-plots": {
-        "title": "Activation Plots",
+        "title": "Activation plots",
         "description": ["In this page we share interactive plots visualizing activations over the 41 layers of KataGo models in cyclic situations. These correspond to the discussion in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.K.1\">Appendix K</a> of the paper (coming soon)."],
         "content": [
             {

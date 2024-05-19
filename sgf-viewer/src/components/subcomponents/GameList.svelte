@@ -57,53 +57,43 @@
     }
 </script>
 
-<div class="table-wrapper">
-    <table style="overflow: hidden;">
-        <tr>
-            <!-- slice(0, 1) drops the sgf_path column -->
-            {#each Object.values(tableColumns).slice(0, -1) as header}
-                <th>{header}</th>
-            {/each}
-            <th>Download</th>
-        </tr>
-        {#each games as game, index (index)}
-            <tr
-                class:selected-row={index === selectedRow}
-                on:click={() => clickCell(index)}
-            >
-                {#each game.slice(0, -1) as cell}
-                    <td>{cell}</td>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <!-- slice(0, -1) drops the sgf_path column -->
+                {#each Object.values(tableColumns).slice(0, -1) as header}
+                    <th scope="col">{header}</th>
                 {/each}
-                <td>
-                    <a
-                        href={indexToSgfPath(index)}
-                        download={"go_game.sgf"}
-                        class="icon"
-                    >
-                        <MdFileDownload />
-                    </a>
-                </td>
+                <th scope="col">Download</th>
             </tr>
-        {/each}
+        </thead>
+        <tbody>
+            {#each games as game, index (index)}
+                <tr
+                    class:table-active={index === selectedRow}
+                    on:click={() => clickCell(index)}
+                >
+                    {#each game.slice(0, -1) as cell}
+                        <td>{cell}</td>
+                    {/each}
+                    <td>
+                        <a
+                            href={indexToSgfPath(index)}
+                            download={"go_game.sgf"}
+                        >
+                            <div class="icon">
+                                <MdFileDownload />
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            {/each}
+        </tbody>
     </table>
 </div>
 
 <style>
-    div {
-        max-width: 100%;
-    }
-    .icon :global(svg) {
-        max-height: 1.5em;
-    }
-    .table-wrapper {
-        margin: 2vw;
-        overflow-x: auto;
-    }
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        border-radius: 10px;
-    }
     th,
     td {
         text-align: center;
@@ -113,25 +103,16 @@
     }
     td {
         border: 1px solid rgb(172, 172, 172);
-        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    td:hover {
-        transform: scale(1.1);
-        background-color: var(--accent-color-2);
-    }
-    td:hover,
-    td:hover a {
-        color: var(--accent-color-3);
-    }
-    tr {
-        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .selected-row {
-        background-color: var(--accent-color-2);
-    }
-    .selected-row,
-    .selected-row a {
-        color: var(--accent-color-3);
+    .table-active {
+        --bs-table-bg-state: var(--accent-color-2);
+        --bs-table-active-color: var(--accent-color-3);
+        /* We set --bs-table-hover-* because otherwise when the user clicks a
+         * row while hovering, they still just see the hover color instead of
+         * the active color.
+         */
+        --bs-table-hover-bg: var(--accent-color-2);
+        --bs-table-hover-color: var(--accent-color-3);
     }
     th:first-of-type {
         border-top-left-radius: 10px;
@@ -154,5 +135,18 @@
     }
     tr:last-child td {
         border-bottom: none;
+    }
+    .icon {
+        height: 1.5em;
+        width: 1.5em;
+        margin: auto;
+    }
+    .table-active a {
+        /* Change link color since otherwise it's the same as the table-active
+         * background color. */
+        color: var(--bs-table-active-color);
+    }
+    .table-active a:hover {
+        color: var(--link-hover-color);
     }
 </style>

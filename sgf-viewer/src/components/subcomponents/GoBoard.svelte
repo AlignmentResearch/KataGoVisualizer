@@ -8,6 +8,10 @@
     export let sgfPath: string;
 
     let goBoardDiv: HTMLElement;
+    let wgoPlayer: WGo.BasicPlayer;
+    // Arbitrary large number, needs to be larger than the move count in any of
+    // our SGFs.
+    const LAST_MOVE_NUM = 10000;
 
     function releaseCanvas(canvas) {
         canvas.width = 1;
@@ -16,14 +20,12 @@
         ctx && ctx.clearRect(0, 0, 1, 1);
     }
 
-    $: if (goBoardDiv) {
+    $: if (goBoardDiv && !wgoPlayer) {
         [...goBoardDiv.getElementsByTagName("CANVAS")].forEach(releaseCanvas);
 
-        let wgoPlayer = new (<any>window).WGo.BasicPlayer(goBoardDiv, {
-            sgfFile: sgfPath,
+        wgoPlayer = new (<any>window).WGo.BasicPlayer(goBoardDiv, {
             layout: (<any>window).WGo.BasicPlayer.dynamicLayout,
             allowIllegalMoves: true,
-            move: 9999,
             enableWheel: false,
             board: {
                 // Options: NORMAL, PAINTED, REALISTIC, GLOW, SHELL, MONO, CR, LB, SQ, TR, MA, SL, SM, outline, mini
@@ -32,6 +34,9 @@
             },
         });
         wgoPlayers[dirName] = wgoPlayer;
+    }
+    $: if (wgoPlayer && sgfPath) {
+      wgoPlayer.loadSgfFromFile(sgfPath, LAST_MOVE_NUM);
     }
 </script>
 
