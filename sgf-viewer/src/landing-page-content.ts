@@ -25,7 +25,7 @@ export const cards: Array<any> =
         border: false,
     },
     {
-        image: "/images/financial-times-logo.png",
+        image: "/images/financial-times-logo.svg",
         imageName: "Financial Times logo",
         description: "Attack press",
         url: "https://www.ft.com/content/175e5314-a7f7-4741-a786-273219f433a1",
