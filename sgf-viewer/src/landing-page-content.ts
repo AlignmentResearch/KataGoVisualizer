@@ -17,8 +17,8 @@ export const cards: Array<any> =
         border: false,
     },
     {
-        image: "/images/video-screenshot.jpg",
-        imageName: "Attack video screenshot",
+        image: "/images/attack-video.svg",
+        imageName: "Attack video icon",
         description: "Attack video",
         url: "https://recorder-v3.slideslive.com/#/share?share=83403&s=1a8b2506-2198-4d30-a487-fdb05a497f5f",
         color: "rgb(31,24,42,0.5)",
