@@ -1,4 +1,5 @@
 """Utility functions for plot notebooks."""
+
 import os
 import pathlib
 import re
@@ -33,10 +34,12 @@ def import_plt_sty(sty_file: str) -> None:
     assert sty_file.suffix == ".sty"
     absolute_path_without_extension = sty_file.parent.resolve() / sty_file.stem
     preamble = rf"\usepackage{{{absolute_path_without_extension}}}"
-    plt.rcParams.update({
-        "pgf.preamble": preamble,
-        "text.latex.preamble": preamble,
-    })
+    plt.rcParams.update(
+        {
+            "pgf.preamble": preamble,
+            "text.latex.preamble": preamble,
+        }
+    )
 
 
 def parse_for_match(df: pd.DataFrame, adv_name_regex: str = "adv") -> None:
@@ -104,7 +107,9 @@ def get_victim_active_ranges(df: pd.DataFrame) -> Dict[str, Tuple[int, int]]:
     return victim_ranges
 
 
-def get_victim_active_ranges_allow_repeats(df: pd.DataFrame) -> List[Tuple[str, Tuple[int, int]]]:
+def get_victim_active_ranges_allow_repeats(
+    df: pd.DataFrame,
+) -> List[Tuple[str, Tuple[int, int]]]:
     """Get victims' active ranges during training, allowing victim to appear multiple times.
 
     E.g., say victim A was active during steps 0 to 1mil and also 5mil to 10mil.
@@ -121,33 +126,33 @@ def get_victim_active_ranges_allow_repeats(df: pd.DataFrame) -> List[Tuple[str, 
     )
 
     grouped_df = df[["victim_name_v2", "adv_steps"]].groupby("victim_name_v2")
-    
-    all_steps = sorted(df["adv_steps"].unique())
-    step_to_index = { step: i for i, step in enumerate(all_steps) }
-    # Get all steps a victim appears in.
-    victim_active_steps = grouped_df.apply(lambda x: sorted(x['adv_steps'].unique()))
 
-    def list_to_ranges(l):
+    all_steps = sorted(df["adv_steps"].unique())
+    step_to_index = {step: i for i, step in enumerate(all_steps)}
+    # Get all steps a victim appears in.
+    victim_active_steps = grouped_df.apply(lambda x: sorted(x["adv_steps"].unique()))
+
+    def list_to_ranges(xs):
         """Converts int list l into a list of ranges of ints.
         e.g., input [1,2,3,5,7,8,9,14,15] -> output [(1,3),(5,5),(7,9),(14,15)]
         """
         ranges = []
-        start = l[0]
-        end = l[0]
-        for i in range(1, len(l)):
-            if l[i] == end + 1:
-                end = l[i]
+        start = xs[0]
+        end = xs[0]
+        for i in range(1, len(xs)):
+            if xs[i] == end + 1:
+                end = xs[i]
             else:
                 ranges.append((start, end))
-                start = l[i]
-                end = l[i]
+                start = xs[i]
+                end = xs[i]
         ranges.append((start, end))
         return ranges
-    
+
     # Convert victims' steps into contiguous ranges.
     active_ranges = []
     for victim, steps in victim_active_steps.items():
-        steps_indices = [ step_to_index[step] for step in steps ]
+        steps_indices = [step_to_index[step] for step in steps]
         victim_ranges_indices = list_to_ranges(steps_indices)
         for start, end in victim_ranges_indices:
             active_ranges.append((victim, (all_steps[start], all_steps[end])))
@@ -172,7 +177,7 @@ def get_all_adversary_steps(training_path: pathlib.Path) -> list[int]:
     return sorted(steps)
 
 
-def filter_x_minor_ticks(ax = None, threshold: float = 1):
+def filter_x_minor_ticks(ax=None, threshold: float = 1):
     """Filters out x-axis minor ticks below the threshold value."""
     if ax is None:
         ax = plt.gca()
