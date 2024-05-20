@@ -154,7 +154,7 @@ export const pages: object =
     },
     "game-analysis": {
         "title": "Game analysis",
-        "summary": "Detailed analysis of how the 'cylic attack' tricks Go AIs.",
+        "summary": "Detailed analysis of how the 'cyclic attack' tricks Go AIs.",
         "content": [
             {
                 "title": "Qualitative analysis of adversary behavior",
