@@ -774,7 +774,7 @@ export const pages: object =
                 "max_games": 8,
                 "adversary": "Cyclic adversary, 168 million fine-tuning steps, 600 visits",
                 "victim": "<code>b60-s7702m</code>, 100,000 visits, 10 search threads",
-                "description": [ "The fine-tuned cyclic adversary also beats <code>b60-s7702</code> using 100,000 victim visits with a win rate of 7/40 = 17.5%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
+                "description": [ "The fine-tuned cyclic adversary also beats <code>b60-s7702m</code> using 100,000 victim visits with a win rate of 7/40 = 17.5%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
             }
         ]
     },
