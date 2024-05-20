@@ -34,7 +34,7 @@ export const pages: object =
     },
     "adversarial-policy-katago": {
         "title": "Cyclic attack",
-        "summary": "Examples of the 'cylic attack' that defeats a variety of superhuman Go AI systems.",
+        "summary": "Examples of the 'cyclic attack' that defeats a variety of superhuman Go AI systems.",
         "description": [
             "This section showcases games our cyclic-adversary played against <a target=\"_blank\" href=\"https://github.com/lightvector/KataGo\">KataGo</a>. We primarily attack KataGo network checkpoint <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a>, which we dub <code>Latest</code> since it is the latest confidently rated KataGo network at the time of conducting our experiments."
         ],
