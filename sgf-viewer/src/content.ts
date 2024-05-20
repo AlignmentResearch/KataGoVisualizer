@@ -4,6 +4,7 @@ export const pages: object =
 {
     "home": {
         "title": "Home",
+        "summary": "Examples and analysis of superhuman Go AI systems beaten by adversarial attacks",
         "description": [
             "We discovered simple adversarial strategies that <a target=\"_blank\" href=\"https://far.ai/post/2023-07-superhuman-go-ais/\">beat superhuman Go AIs</a>, and find that <a target=\"_blank\" href=\"https://far.ai/post/2024-05-go-defense/\">adding defenses</a> helps but does not eliminate the problem. Our <a href=\"/game-analysis#contents\">cyclic adversary</a> beats the state-of-the-art KataGo AI <a href=\"/adversarial-policy-katago#4096_visits_hardened\">more than 97% of the time at superhuman settings</a>. This strategy is simple enough to be <a href=\"/human-evaluation#human_vs_kata100k\">replicated by an amateur human player</a> and <a href=\"/transfer#contents\">transfers to other superhuman Go AIs</a>. We find that although <a href=\"/positional-adversarial-training#contents\">positional</a> and <a href=\"/iterated-adversarial-training#contents\">iterated</a> adversarial training protect against the original cyclic adversary, they can still be exploited by new adversaries. We also train a new Go AI based on <a href=\"/vit#contents\">vision transformers</a> rather than convolutional neural networks, only to find it remains vulnerable to the cyclic attack.",
             "The <a href=\"/game-analysis#contents\">original cyclic adversary</a> (below, playing as white) works by forming an inside group of stones that the victim Go AI surrounds. The adversary then re-encircles this group. Despite numerous opportunities to save its group, the victim fails to see the danger and remains <a href=\"/game-analysis#win-rate\">confident of victory</a>, even many moves after it has irreversibly lost. For more details on this attack, see our <a target=\"_blank\" href=\"https://far.ai/post/2023-07-superhuman-go-ais/\">blog post</a>, ICML 2023 <a target=\"_blank\" href=\"https://slideslive.com/39006680/adversarial-policies-beat-superhuman-go-ais\">presentation</a>, or <a target=\"_blank\" href=\"https://arxiv.org/abs/2211.00241\">paper</a>.",
@@ -36,6 +37,7 @@ export const pages: object =
     },
     "adversarial-policy-katago": {
         "title": "Cyclic attack",
+        "summary": "Examples of the 'cyclic attack' that defeats a variety of superhuman Go AI systems.",
         "description": [
             "This section showcases games our cyclic adversary played against <a target=\"_blank\" href=\"https://github.com/lightvector/KataGo\">KataGo</a>. We primarily attack KataGo network checkpoint <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a>, which we dub <code>Latest</code> since it is the latest confidently rated KataGo network at the time of conducting our experiments."
         ],
@@ -152,6 +154,7 @@ export const pages: object =
     },
     "game-analysis": {
         "title": "Game analysis",
+        "summary": "Detailed analysis of how the 'cyclic attack' tricks Go AIs.",
         "content": [
             {
                 "title": "Qualitative analysis of adversary behavior",
@@ -237,6 +240,7 @@ export const pages: object =
     },
     "human-evaluation": {
         "title": "Human games",
+        "summary": "Examples of humans exploiting nominally superhuman Go systems, as well as beating (weak) adversaries.",
         "content": [
             {
                 "title": "Human amateur beats cyclic adversary",
@@ -348,6 +352,7 @@ export const pages: object =
     },
     "transfer": {
         "title": "Transfer",
+        "summary": "The adversarial strategy learned against KataGo transfers to other open-source Go AIs.",
         "description": [
             "Our adversary apparently exploits a weakness common across several Go AI systems. We find that the attack transfers zero-shot against ELF OpenGo and Leela Zero, two other open-source Go AI systems that can play at a superhuman level."
         ],
@@ -392,6 +397,7 @@ export const pages: object =
     },
     "pass-based-attack": {
         "title": "Pass attack",
+        "summary": "Weak KataGo agents defeated using the degenerate 'pass-attack'.",
         "description": [
             "Our initial attempts at attacking KataGo resulted in adversaries that exploited KataGo's passing behavior. These pass-based adversaries trick KataGo into passing when it shouldn't. While this attack is effective against victims which do not use tree search, it stops working once victims are able to use even a small amount of tree search. We developed the pass-hardening defense so that our adversaries would not get stuck learning this pass-exploit. This worked surprisingly well &mdash; training against pass-hardened victims resulted in our adversaries learning <a href=\"/adversarial-policy-katago#contents\">an alternate strategy that works even in the high search regime.</a>"
         ],
@@ -489,6 +495,7 @@ export const pages: object =
     },
     "baseline-attack": {
         "title": "Baseline attacks",
+        "summary": "Simple baselines occasionally defeat weaker Go AI systems.",
         "description": ["In this section we examine simple, no-learning attacks. These test the robustness of KataGo to some types of unsophisticated but likely out-of-distribution play. We find these attacks are generally ineffective against KataGo playing with search and against the hardened version of KataGo, although the mirror Go attack still gets some wins at low visits. Overall, to find consistent weaknesses, a learning-based approach like ours seems necessary."],
         "content": [
             {
@@ -598,6 +605,7 @@ export const pages: object =
     },
     "training-sample": {
         "title": "Training sample games",
+        "summary": "Games played by our adversary against KataGo throughout training.",
         "description": ["In this section we present samples of games showing the training process of our adversary. In particular, we sample 5 games against each of 4 victims approximately every 10% of training steps up to 545 million steps. All victims are defended against the <a href=\"/pass-based-attack#contents\">pass-based attack</a>. We see the adversary implementing other attacks before discovering and ultimately consistently using the cyclic attack. This progression is analyzed in more detail in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.I.3\">the paper appendix</a>."],
         "_content_comment": "Generated by/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/sample-sgfs.sh",
         "content": [
@@ -645,6 +653,7 @@ export const pages: object =
     },
     "adversarial-training": {
         "title": "Early adversarial training",
+        "summary": "Games played by an updated adversary that defeats an adversarially trained version of KataGo.",
         "description": [
             "David Wu (lightvector), the creator and primary developer of KataGo, has incorporated adversarial training against the cyclic exploit into the official self-play training run of KataGo since December 2022. The adversarial training consists of starting a small fraction (~0.1%) of self-play games in positions where the cyclic exploit is being executed, with the remainder of games being regular self-play games. This adversarial training has been partially successful in that the adversarially trained networks are able to beat our original cyclic adversary. However, we are able to fine-tune our original adversary to defeat these updated networks. This suggests that it is non-trivial to defend against the cyclic exploit, unlike the pass exploit which we were able to manually patch. Developing techniques to train agents that are immune to this attack while maintaining high Go strength remains an interesting open problem.",
             "This page shows our results against the KataGo network <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>kata1-b60c320-s7701878528-d3323518127</code></a>, abbreviated to <code>b60-s7702m</code> and released in May 2023. These results are superseded by <a href=\"/positional-adversarial-training#contents\">our results against a December 2023 network</a>, but we preserve them here since they are linked in <a target=\"_blank\" href=\"https://arxiv.org/abs/2211.00241\">our first paper</a>."
@@ -780,6 +789,7 @@ export const pages: object =
     },
     "activation-plots": {
         "title": "Activation plots",
+        "summary": "Visualizations of the activations of the KataGo network in adversarially created board states.",
         "description": ["In this page we share interactive plots visualizing activations over the 41 layers of KataGo models in cyclic situations. These correspond to the discussion in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.K.1\">Appendix K</a> of the paper (coming soon)."],
         "content": [
             {

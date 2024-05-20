@@ -6,9 +6,12 @@
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Adversarial policies in Go - game viewer</title>
-  <script type="text/javascript" src="/wgo/wgo.min.js"></script>
-  <script type="text/javascript" src="/wgo/wgo.player.min.js"></script>
-  <link type="text/css" href="/wgo/wgo.player.css" rel="stylesheet" />
+  <!-- Defer loading WGo to avoid blocking render as only used for "below the fold" content. -->
+  <script defer type="text/javascript" src="/wgo/wgo.min.js"></script>
+  <script defer type="text/javascript" src="/wgo/wgo.player.min.js"></script>
+  <!-- Defer loading WGo CSS for similar reason: https://web.dev/articles/defer-non-critical-css#optimize -->
+  <link rel="preload" href="/wgo/wgo.player.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/wgo/wgo.player.min.css"></noscript>
   <!-- Google Analytics 4. farai account -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-M4DSHHHFR7"></script>
   <script>
