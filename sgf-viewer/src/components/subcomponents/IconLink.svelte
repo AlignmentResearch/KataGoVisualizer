@@ -29,6 +29,7 @@
 
 <style>
     .logo {
+        aspect-ratio: 1;
         object-fit: contain;
         will-change: filter;
         transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);

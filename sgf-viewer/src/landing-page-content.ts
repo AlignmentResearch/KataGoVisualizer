@@ -17,15 +17,15 @@ export const cards: Array<any> =
         border: false,
     },
     {
-        image: "/images/video-screenshot.jpg",
-        imageName: "Attack video screenshot",
+        image: "/images/attack-video.svg",
+        imageName: "Attack video icon",
         description: "Attack video",
         url: "https://recorder-v3.slideslive.com/#/share?share=83403&s=1a8b2506-2198-4d30-a487-fdb05a497f5f",
         color: "rgb(31,24,42,0.5)",
         border: false,
     },
     {
-        image: "/images/financial-times-logo.png",
+        image: "/images/financial-times-logo.svg",
         imageName: "Financial Times logo",
         description: "Attack press",
         url: "https://www.ft.com/content/175e5314-a7f7-4741-a786-273219f433a1",
