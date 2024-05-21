@@ -27,32 +27,6 @@ export const navbarItems: Array<Record<any>> = [
     "destination": "home",
   },
   {
-    "type": NavbarItemEnum.Dropdown,
-    "title": "Undefended agent",
-    "items": [
-      {
-        "type": NavbarItemEnum.Link,
-        "destination": "adversarial-policy-katago",
-      },
-      {
-        "type": NavbarItemEnum.Link,
-        "destination": "game-analysis",
-      },
-      {
-        "type": NavbarItemEnum.Link,
-        "destination": "human-evaluation",
-      },
-      {
-        "type": NavbarItemEnum.Link,
-        "destination": "transfer",
-      },
-      {
-        "type": NavbarItemEnum.Link,
-        "destination": "undefended-agent-faq",
-      },
-    ],
-  },
-  {
     "type": NavbarItemEnum.Link,
     "destination": "positional-adversarial-training",
   },
@@ -68,41 +42,6 @@ export const navbarItems: Array<Record<any>> = [
     "type": NavbarItemEnum.Dropdown,
     "title": "Extra content",
     "items": [
-      {
-        "type": NavbarItemEnum.DropdownText,
-        "text": "Undefended agent",
-      },
-      {
-        "type": NavbarItemEnum.Link,
-        "destination": "activation-plots",
-      },
-      {
-        "type": NavbarItemEnum.Link,
-        "destination": "baseline-attack",
-      },
-      {
-        "type": NavbarItemEnum.Link,
-        "destination": "pass-based-attack",
-      },
-      {
-        "type": NavbarItemEnum.Link,
-        "destination": "training-sample",
-      },
-      {
-        "type": NavbarItemEnum.DropdownDivider,
-      },
-      {
-        "type": NavbarItemEnum.DropdownText,
-        "text": "Positional adversarial training",
-      },
-      {
-        "type": NavbarItemEnum.Link,
-        "destination": "adversarial-training",
-        "title": "Early results",
-      },
-      {
-        "type": NavbarItemEnum.DropdownDivider,
-      },
       {
         "type": NavbarItemEnum.DropdownText,
         "text": "Iterated adversarial training",
