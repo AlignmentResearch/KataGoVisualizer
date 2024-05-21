@@ -1086,12 +1086,40 @@ export const pages: object =
         "summary": "A new ViT Go AI model is still vulnerable to adversarial attacks.",
         "description": [
             "Cyclic attacks work not only against KataGo but also against a range of other superhuman Go AIs, including <a target=\"_blank\" href=\"https://online-go.com/game/51321265\">ELF OpenGo</a>, <a target=\"_blank\" href=\"https://online-go.com/game/51356405\">Leela Zero</a>, <a target=\"_blank\" href=\"https://online-go.com/game/51375020\">Sai</a>, <a target=\"_blank\" href=\"https://www.bilibili.com/video/BV1Ls4y147Es/?share_source=copy_web&t=97\">Golaxy</a>, and <a target=\"_blank\" href=\"https://h5.foxwq.com/txwqshare/index.html?chessid=1676910620010001365&boardsize=19\">FineArt</a>. While it is possible that each system has unique vulnerabilities to the cyclic attack, it seems more likely that shared properties cause their common vulnerability. One key shared property is that all systems use a convolutional neural network (CNN) backbone.",
-            "To investigate whether CNNs are responsible for the vulnerability, we trained an AlphaZero-style Go AI with a vision transformer (ViT) backbone instead of a CNN. We estimate our ViT Go AI <code>ViT-victim</code> is just shy of superhuman performance at 32768 visits. Despite this, it remains vulnerable to the <a href=\"#vit-vs-base-adversary\">original cyclic attack</a> and consistently loses to a <a href=\"#vit-vs-vit-adversary\">fine-tuned variant</a> of the cyclic attack. This rules out CNN backbones as the root cause of the cyclic vulnerability."
+            "To investigate whether CNNs are responsible for the vulnerability, we trained an AlphaZero-style Go AI with a vision transformer (ViT) backbone instead of a CNN. We estimate our ViT Go AI <code>ViT-victim</code> is just shy of superhuman performance at 32768 visits. Despite this, it remains vulnerable to the <a href=\"#vit-vs-base-adversary\">original cyclic attack</a> and consistently loses to a <a href=\"#vit-vs-vit-adversary\">fine-tuned variant</a> of the cyclic attack. This rules out CNN backbones as the root cause of the cyclic vulnerability.",
+          "We validate the strength of our ViT model by playing against KataGo, playing against members of the public on KGS, and commissioning professional games. Our games against KataGo (<a target=\"_blank\" href=\"http://example.com/paper.pdf#subsection.F.1\">Appendix F.1</a>) give an estimated <a target=\"_blank\" href=\"https://www.goratings.org/en/\">goratings.org Elo</a> of 3877 at 32,768 visits, comparable to the strongest professional players. We also deployed the ViT bot <code>ViTKata001</code> on the KGS Go server, ranking as <a target=\"_blank\" href=\"https://www.gokgs.com/graphPage.jsp?user=ViTKata001\">one of the top players</a>, including <a target=\"_blank\" href=\"https://web.archive.org/web/20240521155255/https://www.gokgs.com/top100.jsp\">beating several KataGo bots</a>. Finally, our ViT bot won two out of three games commissioned against Go professionals.",
+          "In particular, we commissioned the 7-dan professional <a target=\"_blank\" href=\"https://senseis.xmp.net/?YangYilun\">Yilun Yang</a> to play one game and the 4-dan professional <a target=\"_blank\" href=\"https://senseis.xmp.net/?RyanLi\">Ryan Li</a> play two games. Our ViT bot <a href=\"#vit-vs-yang\">beat Yilun Yang</a>. However, our ViT bot <a href=\"#vit-vs-li-flying-dagger\">lost the first game to Ryan Li</a> when it took a disadvantage early in a complicated corner pattern that has been a weakness of other Go AIs. The ViT bot then <a href=\"#vit-vs-li-rematch\">won the rematch</a> where Li agreed to avoid this pattern. This indicates the ViT model has some gaps but generally plays at a strong professional level. We discuss the games in more detail in the following sections."
         ],
         "content": [
             {
-                "title": "Strength evaluation",
-                "dir_name": "vit-strength",
+                "title": "Professional game: Yilun Yang",
+                "dir_name": "vit-vs-yang",
+                "paths": ["/shared/sgf-viewer-games/vit-vs-yang.sgf"],
+                "max_games": 1,
+                "adversary": "Yilun Yang",
+                "victim": "<code>ViT-victim</code>, 65536 visits, 64 search threads",
+                "description": [
+                    "TODO"
+                ]
+            },
+            {
+                "title": "Professional game: Ryan Li – opening corner pattern",
+                "dir_name": "vit-vs-li-flying-dagger",
+                "paths": ["/shared/sgf-viewer-games/vit-vs-li-0.sgf"],
+                "max_games": 1,
+                "adversary": "Ryan Li",
+                "victim": "<code>ViT-victim</code>, 65536 visits, 64 search threads",
+                "description": [
+                    "TODO"
+                ]
+            },
+            {
+                "title": "Professional game: Ryan Li – rematch",
+                "dir_name": "vit-vs-li-rematch",
+                "paths": ["/shared/sgf-viewer-games/vit-vs-li-1.sgf"],
+                "max_games": 1,
+                "adversary": "Ryan Li",
+                "victim": "<code>ViT-victim</code>, 65536 visits, 64 search threads",
                 "description": [
                     "TODO"
                 ]
