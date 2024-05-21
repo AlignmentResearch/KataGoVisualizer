@@ -252,7 +252,7 @@ export const pages: object =
                 ],
                 "max_games": 10,
                 "adversary": "Cyclic adversary, 545 million training steps, 600 visits",
-                "victim": "Tony Wang (Author)",
+                "victim": "Tony Wang (author)",
                 "description": [
                     "Our <a target=\"_blank\" href=\"/adversarial-policy-katago#contents\">strongest adversarial policy</a> (trained against <code>Latest</code><sub><code>def</code></sub>) is able to reliably beat KataGo at superhuman strength settings. However, a member of our team (Tony Wang) who is a novice Go player managed to convincingly beat this same adversary. This confirms that our adversarial policy is not generally capable, despite it beating victim policies that can themselves beat top human professionals. Instead, our victim policy harbors a subtle vulnerability.",
                     "Our evaluation is imperfect in one significant way: the adversary was not playing with an accurate model of its human opponent (rather it modeled Tony as <code>Latest</code> with 1 visit). However, given the poor transferability of our adversary to different KataGo checkpoints (see <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#figure.caption.3\">Figure 5.1 of the paper</a>), we predict that the adversary would not win even if it had access to an accurate model of its human opponent."
@@ -267,7 +267,7 @@ export const pages: object =
                 ],
                 "max_games": 10,
                 "adversary": "Pass adversary, 34.1 million training steps, 600 visits",
-                "victim": "Tony Wang (Author)",
+                "victim": "Tony Wang (author)",
                 "description": [
                     "The same Go novice (Tony Wang) also managed to beat our pass adversary by a large margin of over 250 points. This demonstrates our pass adversary is also not generally capable."
                 ]
@@ -279,7 +279,7 @@ export const pages: object =
                     "/shared/nas-data/sgf-viewer-games/human_vs_kata100k/humanattack-KataGo-100kvisits.sgfs"
                 ],
                 "max_games": 10,
-                "adversary": "Kellin Pelrine (Author)",
+                "adversary": "Kellin Pelrine (author)",
                 "victim": "KataGo, 100K visits",
                 "description": ["A Go expert (Kellin Pelrine) was able to learn and apply the cyclic adversary's strategy to attack multiple types and configurations of AI Go systems. In this example they exploited KataGo with 100K visits, which would normally be strongly superhuman. Besides previously studying our adversary's game records, no algorithmic assistance was used in this or any of the following examples. The KataGo network and weights used here were b18c384nbt-uec, which is a newly released version the author of KataGo (David Wu) trained for a tournament. This network should be as strong or stronger than <code>Latest</code>."]
             },
@@ -290,7 +290,7 @@ export const pages: object =
                     "/shared/nas-data/sgf-viewer-games/human_vs_lz100k/humanattack-LZ-100kvisits.sgfs"
                 ],
                 "max_games": 10,
-                "adversary": "Kellin Pelrine (Author)",
+                "adversary": "Kellin Pelrine (author)",
                 "victim": "Leela Zero, 100K visits",
                 "description": ["The same Go expert (Kellin Pelrine) also exploited Leela Zero with 100K visits, which would likewise normally be superhuman."]
             },
@@ -309,7 +309,7 @@ export const pages: object =
                     "/shared/nas-data/k8/go-attack/humanatk-lz4096/humanatk-LZ-4096visits-9.sgfs"
                 ],
                 "max_games": 10,
-                "adversary": "Kellin Pelrine (Author)",
+                "adversary": "Kellin Pelrine (author)",
                 "victim": "Leela Zero, 4096 visits",
                 "description": ["Kellin Pelrine also played 9 games against Leela Zero with 4096 visits, winning 6."]
             },
@@ -334,7 +334,7 @@ export const pages: object =
                     "/shared/nas-data/sgf-viewer-games/human_vs_jbxkata005/corners-JBXKata005.sgfs"
                 ],
                 "max_games": 15,
-                "adversary": "Kellin Pelrine (Author)",
+                "adversary": "Kellin Pelrine (author)",
                 "victim": "JBXKata005, 9 dan on KGS",
                 "description": ["Playing under standard human conditions on the online Go server KGS, the same Go expert (Kellin Pelrine) successfully exploited the bot JBXKata005 in 14/15 games. In the remaining game, the cyclic group attack still led to a successful capture, but the victim had enough points remaining to win. This bot uses a custom KataGo implementation, and at the time of the games was the strongest bot available to play on KGS."]
             },
@@ -345,7 +345,7 @@ export const pages: object =
                     "/shared/nas-data/sgf-viewer-games/human_vs_jbxkata005_handicap/corners-JBXKata005-9stones.sgfs"
                 ],
                 "max_games": 10,
-                "adversary": "Kellin Pelrine (Author)",
+                "adversary": "Kellin Pelrine (author)",
                 "victim": "JBXKata005, 9 dan on KGS, with 9 stone handicap",
                 "description": ["In this last example, the same Go expert (Kellin Pelrine) exploited JBXKata005 while giving it a huge initial advantage through a 9 stone handicap. A top level human player with this much advantage would have a virtually 100% win rate against any opponent, human or algorithmic."]
             }
@@ -897,6 +897,17 @@ export const pages: object =
                 ]
             },
             {
+                "title": "Human replication of cyclic attack",
+                "dir_name": "dec23-vs-human-cyclic",
+                "paths": ["/shared/sgf-viewer-games/b18-v512-vs-human-cyclic.sgf"],
+                "max_games": 1,
+                "adversary": "Kellin Pelrine (author)",
+                "victim": "<code>dec23-victim</code>, 512 visits",
+                "description": [
+                    "TODO kellin"
+                ]
+            },
+            {
                 "title": "Gift attack",
                 "dir_name": "dec23-vs-gift",
                 "paths_with_line_num": [
@@ -1224,6 +1235,17 @@ export const pages: object =
                 "description": [
                     "We fine-tuned the cyclic adversary, resulting in an adversary that defeats our ViT model in 78% of games at 65536 visits of search. This confirms the ViT model fails to defend against cyclic attacks even at superhuman settings. Explore randomly sampled games below.",
                     "In the first game, the adversary stakes out the center on <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 17)'>move 17</a>, for constructing its group inside the cyclic group, which is fully formed by <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 49)'>move 49</a>. After that, the victim surrounds that central group, completing the cyclic group on <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 248)'>move 248</a>, while the adversary surrounds it from the outside. This leads to a very dense board, with adversary stones positioned low around the edges, and the victim controlling a huge center, mostly filled by the cyclic group and its encirclement. This pattern is typical for this adversary. On <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 255)'>move 255</a>, the victim captures the inside group, but after that the adversary reenters the space and establishes a new inside group. Although not universal, this behavior mirrors tactics also observed with the original cyclic adversary. Finally, at <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 283)'>move 283</a>, the victim is doomed, and the cyclic group is taken off the board at <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 335)'>move 335</a>."
+                ]
+            },
+            {
+                "title": "Human replication of cyclic attack",
+                "dir_name": "vit-vs-human-cyclic",
+                "paths": ["/shared/sgf-viewer-games/vit-vs-human-cyclic.sgf"],
+                "max_games": 1,
+                "adversary": "Kellin Pelrine (author)",
+                "victim": "<code>ViT-victim</code>, 65536 visits, 64 search threads",
+                "description": [
+                    "A Go expert (Kellin Pelrine) was also able to use a cyclic attack to beat our ViT-victim. The game is shown below. Through <a class='clickable' onclick='setMove(`vit-vs-human-cyclic`, 56)'>move 56</a>, White (Kellin) sets up a loosely surrounded square group destined to be the inside of the cyclic group. This follows the shape used in some of the wins of our original cyclic adversary against this victim. In subsequent moves, white gradually surrounds the cyclic group, with a particular focus on making sure the surrounding groups have lots of liberties so that black will have to see its group is in danger early on to save it. Beginning around <a class='clickable' onclick='setMove(`vit-vs-human-cyclic`, 176)'>move 176</a>, white fills in the cyclic group's liberties, as well as pressing black to make the last connections that complete the cyclic shape. Finally, after <a class='clickable' onclick='setMove(`vit-vs-human-cyclic`, 208)'>208</a>, black's fate is sealed. Black plays on several more moves hoping for white to make a mistake, but ultimately resigns."
                 ]
             }
         ]
