@@ -3,20 +3,8 @@
     import IconLink from "./subcomponents/IconLink.svelte";
 </script>
 <h1>
-    Adversarial policies in Go
+    The challenges of training adversarially robust Go AIs
 </h1>
-<div class="image-cards">
-    {#each cards as card, index (index)}
-        <IconLink
-            image={card.image}
-            url={card.url}
-            alt={card.imageName}
-            color={card.color}
-            border={card.border}
-            description={card.description}
-        />
-    {/each}
-</div>
 
 <style>
     h1 {
