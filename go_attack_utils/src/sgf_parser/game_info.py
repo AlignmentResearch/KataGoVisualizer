@@ -202,12 +202,12 @@ def parse_game_str_to_dict(
     win_color = result[0].lower() if result else None
 
     if victim_color is None:
-        victim_is_black = any(x in b_name.lower() for x in victim_substrings) or any(
-            x in w_name.lower() for x in adversary_substrings
-        )
-        victim_is_white = any(x in w_name.lower() for x in victim_substrings) or any(
-            x in b_name.lower() for x in adversary_substrings
-        )
+        b_name_has_victim = any(x in b_name.lower() for x in victim_substrings)
+        w_name_has_victim = any(x in w_name.lower() for x in victim_substrings)
+        b_name_has_adversary = any(x in b_name.lower() for x in adversary_substrings)
+        w_name_has_adversary = any(x in w_name.lower() for x in adversary_substrings)
+        victim_is_black = b_name_has_victim or w_name_has_adversary
+        victim_is_white = w_name_has_victim or b_name_has_adversary
         if victim_is_black != victim_is_white:
             victim_color = "b" if victim_is_black else "w"
     assert (
@@ -225,7 +225,7 @@ def parse_game_str_to_dict(
 
     victim_name = {"b": b_name, "w": w_name}[victim_color]
     adv_color = {"b": "w", "w": "b"}[victim_color]
-    adv_name = b_name if adv_color == "b" else w_name
+    adv_name = {"b": b_name, "w": w_name}[adv_color]
     if victim_name in ["bot-cp127-v1", "bot-cp505-v2", "bot-cp505-v1"]:
         victim_steps = {
             "bot-cp127-v1": 5303129600,
