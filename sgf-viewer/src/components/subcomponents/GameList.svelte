@@ -120,6 +120,12 @@
     th:last-of-type {
         border-top-right-radius: 10px;
     }
+    tr:last-child td:first-child {
+        border-bottom-left-radius: 10px;
+    }
+    tr:last-child td:last-child {
+        border-bottom-right-radius: 10px;
+    }
     th {
         background-color: var(--accent-color-1);
         color: white;
