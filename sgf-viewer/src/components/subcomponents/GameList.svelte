@@ -36,6 +36,7 @@
         }
         games = games; // trigger Svelte reactivity. See https://svelte.dev/tutorial/updating-arrays-and-objects
     }
+    $: gamesAreCollapsible = games.length > 1;
 
     fetch(`/sgfs/${dirName}/game_infos.csv`)
         .then((r) => r.text())
@@ -57,45 +58,57 @@
     }
 </script>
 
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <!-- slice(0, -1) drops the sgf_path column -->
-                {#each Object.values(tableColumns).slice(0, -1) as header}
-                    <th scope="col">{header}</th>
-                {/each}
-                <th scope="col">Download</th>
-            </tr>
-        </thead>
-        <tbody>
-            {#each games as game, index (index)}
-                <tr
-                    class:table-active={index === selectedRow}
-                    on:click={() => clickCell(index)}
-                >
-                    {#each game.slice(0, -1) as cell}
-                        <td>{cell}</td>
+{#if gamesAreCollapsible}
+    <p class="text-center">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+          data-bs-target="#{dirName}-game-list" aria-expanded="true" aria-controls="{dirName}-game-list">
+            <span class="if-collapsed">Show</span>
+            <span class="if-expanded">Hide</span>
+            game list
+        </button>
+    </p>
+{/if}
+<div class:collapse={gamesAreCollapsible} id="{dirName}-game-list">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <!-- slice(0, -1) drops the sgf_path column -->
+                    {#each Object.values(tableColumns).slice(0, -1) as header}
+                        <th scope="col">{header}</th>
                     {/each}
-                    <td>
-                        <a
-                            href={indexToSgfPath(index)}
-                            download={"go_game.sgf"}
-                        >
-                            <div class="icon">
-                                <MdFileDownload />
-                            </div>
-                        </a>
-                    </td>
+                    <th scope="col">Download</th>
                 </tr>
-            {/each}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {#each games as game, index (index)}
+                    <tr
+                        class:table-active={index === selectedRow}
+                        on:click={() => clickCell(index)}
+                    >
+                        {#each game.slice(0, -1) as cell}
+                            <td>{cell}</td>
+                        {/each}
+                        <td>
+                            <a
+                                href={indexToSgfPath(index)}
+                                download={"go_game.sgf"}
+                            >
+                                <div class="icon">
+                                    <MdFileDownload />
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+                {/each}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <style>
-    th,
-    td {
+
+    th, td {
         text-align: center;
         font-weight: bold;
         padding: 8px;

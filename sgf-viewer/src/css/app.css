@@ -13,7 +13,6 @@
 
   --bs-body-bg: var(--near-white);
   --bs-body-bg-rgb: 247, 247, 247;
-
 }
 
 html {
@@ -56,4 +55,28 @@ a:hover {
 h1, h2, h3, h4, h5, h6 {
   /* Add additional margin to the scroll location of a table-of-contents link. */
   scroll-margin-top: 1em;
+}
+
+.btn {
+  --bs-btn-bg: var(--medium-accent-color);
+  --bs-btn-border-color: var(--medium-accent-color);
+  --bs-btn-hover-bg: var(--logo-color);
+  --bs-btn-hover-border-color: var(--logo-color);
+  --bs-btn-active-bg: var(--medium-accent-color);
+  --bs-btn-active-border-color: var(--medium-accent-color);
+  --bs-btn-focus-shadow-rgb: 34, 102, 102;
+}
+
+/* CSS rule for displaying different content in a Bootstrap button
+ * controlling collapsible content, as clicking the button toggles its
+ * aria-expanded attribute.
+ * We define this in a global .css file because otherwise if defined locally in
+ * a .svelte file, Svelte would optimize out one of selectors due to no matching
+ * elements appearing in the file, as Svelte does not have awareness of
+ * dynamically modified attributes
+ * (https://github.com/sveltejs/svelte/issues/5804).
+ */
+.btn [aria-expanded="false"] > .if-expanded,
+.btn [aria-expanded="true"] > .if-collapsed {
+  display: none;
 }
