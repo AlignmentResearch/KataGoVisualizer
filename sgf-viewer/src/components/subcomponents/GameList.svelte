@@ -4,6 +4,8 @@
     export let dirName: string;
     export let sgfPath: string = "";
 
+    $: gameListId = `${dirName}_game_list`;
+
     let selectedRow: number = 0;
     let games: Array<Array<string>> = [];
     const tableColumns = {
@@ -60,15 +62,14 @@
 
 {#if gamesAreCollapsible}
     <p class="text-center">
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-          data-bs-target="#{dirName}-game-list" aria-expanded="true" aria-controls="{dirName}-game-list">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#{gameListId}" aria-expanded="false" aria-controls={gameListId}>
             <span class="if-collapsed">Show</span>
             <span class="if-expanded">Hide</span>
             game list
         </button>
     </p>
 {/if}
-<div class:collapse={gamesAreCollapsible} id="{dirName}-game-list">
+<div class:collapse={gamesAreCollapsible} id={gameListId}>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
@@ -107,7 +108,6 @@
 </div>
 
 <style>
-
     th, td {
         text-align: center;
         font-weight: bold;
