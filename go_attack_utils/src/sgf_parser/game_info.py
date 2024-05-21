@@ -74,10 +74,15 @@ def read_and_parse_file(
     fast_parse: bool = False,
     victim_color: Optional[str] = None,
     no_victim_okay: bool = False,
-    adversary_substrings: Sequence[str] = DEFAULT_ADVERSARY_SUBSTRINGS,
-    victim_substrings: Sequence[str] = DEFAULT_VICTIM_SUBSTRINGS,
+    adversary_substrings: Optional[Sequence[str]] = None,
+    victim_substrings: Optional[Sequence[str]] = None,
 ) -> Sequence[Dict[str, Any]]:
     """Parse all lines of an sgf file to a list of dictionaries with game info."""
+    if adversary_substrings is None:
+        adversary_substrings = DEFAULT_ADVERSARY_SUBSTRINGS
+    if victim_substrings is None:
+        victim_substrings = DEFAULT_VICTIM_SUBSTRINGS
+
     parsed_games = []
     with open(path, "r") as f:
         for i, line in enumerate(f):
@@ -101,10 +106,15 @@ def read_and_parse_all_files(
     fast_parse: bool = False,
     processes: Optional[int] = 128,
     no_victim_okay: bool = False,
-    adversary_substrings: Sequence[str] = DEFAULT_ADVERSARY_SUBSTRINGS,
-    victim_substrings: Sequence[str] = DEFAULT_VICTIM_SUBSTRINGS,
+    adversary_substrings: Optional[Sequence[str]] = None,
+    victim_substrings: Optional[Sequence[str]] = None,
 ) -> Sequence[Dict[str, Any]]:
     """Returns concatenated contents of all files in `paths`."""
+    if adversary_substrings is None:
+        adversary_substrings = DEFAULT_ADVERSARY_SUBSTRINGS
+    if victim_substrings is None:
+        victim_substrings = DEFAULT_VICTIM_SUBSTRINGS
+
     if not processes:
         processes = min(128, len(paths) // 2)
     read_and_parse_file_partial = functools.partial(
@@ -150,8 +160,8 @@ def parse_game_str_to_dict(
     fast_parse: bool = False,
     victim_color: Optional[str] = None,
     no_victim_okay: bool = False,
-    adversary_substrings: Sequence[str] = DEFAULT_ADVERSARY_SUBSTRINGS,
-    victim_substrings: Sequence[str] = DEFAULT_VICTIM_SUBSTRINGS,
+    adversary_substrings: Optional[Sequence[str]] = None,
+    victim_substrings: Optional[Sequence[str]] = None,
 ) -> Dict[str, Any]:
     """Parse an sgf string to a dictionary containing game_info.
 
@@ -173,6 +183,11 @@ def parse_game_str_to_dict(
     Returns:
         Dictionary containing game_info.
     """
+    if adversary_substrings is None:
+        adversary_substrings = DEFAULT_ADVERSARY_SUBSTRINGS
+    if victim_substrings is None:
+        victim_substrings = DEFAULT_VICTIM_SUBSTRINGS
+
     rule_str = extract_prop("RU", sgf_str)
     comment_str = extract_prop("C", sgf_str)
     board_size = extract_prop("SZ", sgf_str)
@@ -278,11 +293,11 @@ def parse_game_str_to_dict(
         # Victim info
         "victim_color": victim_color,
         "victim_name": victim_name,
-        "victim_visits": victim_visits
-        if victim_visits
-        else int(str(victim_rank).lstrip("v"))
-        if victim_rank
-        else 1,
+        "victim_visits": (
+            victim_visits
+            if victim_visits
+            else int(str(victim_rank).lstrip("v")) if victim_rank else 1
+        ),
         "victim_steps": victim_steps,
         "victim_rsym": extract_param("rsym", victim_rank),
         "victim_algo": extract_param("algo", victim_rank),
