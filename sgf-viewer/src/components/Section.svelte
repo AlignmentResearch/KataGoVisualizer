@@ -15,11 +15,8 @@
     {/each}
 </div>
 {#if section["paths"] || section["paths_with_line_num"]}
-    <div style="max-width: 100%;">
-        <GameList dirName={section["dir_name"]} bind:sgfPath />
-        <div class="board-wrapper">
-            <GoBoard dirName={section["dir_name"]} {sgfPath} />
-        </div>
+    <div class="board-wrapper">
+        <GoBoard dirName={section["dir_name"]} {sgfPath} />
     </div>
     <div class="d-flex m-2">
         <p class="me-auto m-2">
@@ -31,6 +28,7 @@
             {@html section["adversary"]}
         </p>
     </div>
+    <GameList dirName={section["dir_name"]} bind:sgfPath />
 {/if}
 {#if section["figure"]}
     <div class="iframe-container">

@@ -74,10 +74,15 @@ def read_and_parse_file(
     fast_parse: bool = False,
     victim_color: Optional[str] = None,
     no_victim_okay: bool = False,
-    adversary_substrings: Sequence[str] = DEFAULT_ADVERSARY_SUBSTRINGS,
-    victim_substrings: Sequence[str] = DEFAULT_VICTIM_SUBSTRINGS,
+    adversary_substrings: Optional[Sequence[str]] = None,
+    victim_substrings: Optional[Sequence[str]] = None,
 ) -> Sequence[Dict[str, Any]]:
     """Parse all lines of an sgf file to a list of dictionaries with game info."""
+    if adversary_substrings is None:
+        adversary_substrings = DEFAULT_ADVERSARY_SUBSTRINGS
+    if victim_substrings is None:
+        victim_substrings = DEFAULT_VICTIM_SUBSTRINGS
+
     parsed_games = []
     with open(path, "r") as f:
         for i, line in enumerate(f):
@@ -101,10 +106,15 @@ def read_and_parse_all_files(
     fast_parse: bool = False,
     processes: Optional[int] = 128,
     no_victim_okay: bool = False,
-    adversary_substrings: Sequence[str] = DEFAULT_ADVERSARY_SUBSTRINGS,
-    victim_substrings: Sequence[str] = DEFAULT_VICTIM_SUBSTRINGS,
+    adversary_substrings: Optional[Sequence[str]] = None,
+    victim_substrings: Optional[Sequence[str]] = None,
 ) -> Sequence[Dict[str, Any]]:
     """Returns concatenated contents of all files in `paths`."""
+    if adversary_substrings is None:
+        adversary_substrings = DEFAULT_ADVERSARY_SUBSTRINGS
+    if victim_substrings is None:
+        victim_substrings = DEFAULT_VICTIM_SUBSTRINGS
+
     if not processes:
         processes = min(128, len(paths) // 2)
     read_and_parse_file_partial = functools.partial(
@@ -150,8 +160,8 @@ def parse_game_str_to_dict(
     fast_parse: bool = False,
     victim_color: Optional[str] = None,
     no_victim_okay: bool = False,
-    adversary_substrings: Sequence[str] = DEFAULT_ADVERSARY_SUBSTRINGS,
-    victim_substrings: Sequence[str] = DEFAULT_VICTIM_SUBSTRINGS,
+    adversary_substrings: Optional[Sequence[str]] = None,
+    victim_substrings: Optional[Sequence[str]] = None,
 ) -> Dict[str, Any]:
     """Parse an sgf string to a dictionary containing game_info.
 
@@ -173,6 +183,11 @@ def parse_game_str_to_dict(
     Returns:
         Dictionary containing game_info.
     """
+    if adversary_substrings is None:
+        adversary_substrings = DEFAULT_ADVERSARY_SUBSTRINGS
+    if victim_substrings is None:
+        victim_substrings = DEFAULT_VICTIM_SUBSTRINGS
+
     rule_str = extract_prop("RU", sgf_str)
     comment_str = extract_prop("C", sgf_str)
     board_size = extract_prop("SZ", sgf_str)
@@ -187,12 +202,12 @@ def parse_game_str_to_dict(
     win_color = result[0].lower() if result else None
 
     if victim_color is None:
-        victim_is_black = any(x in b_name.lower() for x in victim_substrings) or any(
-            x in w_name.lower() for x in adversary_substrings
-        )
-        victim_is_white = any(x in w_name.lower() for x in victim_substrings) or any(
-            x in b_name.lower() for x in adversary_substrings
-        )
+        b_name_has_victim = any(x in b_name.lower() for x in victim_substrings)
+        w_name_has_victim = any(x in w_name.lower() for x in victim_substrings)
+        b_name_has_adversary = any(x in b_name.lower() for x in adversary_substrings)
+        w_name_has_adversary = any(x in w_name.lower() for x in adversary_substrings)
+        victim_is_black = b_name_has_victim or w_name_has_adversary
+        victim_is_white = w_name_has_victim or b_name_has_adversary
         if victim_is_black != victim_is_white:
             victim_color = "b" if victim_is_black else "w"
     assert (
@@ -210,7 +225,7 @@ def parse_game_str_to_dict(
 
     victim_name = {"b": b_name, "w": w_name}[victim_color]
     adv_color = {"b": "w", "w": "b"}[victim_color]
-    adv_name = b_name if adv_color == "b" else w_name
+    adv_name = {"b": b_name, "w": w_name}[adv_color]
     if victim_name in ["bot-cp127-v1", "bot-cp505-v2", "bot-cp505-v1"]:
         victim_steps = {
             "bot-cp127-v1": 5303129600,
@@ -278,11 +293,13 @@ def parse_game_str_to_dict(
         # Victim info
         "victim_color": victim_color,
         "victim_name": victim_name,
-        "victim_visits": victim_visits
-        if victim_visits
-        else int(str(victim_rank).lstrip("v"))
-        if victim_rank
-        else 1,
+        "victim_visits": (
+            victim_visits
+            if victim_visits
+            else int(str(victim_rank).lstrip("v"))
+            if victim_rank
+            else 1
+        ),
         "victim_steps": victim_steps,
         "victim_rsym": extract_param("rsym", victim_rank),
         "victim_algo": extract_param("algo", victim_rank),

@@ -42,7 +42,7 @@
 {:else if item["type"] === NavbarItemEnum.DropdownDivider}
     <li><hr class="dropdown-divider"></li>
 {:else if item["type"] === NavbarItemEnum.DropdownText}
-    <p class="px-2 text-center">{@html item["text"]}</p>
+    <p class="px-2 text-center">{item["text"]}</p>
 {:else if item["type"] === NavbarItemEnum.Link}
     {@const page = item["destination"]}
     <li class:nav-item={!isDropdownDescendant}>

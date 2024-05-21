@@ -4,13 +4,14 @@ export const pages: object =
 {
     "home": {
         "title": "Home",
+        "summary": "Examples and analysis of superhuman Go AI systems beaten by adversarial attacks",
         "description": [
             "We discovered simple adversarial strategies that <a target=\"_blank\" href=\"https://far.ai/post/2023-07-superhuman-go-ais/\">beat superhuman Go AIs</a>, and find that <a target=\"_blank\" href=\"https://far.ai/post/2024-05-go-defense/\">adding defenses</a> helps but does not eliminate the problem. Our <a href=\"/game-analysis#contents\">cyclic adversary</a> beats the state-of-the-art KataGo AI <a href=\"/adversarial-policy-katago#4096_visits_hardened\">more than 97% of the time at superhuman settings</a>. This strategy is simple enough to be <a href=\"/human-evaluation#human_vs_kata100k\">replicated by an amateur human player</a> and <a href=\"/transfer#contents\">transfers to other superhuman Go AIs</a>. We find that although <a href=\"/positional-adversarial-training#contents\">positional</a> and <a href=\"/iterated-adversarial-training#contents\">iterated</a> adversarial training protect against the original cyclic adversary, they can still be exploited by new adversaries. We also train a new Go AI based on <a href=\"/vit#contents\">vision transformers</a> rather than convolutional neural networks, only to find it remains vulnerable to the cyclic attack.",
             "The <a href=\"/game-analysis#contents\">original cyclic adversary</a> (below, playing as white) works by forming an inside group of stones that the victim Go AI surrounds. The adversary then re-encircles this group. Despite numerous opportunities to save its group, the victim fails to see the danger and remains <a href=\"/game-analysis#win-rate\">confident of victory</a>, even many moves after it has irreversibly lost. For more details on this attack, see our <a target=\"_blank\" href=\"https://far.ai/post/2023-07-superhuman-go-ais/\">blog post</a>, ICML 2023 <a target=\"_blank\" href=\"https://slideslive.com/39006680/adversarial-policies-beat-superhuman-go-ais\">presentation</a>, or <a target=\"_blank\" href=\"https://arxiv.org/abs/2211.00241\">paper</a>.",
-            "<img src=\"/images/cyclic-example.svg\" alt=\"Cyclic Attack\" style=\"width: 250px; display: block; margin: 0.75rem auto;\"/>",
+            "<img src=\"/images/cyclic-example.svg\" alt=\"Cyclic Attack\" class=\"medium-width\" style=\"aspect-ratio: 1; display: block; margin: 0.75rem auto;\"/>",
             "<div class=\"text-center\" style=\"margin-top: -0.75rem;\">An example of the original cyclic attack in action.</div>",
             "Since Go AIs were never designed with security in mind, we wondered whether simple defenses could make KataGo robust. In this work, we test three natural defenses (illustrated below): <a href=\"/positional-adversarial-training#contents\">positional adversarial training</a> on hand-constructed board positions, <a href=\"/iterated-adversarial-training#contents\">iterated adversarial training</a> against successively stronger adversaries, and changing the network architecture to a <a href=\"/vit#contents\">vision transformer</a>.",
-            "<img src=\"/images/defense-summary.svg\" alt=\"Summary of defenses\" style=\"width: 600px; display: block; margin: 0.75rem auto;\"/>",
+            "<img src=\"/images/defense-summary.svg\" alt=\"Summary of defenses\" style=\"aspect-ratio: 306/121; display: block; margin: 0.75rem auto;\"/>",
             "Variants of the cyclic attack continue to beat all three defenses. Furthermore, we discover two qualitatively new adversarial strategies. First, the positional adversarially trained agent is vulnerable to a <a href=\"/positional-adversarial-training#dec23-vs-gift\">\"gift\" attack</a> that sets up a \"sending-two-receiving-one\" situation where, for no valid reason, the victim gifts the adversary two stones and then needs to capture one back. Second, the iterated adversarially trained agent is vulnerable to a <a href=\"/iterated-adversarial-training#v9-vs-validation\">\"validation\"</a> attack that induces the victim to set up a large cyclic group incorporating \"bamboo joints\" which the adversary then threatens to split.",
           "Our results suggest that achieving robustness is challenging, even in narrow domains such as Go. For more information on defenses, check out our latest <a target=\"_blank\" href=\"https://far.ai/post/2024-05-go-defense/\">blog post</a> or <a target=\"_blank\" href=\"https://www.overleaf.com/read/smjxdnfxfzvw#5f0eb1\">paper</a>."
         ],
@@ -18,6 +19,7 @@ export const pages: object =
     },
     "undefended-agent-faq": {
         "title": "FAQ",
+        "summary": "Frequently asked questions about the \"cyclic attack\" against Go AI systems",
         "description": [
             "<b>Q: Would this exploit work on AlphaZero?</b>",
             "It's extremely likely the cyclic vulnerability exists in AlphaZero. It exists in KataGo, LeelaZero, and ELF (we've won games with it), all of which are based on AlphaZero, with the latter two self-describing as reimplementations of AlphaZero. It also likely exists in FineArt and Golaxy (we are still in the process of getting access to play them, but others have shown these networks also misevaluate positions involving cyclic groups). And it's also very likely that multiple of these systems are now substantially stronger than AlphaZero ever was. So in short, although AlphaZero is unfortunately closed source and not available to test directly, there's no evidence we are aware of that it would be immune, and quite a lot of evidence that it would be vulnerable.",
@@ -36,6 +38,7 @@ export const pages: object =
     },
     "adversarial-policy-katago": {
         "title": "Cyclic attack",
+        "summary": "Examples of the \"cyclic attack\" that defeats a variety of superhuman Go AI systems.",
         "description": [
             "This section showcases games our cyclic adversary played against <a target=\"_blank\" href=\"https://github.com/lightvector/KataGo\">KataGo</a>. We primarily attack KataGo network checkpoint <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a>, which we dub <code>Latest</code> since it is the latest confidently rated KataGo network at the time of conducting our experiments."
         ],
@@ -152,6 +155,7 @@ export const pages: object =
     },
     "game-analysis": {
         "title": "Game analysis",
+        "summary": "Detailed analysis of how the \"cyclic attack\" tricks Go AIs.",
         "content": [
             {
                 "title": "Qualitative analysis of adversary behavior",
@@ -237,6 +241,7 @@ export const pages: object =
     },
     "human-evaluation": {
         "title": "Human games",
+        "summary": "Examples of humans exploiting nominally superhuman Go systems, as well as beating (weak) adversaries.",
         "content": [
             {
                 "title": "Human amateur beats cyclic adversary",
@@ -247,7 +252,7 @@ export const pages: object =
                 ],
                 "max_games": 10,
                 "adversary": "Cyclic adversary, 545 million training steps, 600 visits",
-                "victim": "Tony Wang (Author)",
+                "victim": "Tony Wang (author)",
                 "description": [
                     "Our <a target=\"_blank\" href=\"/adversarial-policy-katago#contents\">strongest adversarial policy</a> (trained against <code>Latest</code><sub><code>def</code></sub>) is able to reliably beat KataGo at superhuman strength settings. However, a member of our team (Tony Wang) who is a novice Go player managed to convincingly beat this same adversary. This confirms that our adversarial policy is not generally capable, despite it beating victim policies that can themselves beat top human professionals. Instead, our victim policy harbors a subtle vulnerability.",
                     "Our evaluation is imperfect in one significant way: the adversary was not playing with an accurate model of its human opponent (rather it modeled Tony as <code>Latest</code> with 1 visit). However, given the poor transferability of our adversary to different KataGo checkpoints (see <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#figure.caption.3\">Figure 5.1 of the paper</a>), we predict that the adversary would not win even if it had access to an accurate model of its human opponent."
@@ -262,7 +267,7 @@ export const pages: object =
                 ],
                 "max_games": 10,
                 "adversary": "Pass adversary, 34.1 million training steps, 600 visits",
-                "victim": "Tony Wang (Author)",
+                "victim": "Tony Wang (author)",
                 "description": [
                     "The same Go novice (Tony Wang) also managed to beat our pass adversary by a large margin of over 250 points. This demonstrates our pass adversary is also not generally capable."
                 ]
@@ -274,7 +279,7 @@ export const pages: object =
                     "/shared/nas-data/sgf-viewer-games/human_vs_kata100k/humanattack-KataGo-100kvisits.sgfs"
                 ],
                 "max_games": 10,
-                "adversary": "Kellin Pelrine (Author)",
+                "adversary": "Kellin Pelrine (author)",
                 "victim": "KataGo, 100K visits",
                 "description": ["A Go expert (Kellin Pelrine) was able to learn and apply the cyclic adversary's strategy to attack multiple types and configurations of AI Go systems. In this example they exploited KataGo with 100K visits, which would normally be strongly superhuman. Besides previously studying our adversary's game records, no algorithmic assistance was used in this or any of the following examples. The KataGo network and weights used here were b18c384nbt-uec, which is a newly released version the author of KataGo (David Wu) trained for a tournament. This network should be as strong or stronger than <code>Latest</code>."]
             },
@@ -285,7 +290,7 @@ export const pages: object =
                     "/shared/nas-data/sgf-viewer-games/human_vs_lz100k/humanattack-LZ-100kvisits.sgfs"
                 ],
                 "max_games": 10,
-                "adversary": "Kellin Pelrine (Author)",
+                "adversary": "Kellin Pelrine (author)",
                 "victim": "Leela Zero, 100K visits",
                 "description": ["The same Go expert (Kellin Pelrine) also exploited Leela Zero with 100K visits, which would likewise normally be superhuman."]
             },
@@ -304,7 +309,7 @@ export const pages: object =
                     "/shared/nas-data/k8/go-attack/humanatk-lz4096/humanatk-LZ-4096visits-9.sgfs"
                 ],
                 "max_games": 10,
-                "adversary": "Kellin Pelrine (Author)",
+                "adversary": "Kellin Pelrine (author)",
                 "victim": "Leela Zero, 4096 visits",
                 "description": ["Kellin Pelrine also played 9 games against Leela Zero with 4096 visits, winning 6."]
             },
@@ -329,7 +334,7 @@ export const pages: object =
                     "/shared/nas-data/sgf-viewer-games/human_vs_jbxkata005/corners-JBXKata005.sgfs"
                 ],
                 "max_games": 15,
-                "adversary": "Kellin Pelrine (Author)",
+                "adversary": "Kellin Pelrine (author)",
                 "victim": "JBXKata005, 9 dan on KGS",
                 "description": ["Playing under standard human conditions on the online Go server KGS, the same Go expert (Kellin Pelrine) successfully exploited the bot JBXKata005 in 14/15 games. In the remaining game, the cyclic group attack still led to a successful capture, but the victim had enough points remaining to win. This bot uses a custom KataGo implementation, and at the time of the games was the strongest bot available to play on KGS."]
             },
@@ -340,7 +345,7 @@ export const pages: object =
                     "/shared/nas-data/sgf-viewer-games/human_vs_jbxkata005_handicap/corners-JBXKata005-9stones.sgfs"
                 ],
                 "max_games": 10,
-                "adversary": "Kellin Pelrine (Author)",
+                "adversary": "Kellin Pelrine (author)",
                 "victim": "JBXKata005, 9 dan on KGS, with 9 stone handicap",
                 "description": ["In this last example, the same Go expert (Kellin Pelrine) exploited JBXKata005 while giving it a huge initial advantage through a 9 stone handicap. A top level human player with this much advantage would have a virtually 100% win rate against any opponent, human or algorithmic."]
             }
@@ -348,6 +353,7 @@ export const pages: object =
     },
     "transfer": {
         "title": "Transfer",
+        "summary": "The adversarial strategy learned against KataGo transfers to other open-source Go AIs.",
         "description": [
             "Our adversary apparently exploits a weakness common across several Go AI systems. We find that the attack transfers zero-shot against ELF OpenGo and Leela Zero, two other open-source Go AI systems that can play at a superhuman level."
         ],
@@ -392,6 +398,7 @@ export const pages: object =
     },
     "pass-based-attack": {
         "title": "Pass attack",
+        "summary": "Weak KataGo agents defeated using the degenerate 'pass-attack'.",
         "description": [
             "Our initial attempts at attacking KataGo resulted in adversaries that exploited KataGo's passing behavior. These pass-based adversaries trick KataGo into passing when it shouldn't. While this attack is effective against victims which do not use tree search, it stops working once victims are able to use even a small amount of tree search. We developed the pass-hardening defense so that our adversaries would not get stuck learning this pass-exploit. This worked surprisingly well &mdash; training against pass-hardened victims resulted in our adversaries learning <a href=\"/adversarial-policy-katago#contents\">an alternate strategy that works even in the high search regime.</a>"
         ],
@@ -489,6 +496,7 @@ export const pages: object =
     },
     "baseline-attack": {
         "title": "Baseline attacks",
+        "summary": "Simple baselines occasionally defeat weaker Go AI systems.",
         "description": ["In this section we examine simple, no-learning attacks. These test the robustness of KataGo to some types of unsophisticated but likely out-of-distribution play. We find these attacks are generally ineffective against KataGo playing with search and against the hardened version of KataGo, although the mirror Go attack still gets some wins at low visits. Overall, to find consistent weaknesses, a learning-based approach like ours seems necessary."],
         "content": [
             {
@@ -598,6 +606,7 @@ export const pages: object =
     },
     "training-sample": {
         "title": "Training sample games",
+        "summary": "Games played by our adversary against KataGo throughout training.",
         "description": ["In this section we present samples of games showing the training process of our adversary. In particular, we sample 5 games against each of 4 victims approximately every 10% of training steps up to 545 million steps. All victims are defended against the <a href=\"/pass-based-attack#contents\">pass-based attack</a>. We see the adversary implementing other attacks before discovering and ultimately consistently using the cyclic attack. This progression is analyzed in more detail in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.I.3\">the paper appendix</a>."],
         "_content_comment": "Generated by/shared/match/paper-robustness/iterated-adversarial-training/rs-vs-hs/sample-sgfs.sh",
         "content": [
@@ -645,6 +654,7 @@ export const pages: object =
     },
     "adversarial-training": {
         "title": "Early adversarial training",
+        "summary": "Games played by an updated adversary that defeats an adversarially trained version of KataGo.",
         "description": [
             "David Wu (lightvector), the creator and primary developer of KataGo, has incorporated adversarial training against the cyclic exploit into the official self-play training run of KataGo since December 2022. The adversarial training consists of starting a small fraction (~0.1%) of self-play games in positions where the cyclic exploit is being executed, with the remainder of games being regular self-play games. This adversarial training has been partially successful in that the adversarially trained networks are able to beat our original cyclic adversary. However, we are able to fine-tune our original adversary to defeat these updated networks. This suggests that it is non-trivial to defend against the cyclic exploit, unlike the pass exploit which we were able to manually patch. Developing techniques to train agents that are immune to this attack while maintaining high Go strength remains an interesting open problem.",
             "This page shows our results against the KataGo network <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>kata1-b60c320-s7701878528-d3323518127</code></a>, abbreviated to <code>b60-s7702m</code> and released in May 2023. These results are superseded by <a href=\"/positional-adversarial-training#contents\">our results against a December 2023 network</a>, but we preserve them here since they are linked in <a target=\"_blank\" href=\"https://arxiv.org/abs/2211.00241\">our first paper</a>."
@@ -774,12 +784,13 @@ export const pages: object =
                 "max_games": 8,
                 "adversary": "Cyclic adversary, 168 million fine-tuning steps, 600 visits",
                 "victim": "<code>b60-s7702m</code>, 100,000 visits, 10 search threads",
-                "description": [ "The fine-tuned cyclic adversary also beats b60-s7702 using 100,000 victim visits with a win rate of 7/40 = 17.5%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
+                "description": [ "The fine-tuned cyclic adversary also beats <code>b60-s7702m</code> using 100,000 victim visits with a win rate of 7/40 = 17.5%. (The games displayed are non-randomly selected to show the wins achieved by the adversary.)" ]
             }
         ]
     },
     "activation-plots": {
         "title": "Activation plots",
+        "summary": "Visualizations of the activations of the KataGo network in adversarially created board states.",
         "description": ["In this page we share interactive plots visualizing activations over the 41 layers of KataGo models in cyclic situations. These correspond to the discussion in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#subsection.K.1\">Appendix K</a> of the paper (coming soon)."],
         "content": [
             {
@@ -826,6 +837,7 @@ export const pages: object =
     },
     "positional-adversarial-training": {
         "title": "Positional adversarial training",
+        "summary": "Adversaries that defeat an adversarially trained version of KataGo.",
         "description": [
             "In December 2022, KataGo's main training run began to incorporate adversarial training using hand-written positions derived from cyclic attacks. We target the strongest KataGo network checkpoint from December 2023, <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>kata1-b18c384nbt-s8526915840-d3929217702</code></a>, which we dub <code>dec23-victim</code>. Our analysis identified two styles of attack: a <a href=\"#dec23-vs-continuous\">fine-tuned variant</a> of our original cyclic attack, and a qualitatively distinct <a href=\"#dec23-vs-gift\">\"gift\" attack</a> that inexplicably leads the victim to gift the adversary two stones."
         ],
@@ -885,6 +897,17 @@ export const pages: object =
                 ]
             },
             {
+                "title": "Human replication of cyclic attack",
+                "dir_name": "dec23-vs-human-cyclic",
+                "paths": ["/shared/sgf-viewer-games/b18-v512-vs-human-cyclic.sgf"],
+                "max_games": 1,
+                "adversary": "Kellin Pelrine (author)",
+                "victim": "<code>dec23-victim</code>, 512 visits",
+                "description": [
+                    "TODO kellin"
+                ]
+            },
+            {
                 "title": "Gift attack",
                 "dir_name": "dec23-vs-gift",
                 "paths_with_line_num": [
@@ -939,16 +962,16 @@ export const pages: object =
                 ]
             },
             {
-                "title": "Human replica of gift attack",
+                "title": "Human replication of gift attack",
                 "dir_name": "dec23-vs-human-gift",
                 "paths": ["/shared/match/paper-robustness/website-games/human-gift-vs-b18-v1.sgf"],
                 "max_games": 10,
                 "adversary": "Kellin Pelrine",
                 "victim": "<code>dec23-victim</code>, 1 visit",
                 "description": [
-                    "Like the cyclic attack, a Go expert (Kellin Pelrine) was able to learn and apply the gift attack to beat KataGo. A game is provided below. In this game, Kellin (white) takes control of the left and bottom sides, while the KataGo victim (black) takes the top and right. It was relatively straightforward to do this because the victim controls more of the center and leads, so it does not fight too hard for more, though the human still had to make sure the score difference would not get too extreme (some prior attempts failed due to insufficient points, even after receiving a \"gift\").",
-                    "Beginning on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 70)'>move 70</a>, white begins to set up a position to receive a gift. In moves <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 100)'>100</a> through <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 142)'>142</a>, white pushes further into black’s territory, making sure that the gift will result in a very large swing in points. Then starting on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 154)'>move 154</a>, white sets up another place for a gift. Black offers a gift on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 177)'>move 177</a>, but white does not accept yet because black threatens to capture four stones on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 179)'>move 179</a>. Note that this is the only place where black has a threat; white is careful to play very solidly and minimize potential threats, to be able to capitalize on the gift (noting that if there are lots of threats, the victim can use them to prevent a repeated board position and save themselves from the positional superko rule).",
-                    "White finally sets up a third potential place for a gift starting on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 186)'>move 186</a>. This was intended to maximize the chances. Normally all 3 of these groups would be dead, but on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 193)'>move 193</a>, we see one instance of the attack succeed, with black sending two stones for no benefit and letting white resurrect their group. This happens again, with white’s largest \"dead\" group, on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 215)'>move 215</a>. This completes the reversal, giving white a large lead, and black resigns shortly after.",
+                    "A Go expert (Kellin Pelrine) was able to learn and apply the gift attack to beat KataGo. This confirms a variety of attacks, and not just the <a href=\"/human-evaluation#human_vs_kata100k\">original cyclic attack</a>, can be replicated by humans. In the game below, Kellin (white) takes control of the left and bottom sides, while the KataGo victim (black) takes the top and right. It was relatively straightforward for Kellin to take control of the left and bottom since KataGo is in the lead due to controlling more of the center. Because of this, KataGo does not fight too hard for more territory, though Kellin still had to make sure the score difference would not get too extreme (some prior attempts failed due to insufficient points, even after receiving a \"gift\").",
+                    "Beginning on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 70)'>move 70</a>, Kellin (white) starts to set up a position to receive a gift. In moves <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 100)'>100</a> through <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 142)'>142</a>, white pushes further into black’s territory, making sure that the gift will result in a very large swing in points. Then starting on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 154)'>move 154</a>, white sets up another place for a gift. Black offers a gift on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 177)'>move 177</a>, but white does not accept yet because black threatens to capture four stones on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 179)'>move 179</a>. Note that this is the only place where black has a threat; white is careful to play very solidly and minimize potential threats, to be able to capitalize on the gift (noting that if there are lots of threats, the victim can use them to prevent a repeated board position and save themselves from the positional superko rule).",
+                    "White finally sets up a third potential place for a gift starting on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 186)'>move 186</a>. This was intended to maximize the chances. Normally all three of these groups would be dead, but on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 193)'>move 193</a>, we see one instance of the attack succeed, with black sending two stones for no benefit and letting white resurrect their group. This happens again, with white’s largest “dead” group, on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 215)'>move 215</a>. This completes the reversal, giving white a large lead, and black resigns shortly after.",
                     "We note, however, that this was completed at 1 victim visit. With more search, the attack seems much harder for humans (as well as our AI adversary); several human attempts at 256 and 512 visits failed. In particular, there was no issue establishing positions ready to receive a gift, as well as a stable gamestate on the rest of the board, but no gift was offered. We hypothesize that in addition to the key visible components of the attack (minimizing victim score lead, adversary positions that don’t have many threats against them, and setting up the shapes to receive gifts), there is a more opaque component of balancing value of moves across the board in the victim’s perception, such that it does not see much more valuable moves and offers the gift, but also does not search so much in the local area to see the disaster about to happen afterwards. This requires increasing precision at higher visits, and is difficult for humans to learn."
                 ]
             }
@@ -956,6 +979,7 @@ export const pages: object =
     },
     "iterated-adversarial-training": {
         "title": "Iterated adversarial training",
+        "summary": "Adversaries that defeat a Go AI model that was repeatedly adversarially trained.",
         "description": [
             "We performed an iterated adversarial training procedure that alternately trains a victim <code>v</code><sub><code>n</code></sub> and an adversary <code>a</code><sub><code>n</code></sub>. After nine iterations, our final victim <code>v</code><sub><code>9</code></sub> remains vulnerable both to a freshly trained <a href=\"#v9-vs-validation\">\"validation\" attack</a> and the <a href=\"#v9-vs-a9\">\"iterated\" attack</a> <code>a</code><sub><code>9</code></sub>. These attacks are described in the following sections. You can also explore games from <a href=\"/iterated-adversarial-training-per-iteration#contents\">intermediate steps of the iterated adversarial training</a>."
         ],
@@ -1009,8 +1033,8 @@ export const pages: object =
                 "adversary": "<code>validation-adversary</code>",
                 "victim": "<code>v</code><sub><code>9</code></sub>, 512 visits",
                 "description": [
-                    "We trained a new adversary by fine-tuning from an early adversarial checkpoint. It was able to defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search in 81% of games. The win rate drops to 4% at 4096 visits, demonstrating that our victim is easily attacked until it uses high amounts of search. Explore randomly sampled games below.",
-                    "This adversary starts by inducing the victim to form bamboo joints: pairs of stone separated by two empty spaces. In normal games, these are often efficient shapes due to their strong connections. In the first game here, the first bamboo joint is formed on <a class='clickable' onclick='setMove(`v9-vs-validation`, 24)'>move 24</a> between that white stone, the one next to it, and the two below those. Additional joints are formed on <a class='clickable' onclick='setMove(`v9-vs-validation`, 28)'>move 28</a> and <a class='clickable' onclick='setMove(`v9-vs-validation`, 52)'>52</a>. By <a class='clickable' onclick='setMove(`v9-vs-validation`, 102)'>move 102</a>, a large cyclic group emerges, another hallmark of this adversary’s strategy. For over 100 moves, the adversary systematically encloses the cyclic group. Throughout, this adversary often leaves many stones \"in atari\" in Go terminology, what might be called hanging pieces in chess – stones that could be instantly captured if the victim opts to. At <a class='clickable' onclick='setMove(`v9-vs-validation`, 217)'>move 217</a>, the attack enters the final phase: the adversary threatens to split the bamboo joints. The victim connects at 218 and 220, each move reducing the overall group’s liberties. A fatal mistake is committed at <a class='clickable' onclick='setMove(`v9-vs-validation`, 222)'>move 222</a>, allowing the adversary to capture everything with <a class='clickable' onclick='setMove(`v9-vs-validation`, 223)'>move 223</a>."
+                    "We trained a new adversary by fine-tuning from an early adversarial checkpoint. It was able to defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search in 81% of games, but the win rate drops to 4% at 4096 visits. This demonstrates that our victim is easily attacked until it uses high amounts of search. Explore randomly sampled games below.",
+                    "This adversary starts by inducing the victim to form bamboo joints: pairs of stone separated by two empty spaces. In normal games, these are often efficient shapes due to their strong connections. In the first game here, the first bamboo joint is formed on <a class='clickable' onclick='setMove(`v9-vs-validation`, 24)'>move 24</a> between that white stone, the one next to it, and the two below those. Additional joints are formed on <a class='clickable' onclick='setMove(`v9-vs-validation`, 28)'>move 28</a> and <a class='clickable' onclick='setMove(`v9-vs-validation`, 52)'>52</a>. By <a class='clickable' onclick='setMove(`v9-vs-validation`, 102)'>move 102</a>, a large cyclic group emerges, another hallmark of this adversary’s strategy. For over 100 moves, the adversary systematically encloses the cyclic group. Throughout, this adversary often leaves many stones \"in atari\" in Go terminology, what might be called hanging pieces in chess – stones that could be instantly captured if the victim opts to. At <a class='clickable' onclick='setMove(`v9-vs-validation`, 217)'>move 217</a>, the attack enters the final phase: the adversary threatens to split the bamboo joints. The victim connects at <a class='clickable' onclick='setMove(`v9-vs-validation`, 218)'>218</a> and <a class='clickable' onclick='setMove(`v9-vs-validation`, 220)'>220</a>, each move reducing the overall group’s liberties. A fatal mistake is committed at <a class='clickable' onclick='setMove(`v9-vs-validation`, 222)'>move 222</a>, allowing the adversary to capture everything with <a class='clickable' onclick='setMove(`v9-vs-validation`, 223)'>move 223</a>."
                 ]
             },
             {
@@ -1070,16 +1094,50 @@ export const pages: object =
     },
     "vit": {
         "title": "Vision transformer",
+        "summary": "A new ViT Go AI model is still vulnerable to adversarial attacks.",
         "description": [
             "Cyclic attacks work not only against KataGo but also against a range of other superhuman Go AIs, including <a target=\"_blank\" href=\"https://online-go.com/game/51321265\">ELF OpenGo</a>, <a target=\"_blank\" href=\"https://online-go.com/game/51356405\">Leela Zero</a>, <a target=\"_blank\" href=\"https://online-go.com/game/51375020\">Sai</a>, <a target=\"_blank\" href=\"https://www.bilibili.com/video/BV1Ls4y147Es/?share_source=copy_web&t=97\">Golaxy</a>, and <a target=\"_blank\" href=\"https://h5.foxwq.com/txwqshare/index.html?chessid=1676910620010001365&boardsize=19\">FineArt</a>. While it is possible that each system has unique vulnerabilities to the cyclic attack, it seems more likely that shared properties cause their common vulnerability. One key shared property is that all systems use a convolutional neural network (CNN) backbone.",
-            "To investigate whether CNNs are responsible for the vulnerability, we trained an AlphaZero-style Go AI with a vision transformer (ViT) backbone instead of a CNN. We estimate our ViT Go AI <code>ViT-victim</code> is just shy of superhuman performance at 32768 visits. Despite this, it remains vulnerable to the <a href=\"#vit-vs-base-adversary\">original cyclic attack</a> and consistently loses to a <a href=\"#vit-vs-vit-adversary\">fine-tuned variant</a> of the cyclic attack. This rules out CNN backbones as the root cause of the cyclic vulnerability."
+            "To investigate whether CNNs are responsible for the vulnerability, we trained an AlphaZero-style Go AI with a vision transformer (ViT) backbone instead of a CNN. We estimate our ViT Go AI <code>ViT-victim</code> is just shy of superhuman performance at 32768 visits. Despite this, it remains vulnerable to the <a href=\"#vit-vs-base-adversary\">original cyclic attack</a> and consistently loses to a <a href=\"#vit-vs-vit-adversary\">fine-tuned variant</a> of the cyclic attack. This rules out CNN backbones as the root cause of the cyclic vulnerability.",
+          "We validate the strength of our ViT model by playing against KataGo, playing against members of the public on KGS, and commissioning professional games. Our games against KataGo (<a target=\"_blank\" href=\"http://example.com/paper.pdf#subsection.F.1\">Appendix F.1</a>) give an estimated <a target=\"_blank\" href=\"https://www.goratings.org/en/\">goratings.org Elo</a> of 3877 at 32,768 visits, comparable to the strongest professional players. We also deployed the ViT bot <code>ViTKata001</code> on the KGS Go server, ranking as <a target=\"_blank\" href=\"https://www.gokgs.com/graphPage.jsp?user=ViTKata001\">one of the top players</a>, including <a target=\"_blank\" href=\"https://web.archive.org/web/20240521155255/https://www.gokgs.com/top100.jsp\">beating several KataGo bots</a>. Finally, our ViT bot won two out of three games commissioned against Go professionals.",
+          "In particular, we commissioned the 7-dan professional <a target=\"_blank\" href=\"https://senseis.xmp.net/?YangYilun\">Yilun Yang</a> to play one game and the 4-dan professional <a target=\"_blank\" href=\"https://senseis.xmp.net/?RyanLi\">Ryan Li</a> play two games. Our ViT bot <a href=\"#vit-vs-yang\">beat Yilun Yang</a>. However, our ViT bot <a href=\"#vit-vs-li-flying-dagger\">lost the first game to Ryan Li</a> when it took a disadvantage early in a complicated corner pattern that has been a weakness of other Go AIs. The ViT bot then <a href=\"#vit-vs-li-rematch\">won the rematch</a> where Li agreed to avoid this pattern. This indicates the ViT model has some gaps but generally plays at a strong professional level. We discuss the games in more detail in the following sections."
         ],
         "content": [
             {
-                "title": "Strength evaluation",
-                "dir_name": "vit-strength",
+                "title": "Professional game: Yilun Yang",
+                "dir_name": "vit-vs-yang",
+                "paths": ["/shared/sgf-viewer-games/vit-vs-yang.sgf"],
+                "max_games": 1,
+                "adversary": "Yilun Yang",
+                "victim": "<code>ViT-victim</code>, 65536 visits, 64 search threads",
                 "description": [
-                    "TODO"
+                    "After a close early game between ViT (black) and Yang (white), a complicated fight develops on the left side and center, starting around <a class='clickable' onclick='setMove(`vit-vs-yang`, 52)'>move 52</a>. According to KataGo, this move would have been better as a cap two lines to the right of black's stone on the middle of the left side, or one line below the cap. If so, the game would remain even, even slightly advantageous for white. Also, black <a class='clickable' onclick='setMove(`vit-vs-yang`, 55)'>55</a> was a mistake and should have been the cut where white played <a class='clickable' onclick='setMove(`vit-vs-yang`, 56)'>56</a>; if now instead of connecting at <a class='clickable' onclick='setMove(`vit-vs-yang`, 56)'>56</a> white pressures black's stones above by playing one line above and to the left of the connection, white will again have a very slight advantage.",
+                    "Nonetheless, after these moves the game remained close. The most deciding move was that White should have played <a class='clickable' onclick='setMove(`vit-vs-yang`, 66)'>66</a> directly below white's leftmost stone, to probe how black connects the two stones above. If black plays the best, empty triangle connection, then a complicated ko situation may develop but the game remains only marginally favored for black, whereas other connections will tilt the game in white's favor. But after <a class='clickable' onclick='setMove(`vit-vs-yang`, 66)'>66</a> in the game, black threatens to cut off a stone with <a class='clickable' onclick='setMove(`vit-vs-yang`, 67)'>67</a>, and the timing to probe the connection on the left is lost. In the end, with <a class='clickable' onclick='setMove(`vit-vs-yang`, 92)'>92</a> white is able to live, but black's position on the outside is better and black has a decent advantage.",
+                    "After that, some very slightly suboptimal moves on the lower side reinforced black's lead. Black <a class='clickable' onclick='setMove(`vit-vs-yang`, 107)'>107</a> was a mistake, as black should have played a diagonal move on the third line from the stone below it. But white's clamp at <a class='clickable' onclick='setMove(`vit-vs-yang`, 108)'>108</a> failed to punish it; white should have played the turn on the 3-4 point, though the game would still have been very hard. After this, there were essentially no opportunities for white to recover."
+                ]
+            },
+            {
+                "title": "Professional game: Ryan Li – opening corner pattern",
+                "dir_name": "vit-vs-li-flying-dagger",
+                "paths": ["/shared/sgf-viewer-games/vit-vs-li-0.sgf"],
+                "max_games": 1,
+                "adversary": "Ryan Li",
+                "victim": "<code>ViT-victim</code>, 65536 visits, 64 search threads",
+                "description": [
+                    "Moves <a class='clickable' onclick='setMove(`vit-vs-li-flying-dagger`, 8)'>8</a> through <a class='clickable' onclick='setMove(`vit-vs-li-flying-dagger`, 12)'>12</a> from black (Li) initiate the <a target=\"_blank\" href=\"https://senseis.xmp.net/?FlyingKnifeJoseki\">\"flying dagger\"</a> joseki (opening corner pattern). This is a very complicated joseki that has been a known weakness of past AIs. KataGo trained on manually constructed positions to fix this weakness, which are not included in our training data. It appears this weakness emerged in our ViT system as well. Through <a class='clickable' onclick='setMove(`vit-vs-li-flying-dagger`, 33)'>move 33</a>, white (ViT) plays some slight inaccuracies, leading to a small advantage for black. According to KataGo, <a class='clickable' onclick='setMove(`vit-vs-li-flying-dagger`, 34)'>move 34</a> is a more substantial mistake; white should have captured black's single stone instead. <a class='clickable' onclick='setMove(`vit-vs-li-flying-dagger`, 36)'>36</a> is also a mistake; white had several better options including the same capture. So is <a class='clickable' onclick='setMove(`vit-vs-li-flying-dagger`, 38)'>38</a>, as white should have played one space below, or even better given up the left and played for the outside with a cap two spaces to the right of black's top stone on the left. After the left side of the board is stabilized with black <a class='clickable' onclick='setMove(`vit-vs-li-flying-dagger`, 61)'>61</a>, black has a considerable advantage.",
+                    "After this, white recovers slightly in the lower right, but black maintains a solid lead. At <a class='clickable' onclick='setMove(`vit-vs-li-flying-dagger`, 104)'>104</a>, white again misses several better options. Through <a class='clickable' onclick='setMove(`vit-vs-li-flying-dagger`, 130)'>130</a>, white captures four stones but loses the top right corner, which does not help white catch up. With <a class='clickable' onclick='setMove(`vit-vs-li-flying-dagger`, 134)'>134</a>, white attempts to live in black's area on the top part of the board, but black plays accurately and white dies, sealing the game."
+                ]
+            },
+            {
+                "title": "Professional game: Ryan Li – rematch",
+                "dir_name": "vit-vs-li-rematch",
+                "paths": ["/shared/sgf-viewer-games/vit-vs-li-1.sgf"],
+                "max_games": 1,
+                "adversary": "Ryan Li",
+                "victim": "<code>ViT-victim</code>, 65536 visits, 64 search threads",
+                "description": [
+                    "After ViT's big loss in the flying dagger joseki in the preceding game, Li agreed to play a game where he would avoid that pattern. In this game, on <a class='clickable' onclick='setMove(`vit-vs-li-rematch`, 11)'>move 11</a>, black (ViT) offers a chance to initiate the flying dagger pattern, but white (Li) declines by playing at <a class='clickable' onclick='setMove(`vit-vs-li-rematch`, 12)'>12</a>, leading to a much less complicated pattern which is fairly balanced but very slightly worse than the flying dagger according to KataGo.",
+                    "The game then remains balanced for many moves, with both sides playing well and fighting back and forth over narrow margins. On <a class='clickable' onclick='setMove(`vit-vs-li-rematch`, 71)'>move 71</a>, black should have continued in the top right but makes a significant mistake by playing on the bottom side. This allows white to guarantee the safety of the top right through <a class='clickable' onclick='setMove(`vit-vs-li-rematch`, 76)'>76</a>, giving a reasonable though not tremendous advantage. However, at <a class='clickable' onclick='setMove(`vit-vs-li-rematch`, 100)'>move 100</a>, white should have played at <a class='clickable' onclick='setMove(`vit-vs-li-rematch`, 102)'>102</a> directly; exchanging 100 for <a class='clickable' onclick='setMove(`vit-vs-li-rematch`, 101)'>101</a> lost some options, and the game becomes closer again. Still, white maintains the advantage.",
+                    "Over the following moves, black gradually reduces white's advantage, and then on <a class='clickable' onclick='setMove(`vit-vs-li-rematch`, 118)'>move 118</a> white misses some opportunities on the lower side and center, making the game virtually even again. <a class='clickable' onclick='setMove(`vit-vs-li-rematch`, 131)'>Move 131</a> is a nice tesuji and the only way for black to save the corner cleanly. White begins to develop a small lead again step-by-step, but loses it with <a class='clickable' onclick='setMove(`vit-vs-li-rematch`, 152)'>152</a>, which misses the timing to reduce the center after black reinforces with <a class='clickable' onclick='setMove(`vit-vs-li-rematch`, 153)'>153</a>. Finally, <a class='clickable' onclick='setMove(`vit-vs-li-rematch`, 164)'>164</a> misses a chance to play a complicated sequence of reducing moves on the bottom and center. With <a class='clickable' onclick='setMove(`vit-vs-li-rematch`, 165)'>165</a>, black fixes the largest remaining gap in the center. Thus, after a long game where white was sometimes even and sometimes favored, black was able to close the game in the end."
                 ]
             },
             {
@@ -1178,11 +1236,23 @@ export const pages: object =
                     "We fine-tuned the cyclic adversary, resulting in an adversary that defeats our ViT model in 78% of games at 65536 visits of search. This confirms the ViT model fails to defend against cyclic attacks even at superhuman settings. Explore randomly sampled games below.",
                     "In the first game, the adversary stakes out the center on <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 17)'>move 17</a>, for constructing its group inside the cyclic group, which is fully formed by <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 49)'>move 49</a>. After that, the victim surrounds that central group, completing the cyclic group on <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 248)'>move 248</a>, while the adversary surrounds it from the outside. This leads to a very dense board, with adversary stones positioned low around the edges, and the victim controlling a huge center, mostly filled by the cyclic group and its encirclement. This pattern is typical for this adversary. On <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 255)'>move 255</a>, the victim captures the inside group, but after that the adversary reenters the space and establishes a new inside group. Although not universal, this behavior mirrors tactics also observed with the original cyclic adversary. Finally, at <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 283)'>move 283</a>, the victim is doomed, and the cyclic group is taken off the board at <a class='clickable' onclick='setMove(`vit-vs-vit-adversary`, 335)'>move 335</a>."
                 ]
+            },
+            {
+                "title": "Human replication of cyclic attack",
+                "dir_name": "vit-vs-human-cyclic",
+                "paths": ["/shared/sgf-viewer-games/vit-vs-human-cyclic.sgf"],
+                "max_games": 1,
+                "adversary": "Kellin Pelrine (author)",
+                "victim": "<code>ViT-victim</code>, 65536 visits, 64 search threads",
+                "description": [
+                    "A Go expert (Kellin Pelrine) was also able to use a cyclic attack to beat our ViT-victim. The game is shown below. Through <a class='clickable' onclick='setMove(`vit-vs-human-cyclic`, 56)'>move 56</a>, White (Kellin) sets up a loosely surrounded square group destined to be the inside of the cyclic group. This follows the shape used in some of the wins of our original cyclic adversary against this victim. In subsequent moves, white gradually surrounds the cyclic group, with a particular focus on making sure the surrounding groups have lots of liberties so that black will have to see its group is in danger early on to save it. Beginning around <a class='clickable' onclick='setMove(`vit-vs-human-cyclic`, 176)'>move 176</a>, white fills in the cyclic group's liberties, as well as pressing black to make the last connections that complete the cyclic shape. Finally, after <a class='clickable' onclick='setMove(`vit-vs-human-cyclic`, 208)'>208</a>, black's fate is sealed. Black plays on several more moves hoping for white to make a mistake, but ultimately resigns."
+                ]
             }
         ]
     },
     "iterated-adversarial-training-per-iteration": {
         "title": "Per-iteration adversarial training progress",
+        "summary": "Games from each iteration of repeated adversarial training against the \"cyclic attack\"",
         "description": [
             "Here we show games from each iteration of our <a href=\"iterated-adversarial-training#contents\">iterated adversarial training</a> procedure. At each iteration, the victim <code>v</code><sub><code>n</code></sub> is generated by fine-tuning the previous victim <code>v</code><sub><code>n-1</code></sub> against the previous adversary <code>a</code><sub><code>n-1</code></sub>, and the adversary <code>a</code><sub><code>n</code></sub> is generated by fine-tuning the previous adversary <code>a</code><sub><code>n-1</code></sub> against the victim <code>v</code><sub><code>n</code></sub>. The initial victim <code>v</code><sub><code>0</code></sub> is KataGo network checkpoint <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a>, the network we attacked with our <a href=\"/adversarial-policy-katago#contents\">original cyclic adversary</a> (<code>base-adversary</code>). The initial adversary <code>a</code><sub><code>0</code></sub> is the original cyclic adversary."
         ],
