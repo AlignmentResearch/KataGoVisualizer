@@ -296,7 +296,9 @@ def parse_game_str_to_dict(
         "victim_visits": (
             victim_visits
             if victim_visits
-            else int(str(victim_rank).lstrip("v")) if victim_rank else 1
+            else int(str(victim_rank).lstrip("v"))
+            if victim_rank
+            else 1
         ),
         "victim_steps": victim_steps,
         "victim_rsym": extract_param("rsym", victim_rank),
