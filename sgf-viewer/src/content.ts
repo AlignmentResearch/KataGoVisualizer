@@ -19,6 +19,7 @@ export const pages: object =
     },
     "undefended-agent-faq": {
         "title": "FAQ",
+        "summary": "Frequently asked questions about the \"cyclic attack\" against Go AI systems",
         "description": [
             "<b>Q: Would this exploit work on AlphaZero?</b>",
             "It's extremely likely the cyclic vulnerability exists in AlphaZero. It exists in KataGo, LeelaZero, and ELF (we've won games with it), all of which are based on AlphaZero, with the latter two self-describing as reimplementations of AlphaZero. It also likely exists in FineArt and Golaxy (we are still in the process of getting access to play them, but others have shown these networks also misevaluate positions involving cyclic groups). And it's also very likely that multiple of these systems are now substantially stronger than AlphaZero ever was. So in short, although AlphaZero is unfortunately closed source and not available to test directly, there's no evidence we are aware of that it would be immune, and quite a lot of evidence that it would be vulnerable.",
@@ -37,7 +38,7 @@ export const pages: object =
     },
     "adversarial-policy-katago": {
         "title": "Cyclic attack",
-        "summary": "Examples of the 'cyclic attack' that defeats a variety of superhuman Go AI systems.",
+        "summary": "Examples of the \"cyclic attack\" that defeats a variety of superhuman Go AI systems.",
         "description": [
             "This section showcases games our cyclic adversary played against <a target=\"_blank\" href=\"https://github.com/lightvector/KataGo\">KataGo</a>. We primarily attack KataGo network checkpoint <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a>, which we dub <code>Latest</code> since it is the latest confidently rated KataGo network at the time of conducting our experiments."
         ],
@@ -154,7 +155,7 @@ export const pages: object =
     },
     "game-analysis": {
         "title": "Game analysis",
-        "summary": "Detailed analysis of how the 'cyclic attack' tricks Go AIs.",
+        "summary": "Detailed analysis of how the \"cyclic attack\" tricks Go AIs.",
         "content": [
             {
                 "title": "Qualitative analysis of adversary behavior",
@@ -836,6 +837,7 @@ export const pages: object =
     },
     "positional-adversarial-training": {
         "title": "Positional adversarial training",
+        "summary": "Adversaries that defeat an adversarially trained version of KataGo.",
         "description": [
             "In December 2022, KataGo's main training run began to incorporate adversarial training using hand-written positions derived from cyclic attacks. We target the strongest KataGo network checkpoint from December 2023, <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>kata1-b18c384nbt-s8526915840-d3929217702</code></a>, which we dub <code>dec23-victim</code>. Our analysis identified two styles of attack: a <a href=\"#dec23-vs-continuous\">fine-tuned variant</a> of our original cyclic attack, and a qualitatively distinct <a href=\"#dec23-vs-gift\">\"gift\" attack</a> that inexplicably leads the victim to gift the adversary two stones."
         ],
@@ -966,6 +968,7 @@ export const pages: object =
     },
     "iterated-adversarial-training": {
         "title": "Iterated adversarial training",
+        "summary": "Adversaries that defeat a Go AI model that was repeatedly adversarially trained.",
         "description": [
             "We performed an iterated adversarial training procedure that alternately trains a victim <code>v</code><sub><code>n</code></sub> and an adversary <code>a</code><sub><code>n</code></sub>. After nine iterations, our final victim <code>v</code><sub><code>9</code></sub> remains vulnerable both to a freshly trained <a href=\"#v9-vs-validation\">\"validation\" attack</a> and the <a href=\"#v9-vs-a9\">\"iterated\" attack</a> <code>a</code><sub><code>9</code></sub>. These attacks are described in the following sections. You can also explore games from <a href=\"/iterated-adversarial-training-per-iteration#contents\">intermediate steps of the iterated adversarial training</a>."
         ],
@@ -1080,6 +1083,7 @@ export const pages: object =
     },
     "vit": {
         "title": "Vision transformer",
+        "summary": "A new ViT Go AI model is still vulnerable to adversarial attacks.",
         "description": [
             "Cyclic attacks work not only against KataGo but also against a range of other superhuman Go AIs, including <a target=\"_blank\" href=\"https://online-go.com/game/51321265\">ELF OpenGo</a>, <a target=\"_blank\" href=\"https://online-go.com/game/51356405\">Leela Zero</a>, <a target=\"_blank\" href=\"https://online-go.com/game/51375020\">Sai</a>, <a target=\"_blank\" href=\"https://www.bilibili.com/video/BV1Ls4y147Es/?share_source=copy_web&t=97\">Golaxy</a>, and <a target=\"_blank\" href=\"https://h5.foxwq.com/txwqshare/index.html?chessid=1676910620010001365&boardsize=19\">FineArt</a>. While it is possible that each system has unique vulnerabilities to the cyclic attack, it seems more likely that shared properties cause their common vulnerability. One key shared property is that all systems use a convolutional neural network (CNN) backbone.",
             "To investigate whether CNNs are responsible for the vulnerability, we trained an AlphaZero-style Go AI with a vision transformer (ViT) backbone instead of a CNN. We estimate our ViT Go AI <code>ViT-victim</code> is just shy of superhuman performance at 32768 visits. Despite this, it remains vulnerable to the <a href=\"#vit-vs-base-adversary\">original cyclic attack</a> and consistently loses to a <a href=\"#vit-vs-vit-adversary\">fine-tuned variant</a> of the cyclic attack. This rules out CNN backbones as the root cause of the cyclic vulnerability."
@@ -1193,6 +1197,7 @@ export const pages: object =
     },
     "iterated-adversarial-training-per-iteration": {
         "title": "Per-iteration adversarial training progress",
+        "summary": "Games from each iteration of repeated adversarial training against the \"cyclic attack\"",
         "description": [
             "Here we show games from each iteration of our <a href=\"iterated-adversarial-training#contents\">iterated adversarial training</a> procedure. At each iteration, the victim <code>v</code><sub><code>n</code></sub> is generated by fine-tuning the previous victim <code>v</code><sub><code>n-1</code></sub> against the previous adversary <code>a</code><sub><code>n-1</code></sub>, and the adversary <code>a</code><sub><code>n</code></sub> is generated by fine-tuning the previous adversary <code>a</code><sub><code>n-1</code></sub> against the victim <code>v</code><sub><code>n</code></sub>. The initial victim <code>v</code><sub><code>0</code></sub> is KataGo network checkpoint <a target=\"_blank\" href=\"https://katagotraining.org/networks/\"><code>b40c256-s11840935168-d2898845681</code></a>, the network we attacked with our <a href=\"/adversarial-policy-katago#contents\">original cyclic adversary</a> (<code>base-adversary</code>). The initial adversary <code>a</code><sub><code>0</code></sub> is the original cyclic adversary."
         ],
