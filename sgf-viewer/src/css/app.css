@@ -76,7 +76,7 @@ h1, h2, h3, h4, h5, h6 {
  * dynamically modified attributes
  * (https://github.com/sveltejs/svelte/issues/5804).
  */
-.btn [aria-expanded="false"] > .if-expanded,
-.btn [aria-expanded="true"] > .if-collapsed {
+.btn[aria-expanded="false"] > .if-expanded,
+.btn[aria-expanded="true"] > .if-collapsed {
   display: none;
 }
