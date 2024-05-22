@@ -3,7 +3,7 @@
     import IconLink from "./subcomponents/IconLink.svelte";
 </script>
 <h1>
-    The challenges of training adversarially robust Go AIs
+    Can Go AIs be adversarially robust?
 </h1>
 
 <style>
