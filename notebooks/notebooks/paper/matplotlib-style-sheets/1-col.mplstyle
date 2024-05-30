@@ -4,7 +4,7 @@
 # To run this command, you need to add the following to the preamble:
 #   \usepackage{printlen}
 #   \uselengthunit{in}
-figure.figsize : 6.75133, 3
+figure.figsize : 6.75133, 2.4
 
 # Show ticks on both sides since plot is so wide
 ytick.left: True

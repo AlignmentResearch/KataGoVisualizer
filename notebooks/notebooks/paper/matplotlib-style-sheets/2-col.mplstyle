@@ -7,4 +7,4 @@
 # To run this command, you need to add the following to the preamble:
 #   \usepackage{printlen}
 #   \uselengthunit{in}
-figure.figsize : 3.2406, 2
+figure.figsize : 3.2406, 1.8
