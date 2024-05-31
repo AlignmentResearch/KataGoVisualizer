@@ -208,7 +208,11 @@ def parse_game_str_to_dict(
         }[victim_name]
     else:
         victim_steps = (
-            extract_re("-s([^-]+?)-", victim_name)
+            # Extract step count after "-s" in the name, allowing step count to end
+            # with "m" (for millions). After "-s<number>" we expect "-" or "."
+            # (for names like t0-s0-d0 and victim-s1m.bin.gz) or the end of the
+            # string.
+            extract_re("-s(\d+m?)(?:[-.]|$)", victim_name)
             or extract_re("kata[^_]+?\-s([0-9]+)\-", "/".join(parts[-3:]))
             or 0
         )
