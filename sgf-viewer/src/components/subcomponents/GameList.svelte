@@ -1,11 +1,10 @@
 <script lang="ts">
+    import { getContext } from "svelte";
     import MdFileDownload from "svelte-icons/md/MdFileDownload.svelte";
 
     export let dirName: string;
-    export let sgfPath: string = "";
     export let numGames: number = 0;
 
-    let selectedRow: number = 0;
     let games: Array<Array<string>> = [];
     const tableColumns = {
         victim_color: "Victim Color",
@@ -16,13 +15,49 @@
         sgf_path: "SGF Path", // Should also include line number
     };
     const numColumns = Object.keys(tableColumns).length;
-    function indexToSgfPath(index: number) {
-        let keyIndex = Object.keys(tableColumns).indexOf("sgf_path");
-        let fileName = games[index][keyIndex].split("/").slice(-1)[0]; // Get last element
+    const sgfPathKeyIndex = Object.keys(tableColumns).indexOf("sgf_path");
+    $: sgfPaths = games.map((game) => {
+        const fileName = game[sgfPathKeyIndex].split("/").slice(-1)[0]; // Get last element
         return `/sgfs/${dirName}/${fileName}`;
+    })
+
+    const wgoPlayer = getContext("wgoPlayer");
+    const updateGame = getContext("updateGame");
+    let selectedRow: number = 0;
+    // Current game loaded by the wgoPlayer. Doesn't necessarily match with
+    // selectedRow if wgoPlayer is not yet initialized.
+    let currentSgfPath: string = "";
+    // Arbitrary large number, should be be larger than the move count in any of
+    // our SGFs. This is used to load the last move of the game.
+    const LAST_MOVE_NUM = 10000;
+    // Updates wgoPlayer and selectedRow.
+    $updateGame = (row, move = LAST_MOVE_NUM) => {
+        selectedRow = row;
+        if (!$wgoPlayer || row >= sgfPaths.length) {
+            return;
+        }
+        const newSgfPath = sgfPaths[row];
+        if (newSgfPath === currentSgfPath) {
+            $wgoPlayer.goTo(move);
+        } else {
+            $wgoPlayer.loadSgfFromFile(newSgfPath, move);
+            currentSgfPath = newSgfPath;
+        }
     }
-    $: if (games.length < selectedRow + 1) selectedRow = 0;
-    $: if (games.length > 0) sgfPath = indexToSgfPath(selectedRow);
+
+    let goPlayerIsInitialized: boolean = false;
+    $: if (!goPlayerIsInitialized && games.length > 0 && $wgoPlayer) {
+        let row = 0;
+        if (window.location.hash.startsWith("#" + dirName)) {
+            let searchParams = new URLSearchParams(window.location.search);
+            if (searchParams.has("row")) {
+                row = parseInt(searchParams.get("row"));
+            }
+        }
+        $updateGame(row);
+        goPlayerIsInitialized = true;
+    }
+
     function processData(text: string) {
         let allTextLines = text.trim().split(/\r\n|\n/);
         let headers = allTextLines[0].split(",");
@@ -44,18 +79,15 @@
         .then((text) => processData(text));
 
     function clickCell(row) {
-        selectedRow = row;
+        if (row !== selectedRow) {
+          $updateGame(row);
+        }
         let params = new URLSearchParams();
-        params.set("row", selectedRow.toString());
+        params.set("row", row.toString());
         let url = `${
             window.location.pathname
         }?${params.toString()}#${dirName}-board`;
         history.pushState({}, "", url);
-    }
-    $: if (window.location.hash.startsWith("#" + dirName)) {
-        let searchParams = new URLSearchParams(window.location.search);
-        if (searchParams.has("row"))
-            selectedRow = parseInt(searchParams.get("row"));
     }
 </script>
 
@@ -105,7 +137,7 @@
                     {/each}
                     <td>
                         <a
-                            href={indexToSgfPath(index)}
+                            href={sgfPaths[index]}
                             download={"go_game.sgf"}
                         >
                             <div class="icon">

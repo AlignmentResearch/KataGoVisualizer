@@ -1,22 +1,32 @@
 <script lang="ts">
-    export let section: Map<string, string>;
+    import { setContext } from "svelte";
+    import { writable } from "svelte/store";
+
     import GameList from "./subcomponents/GameList.svelte";
     import GoBoard from "./subcomponents/GoBoard.svelte";
+    import SectionDescription from "./subcomponents/SectionDescription.svelte";
 
-    let sgfPath: string;
+    export let section: Map<string, string>;
+
+    // Several child components interact with each other to manage the Go
+    // player, so we wrap the shared state in a context.
+    // - GoBoard creates the wgoPlayer.
+    // - GameList implements and calls updateGame (update wgoPlayer
+    // according to a specified game + move number).
+    // - GameMoveLink calls updateGame.
+    setContext("updateGame", writable(() => {}));
+    setContext("wgoPlayer", writable(null));
+
+    $: dirName = section["dir_name"];
 </script>
 
 <h3 id={section["dir_name"]}>
     {@html section["title"]}
 </h3>
-<div class="text-wrapper">
-    {#each section["description"] as description}
-        <p>{@html description}</p>
-    {/each}
-</div>
+<SectionDescription {dirName} description={section["description"]} />
 {#if section["paths"] || section["paths_with_line_num"]}
     <div class="board-wrapper">
-        <GoBoard dirName={section["dir_name"]} {sgfPath} />
+        <GoBoard dirName={dirName} />
     </div>
     <div class="d-flex m-2">
         <p class="me-auto m-2">
@@ -28,7 +38,7 @@
             {@html section["adversary"]}
         </p>
     </div>
-    <GameList dirName={section["dir_name"]} numGames={section["max_games"]} bind:sgfPath />
+    <GameList dirName={dirName} numGames={section["max_games"]} />
 {/if}
 {#if section["figure"]}
     <div class="iframe-container">
