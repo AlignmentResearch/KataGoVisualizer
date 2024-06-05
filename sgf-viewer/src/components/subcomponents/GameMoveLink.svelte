@@ -2,7 +2,6 @@
 <script lang="ts">
     import { getContext } from "svelte";
 
-    export let dirName: string;
     export let gameIndex: number;
     export let move: number;
     export let text: string;
