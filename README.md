@@ -14,6 +14,7 @@ This repo contains visualization tools for the paper ['Adversarial Policies Beat
 
  ### [sgf-viewer](sgf-viewer)
  Source for the [website](https://goattack.far.ai/) that accompanies the paper.
+ This project is tested with BrowserStack.
 
  ### [streamlit_app](streamlit_app)
  Source for a data visualization web app used internally to help with research and monitoring training runs.
