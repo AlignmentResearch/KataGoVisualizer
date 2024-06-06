@@ -31,8 +31,20 @@
     // our SGFs. This is used to load the last move of the game.
     const LAST_MOVE_NUM = 10000;
     // Updates wgoPlayer and selectedRow.
-    $updateGame = (row, move = LAST_MOVE_NUM) => {
+    $updateGame = (row, move = LAST_MOVE_NUM, updateUrl = true) => {
         selectedRow = row;
+        if (updateUrl) {
+            let params = new URLSearchParams();
+            params.set("row", row.toString());
+            const url = `${
+                window.location.pathname
+            }?${params.toString()}#${dirName}-board`;
+            const currentUrl = location.pathname + location.search + location.hash
+            if (url !== currentUrl) {
+                history.pushState({}, "", url);
+            }
+        }
+
         if (!$wgoPlayer || row >= sgfPaths.length) {
             return;
         }
@@ -54,7 +66,7 @@
                 row = parseInt(searchParams.get("row"));
             }
         }
-        $updateGame(row);
+        $updateGame(row, LAST_MOVE_NUM, false);
         goPlayerIsInitialized = true;
     }
 
@@ -77,18 +89,6 @@
     fetch(`/sgfs/${dirName}/game_infos.csv`)
         .then((r) => r.text())
         .then((text) => processData(text));
-
-    function clickCell(row) {
-        if (row !== selectedRow) {
-          $updateGame(row);
-        }
-        let params = new URLSearchParams();
-        params.set("row", row.toString());
-        let url = `${
-            window.location.pathname
-        }?${params.toString()}#${dirName}-board`;
-        history.pushState({}, "", url);
-    }
 </script>
 
 <div class="table-responsive">
@@ -130,7 +130,7 @@
             {#each games as game, index (index)}
                 <tr
                     class:table-active={index === selectedRow}
-                    on:click={() => clickCell(index)}
+                    on:click={() => $updateGame(index)}
                 >
                     {#each game.slice(0, -1) as cell}
                         <td>{cell}</td>
