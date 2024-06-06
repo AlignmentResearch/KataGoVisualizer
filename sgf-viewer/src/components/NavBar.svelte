@@ -15,10 +15,16 @@
     // modifications to make it work with Svelte's dynamic element rendering.
     // (The other solution using HTML attributes given in the SO answer, though
     // it's simpler, breaks the links' actual href functionality.)
-    $: navLinks = navbarSupportedContent?.querySelectorAll('.nav-item:not(.dropdown)');
+    $: navLinks = navbarSupportedContent?.querySelectorAll(".nav-item:not(.dropdown)");
     $: bootstrapCollapse = navbarSupportedContent ? Collapse.getOrCreateInstance(navbarSupportedContent, {toggle: false}) : undefined;
     $: navLinks?.forEach((link) => {
-           link.addEventListener('click', () => { bootstrapCollapse.toggle() });
+           link.addEventListener("click", () => {
+               // Checking for "show" class ensures this only runs on mobile, not
+               // desktop.
+               if (navbarSupportedContent.classList.contains("show")) {
+                   bootstrapCollapse.toggle()
+               }
+           });
     })
 </script>
 
