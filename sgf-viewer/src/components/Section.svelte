@@ -16,7 +16,7 @@
 </div>
 {#if section["paths"] || section["paths_with_line_num"]}
     <div style="max-width: 100%;">
-        <GameList dirName={section["dir_name"]} bind:sgfPath />
+        <GameList dirName={section["dir_name"]} numGames={section["max_games"]} bind:sgfPath />
         <div class="board-wrapper">
             <GoBoard dirName={section["dir_name"]} {sgfPath} />
         </div>
