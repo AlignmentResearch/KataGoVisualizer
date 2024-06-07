@@ -3,6 +3,7 @@
 
     export let dirName: string;
     export let sgfPath: string = "";
+    export let numGames: number = 0;
 
     let selectedRow: number = 0;
     let games: Array<Array<string>> = [];
@@ -14,6 +15,7 @@
         num_moves: "Game length",
         sgf_path: "SGF Path", // Should also include line number
     };
+    const numColumns = Object.keys(tableColumns).length;
     function indexToSgfPath(index: number) {
         let keyIndex = Object.keys(tableColumns).indexOf("sgf_path");
         let fileName = games[index][keyIndex].split("/").slice(-1)[0]; // Get last element
@@ -69,6 +71,30 @@
             </tr>
         </thead>
         <tbody>
+            {#if games.length === 0 && numGames > 0}
+                <!-- Add filler rows to avoid content layout shift. Without the
+                    filler rows, anchor links on page load will scroll to the
+                    wrong place.
+                -->
+                {#each {length: numGames} as _}
+                    <tr>
+                        {#each {length: numColumns - 1} as _}
+                            <td></td>
+                        {/each}
+                        <td>
+                            <!-- The icon soon will be clickable, so we make
+                                them appear clickable now to avoid visual
+                                flicker.
+                            -->
+                            <a class="clickable">
+                                <div class="icon">
+                                    <MdFileDownload />
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+                {/each}
+            {/if}
             {#each games as game, index (index)}
                 <tr
                     class:table-active={index === selectedRow}

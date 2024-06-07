@@ -28,7 +28,7 @@
             {@html section["adversary"]}
         </p>
     </div>
-    <GameList dirName={section["dir_name"]} bind:sgfPath />
+    <GameList dirName={section["dir_name"]} numGames={section["max_games"]} bind:sgfPath />
 {/if}
 {#if section["figure"]}
     <div class="iframe-container">

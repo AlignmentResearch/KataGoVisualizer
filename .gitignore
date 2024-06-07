@@ -18,3 +18,5 @@ notebooks/notebooks/**/*.svg
 
 # Local Netlify folder
 .netlify
+
+.unison*
