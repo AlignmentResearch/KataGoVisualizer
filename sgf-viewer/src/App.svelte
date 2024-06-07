@@ -39,9 +39,14 @@
         : [];
     $: summary = pages[currentPath]["summary"]
 
+    // Hack: The ToC interferes with scrolling to anchors on page load:
+    // https://github.com/janosh/svelte-toc/issues/57
+    // Delaying mounting the ToC is our current workaround.
+    // On my (tomtseng's) machine, we need a timeout of ~220ms to avoid the
+    // issue.
     let mountToc: boolean = false;
     onMount(() => {
-        setTimeout(() => mountToc = true, 500);
+        setTimeout(() => mountToc = true, 700);
     });
 </script>
 
@@ -90,6 +95,7 @@
             </div>
         </Toc>
     {:else}
+        <!-- Placeholder for the ToC to avoid layout shift. -->
         <div class="toc-placeholder"></div>
     {/if}
 </div>
