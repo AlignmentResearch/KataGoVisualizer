@@ -38,6 +38,11 @@
         ? pages[currentPath]["content"]
         : [];
     $: summary = pages[currentPath]["summary"]
+
+    let mountToc: boolean = false;
+    onMount(() => {
+        setTimeout(() => mountToc = true, 500);
+    });
 </script>
 
 <svelte:head>
@@ -65,27 +70,31 @@
     </div>
     <!-- Give the table of contents the same breakpoint as the navbar and give
       it a fixed width. -->
-    <Toc
-        titleTag="h5"
-        breakpoint={bootstrapLargeBreakpoint}
-        --toc-min-width="12em"
-        --toc-desktop-max-width="12em"
-        --toc-mobile-btn-bg="rgba(var(--bs-light-rgb), 0.8)"
-        --toc-mobile-bg="rgba(var(--bs-light-rgb), 1)"
-        --toc-active-color="var(--near-white)"
-        --toc-active-bg="var(--medium-accent-color)"
-    >
-        <div class="toc-icon" slot="open-toc-icon">
-            <!-- The default mobile icon looks too much like the navbar icon.
-              We copy Wikipedia in using the standard hamburger icon for the
-              navbar and a bullet list icon for the table of contents
-            -->
-            <MdFormatListBulleted />
-        </div>
-    </Toc>
+    {#if mountToc}
+        <Toc
+            titleTag="h5"
+            breakpoint={bootstrapLargeBreakpoint}
+            --toc-min-width="12em"
+            --toc-desktop-max-width="12em"
+            --toc-mobile-btn-bg="rgba(var(--bs-light-rgb), 0.8)"
+            --toc-mobile-bg="rgba(var(--bs-light-rgb), 1)"
+            --toc-active-color="var(--near-white)"
+            --toc-active-bg="var(--medium-accent-color)"
+        >
+            <div class="toc-icon" slot="open-toc-icon">
+                <!-- The default mobile icon looks too much like the navbar icon.
+                  We copy Wikipedia in using the standard hamburger icon for the
+                  navbar and a bullet list icon for the table of contents
+                -->
+                <MdFormatListBulleted />
+            </div>
+        </Toc>
+    {:else}
+        <div class="toc-placeholder"></div>
+    {/if}
 </div>
 
-<style>
+<style lang="scss">
     .flex-container {
         /* flex is the easiest way to use svelte-toc */
         display: flex;
@@ -107,6 +116,12 @@
     .toc-icon {
         height: 1em;
         width: 1em;
+    }
+    @include media-breakpoint-up(lg) {
+        .toc-placeholder {
+            min-width: 12em;
+            width: 12em;
+        }
     }
     #contents {
         /* Extra scroll margin when navigating to the #contents anchor. */
