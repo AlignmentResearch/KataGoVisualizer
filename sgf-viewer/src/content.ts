@@ -969,7 +969,7 @@ export const pages: object =
                 "title": "Human replication of gift attack",
                 "dir_name": "dec23-vs-human-gift",
                 "paths": ["/shared/match/paper-robustness/website-games/human-gift-vs-b18-v1.sgf"],
-                "max_games": 10,
+                "max_games": 1,
                 "adversary": "Kellin Pelrine",
                 "victim": "<code>dec23-victim</code>, 1 visit",
                 "description": [
@@ -1181,7 +1181,7 @@ export const pages: object =
                         "line": 3
                     }
                 ],
-                "max_games": 10,
+                "max_games": 8,
                 "adversary": "<code>base-adversary</code>",
                 "victim": "<code>ViT-victim</code>, 512 visits",
                 "description": [
