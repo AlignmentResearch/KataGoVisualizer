@@ -7,9 +7,6 @@ export default {
   preprocess: sveltePreprocess({
     postcss: {
       plugins: [autoprefixer()]
-    },
-    scss: {
-      prependData: "@import './src/css/bootstrap.scss';"
     }
   })
 }

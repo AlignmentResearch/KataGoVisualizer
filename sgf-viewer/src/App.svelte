@@ -94,7 +94,7 @@
     {/if}
 </div>
 
-<style lang="scss">
+<style>
     .flex-container {
         /* flex is the easiest way to use svelte-toc */
         display: flex;
@@ -117,7 +117,7 @@
         height: 1em;
         width: 1em;
     }
-    @include media-breakpoint-up(lg) {
+    @media (min-width: 992px) {  /* 992 === bootstrapLargeBreakpoint  */
         .toc-placeholder {
             min-width: 12em;
             width: 12em;
