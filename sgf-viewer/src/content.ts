@@ -70,7 +70,7 @@ export const pages: object =
                         "line": 2
                     }
                 ],
-                "max_games": 10,
+                "max_games": 6,
                 "adversary": "545 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, no search",
                 "description": [
@@ -163,7 +163,7 @@ export const pages: object =
                 "paths": [
                     "/nas/ucb/ttseng/go_attack/backup/sgf-viewer-sgfs/kellin-analysis-game-fixed.sgf"
                 ],
-                "max_games": 10,
+                "max_games": 1,
                 "adversary": "498 million training steps, 600 visits",
                 "victim": "<code>Latest</code><sub><code>def</code></sub>, 1600 visits",
                 "description": [
@@ -254,7 +254,7 @@ export const pages: object =
                     "/nas/ucb/tony/go-attack/manual-games/tony-b-def-adv505h-s545m-w-anon.sgf",
                     "/nas/ucb/tony/go-attack/manual-games/tony-w-def-adv505h-s545m-b-anon.sgf"
                 ],
-                "max_games": 10,
+                "max_games": 2,
                 "adversary": "Cyclic-adversary, 545 million training steps, 600 visits",
                 "victim": "Tony Wang (Author)",
                 "description": [
@@ -270,7 +270,7 @@ export const pages: object =
                     "/nas/ucb/ttseng/go_attack/backup/sgf-viewer-sgfs/tony-black.sgfs",
                     "/nas/ucb/ttseng/go_attack/backup/sgf-viewer-sgfs/tony-white.sgfs"
                 ],
-                "max_games": 10,
+                "max_games": 2,
                 "adversary": "Pass-adversary, 34.1 million training steps, 600 visits",
                 "victim": "Tony Wang (Author)",
                 "description": [
@@ -284,7 +284,7 @@ export const pages: object =
                 "paths": [
                     "/nas/ucb/kpelrine/humanatk/humanattack-KataGo-100kvisits.sgfs"
                 ],
-                "max_games": 10,
+                "max_games": 1,
                 "adversary": "Kellin Pelrine (Author)",
                 "victim": "KataGo, 100K visits",
                 "description": ["A Go expert (Kellin Pelrine) was able to learn and apply the cyclic-adversary's strategy to attack multiple types and configurations of AI Go systems. In this example they exploited KataGo with 100K visits, which would normally be strongly superhuman. Besides previously studying our adversary's game records, no algorithmic assistance was used in this or any of the following examples. The KataGo network and weights used here were b18c384nbt-uec, which is a newly released version the author of KataGo (David Wu) trained for a tournament. This network should be as strong or stronger than <code>Latest</code>."]
@@ -296,7 +296,7 @@ export const pages: object =
                 "paths": [
                     "/nas/ucb/kpelrine/humanatk/humanattack-LZ-100kvisits.sgfs"
                 ],
-                "max_games": 10,
+                "max_games": 1,
                 "adversary": "Kellin Pelrine (Author)",
                 "victim": "Leela Zero, 100K visits",
                 "description": ["The same Go expert (Kellin Pelrine) also exploited Leela Zero with 100K visits, which would likewise normally be superhuman."]
@@ -316,7 +316,7 @@ export const pages: object =
                     "/nas/ucb/k8/go-attack/humanatk-lz4096/humanatk-LZ-4096visits-8.sgfs",
                     "/nas/ucb/k8/go-attack/humanatk-lz4096/humanatk-LZ-4096visits-9.sgfs"
                 ],
-                "max_games": 10,
+                "max_games": 9,
                 "adversary": "Kellin Pelrine (Author)",
                 "victim": "Leela Zero, 4096 visits",
                 "description": ["Kellin Pelrine also played 9 games against Leela Zero with 4096 visits, winning 6."]
@@ -354,7 +354,7 @@ export const pages: object =
                 "paths": [
                     "/nas/ucb/kpelrine/humanatk/corners-JBXKata005-9stones.sgfs"
                 ],
-                "max_games": 10,
+                "max_games": 1,
                 "adversary": "Kellin Pelrine (Author)",
                 "victim": "JBXKata005, 9 dan on KGS, with 9 stone handicap",
                 "description": ["In this last example, the same Go expert (Kellin Pelrine) exploited JBXKata005 while giving it a huge initial advantage through a 9 stone handicap. A top level human player with this much advantage would have a virtually 100% win rate against any opponent, human or algorithmic."]
@@ -446,7 +446,7 @@ export const pages: object =
                         "line": 5
                     }
                 ],
-                "max_games": 10,
+                "max_games": 6,
                 "adversary": "34.1 million training steps, 600 visits",
                 "victim": "<code>Latest</code>, no search",
                 "description": [
