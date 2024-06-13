@@ -38,16 +38,6 @@
         ? pages[currentPath]["content"]
         : [];
     $: summary = pages[currentPath]["summary"]
-
-    // Hack: The ToC interferes with scrolling to anchors on page load:
-    // https://github.com/janosh/svelte-toc/issues/57
-    // Delaying mounting the ToC is our current workaround.
-    // On my (tomtseng's) machine, we need a timeout of ~220ms to avoid the
-    // issue.
-    let mountToc: boolean = false;
-    onMount(() => {
-        setTimeout(() => mountToc = true, 700);
-    });
 </script>
 
 <svelte:head>
@@ -75,29 +65,24 @@
     </div>
     <!-- Give the table of contents the same breakpoint as the navbar and give
       it a fixed width. -->
-    {#if mountToc}
-        <Toc
-            titleTag="h5"
-            breakpoint={bootstrapLargeBreakpoint}
-            --toc-min-width="12em"
-            --toc-desktop-max-width="12em"
-            --toc-mobile-btn-bg="rgba(var(--bs-light-rgb), 0.8)"
-            --toc-mobile-bg="rgba(var(--bs-light-rgb), 1)"
-            --toc-active-color="var(--near-white)"
-            --toc-active-bg="var(--medium-accent-color)"
-        >
-            <div class="toc-icon" slot="open-toc-icon">
-                <!-- The default mobile icon looks too much like the navbar icon.
-                  We copy Wikipedia in using the standard hamburger icon for the
-                  navbar and a bullet list icon for the table of contents
-                -->
-                <MdFormatListBulleted />
-            </div>
-        </Toc>
-    {:else}
-        <!-- Placeholder for the ToC to avoid layout shift. -->
-        <div class="toc-placeholder"></div>
-    {/if}
+    <Toc
+        titleTag="h5"
+        breakpoint={bootstrapLargeBreakpoint}
+        --toc-min-width="12em"
+        --toc-desktop-max-width="12em"
+        --toc-mobile-btn-bg="rgba(var(--bs-light-rgb), 0.8)"
+        --toc-mobile-bg="rgba(var(--bs-light-rgb), 1)"
+        --toc-active-color="var(--near-white)"
+        --toc-active-bg="var(--medium-accent-color)"
+    >
+        <div class="toc-icon" slot="open-toc-icon">
+            <!-- The default mobile icon looks too much like the navbar icon.
+              We copy Wikipedia in using the standard hamburger icon for the
+              navbar and a bullet list icon for the table of contents
+            -->
+            <MdFormatListBulleted />
+        </div>
+    </Toc>
 </div>
 
 <style>
@@ -122,12 +107,6 @@
     .toc-icon {
         height: 1em;
         width: 1em;
-    }
-    @media (min-width: 992px) {  /* 992 === bootstrapLargeBreakpoint  */
-        .toc-placeholder {
-            min-width: 12em;
-            width: 12em;
-        }
     }
     #contents {
         /* Extra scroll margin when navigating to the #contents anchor. */
