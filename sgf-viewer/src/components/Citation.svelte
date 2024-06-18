@@ -16,17 +16,18 @@
   title={Adversarial Policies Beat Superhuman Go {AI}s},
   author={Wang, Tony T and Gleave, Adam and Tseng, Tom and Pelrine, Kellin and Belrose, Nora and Miller, Joseph and Dennis, Michael D and Duan, Yawen and Pogrebniak, Viktor and Levine, Sergey and Russell, Stuart},
   booktitle={International Conference on Machine Learning},
-  year={2023}
+  year={2023},
+  eprint={2211.00241},
+  archivePrefix={arXiv}
 }`}</pre>
 </code>
 <code on:click={tdFocus}>
     <pre>{`@misc{tseng2024challenges,
   title={Can Go {AI}s be adversarially robust?},
-  author={Tseng, Tom and Pelrine, Kellin and McLean, Euan and Wang, Tony T. and Gleave, Adam},
+  author={Tseng, Tom and McLean, Euan and Pelrine, Kellin and Wang, Tony T. and Gleave, Adam},
   year={2024},
-  eprint={2405.NNNNN},
-  archivePrefix={arXiv},
-  primaryClass={cs.LG}
+  eprint={2406.?????},
+  archivePrefix={arXiv}
 }`}</pre>
 </code>
 
@@ -52,6 +53,9 @@
     pre {
         margin: auto;
         max-width: 80%;
-        font-size: 13px;
+        font-size: 14px;
+        line-height: 16px;
+        margin-top: 1em;
+        margin-bottom: 1em;
     }
 </style>
