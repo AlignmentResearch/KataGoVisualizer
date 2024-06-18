@@ -36,7 +36,7 @@ export const cards: Array<any> =
         image: "/images/defense-paper.svg",
         imageName: "Defense paper icon",
         description: "Defense paper",
-        url: "https://www.overleaf.com/project/654eac3d52dffeb1a092ab18",
+        url: "/defense.pdf",
         color: "rgb(0,0,0,0.5)",
         border: false,
     },
