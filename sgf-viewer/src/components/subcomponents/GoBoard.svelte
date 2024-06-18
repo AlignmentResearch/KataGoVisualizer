@@ -1,17 +1,11 @@
-<script context="module">
-    let wgoPlayers = {};
-    window.setMove = (dirName, move) => wgoPlayers[dirName].goTo(move);
-</script>
-
 <script lang="ts">
+    import { getContext } from "svelte";
+    import type { Writable } from "svelte/store";
+
     export let dirName: string;
-    export let sgfPath: string;
 
     let goBoardDiv: HTMLElement;
-    let wgoPlayer: WGo.BasicPlayer;
-    // Arbitrary large number, needs to be larger than the move count in any of
-    // our SGFs.
-    const LAST_MOVE_NUM = 10000;
+    const wgoPlayer: Writable<WGo.BasicPlayer> = getContext("wgoPlayer");
 
     function releaseCanvas(canvas) {
         canvas.width = 1;
@@ -20,10 +14,10 @@
         ctx && ctx.clearRect(0, 0, 1, 1);
     }
 
-    $: if (goBoardDiv && !wgoPlayer) {
+    $: if (goBoardDiv && !$wgoPlayer) {
         [...goBoardDiv.getElementsByTagName("CANVAS")].forEach(releaseCanvas);
 
-        wgoPlayer = new (<any>window).WGo.BasicPlayer(goBoardDiv, {
+        $wgoPlayer = new (<any>window).WGo.BasicPlayer(goBoardDiv, {
             layout: (<any>window).WGo.BasicPlayer.dynamicLayout,
             allowIllegalMoves: true,
             enableWheel: false,
@@ -33,10 +27,6 @@
                 background: "wgo/wood1.jpg",
             },
         });
-        wgoPlayers[dirName] = wgoPlayer;
-    }
-    $: if (wgoPlayer && sgfPath) {
-      wgoPlayer.loadSgfFromFile(sgfPath, LAST_MOVE_NUM);
     }
 </script>
 

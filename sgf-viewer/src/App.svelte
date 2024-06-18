@@ -15,9 +15,10 @@
     import Toc from 'svelte-toc'
 
     import Citation from "./components/Citation.svelte";
-    import NavBar from "./components/NavBar.svelte";
+    import Navbar from "./components/Navbar.svelte";
     import Section from "./components/Section.svelte";
     import Title from "./components/Title.svelte";
+
     import { pages } from "./content";
 
     const pagesPaths = Object.keys(pages);
@@ -44,10 +45,10 @@
   <meta name="description" content={summary}>
 </svelte:head>
 
-<NavBar bind:currentPath />
+<Navbar bind:currentPath />
 <div class="flex-container">
     <div class="content">
-        <Title showAuthors={landingPage} />
+        <Title />
         <main>
             {#key currentPath}
                 <h2 id="contents">{pages[currentPath]["title"]}</h2>
@@ -107,6 +108,12 @@
     .toc-icon {
         height: 1em;
         width: 1em;
+    }
+    @media (min-width: 992px) {  /* 992 === bootstrapLargeBreakpoint  */
+        .toc-placeholder {
+            min-width: 12em;
+            width: 12em;
+        }
     }
     #contents {
         /* Extra scroll margin when navigating to the #contents anchor. */

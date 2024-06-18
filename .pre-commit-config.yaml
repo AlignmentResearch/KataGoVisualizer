@@ -16,7 +16,7 @@ repos:
           - id: codespell
             args:
                 [
-                    "--skip=*.ipynb,*.sgf,*.sgfs,*package-lock.json,*wgo.player.*,sgf-viewer/public/figures/*",
+                    "--skip=*.ipynb,*.sgf,*.sgfs,*.svg,*package-lock.json,*wgo.player.*,sgf-viewer/public/figures/*",
                     "-L=ist",
                 ]
     - repo: https://github.com/pycqa/flake8

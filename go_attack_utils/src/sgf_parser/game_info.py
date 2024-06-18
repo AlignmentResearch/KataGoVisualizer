@@ -9,6 +9,9 @@ import multiprocessing
 import warnings
 import functools
 
+DEFAULT_ADVERSARY_SUBSTRINGS = ["adv"]
+DEFAULT_VICTIM_SUBSTRINGS = ["victim", "bot"]
+
 
 def get_game_str(path: pathlib.Path, line_num: int):
     """Return the string at a given path and line number."""
@@ -71,8 +74,15 @@ def read_and_parse_file(
     fast_parse: bool = False,
     victim_color: Optional[str] = None,
     no_victim_okay: bool = False,
+    adversary_substrings: Optional[Sequence[str]] = None,
+    victim_substrings: Optional[Sequence[str]] = None,
 ) -> Sequence[Dict[str, Any]]:
     """Parse all lines of an sgf file to a list of dictionaries with game info."""
+    if adversary_substrings is None:
+        adversary_substrings = DEFAULT_ADVERSARY_SUBSTRINGS
+    if victim_substrings is None:
+        victim_substrings = DEFAULT_VICTIM_SUBSTRINGS
+
     parsed_games = []
     with open(path, "r") as f:
         for i, line in enumerate(f):
@@ -84,6 +94,8 @@ def read_and_parse_file(
                     fast_parse=fast_parse,
                     victim_color=victim_color,
                     no_victim_okay=no_victim_okay,
+                    adversary_substrings=adversary_substrings,
+                    victim_substrings=victim_substrings,
                 )
             )
     return parsed_games
@@ -94,14 +106,23 @@ def read_and_parse_all_files(
     fast_parse: bool = False,
     processes: Optional[int] = 128,
     no_victim_okay: bool = False,
+    adversary_substrings: Optional[Sequence[str]] = None,
+    victim_substrings: Optional[Sequence[str]] = None,
 ) -> Sequence[Dict[str, Any]]:
     """Returns concatenated contents of all files in `paths`."""
+    if adversary_substrings is None:
+        adversary_substrings = DEFAULT_ADVERSARY_SUBSTRINGS
+    if victim_substrings is None:
+        victim_substrings = DEFAULT_VICTIM_SUBSTRINGS
+
     if not processes:
         processes = min(128, len(paths) // 2)
     read_and_parse_file_partial = functools.partial(
         read_and_parse_file,
         fast_parse=fast_parse,
         no_victim_okay=no_victim_okay,
+        adversary_substrings=adversary_substrings,
+        victim_substrings=victim_substrings,
     )
     with multiprocessing.Pool(processes=max(processes, 1)) as pool:
         parsed_games = pool.map(read_and_parse_file_partial, paths)
@@ -139,6 +160,8 @@ def parse_game_str_to_dict(
     fast_parse: bool = False,
     victim_color: Optional[str] = None,
     no_victim_okay: bool = False,
+    adversary_substrings: Optional[Sequence[str]] = None,
+    victim_substrings: Optional[Sequence[str]] = None,
 ) -> Dict[str, Any]:
     """Parse an sgf string to a dictionary containing game_info.
 
@@ -153,10 +176,18 @@ def parse_game_str_to_dict(
             don't label the adversary or victim).
         no_victim_okay: If True, don't raise an error if the game doesn't have
             a victim.
+        adversary_substrings: Substrings that indicate the adversary in PB or
+            PW.
+        victim_substrings: Substrings that indicate the victim in PB or PW.
 
     Returns:
         Dictionary containing game_info.
     """
+    if adversary_substrings is None:
+        adversary_substrings = DEFAULT_ADVERSARY_SUBSTRINGS
+    if victim_substrings is None:
+        victim_substrings = DEFAULT_VICTIM_SUBSTRINGS
+
     rule_str = extract_prop("RU", sgf_str)
     comment_str = extract_prop("C", sgf_str)
     board_size = extract_prop("SZ", sgf_str)
@@ -169,12 +200,18 @@ def parse_game_str_to_dict(
     komi = extract_prop("KM", sgf_str)
     komi = float(komi) if komi else komi
     win_color = result[0].lower() if result else None
-    assert no_victim_okay or (
-        "victim" in b_name.lower()
-        or "victim" in w_name.lower()
-        or "adv" in b_name.lower()
-        or "adv" in w_name.lower()
-        or victim_color
+
+    if victim_color is None:
+        b_name_has_victim = any(x in b_name.lower() for x in victim_substrings)
+        w_name_has_victim = any(x in w_name.lower() for x in victim_substrings)
+        b_name_has_adversary = any(x in b_name.lower() for x in adversary_substrings)
+        w_name_has_adversary = any(x in w_name.lower() for x in adversary_substrings)
+        victim_is_black = b_name_has_victim or w_name_has_adversary
+        victim_is_white = w_name_has_victim or b_name_has_adversary
+        if victim_is_black != victim_is_white:
+            victim_color = "b" if victim_is_black else "w"
+    assert (
+        no_victim_okay or victim_color is not None
     ), f"Game doesn't have victim: path={path}, line_number={line_number}"
 
     parts = pathlib.Path(path).parts
@@ -186,20 +223,9 @@ def parse_game_str_to_dict(
     elif "gatekeepersgf" in parts:
         training = "gating"
 
-    if victim_color is None:
-        victim_color = {b_name: "b", w_name: "w"}.get(
-            "victim",
-            "b"
-            if (
-                "victim" in b_name.lower()
-                or "bot" in b_name.lower()
-                or "adv" in w_name.lower()
-            )
-            else "w",
-        )
     victim_name = {"b": b_name, "w": w_name}[victim_color]
     adv_color = {"b": "w", "w": "b"}[victim_color]
-    adv_name = b_name if adv_color == "b" else w_name
+    adv_name = {"b": b_name, "w": w_name}[adv_color]
     if victim_name in ["bot-cp127-v1", "bot-cp505-v2", "bot-cp505-v1"]:
         victim_steps = {
             "bot-cp127-v1": 5303129600,
@@ -271,11 +297,13 @@ def parse_game_str_to_dict(
         # Victim info
         "victim_color": victim_color,
         "victim_name": victim_name,
-        "victim_visits": victim_visits
-        if victim_visits
-        else int(str(victim_rank).lstrip("v"))
-        if victim_rank
-        else 1,
+        "victim_visits": (
+            victim_visits
+            if victim_visits
+            else int(str(victim_rank).lstrip("v"))
+            if victim_rank
+            else 1
+        ),
         "victim_steps": victim_steps,
         "victim_rsym": extract_param("rsym", victim_rank),
         "victim_algo": extract_param("algo", victim_rank),

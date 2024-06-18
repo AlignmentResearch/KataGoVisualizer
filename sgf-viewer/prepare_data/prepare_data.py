@@ -34,7 +34,8 @@ if __name__ == "__main__":
         next(f)
         pages = json.load(f)
 
-    public_sgfs_path = Path(__file__).parent.parent / "public" / "sgfs"
+    root_path = Path(__file__).parent.parent
+    public_sgfs_path = root_path / "public" / "sgfs"
     command = ["rm", "-rf", f"{public_sgfs_path.resolve()}"]
     run_cmd(command, shell=False)
 
@@ -87,8 +88,15 @@ if __name__ == "__main__":
                     path_to_original_index[new_path.name] = i
 
             sgf_paths = game_info.find_sgf_files(section_path)
+            adversary_substrings = ["adv", "attack", "cyclic"]
+            victim_substrings = ["victim", "bot", "b18-s8527m"] + [
+                f"h{i}-v" for i in range(10)
+            ]
             parsed_games = game_info.read_and_parse_all_files(
-                sgf_paths, fast_parse=True
+                sgf_paths,
+                fast_parse=True,
+                adversary_substrings=adversary_substrings,
+                victim_substrings=victim_substrings,
             )
             if len(parsed_games) != games_count:
                 print(
@@ -98,9 +106,8 @@ if __name__ == "__main__":
 
             # Make paths not depend on where repo is cloned
             for parsed_game in parsed_games:
-                # Take last 4 parts of path
-                parsed_game["sgf_path"] = "/".join(
-                    Path(parsed_game["sgf_path"]).parts[-4:]
+                parsed_game["sgf_path"] = Path(parsed_game["sgf_path"]).relative_to(
+                    root_path
                 )
 
             if section.get("sort_games", True):

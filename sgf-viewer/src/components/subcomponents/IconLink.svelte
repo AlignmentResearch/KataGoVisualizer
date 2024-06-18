@@ -29,6 +29,7 @@
 
 <style>
     .logo {
+        aspect-ratio: 1;
         object-fit: contain;
         will-change: filter;
         transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -46,9 +47,12 @@
     }
     .logo-desc {
         text-align: center;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 600;
+        margin: auto;
         margin-top: 0.5em;
         margin-bottom: 1em;
+        max-width: 4em;
+        line-height: 1.25;
     }
 </style>

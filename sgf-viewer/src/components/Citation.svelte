@@ -12,12 +12,22 @@
 <hr />
 <h4 class="toc-exclude">Citation Info</h4>
 <code on:click={tdFocus}>
-    <pre>
-{`@inproceedings{wang2023adversarial,
-    title={Adversarial Policies Beat Superhuman Go AIs},
-    author={Wang, Tony T and Gleave, Adam and Tseng, Tom and Pelrine, Kellin and Belrose, Nora and Miller, Joseph and Dennis, Michael D and Duan, Yawen and Pogrebniak, Viktor and Levine, Sergey and Russell, Stuart},
-    booktitle={International Conference on Machine Learning},
-    year={2023}
+    <pre>{`@inproceedings{wang2023adversarial,
+  title={Adversarial Policies Beat Superhuman Go {AI}s},
+  author={Wang, Tony T. and Gleave, Adam and Tseng, Tom and Pelrine, Kellin and Belrose, Nora and Miller, Joseph and Dennis, Michael D and Duan, Yawen and Pogrebniak, Viktor and Levine, Sergey and Russell, Stuart},
+  booktitle={International Conference on Machine Learning},
+  year={2023},
+  eprint={2211.00241},
+  archivePrefix={arXiv}
+}`}</pre>
+</code>
+<code on:click={tdFocus}>
+    <pre>{`@misc{tseng2024challenges,
+  title={Can Go {AI}s be adversarially robust?},
+  author={Tseng, Tom and McLean, Euan and Pelrine, Kellin and Wang, Tony T. and Gleave, Adam},
+  year={2024},
+  eprint={2406.?????},
+  archivePrefix={arXiv}
 }`}</pre>
 </code>
 
@@ -43,6 +53,9 @@
     pre {
         margin: auto;
         max-width: 80%;
-        font-size: 13px;
+        font-size: 14px;
+        line-height: 16px;
+        margin-top: 1em;
+        margin-bottom: 1em;
     }
 </style>
