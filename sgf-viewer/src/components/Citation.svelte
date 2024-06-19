@@ -22,11 +22,11 @@
 }`}</pre>
 </code>
 <code on:click={tdFocus}>
-    <pre>{`@misc{tseng2024challenges,
+    <pre>{`@misc{tseng2024ais,
   title={Can Go {AI}s be adversarially robust?},
   author={Tseng, Tom and McLean, Euan and Pelrine, Kellin and Wang, Tony T. and Gleave, Adam},
   year={2024},
-  eprint={2406.?????},
+  eprint={2406.12843},
   archivePrefix={arXiv}
 }`}</pre>
 </code>

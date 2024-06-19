@@ -36,7 +36,7 @@ export const cards: Array<any> =
         image: "/images/defense-paper.svg",
         imageName: "Defense paper icon",
         description: "Defense paper",
-        url: "/defense.pdf",
+        url: "https://arxiv.org/abs/2406.12843",
         color: "rgb(0,0,0,0.5)",
         border: false,
     },
