@@ -52,7 +52,7 @@ export const cards: Array<any> =
         image: "/images/nature-logo.svg",
         imageName: "Nature logo",
         description: "Defense press",
-        url: "https://archive.is/jaSos",
+        url: "https://www.nature.com/articles/d41586-024-02218-7",
         color: "rgb(0,0,0,0.5)",
         border: false,
     },
