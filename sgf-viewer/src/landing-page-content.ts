@@ -5,7 +5,7 @@ export const cards: Array<any> =
         imageName: "Attack paper icon",
         description: "Attack paper",
         url: "https://arxiv.org/abs/2211.00241",
-        color: "rgb(252,71,85,0.5)",
+        color: "rgb(252,71,85,0.5)",  // color of red sword icon
         border: false,
     },
     {
@@ -29,7 +29,8 @@ export const cards: Array<any> =
         imageName: "Financial Times logo",
         description: "Attack press",
         url: "https://archive.is/EBcVa",
-        color: "rgb(252,208,175,0.5)",
+        // color: "rgb(252,208,175,0.5)",  // primary color of image
+        color: "rgb(252,71,85,0.5)",  // color of red sword icon
         border: false,
     },
     {
@@ -37,7 +38,7 @@ export const cards: Array<any> =
         imageName: "Defense paper icon",
         description: "Defense paper",
         url: "https://arxiv.org/abs/2406.12843",
-        color: "rgb(79,193,34,0.5)",
+        color: "rgb(79,193,34,0.5)",  // color of green shield icon
         border: false,
     },
     {
@@ -53,7 +54,8 @@ export const cards: Array<any> =
         imageName: "Nature logo",
         description: "Defense press",
         url: "https://www.nature.com/articles/d41586-024-02218-7",
-        color: "rgb(0,0,0,0.5)",
+        // color: "rgb(0,0,0,0.5)",  // primary color of image
+        color: "rgb(79,193,34,0.5)",
         border: false,
     },
     {
