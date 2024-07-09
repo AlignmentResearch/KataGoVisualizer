@@ -109,12 +109,6 @@
         height: 1em;
         width: 1em;
     }
-    @media (min-width: 992px) {  /* 992 === bootstrapLargeBreakpoint  */
-        .toc-placeholder {
-            min-width: 12em;
-            width: 12em;
-        }
-    }
     #contents {
         /* Extra scroll margin when navigating to the #contents anchor. */
         scroll-margin-top: 1em;
