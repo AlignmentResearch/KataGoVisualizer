@@ -5,7 +5,7 @@ export const cards: Array<any> =
         imageName: "Attack paper icon",
         description: "Attack paper",
         url: "https://arxiv.org/abs/2211.00241",
-        color: "rgb(237,243,244,0.5)",
+        color: "rgb(252,71,85,0.5)",
         border: false,
     },
     {
@@ -13,7 +13,7 @@ export const cards: Array<any> =
         imageName: "Attack blog icon",
         description: "Attack blog",
         url: "https://far.ai/post/2023-07-superhuman-go-ais/",
-        color: "rgb(231,236,241,0.5)",
+        color: "rgb(252,71,85,0.5)",
         border: false,
     },
     {
@@ -21,7 +21,7 @@ export const cards: Array<any> =
         imageName: "Attack video icon",
         description: "Attack video",
         url: "https://slideslive.com/39006680/adversarial-policies-beat-superhuman-go-ais",
-        color: "rgb(107,105,104,0.5)",
+        color: "rgb(252,71,85,0.5)",
         border: false,
     },
     {
@@ -37,7 +37,7 @@ export const cards: Array<any> =
         imageName: "Defense paper icon",
         description: "Defense paper",
         url: "https://arxiv.org/abs/2406.12843",
-        color: "rgb(237,243,244,0.5)",
+        color: "rgb(79,193,34,0.5)",
         border: false,
     },
     {
@@ -45,7 +45,7 @@ export const cards: Array<any> =
         imageName: "Defense blog icon",
         description: "Defense blog",
         url: "https://far.ai/post/2024-06-go-defense/",
-        color: "rgb(231,236,241,0.5)",
+        color: "rgb(79,193,34,0.5)",
         border: false,
     },
     {
