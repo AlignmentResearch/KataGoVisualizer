@@ -49,6 +49,14 @@ export const cards: Array<any> =
         border: false,
     },
     {
+        image: "/images/nature-logo.svg",
+        imageName: "Nature logo",
+        description: "Defense press",
+        url: "https://archive.is/jaSos",
+        color: "rgb(0,0,0,0.5)",
+        border: false,
+    },
+    {
         image: "/images/github-mark.svg",
         imageName: "GitHub logo",
         description: "Code",
