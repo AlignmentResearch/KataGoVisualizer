@@ -1,4 +1,4 @@
-je ./../go_attack_utils
+-e ./../go_attack_utils
 
 # For Jupyter notebooks
 ipykernel
@@ -40,6 +40,5 @@ black
 flake8
 GitPython
 isort
-# ipywidget
 jupyter
 mypy
