@@ -1151,7 +1151,7 @@ export const pages: object =
                     }
                 ],
                 "max_games": 10,
-                "adversary": "<code>cyclic-vs-h9-adversary</code>",
+                "adversary": "<code>stall-adversary</code>",
                 "victim": "<code>v</code><sub><code>9</code></sub>, 512 visits",
                 "description": [
                     "We trained another adversary by fine-tuning a cyclic adversary. Again it was able to defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search convincingly, achieving a win rate of 91.5%, but the win rate is 5% at 4096 visits."
