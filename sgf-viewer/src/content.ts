@@ -1031,6 +1031,17 @@ export const pages: object =
                 "description": [
                     "After we disclosed the attacks of the previous two adversaries, KataGo added positions to its adversarial training dataset to defend against the attacks. But yet again we were able to fine-tune a cyclic adversary to beat a new KataGo model, <code>may24-victim</code>, at 65536 visits of search with a 56% win rate."
                 ]
+            },
+            {
+                "title": "Human replication of large cyclic attack",
+                "dir_name": "dec23-vs-human-large-cyclic",
+                "paths": ["/shared/sgf-viewer-games/b18-v4096-vs-human-large-cyclic.sgf"],
+                "max_games": 1,
+                "adversary": "Kellin Pelrine (author)",
+                "victim": "<code>dec23-victim</code>, 4096 visits",
+                "description": [
+                    "Go expert Kellin was able to study the large cyclic attack and apply it to beat the <code>dec23-victim</code> at a higher visit count than before, winning at 4096 victim visits rather than 512."
+                ]
             }
         ]
     },
