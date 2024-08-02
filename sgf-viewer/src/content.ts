@@ -978,6 +978,59 @@ export const pages: object =
                     "White finally sets up a third potential place for a gift starting on <MoveLink move=186>move 186</MoveLink>. This was intended to maximize the chances. Normally all three of these groups would be dead, but on <MoveLink move=193>move 193</MoveLink>, we see one instance of the attack succeed, with black sending two stones for no benefit and letting white resurrect their group. This happens again, with white’s largest “dead” group, on <MoveLink move=215>move 215</MoveLink>. This completes the reversal, giving white a large lead, and black resigns shortly after.",
                     "We note, however, that this was completed at 1 victim visit. With more search, the attack seems much harder for humans (as well as our AI adversary); several human attempts at 256 and 512 visits failed. In particular, there was no issue establishing positions ready to receive a gift, as well as a stable gamestate on the rest of the board, but no gift was offered. We hypothesize that in addition to the key visible components of the attack (minimizing victim score lead, adversary positions that don’t have many threats against them, and setting up the shapes to receive gifts), there is a more opaque component of balancing value of moves across the board in the victim’s perception, such that it does not see much more valuable moves and offers the gift, but also does not search so much in the local area to see the disaster about to happen afterwards. This requires increasing precision at higher visits, and is difficult for humans to learn."
                 ]
+            },
+            {
+                "title": "Large cyclic attack",
+                "dir_name": "may24-vs-large",
+                "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/sample-sgfs.sh",
+                "paths_with_line_num": [
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/83EF172F2B291E03.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/BEE1AB6D3B3B44CE.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/D8B60438C3EC9EEA.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/8EDE390730188173.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/4D212F0EB256CA2A.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/A80363E37DCF380B.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/A127B0E14CA8B587.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/8736B02ED56EACB0.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/8EDE390730188173.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/0CB234E5751D6A6B.sgfs",
+                        "line": 1
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "<code>large-adversary</code>",
+                "victim": "<code>may24-victim</code>, 65536 visits",
+                "description": [
+                    "After we disclosed the attacks of the previous two adversaries, KataGo added positions to its adversarial training dataset to defend against the attacks. But yet again we were able to fine-tune a cyclic adversary to beat a new KataGo model, <code>may24-victim</code>, at 65536 visits of search with a 56% win rate."
+                ]
             }
         ]
     },
