@@ -1106,8 +1106,8 @@ export const pages: object =
                 ]
             },
             {
-                "title": "Cyclic attack",
-                "dir_name": "v9-vs-cyclic-finetune",
+                "title": "Another cyclic attack",
+                "dir_name": "v9-vs-stall",
                 "paths_with_line_num": [
                     {
                         "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/26FF4DE88F7B80E5.sgfs",
