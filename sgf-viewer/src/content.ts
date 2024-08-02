@@ -982,7 +982,7 @@ export const pages: object =
             {
                 "title": "Large cyclic attack",
                 "dir_name": "may24-vs-large",
-                "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/sample-sgfs.sh",
+                "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/large-adversary/vary-victim-visits/sample-sgfs.sh",
                 "paths_with_line_num": [
                     {
                         "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/83EF172F2B291E03.sgfs",
@@ -1101,8 +1101,60 @@ export const pages: object =
                 "adversary": "<code>atari-adversary</code>",
                 "victim": "<code>v</code><sub><code>9</code></sub>, 512 visits",
                 "description": [
-                    "We trained a new adversary by fine-tuning from an early adversarial checkpoint. It was able to defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search in 81% of games, but the win rate drops to 4% at 4096 visits. This demonstrates that our victim is easily attacked until it uses high amounts of search. Explore randomly sampled games below.",
+                    "We trained a new adversary by fine-tuning from an early adversarial non-cyclic checkpoint. It was able to defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search in 81% of games, but the win rate drops to 4% at 4096 visits. This demonstrates that our victim is easily attacked until it uses high amounts of search. Explore randomly sampled games below.",
                     "This adversary starts by inducing the victim to form bamboo joints: pairs of stone separated by two empty spaces. In normal games, these are often efficient shapes due to their strong connections. In the first game here, the first bamboo joint is formed on <MoveLink move=24>move 24</MoveLink> between that white stone, the one next to it, and the two below those. Additional joints are formed on <MoveLink move=28>move 28</MoveLink> and <MoveLink move=52>52</MoveLink>. By <MoveLink move=102>move 102</MoveLink>, a large cyclic group emerges, another hallmark of this adversary’s strategy. For over 100 moves, the adversary systematically encloses the cyclic group. Throughout, this adversary often leaves many stones \"in atari\" in Go terminology, what might be called hanging pieces in chess – stones that could be instantly captured if the victim opts to. At <MoveLink move=217>move 217</MoveLink>, the attack enters the final phase: the adversary threatens to split the bamboo joints. The victim connects at <MoveLink move=218>218</MoveLink> and <MoveLink move=220>220</MoveLink>, each move reducing the overall group’s liberties. A fatal mistake is committed at <MoveLink move=222>move 222</MoveLink>, allowing the adversary to capture everything with <MoveLink move=223>move 223</MoveLink>."
+                ]
+            },
+            {
+                "title": "Cyclic attack",
+                "dir_name": "v9-vs-cyclic-finetune",
+                "paths_with_line_num": [
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/26FF4DE88F7B80E5.sgfs",
+                        "line": 6
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/F8BD6EC8E34E731E.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/69420E7F02BD6F34.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/1F4C87C39A93297B.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/66691A5DE7E9F14B.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/4486B179AC67B269.sgfs",
+                        "line": 8
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/6101158ACA9ECD02.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/354CAC78BB59267D.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/F835D8246453F61E.sgfs",
+                        "line": 6
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/4FF021B5FEBD34FA.sgfs",
+                        "line": 8
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "<code>cyclic-vs-h9-adversary</code>",
+                "victim": "<code>v</code><sub><code>9</code></sub>, 512 visits",
+                "description": [
+                    "We trained another adversary by fine-tuning a cyclic adversary. Again it was able to defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search convincingly, achieving a win rate of 91.5%, but the win rate is 5% at 4096 visits."
                 ]
             },
             {
