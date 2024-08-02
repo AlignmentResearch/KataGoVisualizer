@@ -283,10 +283,14 @@ def parse_game_str_to_dict(
                 or 0
             )
         adv_rank = (
-            extract_prop("BR", sgf_str) if adv_color == "b" else extract_prop("WR", sgf_str)
+            extract_prop("BR", sgf_str)
+            if adv_color == "b"
+            else extract_prop("WR", sgf_str)
         )
         victim_rank = (
-            extract_prop("BR", sgf_str) if adv_color == "w" else extract_prop("WR", sgf_str)
+            extract_prop("BR", sgf_str)
+            if adv_color == "w"
+            else extract_prop("WR", sgf_str)
         )
         victim_visits = {"b": b_visits, "w": w_visits}[victim_color]
         adv_visits = {"b": b_visits, "w": w_visits}[adv_color]
@@ -310,9 +314,7 @@ def parse_game_str_to_dict(
         "victim_visits": (
             victim_visits
             if victim_visits
-            else int(str(victim_rank).lstrip("v"))
-            if victim_rank
-            else 1
+            else int(str(victim_rank).lstrip("v")) if victim_rank else 1
         ),
         "victim_steps": victim_steps,
         "victim_rsym": extract_param("rsym", victim_rank),
