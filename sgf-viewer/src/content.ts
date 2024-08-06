@@ -1040,7 +1040,7 @@ export const pages: object =
                 "adversary": "Kellin Pelrine (author)",
                 "victim": "<code>dec23-victim</code>, 4096 visits",
                 "description": [
-                    "Go expert Kellin was able to study the large cyclic attack and apply it to beat the <code>dec23-victim</code> at a higher visit count than before, winning at 4096 victim visits rather than 512."
+                    "Go expert Kellin was able to study the large cyclic attack and apply it to beat the <code>dec23-victim</code> at a higher visit count than before, winning at 4096 victim visits rather than 512. We attacked <code>dec23-victim</code> here instead of <code>may24-victim</code> since we used <code>dec23-victim</code> in previous human replications on this page and we wanted to compare the difficulty of executing the attack. We were able to beat <code>dec23-victim</code> at a higher number of visits than before."
                 ]
             }
         ]
@@ -1106,7 +1106,7 @@ export const pages: object =
                 ]
             },
             {
-                "title": "Another cyclic attack",
+                "title": "Stalling cyclic attack",
                 "dir_name": "v9-vs-stall",
                 "paths_with_line_num": [
                     {
@@ -1154,7 +1154,7 @@ export const pages: object =
                 "adversary": "<code>stall-adversary</code>",
                 "victim": "<code>v</code><sub><code>9</code></sub>, 512 visits",
                 "description": [
-                    "We trained another adversary by fine-tuning a cyclic adversary. Again it was able to convincingly defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search, achieving a win rate of 91.5%, with the win rate dropping to 5% at 4096 visits. The adversary stalls in the first few moves by passing, so we call it <code>stall-adversary</code>. (When the victim is white it could pass after the adversary passes to end the game and win by komi, but one of KataGo's default settings <code>conservativePass</code> disallows this.)"
+                    "We trained another adversary by fine-tuning a cyclic adversary. Again it was able to convincingly defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search, achieving a win rate of 91.5%, with the win rate dropping to 5% at 4096 visits. The adversary stalls in the first few moves by passing, so we call it <code>stall-adversary</code>. (When the victim is white it could pass after the adversary passes to end the game and win by komi, but one of KataGo's default settings <code>conservativePass = true</code> disallows this. Turning <code>conservativePass = false</code> defeats this adversary but it is likely that had we trained with <code>conservativePass = false</code> we would have simply found a different adversary.)"
                 ]
             },
             {
