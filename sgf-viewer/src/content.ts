@@ -1154,7 +1154,7 @@ export const pages: object =
                 "adversary": "<code>stall-adversary</code>",
                 "victim": "<code>v</code><sub><code>9</code></sub>, 512 visits",
                 "description": [
-                    "We trained another adversary by fine-tuning a cyclic adversary. Again it was able to convincingly defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search, achieving a win rate of 91.5%, with the win rate dropping to 5% at 4096 visits. The adversary stalls in the first few moves by passing, so we call it <code>stall-adversary</code>. (When the victim is white it could pass after the adversary passes to end the game and win by komi, but one of KataGo's default settings <code>conservativePass = true</code> disallows this. Turning <code>conservativePass = false</code> defeats this adversary but it is likely that had we trained with <code>conservativePass = false</code> we would have simply found a different adversary.)"
+                    "We trained another adversary by fine-tuning a cyclic adversary. Again it was able to convincingly defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search, achieving a win rate of 91.5%, with the win rate dropping to 5% at 4096 visits. The adversary stalls in the first few moves by passing, so we call it <code>stall-adversary</code>. (When the victim is white it could pass after the adversary passes to end the game and win by komi, but one of KataGo's default settings <code>conservativePass = true</code> disallows this. Turning <code>conservativePass = false</code> defeats this adversary, but had we trained with <code>conservativePass = false</code> we would have simply found a different adversary.)"
                 ]
             },
             {
