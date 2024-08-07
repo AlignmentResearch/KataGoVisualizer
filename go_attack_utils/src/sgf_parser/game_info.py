@@ -308,6 +308,8 @@ def parse_game_str_to_dict(
     parsed_info = {
         "b_name": b_name,
         "w_name": w_name,
+        "b_visits": b_visits,
+        "w_visits": w_visits,
         # Victim info
         "victim_color": victim_color,
         "victim_name": victim_name,
