@@ -982,46 +982,46 @@ export const pages: object =
             {
                 "title": "Large cyclic attack",
                 "dir_name": "may24-vs-large",
-                "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/large-adversary/vary-victim-visits/sample-sgfs.sh",
+                "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/sample-sgfs.sh",
                 "paths_with_line_num": [
                     {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/83EF172F2B291E03.sgfs",
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/83EF172F2B291E03.sgfs",
                         "line": 2
                     },
                     {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/BEE1AB6D3B3B44CE.sgfs",
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/BEE1AB6D3B3B44CE.sgfs",
                         "line": 2
                     },
                     {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/D8B60438C3EC9EEA.sgfs",
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/D8B60438C3EC9EEA.sgfs",
                         "line": 2
                     },
                     {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/8EDE390730188173.sgfs",
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/8EDE390730188173.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/4D212F0EB256CA2A.sgfs",
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/4D212F0EB256CA2A.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/A80363E37DCF380B.sgfs",
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/A80363E37DCF380B.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/A127B0E14CA8B587.sgfs",
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/A127B0E14CA8B587.sgfs",
                         "line": 2
                     },
                     {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/8736B02ED56EACB0.sgfs",
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/8736B02ED56EACB0.sgfs",
                         "line": 4
                     },
                     {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/8EDE390730188173.sgfs",
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/8EDE390730188173.sgfs",
                         "line": 2
                     },
                     {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/3/sgfs/0CB234E5751D6A6B.sgfs",
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/0CB234E5751D6A6B.sgfs",
                         "line": 1
                     }
                 ],
