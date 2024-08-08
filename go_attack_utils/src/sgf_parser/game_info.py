@@ -201,6 +201,7 @@ def parse_game_str_to_dict(
     komi = float(komi) if komi else komi
     win_color = result[0].lower() if result else None
     is_resignation = False
+    win_score = None
     if win_color is not None:
         win_score_str = (
             result.split("+")[-1]
