@@ -1110,43 +1110,43 @@ export const pages: object =
                 "dir_name": "v9-vs-stall",
                 "paths_with_line_num": [
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/26FF4DE88F7B80E5.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/26FF4DE88F7B80E5.sgfs",
                         "line": 6
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/F8BD6EC8E34E731E.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/F8BD6EC8E34E731E.sgfs",
                         "line": 3
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/69420E7F02BD6F34.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/69420E7F02BD6F34.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/1F4C87C39A93297B.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/1F4C87C39A93297B.sgfs",
                         "line": 2
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/66691A5DE7E9F14B.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/66691A5DE7E9F14B.sgfs",
                         "line": 2
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/4486B179AC67B269.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/4486B179AC67B269.sgfs",
                         "line": 8
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/6101158ACA9ECD02.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/6101158ACA9ECD02.sgfs",
                         "line": 4
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/354CAC78BB59267D.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/354CAC78BB59267D.sgfs",
                         "line": 1
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/F835D8246453F61E.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/F835D8246453F61E.sgfs",
                         "line": 6
                     },
                     {
-                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/attack-ft-h9/vary-victim-visits/0/sgfs/4FF021B5FEBD34FA.sgfs",
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/4FF021B5FEBD34FA.sgfs",
                         "line": 8
                     }
                 ],
