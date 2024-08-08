@@ -89,7 +89,7 @@ if __name__ == "__main__":
 
             sgf_paths = game_info.find_sgf_files(section_path)
             adversary_substrings = ["adv", "attack", "cyclic"]
-            victim_substrings = ["victim", "bot", "b18-s8527m"] + [
+            victim_substrings = ["victim", "bot", "b18-s8527m", "b18-s9997m"] + [
                 f"h{i}-v" for i in range(10)
             ]
             parsed_games = game_info.read_and_parse_all_files(

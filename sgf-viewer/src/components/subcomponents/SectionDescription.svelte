@@ -9,7 +9,6 @@
 <script lang="ts">
     import GameMoveLink from "./GameMoveLink.svelte";
 
-    export let dirName: string;
     export let description: Array<string>;
 
     // Format: <MoveLink game={game number} move={move number}>{link text}</MoveLink>
@@ -29,7 +28,6 @@
             {@const match = segment.match(parseMoveLinkRegex)}
             {#if match}
                 <GameMoveLink
-                    {dirName}
                     gameIndex={match[1] === undefined ? 0 : parseInt(match[1])}
                     move={parseInt(match[2])}
                     text={match[3]}
