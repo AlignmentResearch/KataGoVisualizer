@@ -981,7 +981,7 @@ export const pages: object =
             },
             {
                 "title": "Big cyclic attack",
-                "dir_name": "may24-vs-large",
+                "dir_name": "may24-vs-big",
                 "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/sample-sgfs.sh",
                 "paths_with_line_num": [
                     {
