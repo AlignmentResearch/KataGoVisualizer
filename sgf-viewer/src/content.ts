@@ -980,7 +980,7 @@ export const pages: object =
                 ]
             },
             {
-                "title": "Large cyclic attack",
+                "title": "Big cyclic attack",
                 "dir_name": "may24-vs-large",
                 "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/sample-sgfs.sh",
                 "paths_with_line_num": [
@@ -1026,21 +1026,21 @@ export const pages: object =
                     }
                 ],
                 "max_games": 10,
-                "adversary": "<code>large-adversary</code>",
+                "adversary": "<code>big-adversary</code>",
                 "victim": "<code>may24-victim</code>, 65536 visits",
                 "description": [
                     "After we disclosed the attacks of the previous two adversaries, KataGo added positions to its adversarial training dataset to defend against the attacks. But yet again we were able to fine-tune a cyclic adversary to beat a new KataGo model, <code>may24-victim</code>, at 65536 visits of search with a 56% win rate."
                 ]
             },
             {
-                "title": "Human replication of large cyclic attack",
+                "title": "Human replication of big cyclic attack",
                 "dir_name": "dec23-vs-human-large-cyclic",
                 "paths": ["/shared/sgf-viewer-games/b18-v4096-vs-human-large-cyclic.sgf"],
                 "max_games": 1,
                 "adversary": "Kellin Pelrine (author)",
                 "victim": "<code>dec23-victim</code>, 4096 visits",
                 "description": [
-                    "Go expert Kellin studied the large cyclic attack and was able to apply it to beat the <code>dec23-victim</code> at a higher visit count than before, winning at 4096 victim visits rather than 512. We attacked <code>dec23-victim</code> here instead of <code>may24-victim</code> since we used <code>dec23-victim</code> in previous human replications on this page and we wanted to compare the difficulty of executing the attack. We were able to beat <code>dec23-victim</code> at a higher number of visits than before."
+                    "Go expert Kellin studied the big cyclic attack and was able to apply it to beat the <code>dec23-victim</code> at a higher visit count than before, winning at 4096 victim visits rather than 512. We attacked <code>dec23-victim</code> here instead of <code>may24-victim</code> since we used <code>dec23-victim</code> in previous human replications on this page and we wanted to compare the difficulty of executing the attack. We were able to beat <code>dec23-victim</code> at a higher number of visits than before."
                 ]
             }
         ]
@@ -1053,7 +1053,7 @@ export const pages: object =
         ],
         "content": [
             {
-                "title": "Atari attack",
+                "title": "Atari cyclic attack",
                 "dir_name": "v9-vs-atari",
                 "paths_with_line_num": [
                     {
