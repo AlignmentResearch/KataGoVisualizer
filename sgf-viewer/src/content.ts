@@ -1034,8 +1034,8 @@ export const pages: object =
             },
             {
                 "title": "Human replication of big cyclic attack",
-                "dir_name": "dec23-vs-human-large-cyclic",
-                "paths": ["/shared/sgf-viewer-games/b18-v4096-vs-human-large-cyclic.sgf"],
+                "dir_name": "dec23-vs-human-big-cyclic",
+                "paths": ["/shared/sgf-viewer-games/b18-v4096-vs-human-big-cyclic.sgf"],
                 "max_games": 1,
                 "adversary": "Kellin Pelrine (author)",
                 "victim": "<code>dec23-victim</code>, 4096 visits",
