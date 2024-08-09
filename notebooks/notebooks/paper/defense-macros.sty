@@ -25,18 +25,19 @@
 \newcommand{\vitadversaryshort}{\texttt{ViT-a}}
 \newcommand{\vitadversarymedium}{\texttt{ViT-adv}}
 \newcommand{\controlbten}{\texttt{control-victim}}
+
 \newcommand{\attackiter}[1]{% attack iteration
     \ifnum0<0#1\relax
         \texttt{a\textsubscript{#1}}%
     \else%
-        \texttt{a\textsubscript{$#1$}}%
+        $\texttt{a}_{#1}$%
     \fi
 }
 \newcommand{\defenseiter}[1]{% defense iteration
     \ifnum0<0#1\relax
         \texttt{v\textsubscript{#1}}%
     \else%
-        \texttt{v\textsubscript{$#1$}}%
+        $\texttt{v}_{#1}$%
     \fi
 }
 
