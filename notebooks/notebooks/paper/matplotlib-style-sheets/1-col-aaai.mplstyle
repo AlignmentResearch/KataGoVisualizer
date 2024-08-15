@@ -1,0 +1,9 @@
+# Width obtained by running the following command inside a 1-column figure
+# environment: \printlength\textwidth
+
+# Let's set the height so that 3 vertically stacked figures can fit on a page.
+figure.figsize : 7.00137, 2.4
+
+# Show ticks on both sides since plot is so wide
+ytick.left: True
+ytick.right: True
