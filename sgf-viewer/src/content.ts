@@ -21,7 +21,7 @@ export const pages: object =
         ],
         "content": [
             {
-                "title": "Cyclic attack",
+                "title": "First cyclic attack",
                 "dir_name": "dec23-vs-continuous",
                 "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/sample-sgfs.sh",
                 "paths_with_line_num": [
@@ -70,12 +70,12 @@ export const pages: object =
                 "adversary": "<code>continuous-adversary</code>",
                 "victim": "<code>dec23-victim</code>, 65536 visits",
                 "description": [
-                    "We fine-tuned a cyclic adversary to defeat <code>dec23-victim</code> at 4096 visits of search with a 65% win rate and at 65536 visits with a 27% win rate, showing that KataGo's adversarial training is insufficient to defend against cyclic attacks. Explore randomly sampled games below.",
+                    "We fine-tuned a cyclic adversary to defeat <code>dec23-victim</code> at 4096 visits of search with a 65% win rate and at 65536 visits with a 27% win rate, showing that KataGo's adversarial training is insufficient to defend against cyclic attacks. Explore randomly sampled games from the adversary <code>continuous-adversary</code> below.",
                     "For example, in the first game, the adversary stakes out a sizable group in the center, around which the victim will form the cyclic group. We can see the outline of this group formed around <a class='clickable' onclick='setMove(`dec23-vs-continuous`, 65)'>move 65</a>, and the victim completes a loose encirclement—the eventual cyclic group—around <a class='clickable' onclick='setMove(`dec23-vs-continuous`, 98)'>move 98</a>. At <a class='clickable' onclick='setMove(`dec23-vs-continuous`, 122)'>move 122</a>, the inside shape is completed with a double cut formation. This inside shape is distinctive of this adversary. In subsequent moves, the victim completes the cyclic group and the adversary begins to surround it. Move <a class='clickable' onclick='setMove(`dec23-vs-continuous`, 210)'>210</a> is the last chance for the victim to escape (for example, by connecting where the adversary plays 211). After that the cyclic group is doomed, culminating in its final capture on <a class='clickable' onclick='setMove(`dec23-vs-continuous`, 217)'>move 217</a>."
                 ]
             },
             {
-                "title": "Human replication of cyclic attack",
+                "title": "Human replication of first cyclic attack",
                 "dir_name": "dec23-vs-human-cyclic",
                 "paths": ["/shared/sgf-viewer-games/b18-v512-vs-human-cyclic.sgf"],
                 "max_games": 1,
