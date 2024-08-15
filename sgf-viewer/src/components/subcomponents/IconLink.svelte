@@ -9,7 +9,18 @@
     let img: HTMLImageElement;
 </script>
 
-<a href={url} target="_blank">
+<a
+    href={url}
+    target="_blank"
+    on:mouseover={() => {
+        img.style.filter = `drop-shadow(0 0 2em ${color})`;
+        img.style.transform = "scale(1.1)";
+    }}
+    on:mouseout={() => {
+        img.style.filter = "none"
+        img.style.transform = "none";
+    }}
+>
     <img
         src={image}
         class="logo"
@@ -18,11 +29,6 @@
             ? "border: 0.5px solid black;"
             : ""}
         bind:this={img}
-        on:mouseover={() =>
-            (img.style.filter = `drop-shadow(0 0 2em ${color})`)}
-        on:mouseout={() => (img.style.filter = "none")}
-        on:focus={() => null}
-        on:blur={() => null}
     />
     <div class="logo-desc">{description}</div>
 </a>
@@ -41,9 +47,6 @@
         margin: 0 1rem;
         height: 2rem;
       }
-    }
-    .logo:hover {
-        transform: scale(1.1);
     }
     .logo-desc {
         text-align: center;

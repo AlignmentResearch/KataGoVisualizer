@@ -156,6 +156,70 @@ export const pages: object =
                     "White finally sets up a third potential place for a gift starting on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 186)'>move 186</a>. This was intended to maximize the chances. Normally all three of these groups would be dead, but on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 193)'>move 193</a>, we see one instance of the attack succeed, with black sending two stones for no benefit and letting white resurrect their group. This happens again, with white’s largest “dead” group, on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 215)'>move 215</a>. This completes the reversal, giving white a large lead, and black resigns shortly after.",
                     "We note, however, that this was completed at 1 victim visit. With more search, the attack seems much harder for humans (as well as our AI adversary); several human attempts at 256 and 512 visits failed. In particular, there was no issue establishing positions ready to receive a gift, as well as a stable gamestate on the rest of the board, but no gift was offered. We hypothesize that in addition to the key visible components of the attack (minimizing victim score lead, adversary positions that don’t have many threats against them, and setting up the shapes to receive gifts), there is a more opaque component of balancing value of moves across the board in the victim’s perception, such that it does not see much more valuable moves and offers the gift, but also does not search so much in the local area to see the disaster about to happen afterwards. This requires increasing precision at higher visits, and is difficult for humans to learn."
                 ]
+            },
+            {
+                "title": "Big cyclic attack",
+                "dir_name": "may24-vs-big",
+                "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/sample-sgfs.sh",
+                "paths_with_line_num": [
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/83EF172F2B291E03.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/BEE1AB6D3B3B44CE.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/D8B60438C3EC9EEA.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/8EDE390730188173.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/4D212F0EB256CA2A.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/A80363E37DCF380B.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/A127B0E14CA8B587.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/8736B02ED56EACB0.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/8EDE390730188173.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/0CB234E5751D6A6B.sgfs",
+                        "line": 1
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "<code>big-adversary</code>",
+                "victim": "<code>may24-victim</code>, 65536 visits",
+                "description": [
+                    "After we disclosed the attacks of the previous two adversaries, KataGo added positions to its adversarial training dataset to defend against the attacks. But yet again we were able to fine-tune a cyclic adversary to beat a new KataGo model, <code>may24-victim</code>, at 65536 visits of search with a 56% win rate."
+                ]
+            },
+            {
+                "title": "Human replication of big cyclic attack",
+                "dir_name": "dec23-vs-human-big-cyclic",
+                "paths": ["/shared/sgf-viewer-games/b18-v4096-vs-human-big-cyclic.sgf"],
+                "max_games": 1,
+                "adversary": "Anonymous author",
+                "victim": "<code>dec23-victim</code>, 4096 visits",
+                "description": [
+                    "Our Go expert studied the big cyclic attack and was able to apply it to beat the <code>dec23-victim</code> at a higher visit count than before, winning at 4096 victim visits rather than 512. We attacked <code>dec23-victim</code> here instead of <code>may24-victim</code> since we used <code>dec23-victim</code> in previous human replications on this page and we wanted to compare the difficulty of executing the attack. We were able to beat <code>dec23-victim</code> at a higher number of visits than before."
+                ]
             }
         ]
     },
@@ -167,7 +231,7 @@ export const pages: object =
         ],
         "content": [
             {
-                "title": "Validation attack",
+                "title": "Atari cyclic attack",
                 "dir_name": "v9-vs-validation",
                 "paths_with_line_num": [
                     {
@@ -217,6 +281,58 @@ export const pages: object =
                 "description": [
                     "We trained a new adversary by fine-tuning from an early adversarial checkpoint. It was able to defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search in 81% of games, but the win rate drops to 4% at 4096 visits. This demonstrates that our victim is easily attacked until it uses high amounts of search. Explore randomly sampled games below.",
                     "This adversary starts by inducing the victim to form bamboo joints: pairs of stone separated by two empty spaces. In normal games, these are often efficient shapes due to their strong connections. In the first game here, the first bamboo joint is formed on <a class='clickable' onclick='setMove(`v9-vs-validation`, 24)'>move 24</a> between that white stone, the one next to it, and the two below those. Additional joints are formed on <a class='clickable' onclick='setMove(`v9-vs-validation`, 28)'>move 28</a> and <a class='clickable' onclick='setMove(`v9-vs-validation`, 52)'>52</a>. By <a class='clickable' onclick='setMove(`v9-vs-validation`, 102)'>move 102</a>, a large cyclic group emerges, another hallmark of this adversary’s strategy. For over 100 moves, the adversary systematically encloses the cyclic group. Throughout, this adversary often leaves many stones \"in atari\" in Go terminology, what might be called hanging pieces in chess – stones that could be instantly captured if the victim opts to. At <a class='clickable' onclick='setMove(`v9-vs-validation`, 217)'>move 217</a>, the attack enters the final phase: the adversary threatens to split the bamboo joints. The victim connects at <a class='clickable' onclick='setMove(`v9-vs-validation`, 218)'>218</a> and <a class='clickable' onclick='setMove(`v9-vs-validation`, 220)'>220</a>, each move reducing the overall group’s liberties. A fatal mistake is committed at <a class='clickable' onclick='setMove(`v9-vs-validation`, 222)'>move 222</a>, allowing the adversary to capture everything with <a class='clickable' onclick='setMove(`v9-vs-validation`, 223)'>move 223</a>."
+                ]
+            },
+            {
+                "title": "Stalling cyclic attack",
+                "dir_name": "v9-vs-stall",
+                "paths_with_line_num": [
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/26FF4DE88F7B80E5.sgfs",
+                        "line": 6
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/F8BD6EC8E34E731E.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/69420E7F02BD6F34.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/1F4C87C39A93297B.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/66691A5DE7E9F14B.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/4486B179AC67B269.sgfs",
+                        "line": 8
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/6101158ACA9ECD02.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/354CAC78BB59267D.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/F835D8246453F61E.sgfs",
+                        "line": 6
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/4FF021B5FEBD34FA.sgfs",
+                        "line": 8
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "<code>stall-adversary</code>",
+                "victim": "<code>v</code><sub><code>9</code></sub>, 512 visits",
+                "description": [
+                    "We trained another adversary by fine-tuning a cyclic adversary. Again it was able to convincingly defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search, achieving a win rate of 91.5%, with the win rate dropping to 5% at 4096 visits. The adversary stalls in the first few moves by passing, so we call it <code>stall-adversary</code>. (When the victim is white it could pass after the adversary passes to end the game and win by komi, but one of KataGo's default settings <code>conservativePass = true</code> disallows this. Turning <code>conservativePass = false</code> defeats this adversary, but had we trained with <code>conservativePass = false</code> we likely would have simply found a different adversary.)"
                 ]
             },
             {

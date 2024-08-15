@@ -200,6 +200,41 @@ def parse_game_str_to_dict(
     komi = extract_prop("KM", sgf_str)
     komi = float(komi) if komi else komi
     win_color = result[0].lower() if result else None
+    is_resignation = False
+    if win_color is not None:
+        win_score_str = (
+            result.split("+")[-1]
+            if "+" in result
+            # Sgfs for manual games can have a space instead of a +
+            else result.split(" ")[-1]
+        )
+        if win_score_str == "R" or win_score_str == "Resign":
+            win_score = None
+            is_resignation = True
+        else:
+            win_score = float(win_score_str)
+
+    b_meta = extract_prop("BR", sgf_str)
+    w_meta = extract_prop("WR", sgf_str)
+    b_visits = (
+        extract_re(r"v([0-9]+)", b_meta) or extract_re(r"v=([0-9]+)", b_meta) or "-1"
+        if b_meta
+        else None
+    )
+    w_visits = (
+        extract_re(r"v([0-9]+)", w_meta) or extract_re(r"v=([0-9]+)", w_meta) or "-1"
+        if w_meta
+        else None
+    )
+
+    parts = pathlib.Path(path).parts
+    training = None
+    if "eval" in parts:
+        training = "eval"
+    elif "selfplay" in parts:
+        training = "train"
+    elif "gatekeepersgf" in parts:
+        training = "gating"
 
     if victim_color is None:
         b_name_has_victim = any(x in b_name.lower() for x in victim_substrings)
@@ -214,78 +249,61 @@ def parse_game_str_to_dict(
         no_victim_okay or victim_color is not None
     ), f"Game doesn't have victim: path={path}, line_number={line_number}"
 
-    parts = pathlib.Path(path).parts
-    training = None
-    if "eval" in parts:
-        training = "eval"
-    elif "selfplay" in parts:
-        training = "train"
-    elif "gatekeepersgf" in parts:
-        training = "gating"
-
-    victim_name = {"b": b_name, "w": w_name}[victim_color]
-    adv_color = {"b": "w", "w": "b"}[victim_color]
-    adv_name = {"b": b_name, "w": w_name}[adv_color]
-    if victim_name in ["bot-cp127-v1", "bot-cp505-v2", "bot-cp505-v1"]:
-        victim_steps = {
-            "bot-cp127-v1": 5303129600,
-            "bot-cp505-v2": 11840935168,
-            "bot-cp505-v1": 11840935168,
-        }[victim_name]
-    else:
-        victim_steps = (
-            extract_re("-s([^-]+?)-", victim_name)
-            or extract_re("kata[^_]+?\-s([0-9]+)\-", "/".join(parts[-3:]))
+    victim_name = None
+    victim_steps = None
+    victim_rank = None
+    victim_visits = None
+    adv_color = None
+    adv_name = None
+    adv_steps = None
+    adv_rank = None
+    adv_visits = None
+    adv_komi = None
+    adv_samples = None
+    adv_minus_victim_score = None
+    adv_minus_victim_score_wo_komi = None
+    if victim_color is not None:
+        victim_name = {"b": b_name, "w": w_name}[victim_color]
+        adv_color = {"b": "w", "w": "b"}[victim_color]
+        adv_name = {"b": b_name, "w": w_name}[adv_color]
+        if victim_name in ["bot-cp127-v1", "bot-cp505-v2", "bot-cp505-v1"]:
+            victim_steps = {
+                "bot-cp127-v1": 5303129600,
+                "bot-cp505-v2": 11840935168,
+                "bot-cp505-v1": 11840935168,
+            }[victim_name]
+        else:
+            victim_steps = (
+                # Extract step count after "-s" in the name, allowing step count to end
+                # with "m" (for millions). After "-s<number>" we expect "-" or "."
+                # (for names like t0-s0-d0 and victim-s1m.bin.gz) or the end of the
+                # string.
+                extract_re("-s(\d+m?)(?:[-.]|$)", victim_name)
+                or extract_re("kata[^_]+?\-s([0-9]+)\-", "/".join(parts[-3:]))
+                or 0
+            )
+        adv_rank = (
+            extract_prop("BR", sgf_str)
+            if adv_color == "b"
+            else extract_prop("WR", sgf_str)
+        )
+        victim_rank = (
+            extract_prop("BR", sgf_str)
+            if adv_color == "w"
+            else extract_prop("WR", sgf_str)
+        )
+        victim_visits = {"b": b_visits, "w": w_visits}[victim_color]
+        adv_visits = {"b": b_visits, "w": w_visits}[adv_color]
+        adv_komi = None if adv_color is None else komi * {"w": 1, "b": -1}[adv_color]
+        adv_steps = (
+            extract_re(r"\-s([0-9]+)\-", adv_name)
+            or extract_re(r"t0\-s([0-9]+)\-", "/".join(parts[-3:]))
             or 0
         )
-    adv_rank = (
-        extract_prop("BR", sgf_str) if adv_color == "b" else extract_prop("WR", sgf_str)
-    )
-    victim_rank = (
-        extract_prop("BR", sgf_str) if adv_color == "w" else extract_prop("WR", sgf_str)
-    )
-    b_meta = extract_prop("BR", sgf_str)
-    w_meta = extract_prop("WR", sgf_str)
-    b_visits = (
-        extract_re(r"v([0-9]+)", b_meta) or extract_re(r"v=([0-9]+)", b_meta) or "-1"
-        if b_meta
-        else None
-    )
-    w_visits = (
-        extract_re(r"v([0-9]+)", w_meta) or extract_re(r"v=([0-9]+)", w_meta) or "-1"
-        if w_meta
-        else None
-    )
-    victim_visits = {"b": b_visits, "w": w_visits}[victim_color]
-    adv_visits = {"b": b_visits, "w": w_visits}[adv_color]
-    adv_komi = komi * {"w": 1, "b": -1}[adv_color]
-    is_resignation = False
-    if win_color is None:
-        adv_minus_victim_score = 0
-        adv_minus_victim_score_wo_komi = None
-    else:
-        win_score_str = (
-            result.split("+")[-1]
-            if "+" in result
-            # Sgfs for manual games can have a space instead of a +
-            else result.split(" ")[-1]
-        )
-        if win_score_str == "R" or win_score_str == "Resign":
-            # Resignation
-            win_score = None
-            adv_minus_victim_score = None
-            adv_minus_victim_score_wo_komi = None
-            is_resignation = True
-        else:
-            win_score = float(win_score_str)
+        adv_samples = extract_re(r"\-d([0-9]+)", adv_name) or 0
+        if win_score is not None:
             adv_minus_victim_score = win_score if adv_color == win_color else -win_score
             adv_minus_victim_score_wo_komi = adv_minus_victim_score - adv_komi
-    adv_steps = (
-        extract_re(r"\-s([0-9]+)\-", adv_name)
-        or extract_re(r"t0\-s([0-9]+)\-", "/".join(parts[-3:]))
-        or 0
-    )
-    adv_samples = extract_re(r"\-d([0-9]+)", adv_name) or 0
 
     parsed_info = {
         "b_name": b_name,
