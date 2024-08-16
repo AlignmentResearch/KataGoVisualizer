@@ -21,6 +21,74 @@ export const pages: object =
         ],
         "content": [
             {
+                "title": "Gift attack",
+                "dir_name": "dec23-vs-gift",
+                "paths_with_line_num": [
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/86CC6B69BD6A48EB.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/69B1CE76A02E7F94.sgfs",
+                        "line": 5
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/A6508A2FA55183D8.sgfs",
+                        "line": 5
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/7B2841E33DC94115.sgfs",
+                        "line": 6
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/D86D4196ABB29167.sgfs",
+                        "line": 9
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/D505DB926A58C941.sgfs",
+                        "line": 9
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/7904F641B0F49C15.sgfs",
+                        "line": 8
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/5ECE47A6452033B6.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/6B78E25C43C0230E.sgfs",
+                        "line": 7
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/2AD4B59995282AC9.sgfs",
+                        "line": 3
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "<code>gift-adversary</code>",
+                "victim": "<code>dec23-victim</code>, 512 visits",
+                "description": [
+                    "We discovered a new non-cyclic attack, which we call the \"gift attack\", that defeats <code>dec23-victim</code> at 512 visits of search in 91% of games. In this attack, the adversary sets up a \"<a target=\"_blank\" href=\"https://senseis.xmp.net/?SendingTwoReturningOne\">sending-two-receiving-one</a>\" situation where, for no valid reason, the victim gifts the adversary two stones and then needs to capture one back. However, the victim's recapture is blocked by <a target=\"_blank\" href=\"https://senseis.xmp.net/?PositionalSuperko\">positional superko</a> rules. The adversary sets up the position to have the resurrection of one of its dead groups at stake, leading to a disaster for the victim. Although this attack does not scale up to high visits, it reveals additional unforeseen vulnerabilities in KataGo besides cyclic attacks. Explore randomly sampled games below.",
+                    "In the first game, for example, we see a typical game unfold for the first 100+ moves. The victim takes an early lead, reaching 98% internal win probability by <a class='clickable' onclick='setMove(`dec23-vs-gift`, 24)'>move 24</a>, so the adversary is playing many moves that would normally be considered subpar. There is otherwise little overt evidence of anything suspicious happening at this stage. Gradually, we see the adversary playing some incursions into the victim’s territory, notably at moves <a class='clickable' onclick='setMove(`dec23-vs-gift`, 117)'>117</a> and <a class='clickable' onclick='setMove(`dec23-vs-gift`, 127)'>127</a>. With correct play, these and nearby stones will eventually be captured.",
+                    "At <a class='clickable' onclick='setMove(`dec23-vs-gift`, 206)'>move 206</a>, we see the first instance of the victim offering two stones, though in this position it is not yet dangerous. This happens repeatedly over the following moves, both at this location and on the left side. After <a class='clickable' onclick='setMove(`dec23-vs-gift`, 263)'>move 263</a> though, when the adversary forms an eye at the top, any further gifts will lead to the victim inadvertently resurrecting the adversary’s entire group. This happens at <a class='clickable' onclick='setMove(`dec23-vs-gift`, 344)'>move 344</a>. After the adversary captures two stones at <a class='clickable' onclick='setMove(`dec23-vs-gift`, 345)'>345</a>, the victim would like to recapture one stone but is barred by the positional superko rule. Thus, the adversary secures two eyes with <a class='clickable' onclick='setMove(`dec23-vs-gift`, 347)'>move 347</a>, saving its group that should have died. This is a significant reversal, though the victim still appears to be winning. But then, at <a class='clickable' onclick='setMove(`dec23-vs-gift`, 366)'>move 366</a>, the same scenario unfolds on the left side, tipping the scales decisively in favor of the adversary."
+                ]
+            },
+            {
+                "title": "Human replication of gift attack",
+                "dir_name": "dec23-vs-human-gift",
+                "paths": ["/shared/match/paper-robustness/website-games/human-gift-vs-b18-v1.sgf"],
+                "max_games": 10,
+                "adversary": "Anonymous author",
+                "victim": "<code>dec23-victim</code>, 1 visit",
+                "description": [
+                    "A Go expert (anonymous author) was able to learn and apply the gift attack to beat KataGo. This confirms a variety of attacks, and not just the <a href=\"/human-evaluation#human_vs_kata100k\">original cyclic attack</a>, can be replicated by humans. In the game below, Author (white) takes control of the left and bottom sides, while the KataGo victim (black) takes the top and right. It was relatively straightforward for Author to take control of the left and bottom since KataGo is in the lead due to controlling more of the center. Because of this, KataGo does not fight too hard for more territory, though Author still had to make sure the score difference would not get too extreme (some prior attempts failed due to insufficient points, even after receiving a \"gift\").",
+                    "Beginning on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 70)'>move 70</a>, Author (white) starts to set up a position to receive a gift. In moves <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 100)'>100</a> through <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 142)'>142</a>, white pushes further into black’s territory, making sure that the gift will result in a very large swing in points. Then starting on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 154)'>move 154</a>, white sets up another place for a gift. Black offers a gift on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 177)'>move 177</a>, but white does not accept yet because black threatens to capture four stones on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 179)'>move 179</a>. Note that this is the only place where black has a threat; white is careful to play very solidly and minimize potential threats, to be able to capitalize on the gift (noting that if there are lots of threats, the victim can use them to prevent a repeated board position and save themselves from the positional superko rule).",
+                    "White finally sets up a third potential place for a gift starting on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 186)'>move 186</a>. This was intended to maximize the chances. Normally all three of these groups would be dead, but on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 193)'>move 193</a>, we see one instance of the attack succeed, with black sending two stones for no benefit and letting white resurrect their group. This happens again, with white’s largest “dead” group, on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 215)'>move 215</a>. This completes the reversal, giving white a large lead, and black resigns shortly after.",
+                    "We note, however, that this was completed at 1 victim visit. With more search, the attack seems much harder for humans (as well as our AI adversary); several human attempts at 256 and 512 visits failed. In particular, there was no issue establishing positions ready to receive a gift, as well as a stable gamestate on the rest of the board, but no gift was offered. We hypothesize that in addition to the key visible components of the attack (minimizing victim score lead, adversary positions that don’t have many threats against them, and setting up the shapes to receive gifts), there is a more opaque component of balancing value of moves across the board in the victim’s perception, such that it does not see much more valuable moves and offers the gift, but also does not search so much in the local area to see the disaster about to happen afterwards. This requires increasing precision at higher visits, and is difficult for humans to learn."
+                ]
+            },
+            {
                 "title": "First cyclic attack",
                 "dir_name": "dec23-vs-continuous",
                 "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/sample-sgfs.sh",
@@ -70,7 +138,7 @@ export const pages: object =
                 "adversary": "<code>continuous-adversary</code>",
                 "victim": "<code>dec23-victim</code>, 65536 visits",
                 "description": [
-                    "We fine-tuned a cyclic adversary to defeat <code>dec23-victim</code> at 4096 visits of search with a 65% win rate and at 65536 visits with a 27% win rate, showing that KataGo's adversarial training is insufficient to defend against cyclic attacks. Explore randomly sampled games from the adversary <code>continuous-adversary</code> below.",
+                    "We also fine-tuned a cyclic adversary to defeat <code>dec23-victim</code> at 4096 visits of search with a 65% win rate and at 65536 visits with a 27% win rate, showing that KataGo's adversarial training is insufficient to defend against cyclic attacks. Explore randomly sampled games from the adversary <code>continuous-adversary</code> below.",
                     "For example, in the first game, the adversary stakes out a sizable group in the center, around which the victim will form the cyclic group. We can see the outline of this group formed around <a class='clickable' onclick='setMove(`dec23-vs-continuous`, 65)'>move 65</a>, and the victim completes a loose encirclement—the eventual cyclic group—around <a class='clickable' onclick='setMove(`dec23-vs-continuous`, 98)'>move 98</a>. At <a class='clickable' onclick='setMove(`dec23-vs-continuous`, 122)'>move 122</a>, the inside shape is completed with a double cut formation. This inside shape is distinctive of this adversary. In subsequent moves, the victim completes the cyclic group and the adversary begins to surround it. Move <a class='clickable' onclick='setMove(`dec23-vs-continuous`, 210)'>210</a> is the last chance for the victim to escape (for example, by connecting where the adversary plays 211). After that the cyclic group is doomed, culminating in its final capture on <a class='clickable' onclick='setMove(`dec23-vs-continuous`, 217)'>move 217</a>."
                 ]
             },
@@ -87,74 +155,6 @@ export const pages: object =
                     "In the meantime, black begins to surround the cyclic group and invite connections to complete it. At the same time, with <a class='clickable' onclick='setMove(`dec23-vs-human-cyclic`, 149)'>149</a> and <a class='clickable' onclick='setMove(`dec23-vs-human-cyclic`, 173)'>173</a>, black separates what will be an extension of the cyclic group from the rest of white's stones.  With the connection at <a class='clickable' onclick='setMove(`dec23-vs-human-cyclic`, 232)'>232</a>, the cycle itself is virtually complete. However, the inside shape does not yet have the distinctive double cut pattern. So after playing more moves to surround the cyclic group through <a class='clickable' onclick='setMove(`dec23-vs-human-cyclic`, 249)'>249</a>, black buys some time with moves like <a class='clickable' onclick='setMove(`dec23-vs-human-cyclic`, 251)'>251</a> and <a class='clickable' onclick='setMove(`dec23-vs-human-cyclic`, 259)'>259</a>, waiting for white to attack the inside group. This happens with <a class='clickable' onclick='setMove(`dec23-vs-human-cyclic`, 260)'>260</a>, and the double cut is completed with <a class='clickable' onclick='setMove(`dec23-vs-human-cyclic`, 266)'>266</a>.",
                     "At this point, the last phase begins. In a number of failed attempts, all the steps so far were insufficient to lead to a successful capture without the victim seeing the danger. To divert the victim's attention, black sets up a situation where the last chance to save the cyclic group will also be doing something else—specifically, capturing its tail. Black plays some preparatory moves at <a class='clickable' onclick='setMove(`dec23-vs-human-cyclic`, 273)'>273</a> and <a class='clickable' onclick='setMove(`dec23-vs-human-cyclic`, 275)'>275</a>, which ensure black will not run into a liberty shortage with his own group. Finally, at <a class='clickable' onclick='setMove(`dec23-vs-human-cyclic`, 277)'>move 277</a>, black threatens to cut off white's tail, while at the same time filling liberties of the cyclic group. If white connects, the entire cyclic group will die. White seems to recognize that that will lead to disaster, and plays elsewhere, letting black capture with <a class='clickable' onclick='setMove(`dec23-vs-human-cyclic`, 279)'>279</a>. Now, white has a final chance to save the cyclic group by capturing part of the inside group. Although capturing the tail is a huge gain for black, white still has a considerable lead if the cyclic group survives. However, white plays away at <a class='clickable' onclick='setMove(`dec23-vs-human-cyclic`, 280)'>280</a>, letting black fill another liberty with <a class='clickable' onclick='setMove(`dec23-vs-human-cyclic`, 281)'>281</a>. Now white can no longer capture the inside group before black captures the cyclic group, so white loses.",
                     "This attack was a lot more challenging to execute than the others. We hypothesize that it is key to make the last threat before deciding the fate of the cyclic group look on the surface unthreatening to it. For example, in this case, it was a very valuable capture, a natural move for black to play even without any designs on the cyclic group. An inhuman weakness may have a surprisingly human component to it."
-                ]
-            },
-            {
-                "title": "Gift attack",
-                "dir_name": "dec23-vs-gift",
-                "paths_with_line_num": [
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/86CC6B69BD6A48EB.sgfs",
-                        "line": 2
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/69B1CE76A02E7F94.sgfs",
-                        "line": 5
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/A6508A2FA55183D8.sgfs",
-                        "line": 5
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/7B2841E33DC94115.sgfs",
-                        "line": 6
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/D86D4196ABB29167.sgfs",
-                        "line": 9
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/D505DB926A58C941.sgfs",
-                        "line": 9
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/7904F641B0F49C15.sgfs",
-                        "line": 8
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/5ECE47A6452033B6.sgfs",
-                        "line": 3
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/6B78E25C43C0230E.sgfs",
-                        "line": 7
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/gift-adversary/vary-victim-visits/sgfs/2AD4B59995282AC9.sgfs",
-                        "line": 3
-                    }
-                ],
-                "max_games": 10,
-                "adversary": "<code>gift-adversary</code>",
-                "victim": "<code>dec23-victim</code>, 512 visits",
-                "description": [
-                    "We also discovered a new non-cyclic attack, which we call the \"gift attack\", that defeats <code>dec23-victim</code> at 512 visits of search in 91% of games. In this attack, the adversary sets up a \"<a target=\"_blank\" href=\"https://senseis.xmp.net/?SendingTwoReturningOne\">sending-two-receiving-one</a>\" situation where, for no valid reason, the victim gifts the adversary two stones and then needs to capture one back. However, the victim's recapture is blocked by <a target=\"_blank\" href=\"https://senseis.xmp.net/?PositionalSuperko\">positional superko</a> rules. The adversary sets up the position to have the resurrection of one of its dead groups at stake, leading to a disaster for the victim. Although this attack does not scale up to high visits, it reveals additional unforeseen vulnerabilities in KataGo besides cyclic attacks. Explore randomly sampled games below.",
-                    "In the first game, for example, we see a typical game unfold for the first 100+ moves. The victim takes an early lead, reaching 98% internal win probability by <a class='clickable' onclick='setMove(`dec23-vs-gift`, 24)'>move 24</a>, so the adversary is playing many moves that would normally be considered subpar. There is otherwise little overt evidence of anything suspicious happening at this stage. Gradually, we see the adversary playing some incursions into the victim’s territory, notably at moves <a class='clickable' onclick='setMove(`dec23-vs-gift`, 117)'>117</a> and <a class='clickable' onclick='setMove(`dec23-vs-gift`, 127)'>127</a>. With correct play, these and nearby stones will eventually be captured.",
-                    "At <a class='clickable' onclick='setMove(`dec23-vs-gift`, 206)'>move 206</a>, we see the first instance of the victim offering two stones, though in this position it is not yet dangerous. This happens repeatedly over the following moves, both at this location and on the left side. After <a class='clickable' onclick='setMove(`dec23-vs-gift`, 263)'>move 263</a> though, when the adversary forms an eye at the top, any further gifts will lead to the victim inadvertently resurrecting the adversary’s entire group. This happens at <a class='clickable' onclick='setMove(`dec23-vs-gift`, 344)'>move 344</a>. After the adversary captures two stones at <a class='clickable' onclick='setMove(`dec23-vs-gift`, 345)'>345</a>, the victim would like to recapture one stone but is barred by the positional superko rule. Thus, the adversary secures two eyes with <a class='clickable' onclick='setMove(`dec23-vs-gift`, 347)'>move 347</a>, saving its group that should have died. This is a significant reversal, though the victim still appears to be winning. But then, at <a class='clickable' onclick='setMove(`dec23-vs-gift`, 366)'>move 366</a>, the same scenario unfolds on the left side, tipping the scales decisively in favor of the adversary."
-                ]
-            },
-            {
-                "title": "Human replication of gift attack",
-                "dir_name": "dec23-vs-human-gift",
-                "paths": ["/shared/match/paper-robustness/website-games/human-gift-vs-b18-v1.sgf"],
-                "max_games": 10,
-                "adversary": "Anonymous author",
-                "victim": "<code>dec23-victim</code>, 1 visit",
-                "description": [
-                    "A Go expert (anonymous author) was able to learn and apply the gift attack to beat KataGo. This confirms a variety of attacks, and not just the <a href=\"/human-evaluation#human_vs_kata100k\">original cyclic attack</a>, can be replicated by humans. In the game below, Author (white) takes control of the left and bottom sides, while the KataGo victim (black) takes the top and right. It was relatively straightforward for Author to take control of the left and bottom since KataGo is in the lead due to controlling more of the center. Because of this, KataGo does not fight too hard for more territory, though Author still had to make sure the score difference would not get too extreme (some prior attempts failed due to insufficient points, even after receiving a \"gift\").",
-                    "Beginning on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 70)'>move 70</a>, Author (white) starts to set up a position to receive a gift. In moves <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 100)'>100</a> through <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 142)'>142</a>, white pushes further into black’s territory, making sure that the gift will result in a very large swing in points. Then starting on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 154)'>move 154</a>, white sets up another place for a gift. Black offers a gift on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 177)'>move 177</a>, but white does not accept yet because black threatens to capture four stones on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 179)'>move 179</a>. Note that this is the only place where black has a threat; white is careful to play very solidly and minimize potential threats, to be able to capitalize on the gift (noting that if there are lots of threats, the victim can use them to prevent a repeated board position and save themselves from the positional superko rule).",
-                    "White finally sets up a third potential place for a gift starting on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 186)'>move 186</a>. This was intended to maximize the chances. Normally all three of these groups would be dead, but on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 193)'>move 193</a>, we see one instance of the attack succeed, with black sending two stones for no benefit and letting white resurrect their group. This happens again, with white’s largest “dead” group, on <a class='clickable' onclick='setMove(`dec23-vs-human-gift`, 215)'>move 215</a>. This completes the reversal, giving white a large lead, and black resigns shortly after.",
-                    "We note, however, that this was completed at 1 victim visit. With more search, the attack seems much harder for humans (as well as our AI adversary); several human attempts at 256 and 512 visits failed. In particular, there was no issue establishing positions ready to receive a gift, as well as a stable gamestate on the rest of the board, but no gift was offered. We hypothesize that in addition to the key visible components of the attack (minimizing victim score lead, adversary positions that don’t have many threats against them, and setting up the shapes to receive gifts), there is a more opaque component of balancing value of moves across the board in the victim’s perception, such that it does not see much more valuable moves and offers the gift, but also does not search so much in the local area to see the disaster about to happen afterwards. This requires increasing precision at higher visits, and is difficult for humans to learn."
                 ]
             },
             {
