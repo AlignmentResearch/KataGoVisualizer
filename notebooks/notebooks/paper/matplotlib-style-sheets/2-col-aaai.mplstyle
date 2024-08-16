@@ -1,2 +1,2 @@
-# Width is 48% that of the 1-col width.
-figure.figsize : 3.3606576, 1.8
+# Width obtained from \printlength\columnwidth.
+figure.figsize : 3.31314, 1.8
