@@ -911,7 +911,7 @@ export const pages: object =
                 ]
             },
             {
-                "title": "First cyclic attack",
+                "title": "Continuous cyclic attack",
                 "dir_name": "dec23-vs-continuous",
                 "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/sample-sgfs.sh",
                 "paths_with_line_num": [
@@ -965,7 +965,7 @@ export const pages: object =
                 ]
             },
             {
-                "title": "Human replication of first cyclic attack",
+                "title": "Human replication of continuous cyclic attack",
                 "dir_name": "dec23-vs-human-cyclic",
                 "paths": ["/shared/sgf-viewer-games/b18-v512-vs-human-cyclic.sgf"],
                 "max_games": 1,
