@@ -5,7 +5,7 @@ executors:
     machine:
       # https://discuss.circleci.com/t/linux-machine-executor-update-2022-july-q3-update/44873
       # This image contains Chrome (and seemingly chromedriver), Docker Compose and Python
-      image: ubuntu-2204:2022.07.1
+      image: ubuntu-2204:2024.05.1
       docker_layer_caching: true
 
 commands:
