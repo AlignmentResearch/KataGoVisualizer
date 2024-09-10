@@ -13,14 +13,17 @@ commands:
     steps:
       - checkout
       - restore_cache:
-          key: deps-{{ checksum ".circleci/requirements.txt" }}-asjdgklasjdgklasjg
+          key: deps-{{ checksum ".circleci/requirements.txt" }}-asjdgklasjdgklasjgh
       - run:
           command: |
+            apt update
+            DEBIAN_FRONTEND=noninteractive apt install python3.10-venv
             python3.10 -m venv venv
             . venv/bin/activate
             pip install -r .circleci/requirements.txt
+
       - save_cache:
-          key: deps-{{ checksum ".circleci/requirements.txt" }}-asjdgklasjdgklasjg
+          key: deps-{{ checksum ".circleci/requirements.txt" }}-asjdgklasjdgklasjgh
           paths:
             - "venv"
 
