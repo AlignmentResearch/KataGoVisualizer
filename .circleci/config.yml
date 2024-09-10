@@ -13,7 +13,7 @@ commands:
     steps:
       - checkout
       - restore_cache:
-          key: deps-{{ checksum ".circleci/requirements.txt" }}-asjdgklasjdgklasjgh
+          key: v1-deps-{{ checksum ".circleci/requirements.txt" }}
       - run:
           command: |
             sudo apt update
@@ -23,7 +23,7 @@ commands:
             pip install -r .circleci/requirements.txt
 
       - save_cache:
-          key: deps-{{ checksum ".circleci/requirements.txt" }}-asjdgklasjdgklasjgh
+          key: v1-deps-{{ checksum ".circleci/requirements.txt" }}
           paths:
             - "venv"
 
