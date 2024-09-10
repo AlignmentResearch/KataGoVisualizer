@@ -16,8 +16,8 @@ commands:
           key: deps-{{ checksum ".circleci/requirements.txt" }}-asjdgklasjdgklasjgh
       - run:
           command: |
-            apt update
-            DEBIAN_FRONTEND=noninteractive apt install python3.10-venv
+            sudo apt update
+            DEBIAN_FRONTEND=noninteractive sudo apt install python3.10-venv
             python3.10 -m venv venv
             . venv/bin/activate
             pip install -r .circleci/requirements.txt
