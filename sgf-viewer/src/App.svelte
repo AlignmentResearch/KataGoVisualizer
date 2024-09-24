@@ -92,7 +92,7 @@
         display: flex;
         justify-content: center;
         padding: 0 min(1.5em, 4vw);
-        width: 100vw;
+        width: 98vw;
     }
     .content {
         max-width: 50em;
