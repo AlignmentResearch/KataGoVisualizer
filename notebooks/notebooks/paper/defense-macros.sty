@@ -1,4 +1,3 @@
-% macros
 % \*short and \*medium model names are used in plots to save space
 \newcommand{\todo}[1]{{\color{red}{#1}}}
 \newcommand{\cpfivezerofivecode}{\texttt{b40-s11841m}}
@@ -9,12 +8,18 @@
 \newcommand{\origcyclic}{\texttt{base-adversary}}  % go-attack original cyclic \attacker{}
 \newcommand{\origcyclicshort}{\texttt{base-a}}
 \newcommand{\origcyclicmedium}{\texttt{base-adv}}
-\newcommand{\attackbsixty}{\texttt{attack-may23}} % go-attack adv attacking b60-s7702m
+\newcommand{\attackbsixty}{\texttt{may23-adversary}} % go-attack adv attacking b60-s7702m
+\newcommand{\attackbsixtymedium}{\texttt{may23-adv}}
 \newcommand{\origtwotwoseven}{\texttt{base-adv-early}} % checkpoint s227m of original cyclic adv
 \newcommand{\dectwentythreecode}{\texttt{b18-s8527m}}
 \newcommand{\dectwentythree}{\texttt{dec23-victim}}
 \newcommand{\dectwentythreeshort}{\texttt{dec23-v}}
+\newcommand{\dectwentythreemedium}{\texttt{dec23-vic}}
+\newcommand{\maytwentyfour}{\texttt{may24-victim}}
+\newcommand{\maytwentyfourshort}{\texttt{may24-v}}
+\newcommand{\maytwentyfourmedium}{\texttt{may24-vic}}
 \newcommand{\vitvictim}{\texttt{ViT-victim}}
+\newcommand{\vitvictimmedium}{\texttt{ViT-victim}}
 \newcommand{\vitvictimshort}{\texttt{ViT-v}}
 \newcommand{\vitadversary}{\texttt{ViT-adversary}}
 \newcommand{\vitadversaryshort}{\texttt{ViT-a}}
@@ -25,22 +30,27 @@
     \ifnum0<0#1\relax
         \texttt{a\textsubscript{#1}}%
     \else%
-        \texttt{a\textsubscript{$#1$}}%
+        $\texttt{a}_{#1}$%
     \fi
 }
 \newcommand{\defenseiter}[1]{% defense iteration
     \ifnum0<0#1\relax
         \texttt{v\textsubscript{#1}}%
     \else%
-        \texttt{v\textsubscript{$#1$}}%
+        $\texttt{v}_{#1}$%
     \fi
 }
 
 \newcommand{\attackhnine}{\texttt{atari-adversary}} % attack-h9
 \newcommand{\attackhnineshort}{\texttt{atari-a}}
+\newcommand{\stalladv}{\texttt{stall-adversary}}
+\newcommand{\stalladvshort}{\texttt{stall-a}}
 \newcommand{\contadv}{\texttt{continuous-adversary}} % continuous adversary
 \newcommand{\contadvshort}{\texttt{cont-a}} % continuous adversary
 \newcommand{\contadvmedium}{\texttt{cont-adv}} % continuous adversary
+\newcommand{\largeadv}{\texttt{big-adversary}}
+\newcommand{\largeadvmedium}{\texttt{big-adv}}
+\newcommand{\largeadvshort}{\texttt{big-a}}
 \newcommand{\koadv}{\texttt{gift-adversary}} % attack-b18
 \newcommand{\koadvshort}{\texttt{gift-a}} % attack-b18
 \newcommand{\koadvmedium}{\texttt{gift-adv}} % attack-b18
@@ -53,5 +63,3 @@
 \newcommand{\Defender}{Victim}
 \newcommand{\defenders}{victims}
 \newcommand{\Defenders}{Victims}
-
-\newcommand{\plotdiamond}{$\blacklozenge$}
