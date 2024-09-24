@@ -92,7 +92,6 @@
         display: flex;
         justify-content: center;
         padding: 0 min(1.5em, 4vw);
-        width: 99vw;
     }
     .content {
         max-width: 50em;
