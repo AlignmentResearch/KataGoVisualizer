@@ -55,7 +55,7 @@
         margin: auto;
         margin-top: 0.5em;
         margin-bottom: 1em;
-        max-width: 4em;
+        max-width: 4.1em;
         line-height: 1.25;
     }
 </style>

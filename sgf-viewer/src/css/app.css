@@ -1,18 +1,31 @@
 :root {
   /* FAR branding colors */
-  --near-white: #f7f7f7;
-  --medium-accent-color: #009999;
-  --light-accent-color: #d9d9d9;
-  --dark-accent-color: #226666;
-  --logo-color: #46cdcf;
+  --near-white: #e0e8e8;  /* Light Gray */
+  --near-black: #071024;  /* Deep Navy */
+  --medium-accent-color: #389472;  /* Dark Green */
+  --light-accent-color: #cedbdb;  /* Mid Gray */
+  --dark-accent-color: #476a6f;  /* Research Gray */
 
   --accent-color-1: var(--dark-accent-color);
   --accent-color-2: var(--medium-accent-color);
   --accent-color-3: var(--near-white);
-  --link-hover-color: var(--logo-color);
+  --link-hover-color: #6cd5a4;  /* Green */
 
+  --bs-heading-color: var(--near-black);
   --bs-body-bg: var(--near-white);
-  --bs-body-bg-rgb: 247, 247, 247;
+  --bs-body-bg-rgb: 224, 232, 232;
+}
+
+@font-face {
+    font-family: "Klarheit";
+    font-weight: normal;
+    src: url('/fonts/ESKlarheitGrotesk-Rg.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: "Klarheit";
+    font-weight: 600;
+    src: url('/fonts/ESKlarheitGrotesk-Smbd.woff2') format('woff2');
 }
 
 html {
@@ -23,9 +36,10 @@ html {
 }
 
 body {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Klarheit", Hanken Grotesk, Helvetica, Arial, sans-serif;
   font-size: 18px;
-  line-height: 24px;
+  color: var(--near-black);
+  line-height: 1.4em;
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
