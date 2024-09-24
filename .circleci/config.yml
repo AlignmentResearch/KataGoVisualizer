@@ -5,7 +5,7 @@ executors:
     machine:
       # https://discuss.circleci.com/t/linux-machine-executor-update-2022-july-q3-update/44873
       # This image contains Chrome (and seemingly chromedriver), Docker Compose and Python
-      image: ubuntu-2204:2022.07.1
+      image: ubuntu-2204:2024.05.1
       docker_layer_caching: true
 
 commands:
@@ -13,14 +13,17 @@ commands:
     steps:
       - checkout
       - restore_cache:
-          key: deps-{{ checksum ".circleci/requirements.txt" }}
+          key: v1-deps-{{ checksum ".circleci/requirements.txt" }}
       - run:
           command: |
-            python3 -m venv venv
+            sudo apt update
+            DEBIAN_FRONTEND=noninteractive sudo apt install python3.10-venv
+            python3.10 -m venv venv
             . venv/bin/activate
             pip install -r .circleci/requirements.txt
+
       - save_cache:
-          key: deps-{{ checksum ".circleci/requirements.txt" }}
+          key: v1-deps-{{ checksum ".circleci/requirements.txt" }}
           paths:
             - "venv"
 
