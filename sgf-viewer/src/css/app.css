@@ -1,18 +1,26 @@
 :root {
   /* FAR branding colors */
-  --near-white: #f7f7f7;
-  --medium-accent-color: #009999;
-  --light-accent-color: #d9d9d9;
-  --dark-accent-color: #226666;
-  --logo-color: #46cdcf;
+  --light-gray: #e0e8e8;
+  --deep-navy: #071024;
+  --dark-green: #389472;
+  --mid-gray: #cedbdb;
+  --green: #6cd5a4;
 
-  --accent-color-1: var(--dark-accent-color);
-  --accent-color-2: var(--medium-accent-color);
-  --accent-color-3: var(--near-white);
-  --link-hover-color: var(--logo-color);
+  --bs-heading-color: var(--deep-navy);
+  --bs-body-bg: var(--light-gray);
+  --bs-body-bg-rgb: 224, 232, 232;
+}
 
-  --bs-body-bg: var(--near-white);
-  --bs-body-bg-rgb: 247, 247, 247;
+@font-face {
+    font-family: "Klarheit";
+    font-weight: normal;
+    src: url('/fonts/ESKlarheitGrotesk-Rg.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: "Klarheit";
+    font-weight: 600;
+    src: url('/fonts/ESKlarheitGrotesk-Smbd.woff2') format('woff2');
 }
 
 html {
@@ -23,9 +31,10 @@ html {
 }
 
 body {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Klarheit", Hanken Grotesk, Helvetica, Arial, sans-serif;
   font-size: 18px;
-  line-height: 24px;
+  color: var(--deep-navy);
+  line-height: 1.4em;
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -36,12 +45,12 @@ body {
 
 a {
   font-weight: bold;
-  color: var(--medium-accent-color);
+  color: var(--dark-green);
   text-decoration: inherit;
 }
 
 a:hover {
-  color: var(--link-hover-color);
+  color: var(--green);
 }
 
 /* Bootstrap removes some CSS for <a> tags no href and no class. Add this
@@ -57,7 +66,8 @@ h1, h2, h3, h4, h5, h6, :target {
 }
 
 .dropdown-menu {
-  --bs-dropdown-link-active-bg: var(--medium-accent-color);
+  --bs-dropdown-link-active-bg: var(--green);
+  --bs-dropdown-link-active-color: var(--deep-navy);
 }
 
 /* sanitize has a CSS rule adding a ::before pseudo-element to nav list items:

@@ -73,8 +73,8 @@
         --toc-desktop-max-width="12em"
         --toc-mobile-btn-bg="rgba(var(--bs-light-rgb), 0.8)"
         --toc-mobile-bg="rgba(var(--bs-light-rgb), 1)"
-        --toc-active-color="var(--near-white)"
-        --toc-active-bg="var(--medium-accent-color)"
+        --toc-active-color="var(--deep-navy)"
+        --toc-active-bg="var(--green)"
     >
         <div class="toc-icon" slot="open-toc-icon">
             <!-- The default mobile icon looks too much like the navbar icon.
@@ -92,7 +92,6 @@
         display: flex;
         justify-content: center;
         padding: 0 min(1.5em, 4vw);
-        width: 100vw;
     }
     .content {
         max-width: 50em;
