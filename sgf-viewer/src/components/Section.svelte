@@ -23,7 +23,7 @@
 <h3 id={section["dir_name"]}>
     {@html section["title"]}
 </h3>
-<SectionDescription {dirName} description={section["description"]} />
+<SectionDescription description={section["description"]} />
 {#if section["paths"] || section["paths_with_line_num"]}
     <div class="board-wrapper">
         <GoBoard dirName={dirName} />

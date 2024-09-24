@@ -843,75 +843,6 @@ export const pages: object =
         ],
         "content": [
             {
-                "title": "Cyclic attack",
-                "dir_name": "dec23-vs-continuous",
-                "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/sample-sgfs.sh",
-                "paths_with_line_num": [
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/2AA99D7D5D195D86.sgfs",
-                        "line": 2
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/E61F14B35A2F4C18.sgfs",
-                        "line": 3
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/32234108DFCBA27B.sgfs",
-                        "line": 4
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/0BD4B0BBA4122227.sgfs",
-                        "line": 6
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/C3224EDB24EE96AB.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/75E9879182E9E4D4.sgfs",
-                        "line": 2
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/EE4765DDC4C3CEC8.sgfs",
-                        "line": 4
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/E4594730BD4B463B.sgfs",
-                        "line": 1
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/6FF122FC255F5F85.sgfs",
-                        "line": 2
-                    },
-                    {
-                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/2CA4C0F541303AFC.sgfs",
-                        "line": 3
-                    }
-                ],
-                "max_games": 10,
-                "adversary": "<code>continuous-adversary</code>",
-                "victim": "<code>dec23-victim</code>, 65536 visits",
-                "description": [
-                    "We fine-tuned a cyclic adversary to defeat <code>dec23-victim</code> at 4096 visits of search with a 65% win rate and at 65536 visits with a 27% win rate, showing that KataGo's adversarial training is insufficient to defend against cyclic attacks. Explore randomly sampled games below.",
-                    "For example, in the first game, the adversary stakes out a sizable group in the center, around which the victim will form the cyclic group. We can see the outline of this group formed around <MoveLink move=65>move 65</MoveLink>, and the victim completes a loose encirclement—the eventual cyclic group—around <MoveLink move=98>move 98</MoveLink>. At <MoveLink move=122>move 122</MoveLink>, the inside shape is completed with a double cut formation. This inside shape is distinctive of this adversary. In subsequent moves, the victim completes the cyclic group and the adversary begins to surround it. Move <MoveLink move=210>210</MoveLink> is the last chance for the victim to escape (for example, by connecting where the adversary plays 211). After that the cyclic group is doomed, culminating in its final capture on <MoveLink move=217>move 217</MoveLink>."
-                ]
-            },
-            {
-                "title": "Human replication of cyclic attack",
-                "dir_name": "dec23-vs-human-cyclic",
-                "paths": ["/shared/sgf-viewer-games/b18-v512-vs-human-cyclic.sgf"],
-                "max_games": 1,
-                "adversary": "Kellin Pelrine (author)",
-                "victim": "<code>dec23-victim</code>, 512 visits",
-                "description": [
-                    "A Go expert (Kellin Pelrine) studied this attack and was able to learn and implement it to beat KataGo. In the game (shown below), there were a number of key components to doing this successfully. The operation begins with the opening pattern with 3-3 points on moves <MoveLink move=3>3</MoveLink> and <MoveLink move=9>9</MoveLink>, inducing KataGo (white) to play on the sides through <MoveLink move=18>move 18</MoveLink>, which sets the stage to build the distinctive inside group shape. That operation begins in earnest with the cap at <MoveLink move=19>move 19</MoveLink>. <MoveLink move=27>Move 27</MoveLink> is an abnormal move designed to induce <MoveLink move=28>28</MoveLink> immediately and <MoveLink move=36>36</MoveLink> later; an extension like this can be seen in some of our AI adversary's games. <MoveLink move=41>41</MoveLink> induces <MoveLink move=42>42</MoveLink>, and through <MoveLink move=47>47</MoveLink> the initial outline of the group is completed.",
-                    "<MoveLink move=59>Move 59</MoveLink> begins the second phase, to induce the victim to create an eye for its cyclic group. <MoveLink move=69>69</MoveLink> pushes white to capture a stone to make this happen, and <MoveLink move=71>71</MoveLink> invites <MoveLink move=72>72</MoveLink> which avoids the possibility of the victim making a false eye. The eye is finally completed when white captures at <MoveLink move=108>108</MoveLink>.",
-                    "In the meantime, Kellin (black) begins to surround the cyclic group and invite connections to complete it. At the same time, with <MoveLink move=149>149</MoveLink> and <MoveLink move=173>173</MoveLink>, black separates what will be an extension of the cyclic group from the rest of white's stones.  With the connection at <MoveLink move=232>232</MoveLink>, the cycle itself is virtually complete. However, the inside shape does not yet have the distinctive double cut pattern. So after playing more moves to surround the cyclic group through <MoveLink move=249>249</MoveLink>, black buys some time with moves like <MoveLink move=251>251</MoveLink> and <MoveLink move=259>259</MoveLink>, waiting for white to attack the inside group. This happens with <MoveLink move=260>260</MoveLink>, and the double cut is completed with <MoveLink move=266>266</MoveLink>.",
-                    "At this point, the last phase begins. In a number of failed attempts, all the steps so far were insufficient to lead to a successful capture without the victim seeing the danger. To divert the victim's attention, black sets up a situation where the last chance to save the cyclic group will also be doing something else—specifically, capturing its tail. Black plays some preparatory moves at <MoveLink move=273>273</MoveLink> and <MoveLink move=275>275</MoveLink>, which ensure black will not run into a liberty shortage with his own group. Finally, at <MoveLink move=277>move 277</MoveLink>, black threatens to cut off white's tail, while at the same time filling liberties of the cyclic group. If white connects, the entire cyclic group will die. KataGo (white) seems to recognize that connecting will lead to disaster, and plays elsewhere, letting black capture with <MoveLink move=279>279</MoveLink>. Now, white has a final chance to save the cyclic group by capturing part of the inside group. Although capturing the tail is a huge gain for black, white still has a considerable lead if the cyclic group survives. However, white plays away at <MoveLink move=280>280</MoveLink>, letting black fill another liberty with <MoveLink move=281>281</MoveLink>. Now white can no longer capture the inside group before black captures the cyclic group, so white loses.",
-                    "This attack was a lot more challenging to execute than the others. We hypothesize that it is key to make the last threat before deciding the fate of the cyclic group look on the surface unthreatening to it. For example, in this case, it was a very valuable capture, a natural move for black to play even without any designs on the cyclic group. An inhuman weakness may have a surprisingly human component to it."
-                ]
-            },
-            {
                 "title": "Gift attack",
                 "dir_name": "dec23-vs-gift",
                 "paths_with_line_num": [
@@ -960,7 +891,7 @@ export const pages: object =
                 "adversary": "<code>gift-adversary</code>",
                 "victim": "<code>dec23-victim</code>, 512 visits",
                 "description": [
-                    "We also discovered a new non-cyclic attack, which we call the \"gift attack\", that defeats <code>dec23-victim</code> at 512 visits of search in 91% of games. In this attack, the adversary sets up a \"<a target=\"_blank\" href=\"https://senseis.xmp.net/?SendingTwoReturningOne\">sending-two-receiving-one</a>\" situation where, for no valid reason, the victim gifts the adversary two stones and then needs to capture one back. However, the victim's recapture is blocked by <a target=\"_blank\" href=\"https://senseis.xmp.net/?PositionalSuperko\">positional superko</a> rules. The adversary sets up the position to have the resurrection of one of its dead groups at stake, leading to a disaster for the victim. Although this attack does not scale up to high visits, it reveals additional unforeseen vulnerabilities in KataGo besides cyclic attacks. Explore randomly sampled games below.",
+                    "We discovered a new non-cyclic attack, which we call the \"gift attack\", that defeats <code>dec23-victim</code> at 512 visits of search in 91% of games. In this attack, the adversary sets up a \"<a target=\"_blank\" href=\"https://senseis.xmp.net/?SendingTwoReturningOne\">sending-two-receiving-one</a>\" situation where, for no valid reason, the victim gifts the adversary two stones and then needs to capture one back. However, the victim's recapture is blocked by <a target=\"_blank\" href=\"https://senseis.xmp.net/?PositionalSuperko\">positional superko</a> rules. The adversary sets up the position to have the resurrection of one of its dead groups at stake, leading to a disaster for the victim. Although this attack does not scale up to high visits, it reveals additional unforeseen vulnerabilities in KataGo besides cyclic attacks. Explore randomly sampled games below.",
                     "In the first game, for example, we see a typical game unfold for the first 100+ moves. The victim takes an early lead, reaching 98% internal win probability by <MoveLink move=24>move 24</MoveLink>, so the adversary is playing many moves that would normally be considered subpar. There is otherwise little overt evidence of anything suspicious happening at this stage. Gradually, we see the adversary playing some incursions into the victim’s territory, notably at moves <MoveLink move=117>117</MoveLink> and <MoveLink move=127>127</MoveLink>. With correct play, these and nearby stones will eventually be captured.",
                     "At <MoveLink move=206>move 206</MoveLink>, we see the first instance of the victim offering two stones, though in this position it is not yet dangerous. This happens repeatedly over the following moves, both at this location and on the left side. After <MoveLink move=263>move 263</MoveLink> though, when the adversary forms an eye at the top, any further gifts will lead to the victim inadvertently resurrecting the adversary’s entire group. This happens at <MoveLink move=344>move 344</MoveLink>. After the adversary captures two stones at <MoveLink move=345>345</MoveLink>, the victim would like to recapture one stone but is barred by the positional superko rule. Thus, the adversary secures two eyes with <MoveLink move=347>move 347</MoveLink>, saving its group that should have died. This is a significant reversal, though the victim still appears to be winning. But then, at <MoveLink move=366>move 366</MoveLink>, the same scenario unfolds on the left side, tipping the scales decisively in favor of the adversary."
                 ]
@@ -978,6 +909,142 @@ export const pages: object =
                     "White finally sets up a third potential place for a gift starting on <MoveLink move=186>move 186</MoveLink>. This was intended to maximize the chances. Normally all three of these groups would be dead, but on <MoveLink move=193>move 193</MoveLink>, we see one instance of the attack succeed, with black sending two stones for no benefit and letting white resurrect their group. This happens again, with white’s largest “dead” group, on <MoveLink move=215>move 215</MoveLink>. This completes the reversal, giving white a large lead, and black resigns shortly after.",
                     "We note, however, that this was completed at 1 victim visit. With more search, the attack seems much harder for humans (as well as our AI adversary); several human attempts at 256 and 512 visits failed. In particular, there was no issue establishing positions ready to receive a gift, as well as a stable gamestate on the rest of the board, but no gift was offered. We hypothesize that in addition to the key visible components of the attack (minimizing victim score lead, adversary positions that don’t have many threats against them, and setting up the shapes to receive gifts), there is a more opaque component of balancing value of moves across the board in the victim’s perception, such that it does not see much more valuable moves and offers the gift, but also does not search so much in the local area to see the disaster about to happen afterwards. This requires increasing precision at higher visits, and is difficult for humans to learn."
                 ]
+            },
+            {
+                "title": "Continuous cyclic attack",
+                "dir_name": "dec23-vs-continuous",
+                "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/sample-sgfs.sh",
+                "paths_with_line_num": [
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/2AA99D7D5D195D86.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/E61F14B35A2F4C18.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/32234108DFCBA27B.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/0BD4B0BBA4122227.sgfs",
+                        "line": 6
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/C3224EDB24EE96AB.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/75E9879182E9E4D4.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/EE4765DDC4C3CEC8.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/E4594730BD4B463B.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/6FF122FC255F5F85.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/continuous-adversary/vary-victim-visits/v16k-to-v65k/sgfs/2CA4C0F541303AFC.sgfs",
+                        "line": 3
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "<code>continuous-adversary</code>",
+                "victim": "<code>dec23-victim</code>, 65536 visits",
+                "description": [
+                    "We also fine-tuned a cyclic adversary to defeat <code>dec23-victim</code> at 4096 visits of search with a 65% win rate and at 65536 visits with a 27% win rate, showing that KataGo's adversarial training is insufficient to defend against cyclic attacks. Explore randomly sampled games from the adversary <code>continuous-adversary</code> below.",
+                    "For example, in the first game, the adversary stakes out a sizable group in the center, around which the victim will form the cyclic group. We can see the outline of this group formed around <MoveLink move=65>move 65</MoveLink>, and the victim completes a loose encirclement—the eventual cyclic group—around <MoveLink move=98>move 98</MoveLink>. At <MoveLink move=122>move 122</MoveLink>, the inside shape is completed with a double cut formation. This inside shape is distinctive of this adversary. In subsequent moves, the victim completes the cyclic group and the adversary begins to surround it. Move <MoveLink move=210>210</MoveLink> is the last chance for the victim to escape (for example, by connecting where the adversary plays 211). After that the cyclic group is doomed, culminating in its final capture on <MoveLink move=217>move 217</MoveLink>."
+                ]
+            },
+            {
+                "title": "Human replication of continuous cyclic attack",
+                "dir_name": "dec23-vs-human-cyclic",
+                "paths": ["/shared/sgf-viewer-games/b18-v512-vs-human-cyclic.sgf"],
+                "max_games": 1,
+                "adversary": "Kellin Pelrine (author)",
+                "victim": "<code>dec23-victim</code>, 512 visits",
+                "description": [
+                    "A Go expert (Kellin Pelrine) studied this attack and was able to learn and implement it to beat KataGo. In the game (shown below), there were a number of key components to doing this successfully. The operation begins with the opening pattern with 3-3 points on moves <MoveLink move=3>3</MoveLink> and <MoveLink move=9>9</MoveLink>, inducing KataGo (white) to play on the sides through <MoveLink move=18>move 18</MoveLink>, which sets the stage to build the distinctive inside group shape. That operation begins in earnest with the cap at <MoveLink move=19>move 19</MoveLink>. <MoveLink move=27>Move 27</MoveLink> is an abnormal move designed to induce <MoveLink move=28>28</MoveLink> immediately and <MoveLink move=36>36</MoveLink> later; an extension like this can be seen in some of our AI adversary's games. <MoveLink move=41>41</MoveLink> induces <MoveLink move=42>42</MoveLink>, and through <MoveLink move=47>47</MoveLink> the initial outline of the group is completed.",
+                    "<MoveLink move=59>Move 59</MoveLink> begins the second phase, to induce the victim to create an eye for its cyclic group. <MoveLink move=69>69</MoveLink> pushes white to capture a stone to make this happen, and <MoveLink move=71>71</MoveLink> invites <MoveLink move=72>72</MoveLink> which avoids the possibility of the victim making a false eye. The eye is finally completed when white captures at <MoveLink move=108>108</MoveLink>.",
+                    "In the meantime, Kellin (black) begins to surround the cyclic group and invite connections to complete it. At the same time, with <MoveLink move=149>149</MoveLink> and <MoveLink move=173>173</MoveLink>, black separates what will be an extension of the cyclic group from the rest of white's stones.  With the connection at <MoveLink move=232>232</MoveLink>, the cycle itself is virtually complete. However, the inside shape does not yet have the distinctive double cut pattern. So after playing more moves to surround the cyclic group through <MoveLink move=249>249</MoveLink>, black buys some time with moves like <MoveLink move=251>251</MoveLink> and <MoveLink move=259>259</MoveLink>, waiting for white to attack the inside group. This happens with <MoveLink move=260>260</MoveLink>, and the double cut is completed with <MoveLink move=266>266</MoveLink>.",
+                    "At this point, the last phase begins. In a number of failed attempts, all the steps so far were insufficient to lead to a successful capture without the victim seeing the danger. To divert the victim's attention, black sets up a situation where the last chance to save the cyclic group will also be doing something else—specifically, capturing its tail. Black plays some preparatory moves at <MoveLink move=273>273</MoveLink> and <MoveLink move=275>275</MoveLink>, which ensure black will not run into a liberty shortage with his own group. Finally, at <MoveLink move=277>move 277</MoveLink>, black threatens to cut off white's tail, while at the same time filling liberties of the cyclic group. If white connects, the entire cyclic group will die. KataGo (white) seems to recognize that connecting will lead to disaster, and plays elsewhere, letting black capture with <MoveLink move=279>279</MoveLink>. Now, white has a final chance to save the cyclic group by capturing part of the inside group. Although capturing the tail is a huge gain for black, white still has a considerable lead if the cyclic group survives. However, white plays away at <MoveLink move=280>280</MoveLink>, letting black fill another liberty with <MoveLink move=281>281</MoveLink>. Now white can no longer capture the inside group before black captures the cyclic group, so white loses.",
+                    "This attack was a lot more challenging to execute than the others on this page. We hypothesize that it is key to make the last threat before deciding the fate of the cyclic group look on the surface unthreatening to it. For example, in this case, it was a very valuable capture, a natural move for black to play even without any designs on the cyclic group. An inhuman weakness may have a surprisingly human component to it."
+                ]
+            },
+            {
+                "title": "Big cyclic attack",
+                "dir_name": "may24-vs-big",
+                "_path_comment": "Computed by /shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/sample-sgfs.sh",
+                "paths_with_line_num": [
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/83EF172F2B291E03.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/BEE1AB6D3B3B44CE.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/D8B60438C3EC9EEA.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/8EDE390730188173.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/4D212F0EB256CA2A.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/A80363E37DCF380B.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/A127B0E14CA8B587.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/8736B02ED56EACB0.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/8EDE390730188173.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/katago-adversarial-training/large-adversary/victim-visits/b18-s9997m/3/sgfs/0CB234E5751D6A6B.sgfs",
+                        "line": 1
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "<code>big-adversary</code>",
+                "victim": "<code>may24-victim</code>, 65536 visits",
+                "description": [
+                    "After we disclosed the attacks of the previous two adversaries, KataGo added positions to its adversarial training dataset to defend against the attacks. But yet again we were able to fine-tune a cyclic adversary to beat a new KataGo model, <code>may24-victim</code>, at 65536 visits of search with a 56% win rate. <code>may24-victim</code> is the strongest KataGo model of the same size as <code>dec23-victim</code> as of August 2024.",
+                    "A simple qualitative trait stands out with this adversary: it makes a bigger cyclic group. For example, in the first game below, we see through <MoveLink move=23>move 23</MoveLink> that its start to creating the cyclic group is wide and expansively open towards the center. It starts to outline the top boundary of the soon-to-be inside group with <MoveLink move=41>move 41</MoveLink>, and the group is fleshed out through <MoveLink move=63>move 63</MoveLink>. Over the next 50+ moves, the adversary takes a patient approach to playing around the fledgling cyclic group, intermittently scattering moves there in between moves on the right side. Around <MoveLink move=129>move 129</MoveLink>, though, the adversary does start to surround the group in earnest. Notably, by connecting some of its stones together with moves like <MoveLink move=179>179</MoveLink>, the adversary ensures the surrounding groups have a decent number of liberties. This may be important to ensure the victim would have to think a bit further ahead to see disaster coming before the last opportunity to avert it (this concept has been observed with previous adversaries and is discussed in <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#appendix.H\">Appendix H</a> of our first paper. On <MoveLink move=198>move 198</MoveLink>, the victim completes the cycle. In this particular game, this move is also the one that locks in the disaster. After that, the victim makes some last ditch efforts to capture some surrounding stones, but the cyclic group is inevitably captured on <MoveLink move=233>move 233</MoveLink> and the game is decided."
+                ]
+            },
+            {
+                "title": "Human replication of big cyclic attack",
+                "dir_name": "dec23-vs-human-big-cyclic",
+                "paths": ["/shared/sgf-viewer-games/b18-v4096-vs-human-big-cyclic.sgf"],
+                "max_games": 1,
+                "adversary": "Kellin Pelrine (author)",
+                "victim": "<code>dec23-victim</code>, 4096 visits",
+                "description": [
+                    "Go expert Kellin studied the big cyclic attack and was able to apply it to beat the <code>dec23-victim</code> at a higher visit count than before, winning at 4096 victim visits rather than 512. We attacked <code>dec23-victim</code> here instead of <code>may24-victim</code> since we used <code>dec23-victim</code> in previous human replications on this page and we wanted to compare the difficulty of executing the attack. We were able to beat <code>dec23-victim</code> at a higher number of visits than before.",
+                    "In this game, to maximize chances of success, Kellin aimed for three things: a large cyclic group, many liberties on the surrounding groups (\"moves-to-capture\"; see <a target=\"_blank\" href=\"https://arxiv.org/pdf/2211.00241.pdf#appendix.H\">Appendix H</a> of our first paper), and an eye for the cyclic group. We see in the AI adversary's game records that the latter is not necessary, and moves-to-capture does not need to be that high either, but both these traits have been observed to help some past attacks, so were reasoned to potentially increase the odds here. The successful attempt here followed only two unsuccessful ones, suggesting it would be viable for humans with even higher visits. This is also far less than the replication of the continuous cyclic attack (which took over 20 initial attempts), indicating that for humans it is at minimum much easier to learn and most likely easier to execute too.",
+                    "Kellin started inducing the cyclic group immediately with <MoveLink move=3>move 3</MoveLink>. <MoveLink move=21>Move 21</MoveLink> is a classic tesuji to gain liberties, for what will become one of the surrounding groups. With moves like the sequence through <MoveLink move=31>move 31</MoveLink>, <MoveLink move=65>move 65</MoveLink>, and <MoveLink move=71>move 71</MoveLink>, the key large inside group is formed, and correspondingly by <MoveLink move=106>move 106</MoveLink> the victim has outlined a large cyclic group. Along the way, when the victim played <MoveLink move=58>move 58</MoveLink>, a place for the cyclic group to form an eye was established. With <MoveLink move=109>move 109</MoveLink> Kellin started to surround the cyclic group from above, and then on the right with <MoveLink move=141>move 141</MoveLink>. On <MoveLink move=142>move 142</MoveLink>, the victim seemed to catch a whiff of danger and formed an eye, which is a bit of an odd move given there are points remaining to be claimed in the top right and also many places where the cyclic group could run away. With <MoveLink move=172>move 172</MoveLink> and <MoveLink move=180>move 180</MoveLink>, the cyclic group threatens to do so, creating a tense moment. But through <MoveLink move=191>move 191</MoveLink> the victim lets itself be walled off. After this, what's left is to fill in liberties and capture the cyclic group before the victim fully catches on and captures one of the surrounding groups. The deciding move is <MoveLink move=232>move 232</MoveLink>, where if the victim had played against black's top left group, it could have forced a local stalemate (seki) between that group and its cyclic one, and secured infinite time to capture one of the other surrounding groups. But in the game, move 232 gives Kellin time to fill another liberty of the cyclic group, guaranteeing the capture. The victim makes a couple futile threats against the inside group, but the capture is completed on <MoveLink move=253>move 253</MoveLink>, and the victim resigns."
+                ]
             }
         ]
     },
@@ -989,7 +1056,7 @@ export const pages: object =
         ],
         "content": [
             {
-                "title": "Atari attack",
+                "title": "Atari cyclic attack",
                 "dir_name": "v9-vs-atari",
                 "paths_with_line_num": [
                     {
@@ -1037,8 +1104,62 @@ export const pages: object =
                 "adversary": "<code>atari-adversary</code>",
                 "victim": "<code>v</code><sub><code>9</code></sub>, 512 visits",
                 "description": [
-                    "We trained a new adversary by fine-tuning from an early adversarial checkpoint. It was able to defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search in 81% of games, but the win rate drops to 4% at 4096 visits. This demonstrates that our victim is easily attacked until it uses high amounts of search. Explore randomly sampled games below.",
+                    "We trained a new adversary by fine-tuning from an early adversarial non-cyclic checkpoint. It was able to defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search in 81% of games, but the win rate drops to 4% at 4096 visits. This demonstrates that our victim is easily attacked until it uses high amounts of search. Explore randomly sampled games below.",
                     "This adversary starts by inducing the victim to form bamboo joints: pairs of stone separated by two empty spaces. In normal games, these are often efficient shapes due to their strong connections. In the first game here, the first bamboo joint is formed on <MoveLink move=24>move 24</MoveLink> between that white stone, the one next to it, and the two below those. Additional joints are formed on <MoveLink move=28>move 28</MoveLink> and <MoveLink move=52>52</MoveLink>. By <MoveLink move=102>move 102</MoveLink>, a large cyclic group emerges, another hallmark of this adversary’s strategy. For over 100 moves, the adversary systematically encloses the cyclic group. Throughout, this adversary often leaves many stones \"in atari\" in Go terminology, what might be called hanging pieces in chess – stones that could be instantly captured if the victim opts to. At <MoveLink move=217>move 217</MoveLink>, the attack enters the final phase: the adversary threatens to split the bamboo joints. The victim connects at <MoveLink move=218>218</MoveLink> and <MoveLink move=220>220</MoveLink>, each move reducing the overall group’s liberties. A fatal mistake is committed at <MoveLink move=222>move 222</MoveLink>, allowing the adversary to capture everything with <MoveLink move=223>move 223</MoveLink>."
+                ]
+            },
+            {
+                "title": "Stalling cyclic attack",
+                "dir_name": "v9-vs-stall",
+                "paths_with_line_num": [
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/26FF4DE88F7B80E5.sgfs",
+                        "line": 6
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/F8BD6EC8E34E731E.sgfs",
+                        "line": 3
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/69420E7F02BD6F34.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/1F4C87C39A93297B.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/66691A5DE7E9F14B.sgfs",
+                        "line": 2
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/4486B179AC67B269.sgfs",
+                        "line": 8
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/6101158ACA9ECD02.sgfs",
+                        "line": 4
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/354CAC78BB59267D.sgfs",
+                        "line": 1
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/F835D8246453F61E.sgfs",
+                        "line": 6
+                    },
+                    {
+                        "path": "/shared/match/paper-robustness/iterated-adversarial-training/stall-adv/vary-victim-visits/0/sgfs/4FF021B5FEBD34FA.sgfs",
+                        "line": 8
+                    }
+                ],
+                "max_games": 10,
+                "adversary": "<code>stall-adversary</code>",
+                "victim": "<code>v</code><sub><code>9</code></sub>, 512 visits",
+                "description": [
+                    "We trained another adversary by fine-tuning a cyclic adversary. Again it was able to convincingly defeat <code>v</code><sub><code>9</code></sub> at 512 visits of search, achieving a win rate of 91.5%, with the win rate dropping to 5% at 4096 visits. The adversary stalls in the first few moves by passing, so we call it <code>stall-adversary</code>. (When the victim is white it could pass after the adversary passes to end the game and win by komi, but one of KataGo's default settings <code>conservativePass = true</code> disallows this. Turning <code>conservativePass = false</code> defeats this adversary, but had we trained with <code>conservativePass = false</code> we likely would have simply found a different adversary.)",
+                    "In the first game below, the adversary only makes its first actual play on <MoveLink move=9>move 9</MoveLink>. It's not completely clear what this accomplishes, given KataGo only has a move history window of 5 moves. Potentially, the number of stones on the board pushes it off distribution or towards the distribution of a very early version of KataGo back when it might randomly pass at the beginning of the game. Alternatively, it might simply help with this adversary's style of play in the non-cyclic areas of the board, where it likes to set up very long groups on the second line. This can be seen, for example, through <MoveLink move=103>move 103</MoveLink>. These groups are efficient for both making sure the victim controls the center and has ample space for setting up the cyclic group, and for making sure there will be a long chain of moves to play that still give a point benefit, which may help misdirect the victim's search in the critical moments. It is uncertain, though, if either of these hypotheses have a decisive impact.",
+                    "Regardless, through <MoveLink move=59>move 59</MoveLink> the adversary sets up most of a rather conventional inside group akin to the <a href=\"/game-analysis#contents\">original cyclic adversary</a>. It completes it on <MoveLink move=63>move 63</MoveLink>. Inside groups similar to this one are also one of the distinctive features of this adversary, contrasting with the other adversaries from the defense paper which have shapes distinctively different from the original adversary. Then, on <MoveLink move=105>move 105</MoveLink>, the adversary starts in earnest to surround and induce completion of the cyclic group. Through <MoveLink move=188>move 188</MoveLink>, we see one of the potential benefits of the long, second line group that the adversary set up before, where the victim plays many moves on the left side while the adversary plays additional moves for surrounding the cyclic group. At <MoveLink move=232>move 232</MoveLink>, the victim could still save the cyclic group by attacking black's group in the lower right corner. But after it plays on the top and the adversary fills another liberty, the cyclic group is doomed, even though the adversary waits until <MoveLink move=341>move 341</MoveLink> to capture outright."
                 ]
             },
             {
