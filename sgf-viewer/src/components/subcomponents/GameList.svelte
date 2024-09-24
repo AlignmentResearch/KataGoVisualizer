@@ -162,15 +162,19 @@
     td {
         border: 1px solid rgb(172, 172, 172);
     }
+    .table {
+        --bs-table-hover-bg: var(--mid-gray);
+    }
     .table-active {
-        --bs-table-bg-state: var(--accent-color-2);
-        --bs-table-active-color: var(--accent-color-3);
-        /* We set --bs-table-hover-* because otherwise when the user clicks a
-         * row while hovering, they still just see the hover color instead of
-         * the active color.
-         */
-        --bs-table-hover-bg: var(--accent-color-2);
-        --bs-table-hover-color: var(--accent-color-3);
+        --bs-table-bg-state: var(--green);
+        --bs-table-active-color: var(--deep-navy);
+        --bs-table-hover-bg: var(--green);
+        --bs-table-hover-color: var(--deep-navy);
+    }
+    .table-active a:hover {
+        /* Change link hover color since otherwise it's the same as the
+         * table-active background color. */
+        color: white;
     }
     th:first-of-type {
         border-top-left-radius: 10px;
@@ -185,7 +189,7 @@
         border-bottom-right-radius: 10px;
     }
     th {
-        background-color: var(--accent-color-1);
+        background-color: var(--dark-green);
         color: white;
     }
     td:first-child {
@@ -204,13 +208,5 @@
         height: 1.5em;
         width: 1.5em;
         margin: auto;
-    }
-    .table-active a {
-        /* Change link color since otherwise it's the same as the table-active
-         * background color. */
-        color: var(--bs-table-active-color);
-    }
-    .table-active a:hover {
-        color: var(--link-hover-color);
     }
 </style>

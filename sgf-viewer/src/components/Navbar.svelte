@@ -47,8 +47,8 @@
 
 <style>
     .navbar {
-        --bs-navbar-active-color: var(--dark-accent-color);
-        border-bottom: 1px solid #fff;
+        --bs-navbar-active-color: var(--deep-navy);
+        border-bottom: 1px solid white;
     }
     .bg-light {
         background-color: var(--bs-body-bg) !important;

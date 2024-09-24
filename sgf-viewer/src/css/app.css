@@ -1,18 +1,13 @@
 :root {
   /* FAR branding colors */
-  --near-white: #e0e8e8;  /* Light Gray */
-  --near-black: #071024;  /* Deep Navy */
-  --medium-accent-color: #389472;  /* Dark Green */
-  --light-accent-color: #cedbdb;  /* Mid Gray */
-  --dark-accent-color: #476a6f;  /* Research Gray */
+  --light-gray: #e0e8e8;
+  --deep-navy: #071024;
+  --dark-green: #389472;
+  --mid-gray: #cedbdb;
+  --green: #6cd5a4;
 
-  --accent-color-1: var(--dark-accent-color);
-  --accent-color-2: var(--medium-accent-color);
-  --accent-color-3: var(--near-white);
-  --link-hover-color: #6cd5a4;  /* Green */
-
-  --bs-heading-color: var(--near-black);
-  --bs-body-bg: var(--near-white);
+  --bs-heading-color: var(--deep-navy);
+  --bs-body-bg: var(--light-gray);
   --bs-body-bg-rgb: 224, 232, 232;
 }
 
@@ -38,7 +33,7 @@ html {
 body {
   font-family: "Klarheit", Hanken Grotesk, Helvetica, Arial, sans-serif;
   font-size: 18px;
-  color: var(--near-black);
+  color: var(--deep-navy);
   line-height: 1.4em;
   font-weight: 400;
   font-synthesis: none;
@@ -50,12 +45,12 @@ body {
 
 a {
   font-weight: bold;
-  color: var(--medium-accent-color);
+  color: var(--dark-green);
   text-decoration: inherit;
 }
 
 a:hover {
-  color: var(--link-hover-color);
+  color: var(--green);
 }
 
 /* Bootstrap removes some CSS for <a> tags no href and no class. Add this
@@ -71,7 +66,8 @@ h1, h2, h3, h4, h5, h6, :target {
 }
 
 .dropdown-menu {
-  --bs-dropdown-link-active-bg: var(--medium-accent-color);
+  --bs-dropdown-link-active-bg: var(--green);
+  --bs-dropdown-link-active-color: var(--deep-navy);
 }
 
 /* sanitize has a CSS rule adding a ::before pseudo-element to nav list items:
