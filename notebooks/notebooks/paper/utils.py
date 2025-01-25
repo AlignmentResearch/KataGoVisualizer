@@ -62,7 +62,7 @@ def parse_for_match(df: pd.DataFrame, adv_name_regex: str = "adv") -> None:
 
     df.adv_win = df.adv_color == df.win_color
 
-    df.adv_visits = df.adv_name.str.extract(r"-v(\d+)").astype(int)
+    df.adv_visits = df.adv_name.str.extract(r"-v(\d+)").fillna(600).astype(int)
     df.victim_visits = df.victim_name.str.extract(r"-v(\d+)").astype(int)
 
 
