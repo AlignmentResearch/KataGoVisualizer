@@ -4,7 +4,7 @@
 ipykernel
 
 # Libs needed by submodules/KataGo-pytorch-rewrite
-torch==1.13.1
+torch==2.13.0
 packaging==22.0
 
 # For measuring FLOPs of models
